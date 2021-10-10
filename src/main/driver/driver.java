@@ -1,4 +1,4 @@
-package java.driver;
+package driver;
 
 public class driver {
 }

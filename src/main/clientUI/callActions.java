@@ -1,4 +1,4 @@
-package java.clientUI;
+package clientUI;
 
 public class callActions {
 }

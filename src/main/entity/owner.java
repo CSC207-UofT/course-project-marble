@@ -1,4 +1,4 @@
-package java.entity;
+package entity;
 
 public class owner {
 }
