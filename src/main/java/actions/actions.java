@@ -1,4 +1,4 @@
-package java;
+package java.actions;
 
 public abstract class actions {
 }
