@@ -5,7 +5,7 @@ import java.net.Socket;
 import java.net.ServerSocket;
 import java.util.HashMap;
 
-public class Driver {
+public class Server {
     private ServerSocket serverSocket;
     private Socket clientSocket;
     private PrintWriter out;
@@ -73,7 +73,7 @@ public class Driver {
 
 
     public static void main () throws IOException {
-            Driver server = new Driver();
+            Server server = new Server();
             server.start(80);
         }
     }
