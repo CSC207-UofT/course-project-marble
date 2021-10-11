@@ -43,6 +43,7 @@ public class Driver {
         out.close();
         clientSocket.close();
         serverSocket.close();
+        auth = false;
         }
 
     public Socket getNewSocket() {
