@@ -4,7 +4,6 @@ import java.io.*;
 import java.net.Socket;
 import java.net.ServerSocket;
 import java.util.HashMap;
-import java.util.Objects;
 
 public class Driver {
     private ServerSocket serverSocket;
@@ -24,9 +23,12 @@ public class Driver {
         in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
         out.println("Welcome to our Bank!");
         out.println("Would you like to login to an existing user or create a new user?");
-        //call login function see if true
-    }
 
+
+    }
+    public boolean getAuth(){
+        return auth;
+    }
     public void createUser() throws IOException {
         out.println("Hello what is your name?");
         String name = in.readLine();
