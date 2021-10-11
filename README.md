@@ -1,6 +1,3 @@
-## Replace this README.md!
+## Banking App with built in financial planner
 
-This is a standard README.md file for you to replace. You'll want to include your own content here!
-
-MD (Markdown) files use [Markdown formatting](https://guides.github.com/features/mastering-markdown/): 
-these look very much like .txt files, so you can write them in a very similar way.
+Work in progress. Description will be added soon
