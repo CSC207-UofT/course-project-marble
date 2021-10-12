@@ -8,6 +8,8 @@ public class OwnerRepository {
 
     /**
      * TODO: read text file implementation needs to be added.
+     * Add reading txt file first, then use those info to create a list of all accountIDs so it's easier to create
+     * unique account later.
      */
     public OwnerRepository(){
     }

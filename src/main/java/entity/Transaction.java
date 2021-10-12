@@ -34,12 +34,14 @@ public class Transaction {
         this.transactionStatus = transactionStatus;
     }
 
+
     public String getDate(){return this.date;}
     public Owner getOwner(){return this.owner;}
     public Account getInitAccount(){return this.initAccount;}
     public Account getTargetAccount(){return this.targetAccount;}
     public String getTransactionType(){return this.transactionType;}
     public String getTransactionStatus(){return this.transactionStatus;}
+
 
     /**
      * This method lets you update the status of the transactions.
