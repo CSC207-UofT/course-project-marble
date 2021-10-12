@@ -1,4 +1,6 @@
-package entity;
+package server;
+
+import entity.Owner;
 
 import java.util.HashMap;
 

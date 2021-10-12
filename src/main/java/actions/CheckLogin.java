@@ -1,7 +1,7 @@
 package actions;
 
 import clientUI.LoginRequest;
-import entity.OwnerRepository;
+import server.OwnerRepository;
 
 public class CheckLogin {
     String username;
