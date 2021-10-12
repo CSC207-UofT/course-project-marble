@@ -8,8 +8,8 @@ import java.util.HashMap;
 public class Server {
     private ServerSocket serverSocket;
     private Socket clientSocket;
-    private PrintWriter out;
-    private BufferedReader in;
+    private ObjectOutputStream outbound;
+    private ObjectInputStream inbound;
     private HashMap<String, String> passwords;
     private boolean auth;
     // storage server needed object
@@ -19,28 +19,29 @@ public class Server {
         clientSocket = serverSocket.accept();
         passwords = new HashMap<String, String>();
         auth = false;
-        out = new PrintWriter(clientSocket.getOutputStream(), true);
-        in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-        out.println("Welcome to our Bank!");
-        out.println("Would you like to login to an existing user or create a new user?");
+        outbound = new ObjectOutputStream(clientSocket.getOutputStream());
+        inbound = new ObjectInputStream(clientSocket.getInputStream());
+//        out.writeObject("Welcome to our Bank!");
+//        out.writeObject("Would you like to login to an existing user or create a new user?");
+        // login details
 
 
     }
     public boolean getAuth(){
         return auth;
     }
-    public void createUser() throws IOException {
-        out.println("Hello what is your name?");
-        String name = in.readLine();
-        out.println("Great! Now what is your password?");
-        String password = in.readLine();
+    public void createUser() throws IOException, InterruptedException, ClassNotFoundException {
+        outbound.writeObject("Hello what is your name?");
+        String name = (String) inbound.readObject();
+        outbound.writeObject("Great! Now what is your password?");
+        String password = (String) inbound.readObject();
         passwords.put(name, password);
-        out.println("Thanks! You have created an account. You can now login to it");
+        outbound.writeObject("Thanks! You have created an account. You can now login to it");
 
     }
     public void stop () throws IOException {
-        in.close();
-        out.close();
+        inbound.close();
+        outbound.close();
         clientSocket.close();
         serverSocket.close();
         auth = false;
@@ -51,19 +52,20 @@ public class Server {
         return null;
     }
 
-    public boolean login() throws IOException {
+    public boolean login() throws IOException, ClassNotFoundException {
         // implement this
-        out.println("Please enter your username");
-       String username = in.readLine();
-       out.println("Great! Now what is your password?");
-       String pass = in.readLine();
+        outbound.writeObject("Please enter your username");
+        String username = (String) inbound.readObject();
+        outbound.writeObject("Great! Now what is your password?");
+        String pass = (String) inbound.readObject();
+        LoginRequest request = new LoginRequest(username, pass);
         if (pass.equals(passwords.get(username))) {
-            out.println("That is the correct password!");
+            outbound.writeObject("That is the correct password!");
             auth = true;
             return true;
         }
         else{
-            out.println("That is incorrect");
+            outbound.writeObject("That is incorrect");
             auth = false;
             return false;
         }
