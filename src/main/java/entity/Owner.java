@@ -4,6 +4,7 @@ package entity;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
@@ -11,7 +12,8 @@ public class Owner {
     private final String fullName;
     private final String username;
     private final byte[] password;
-    private HashMap<String, Account> Accounts;
+    private HashMap<Integer, Account> accounts; // accountID Integer, Account Object
+    private static ArrayList<Integer> listOfAccountsID;
 
 
     /**
@@ -38,10 +40,29 @@ public class Owner {
 
     public String getName(){return this.fullName;}
     public String getUsername(){return this.username;}
-    public HashMap<String, Account> getAccounts(){return this.Accounts;}
+    public HashMap<Integer, Account> getAccounts(){return this.accounts;}
 
 
+    /**
+     * This method creates accounts under the owner.
+     * @param accountType The type of accounts that the user wants to create: Saving, Chequing
+     * @return return true if the account is successfully created, else false
+     */
     public boolean createAccount(String accountType){
+        if (accountType.equals("Chequing")){
+            Account newAccount = new Chequing(listOfAccountsID);
+            int newAccountID = newAccount.getAccountID();
+            listOfAccountsID.add(newAccountID);
+            this.accounts.put(newAccountID, newAccount);
+            return true;
+        }
+        else if(accountType.equals("Saving")){
+            Account newAccount = new Saving(listOfAccountsID);
+            int newAccountID = newAccount.getAccountID();
+            listOfAccountsID.add(newAccountID);
+            this.accounts.put(newAccountID, newAccount);
+            return true;
+        }
         return false;
     }
 
