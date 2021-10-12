@@ -4,14 +4,13 @@ import java.io.*;
 import java.net.*;
 
 public class ClientUserInterface {
-    private ServerSocket serverSocket;
     private Socket clientSocket;
     private ObjectOutputStream outbound;
     private ObjectInputStream inbound;
 
     public void Connect(String ip, int port) throws IOException {
         clientSocket = new Socket(ip, port);
-        outbound = new ObjectOutputStream(clientSocket.getOutputStream();
+        outbound = new ObjectOutputStream(clientSocket.getOutputStream());
         inbound = new ObjectInputStream(clientSocket.getInputStream());
     }
     public boolean login(String username, String password) throws IOException, ClassNotFoundException {
