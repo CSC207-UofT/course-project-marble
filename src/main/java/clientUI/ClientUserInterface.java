@@ -4,7 +4,6 @@ import java.io.*;
 import java.net.*;
 
 public class ClientUserInterface {
-    private ServerSocket serverSocket;
     private Socket clientSocket;
     private ObjectOutputStream outbound;
     private ObjectInputStream inbound;
