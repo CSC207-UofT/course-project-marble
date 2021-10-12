@@ -15,17 +15,36 @@ public class Owner {
 
 
     /**
-     * TODO: read text file implementation needs to be added.
+     * This is a constructor method to create an Owner object. Basically when this is called, a new Owner object is
+     * created. Whether if its from reading the backup txt files or called to create a new owner.
+     * @param fullName The full name of the user is stored here.
+     * @param username The username that the person decided to use and to login is stored here.
+     * @param password The password
      */
-    public Owner(){
-        this.fullName = null;
-        this.password = null;
-        this.username = null;
+    public Owner(String fullName, String username, String password){
+        this.fullName = fullName;
+        this.username = username;
+
+        MessageDigest md = null;
+        try {
+            md = MessageDigest.getInstance("SHA-256");
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        assert md != null;
+        this.password = md.digest(password.getBytes(StandardCharsets.UTF_8));
     }
+
+
+    public String getName(){return this.fullName;}
+    public String getUsername(){return this.username;}
+    public HashMap<String, Account> getAccounts(){return this.Accounts;}
+
 
     public boolean createAccount(String accountType){
         return false;
     }
+
 
     /**
      * This function comparePasswords, hashes the parameter inputPassword and

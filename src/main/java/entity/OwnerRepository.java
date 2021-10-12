@@ -1,25 +1,31 @@
 package entity;
 
-import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 
 public class OwnerRepository {
-    /**
-     *
-     */
-    private HashMap<String, Owner> listOfOwners;
+    private HashMap<String, Owner> listOfOwners; // <String username, Owner Object>
+
 
     /**
-     *
+     * TODO: read text file implementation needs to be added.
      */
     public OwnerRepository(){
-        // Read a txt file to initialize all the owners and their accounts
     }
 
 
-    public boolean addOwner(){
+    /**
+     * Call the Owner constructor, creates an Owner object.
+     * @return true if the Owner creation is successful, else false.
+     */
+    public boolean createOwner(String fullName, String username, String password){
+        if(listOfOwners.containsKey(username)){
+            return false;
+        }
+        Owner user = new Owner(fullName, username, password);
+        listOfOwners.put(username, user);
         return true;
     }
+
 
     /**
      * loginCheck is a method that Driver calls to check if the username and the password matches with the data
@@ -29,7 +35,7 @@ public class OwnerRepository {
      * @param password if the username matches, check if the password matches as well.
      * @return true if the password matches, return false if not
      */
-    public boolean loginCheck(String username, String password) throws NoSuchAlgorithmException {
+    public boolean loginCheck(String username, String password){
         for(String key : listOfOwners.keySet()){
             if(username.equals(key)){
                 return listOfOwners.get(key).comparePassword(password);
