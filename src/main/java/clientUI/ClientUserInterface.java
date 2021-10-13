@@ -89,8 +89,8 @@ public class ClientUserInterface {
         catch (IOException | ClassNotFoundException e){
             System.exit(-1);
         }
-        String input = new String("0");
-        while (! input.equals('q')){
+        String input = "0";
+        while (! input.equals("q")){
             System.out.println("Hello. You may now enter the following to do the following accounts");
             System.out.println("Check your balance enter: b");
             System.out.println("Deposit enter: d");
@@ -99,7 +99,7 @@ public class ClientUserInterface {
             System.out.println("View your accounts: v");
             System.out.println("Withdraw money: w");
             System.out.println("To quit: q");
-            input =  scan.nextLine();
+            input = scan.nextLine();
 
 
 
