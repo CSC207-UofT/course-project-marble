@@ -1,7 +1,7 @@
 package actions;
-
-import clientUI.LoginRequest;
-import entity.OwnerRepository;
+//potentially delete this class. undeeded
+import action_request_response.LoginRequest;
+import server.OwnerRepository;
 
 public class CheckLogin {
     String username;

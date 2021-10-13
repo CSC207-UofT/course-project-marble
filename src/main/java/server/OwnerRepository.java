@@ -1,4 +1,6 @@
-package entity;
+package server;
+
+import entity.Owner;
 
 import java.util.HashMap;
 
@@ -12,6 +14,7 @@ public class OwnerRepository {
      * unique account later.
      */
     public OwnerRepository(){
+        this.listOfOwners = new HashMap<String, Owner>();
     }
 
 
@@ -26,6 +29,10 @@ public class OwnerRepository {
         Owner user = new Owner(fullName, username, password);
         listOfOwners.put(username, user);
         return true;
+    }
+
+    public Owner findOwner(String username){
+        return this.listOfOwners.get(username);
     }
 
 

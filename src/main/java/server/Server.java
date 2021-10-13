@@ -1,10 +1,12 @@
 package server;
 
 
+import action_request_response.LoginRequest;
+import entity.Owner;
+import action_request_response.ActionRequest;
 import java.io.*;
 import java.net.Socket;
 import java.net.ServerSocket;
-import java.util.HashMap;
 
 public class Server {
     private ServerSocket serverSocket;
@@ -14,14 +16,30 @@ public class Server {
 //    private HashMap<String, String> passwords;
     private boolean auth;
     private boolean login;
+    private OwnerRepository repository;
+    private Owner loggedInUser;
     // storage server needed object
 
-    public void start(int port) throws IOException {
+    public void start(int port) throws IOException, ClassNotFoundException {
+        System.out.println("Starting server");
         serverSocket = new ServerSocket(port);
         clientSocket = serverSocket.accept();
         auth = false;
         outbound = new ObjectOutputStream(clientSocket.getOutputStream());
         inbound = new ObjectInputStream(clientSocket.getInputStream());
+        repository = new OwnerRepository();
+        outbound.writeObject("What do you want to do? Please return 1 to login or 2 to register!");
+        outbound.flush();
+        int answer = (int) inbound.readObject();
+        if (answer == 1){
+            this.login();
+        }
+        else if (answer == 2){
+            this.createUser();
+        }
+        else{
+            stop();
+        }
 
     }
     public boolean getAuth(){
@@ -29,11 +47,15 @@ public class Server {
     }
 
     public void createUser() throws IOException, ClassNotFoundException {
-        this.outbound.writeObject("Hello what is your name?");
         String name = (String) this.inbound.readObject();
-        outbound.writeObject("Great! Now what is your password?");
+        System.out.println(name);
+        String username = (String) this.inbound.readObject();
+        System.out.println(username);
         String password = (String) this.inbound.readObject();
-        this.outbound.writeObject("Thanks! You have created an account. You can now login to it");
+        System.out.println(password);
+        repository.createOwner(name, username, password);
+        this.loggedInUser = repository.findOwner(username);
+        this.outbound.writeObject("Thanks! You have created an account. You can are logged into it!");
 
     }
     public void stop () throws IOException {
@@ -49,32 +71,26 @@ public class Server {
         return null;
     }
 
-    public boolean login() throws IOException, ClassNotFoundException {
-        // implement this
-        outbound.writeObject("Please enter your username");
-        String username = (String) inbound.readObject();
-        outbound.writeObject("Great! Now what is your password?");
-        String pass = (String) inbound.readObject();
-
-        
-//        if (result) {
-//            outbound.writeObject("That is the correct password!");
-//            auth = true;
-//            return true;
-//        } else {
-//            outbound.writeObject("That is incorrect");
-//            auth = false;
-//            return false;
-//        }
-
-
-        return false;
+    public void login() throws IOException, ClassNotFoundException {
+        // implement this So what  we do: Login successful then
+        // Send the owner instance to the clientUserInterface that made the request otherwise we send false
+        // If it logged in then the user can see everything
+        LoginRequest request = (LoginRequest) inbound.readObject();
+        if (repository.loginCheck(request.getUsername(), request.getPassword())){
+            outbound.writeObject("Your login request was successful!");
+            this.loggedInUser = repository.findOwner(request.getUsername());
+            outbound.writeObject(true);
+        }
+        else{
+            outbound.writeObject(false);
+        }
+        outbound.flush();
     }
 
 
-    public static void main(String[] args) throws IOException{
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
             Server server = new Server();
-            server.start(80);
+            server.start(8000);
         }
     }
 
