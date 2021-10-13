@@ -29,7 +29,24 @@ public class ClientUserInterface {
             this.disconnect();
         }
     }
-    public boolean login(Scanner in) throws IOException, ClassNotFoundException {
+    public void createUser() throws IOException {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Please enter your name");
+        String name = sc.nextLine();
+        outbound.writeObject(name);
+        outbound.flush();
+        System.out.println("Please enter your chosen username");
+        String username = sc.nextLine();
+        System.out.println("Please enter your password");
+        String password = sc.nextLine();
+        outbound.writeObject(username);
+        outbound.flush();
+        outbound.writeObject(password);
+
+
+    }
+
+    public boolean login() throws IOException, ClassNotFoundException {
         Scanner sc = new Scanner(System.in);
         System.out.println("Please enter your username");
         String username = sc.nextLine();
@@ -39,7 +56,7 @@ public class ClientUserInterface {
         outbound.writeObject(request);
         outbound.flush();
         boolean temp = (Boolean) inbound.readObject();
-        if (temp){
+        if (temp) {
             System.out.println("Success");
             return true;
         }
@@ -55,4 +72,19 @@ public class ClientUserInterface {
         outbound.close();
         clientSocket.close();
     }
+    public static void main(String[] args) throws IOException {
+        ClientUserInterface client = new ClientUserInterface();
+
+        try {
+            client.Connect("127.0.0.1", 8000);
+        }
+        catch (IOException | ClassNotFoundException e){
+            System.exit(-1);
+        }
+
+
+    }
+
+
+
 }
