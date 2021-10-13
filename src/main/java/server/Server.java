@@ -55,7 +55,7 @@ public class Server {
         System.out.println(password);
         repository.createOwner(name, username, password);
         this.loggedInUser = repository.findOwner(username);
-        this.outbound.writeObject("Thanks! You have created an account. You can are logged into it!");
+        this.outbound.writeObject("Thanks! You have created an account. You  are now logged into it!");
 
     }
     public void stop () throws IOException {
