@@ -23,12 +23,9 @@ public class OwnerRepository {
      * @return true if the Owner creation is successful, else false.
      */
     public boolean createOwner(String fullName, String username, String password){
-        System.out.println("starting process to create user");
         if(listOfOwners.containsKey(username)){
-            System.out.println("running if");
             return false;
         }
-        System.out.println("running other");
         Owner user = new Owner(fullName, username, password);
         listOfOwners.put(username, user);
         return true;
