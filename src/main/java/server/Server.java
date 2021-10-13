@@ -1,8 +1,9 @@
 package server;
 
 
-import clientUI.LoginRequest;
-
+import action_request_response.LoginRequest;
+import entity.Owner;
+import action_request_response.ActionRequest;
 import java.io.*;
 import java.net.Socket;
 import java.net.ServerSocket;
@@ -16,7 +17,7 @@ public class Server {
     private boolean auth;
     private boolean login;
     private OwnerRepository repository;
-    private loggedInUser
+    private Owner loggedInUser;
     // storage server needed object
 
     public void start(int port) throws IOException {
@@ -60,10 +61,13 @@ public class Server {
         LoginRequest request = (LoginRequest) inbound.readObject();
         if (repository.loginCheck(request.getUsername(), request.getPassword())){
             outbound.writeObject("Your login request was successful!");
+            this.loggedInUser = repository.findOwner(request.getUsername());
+            outbound.writeObject(true);
         }
         else{
             outbound.writeObject(false);
         }
+        outbound.flush();
     }
 
 

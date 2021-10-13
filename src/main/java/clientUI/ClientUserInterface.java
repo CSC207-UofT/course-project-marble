@@ -1,5 +1,7 @@
 package clientUI;
 
+import action_request_response.LoginRequest;
+
 import java.io.*;
 import java.net.*;
 import java.util.Scanner;
@@ -23,6 +25,15 @@ public class ClientUserInterface {
         LoginRequest request = new LoginRequest(username, password);
         outbound.writeObject(request);
         outbound.flush();
+        boolean temp = (Boolean) inbound.readObject();
+        if (temp){
+            System.out.println("Success");
+            return true;
+        }
+        else{
+            System.out.println("Failure");
+            return false;
+        }
 
     }
     public void disconnect() throws IOException {

@@ -1,5 +1,7 @@
 package clientUI;
 
+import action_request_response.ActionRequest;
+import action_request_response.LoginRequest;
 import actions.CheckLogin;
 
 public class CallActions {

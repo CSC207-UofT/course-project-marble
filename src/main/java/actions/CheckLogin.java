@@ -1,6 +1,6 @@
 package actions;
 //potentially delete this class. undeeded
-import clientUI.LoginRequest;
+import action_request_response.LoginRequest;
 import server.OwnerRepository;
 
 public class CheckLogin {
