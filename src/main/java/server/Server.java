@@ -1,10 +1,11 @@
 package server;
 
 
+import clientUI.LoginRequest;
+
 import java.io.*;
 import java.net.Socket;
 import java.net.ServerSocket;
-import java.util.HashMap;
 
 public class Server {
     private ServerSocket serverSocket;
@@ -14,6 +15,8 @@ public class Server {
 //    private HashMap<String, String> passwords;
     private boolean auth;
     private boolean login;
+    private OwnerRepository repository;
+    private loggedInUser
     // storage server needed object
 
     public void start(int port) throws IOException {
@@ -22,6 +25,7 @@ public class Server {
         auth = false;
         outbound = new ObjectOutputStream(clientSocket.getOutputStream());
         inbound = new ObjectInputStream(clientSocket.getInputStream());
+        OwnerRepository repository = new OwnerRepository();
 
     }
     public boolean getAuth(){
@@ -49,26 +53,17 @@ public class Server {
         return null;
     }
 
-    public boolean login() throws IOException, ClassNotFoundException {
-        // implement this
-        outbound.writeObject("Please enter your username");
-        String username = (String) inbound.readObject();
-        outbound.writeObject("Great! Now what is your password?");
-        String pass = (String) inbound.readObject();
-
-        
-//        if (result) {
-//            outbound.writeObject("That is the correct password!");
-//            auth = true;
-//            return true;
-//        } else {
-//            outbound.writeObject("That is incorrect");
-//            auth = false;
-//            return false;
-//        }
-
-
-        return false;
+    public void login() throws IOException, ClassNotFoundException {
+        // implement this So what  we do: Login successful then
+        // Send the owner instance to the clientUserInterface that made the request otherwise we send false
+        // If it logged in then the user can see everything
+        LoginRequest request = (LoginRequest) inbound.readObject();
+        if (repository.loginCheck(request.getUsername(), request.getPassword())){
+            outbound.writeObject("Your login request was successful!");
+        }
+        else{
+            outbound.writeObject(false);
+        }
     }
 
 

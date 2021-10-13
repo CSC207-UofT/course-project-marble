@@ -2,6 +2,7 @@ package clientUI;
 
 import java.io.*;
 import java.net.*;
+import java.util.Scanner;
 
 public class ClientUserInterface {
     private Socket clientSocket;
@@ -13,16 +14,16 @@ public class ClientUserInterface {
         outbound = new ObjectOutputStream(clientSocket.getOutputStream());
         inbound = new ObjectInputStream(clientSocket.getInputStream());
     }
-    public boolean login(String username, String password) throws IOException, ClassNotFoundException {
-        String message =  (String) inbound.readObject();
-        System.out.println(message);
-        outbound.writeObject(username);
-        message = (String) inbound.readObject();
-        System.out.println(message);
-        outbound.writeObject(password);
-        message = (String) inbound.readObject();
-        System.out.println(message);
-        return false;
+    public boolean login(Scanner in) throws IOException, ClassNotFoundException {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Please enter your username");
+        String username = sc.nextLine();
+        System.out.println("Please enter your password");
+        String password = sc.nextLine();
+        LoginRequest request = new LoginRequest(username, password);
+        outbound.writeObject(request);
+        outbound.flush();
+
     }
     public void disconnect() throws IOException {
         inbound.close();
