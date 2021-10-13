@@ -27,7 +27,7 @@ public class Server {
         auth = false;
         outbound = new ObjectOutputStream(clientSocket.getOutputStream());
         inbound = new ObjectInputStream(clientSocket.getInputStream());
-        OwnerRepository repository = new OwnerRepository();
+        repository = new OwnerRepository();
         outbound.writeObject("What do you want to do? Please return 1 to login or 2 to register!");
         outbound.flush();
         int answer = (int) inbound.readObject();

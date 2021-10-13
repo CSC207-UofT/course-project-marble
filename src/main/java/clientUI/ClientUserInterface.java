@@ -29,7 +29,7 @@ public class ClientUserInterface {
             this.disconnect();
         }
     }
-    public void createUser() throws IOException {
+    public void createUser() throws IOException, ClassNotFoundException {
         Scanner sc = new Scanner(System.in);
         System.out.println("Please enter your name");
         String name = sc.nextLine();
@@ -42,6 +42,8 @@ public class ClientUserInterface {
         outbound.writeObject(username);
         outbound.flush();
         outbound.writeObject(password);
+        String message = (String) inbound.readObject();
+        System.out.println(message);
 
 
     }
