@@ -9,12 +9,20 @@ Responsibilities:
   have
    Methods:
 	* getBalance()
-	* increaseBalance()
-	* decreaseBalance()
+	* getAccountID()
+	* getAccountCreationDate()
+	* increaseBalance(int)
+	* decreaseBalance(int)
+	* addtransactionHistory(Transaction t)
+	* getTransactionHistoryArray()
+
+	
    Variables: 
 	* String accountID
 	* int balance
 	* ArrayList<Transaction> transactionHistory
+	* Date dateCreated
+
 
 Collaborators:
 * none
