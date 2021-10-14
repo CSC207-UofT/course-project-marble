@@ -1,0 +1,18 @@
+
+Class name: SavingRecords
+Parent class: none
+Children: none
+Properties to note: none
+
+Responsibilities:
+* creates a timestamp of the interest rate of the savings account
+   Methods:
+	* getSavingsRecordDate()
+  * getSavingsRecordInterestRate()
+   Variables: 
+	* Date date
+  * double interestRate
+  * int accountID
+
+Collaborators:
+* Savings
