@@ -1,0 +1,24 @@
+* A new user would like to use the financial banking app to send his friend (who already has an account) money:
+
+  He downloads the app and needs to create a new user account. He fills in his personal information such as his 
+  full name and sets up his username (unique to him) and password. Now he successfully has his own account. 
+  He opens the list of transactions he can perform with his money, where e-transfer is one of the possible 
+  transactions. He fills in his friend’s name and email address. Since his friend has an account as well, 
+  it’s possible to send him money. The user enters the amount he wishes to send (given he has enough money), 
+  reads the terms and conditions, makes final reviews and sends the amount. His bank account automatically deducts 
+  the sent amount and records the latest transaction. He is then sent to the main home page where he decides to 
+  close the app.
+ 
+ 
+* An existing user would like to track his investments, assets and loans:
+
+    The existing user logins to his account using his username and password previously created. He logs into his 
+    account where his savings and checking account is there. In the accounts setting, he chooses to create a new portofolio 
+    type account to record all his stocks. He enters what he currently holds into the fields of current holdings. 
+    Afterwards, in the list of options he can perform to his newly created portfolio account, he decides to record his 
+    student debt in the liability field. Lastly, he decides to record his watch value in the assets field because he wants 
+    to sell it in the near future. The user has completed all records he wanted to make in the portfolio account. He wants 
+    to know his own net worth, which is displayed on the home page of and, this is the accumulation of all his accounts. 
+    He is satisfied and quits the app.
+ 
+ 
