@@ -21,10 +21,20 @@ public class Server {
     private Owner loggedInUser;
     // storage server needed object
 
+    /**
+          *This method starts the server and waits for the user to connect before sending options
+          *@param port The port we want the server to listen to. By default 8000 but needs to be changed
+         */
     public void start(int port) throws IOException, ClassNotFoundException {
+
+        /*
+          This method starts the server and waits for the user to connect before sending options
+          @param port: Port what we want the server to listen to. By default 8000 but needs to be changed
+         */
         System.out.println("Starting server");
         serverSocket = new ServerSocket(port);
         clientSocket = serverSocket.accept();
+        System.out.println("Connected");
         auth = false;
         outbound = new ObjectOutputStream(clientSocket.getOutputStream());
         inbound = new ObjectInputStream(clientSocket.getInputStream());
@@ -46,6 +56,11 @@ public class Server {
         return auth;
     }
 
+    /**
+     * Creates a user according to the client's requests and stores it in the OwnerRepository
+     * @throws IOException Throws an IOException if the outbound or inbound runs into an issue
+     * @throws ClassNotFoundException If the object that was received is not defined
+     */
     public void createUser() throws IOException, ClassNotFoundException {
         String name = (String) this.inbound.readObject();
         System.out.println(name);
@@ -59,6 +74,10 @@ public class Server {
 
     }
 
+    /**
+     * Closes all inbound and outbound connections and shuts the server down.
+     * @throws IOException For outbound and inbound streams
+     */
     public void stop() throws IOException {
         inbound.close();
         outbound.close();
@@ -72,6 +91,11 @@ public class Server {
         return null;
     }
 
+    /**
+     * Attempt to login the user
+     * @throws IOException Inbound and outbound Streams don't work
+     * @throws ClassNotFoundException Object that is sent is not Found
+     */
     public void login() throws IOException, ClassNotFoundException {
         // implement this So what  we do: Login successful then
         // Send the owner instance to the clientUserInterface that made the request otherwise we send false

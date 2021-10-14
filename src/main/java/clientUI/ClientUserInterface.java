@@ -12,9 +12,11 @@ public class ClientUserInterface {
     private ObjectInputStream inbound;
 
     public void Connect(String ip, int port) throws IOException, ClassNotFoundException {
+        System.out.println("Starting connection");
         clientSocket = new Socket(ip, port);
         outbound = new ObjectOutputStream(clientSocket.getOutputStream());
         inbound = new ObjectInputStream(clientSocket.getInputStream());
+        System.out.println("Connected");
         System.out.println( (String) inbound.readObject());
         Scanner sc = new Scanner(System.in);
         int answer = sc.nextInt();
@@ -54,6 +56,7 @@ public class ClientUserInterface {
     }
 
     public boolean login() throws IOException, ClassNotFoundException {
+
         Scanner sc = new Scanner(System.in);
         System.out.println("Please enter your username");
         String username = sc.nextLine();
