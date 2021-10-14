@@ -3,6 +3,7 @@ package server;
 import entity.Owner;
 
 import java.util.HashMap;
+import java.util.*;
 
 public class OwnerRepository {
     private HashMap<String, Owner> listOfOwners; // <String username, Owner Object>
@@ -15,6 +16,7 @@ public class OwnerRepository {
      */
     public OwnerRepository(){
         this.listOfOwners = new HashMap<String, Owner>();
+//        listOfOwners.put("rtc", new Owner("Ruiting", "rtc", "abc")); // test case
     }
 
 
@@ -35,21 +37,12 @@ public class OwnerRepository {
         return this.listOfOwners.get(username);
     }
 
-
     /**
-     * loginCheck is a method that Driver calls to check if the username and the password matches with the data
-     * stored here on OwnerRepository. It'll return True if the credential matches, otherwise false (e.g. wrong
-     * password or user does not exist).
-     * @param username checks with a list of Owner objects and see if the username matches with any of them.
-     * @param password if the username matches, check if the password matches as well.
-     * @return true if the password matches, return false if not
+     * getOwners is a method that Actions calls to return a Iterator of the Owners stored in listOfOwners
+     * @return Iterator of the Owners
      */
-    public boolean loginCheck(String username, String password){
-        for(String key : listOfOwners.keySet()){
-            if(username.equals(key)){
-                return listOfOwners.get(key).comparePassword(password);
-            }
-        }
-        return false;
+    public Iterator getOwners() {
+        return listOfOwners.values().iterator();
     }
+
 }
