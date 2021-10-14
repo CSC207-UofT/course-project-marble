@@ -12,10 +12,6 @@ public class ViewAccounts extends Actions {
         this.owner = owner;
     }
 
-    public Owner getOwner() {
-        return this.owner;
-    }
-
     /**
      * This method returns the owners accounts.
      *
