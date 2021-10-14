@@ -1,6 +1,9 @@
 package action_request_response;
 
-public class LoginRequest extends ActionRequest {
+import java.io.IOException;
+import java.io.ObjectStreamException;
+
+public class LoginRequest extends ActionRequest{
     String username;
     String password;
 

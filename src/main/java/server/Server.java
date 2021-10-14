@@ -2,6 +2,7 @@ package server;
 
 
 import action_request_response.LoginRequest;
+import actions.CheckLogin;
 import entity.Owner;
 import action_request_response.ActionRequest;
 
@@ -77,7 +78,8 @@ public class Server {
         // Send the owner instance to the clientUserInterface that made the request otherwise we send false
         // If it logged in then the user can see everything
         LoginRequest request = (LoginRequest) inbound.readObject();
-        if (repository.loginCheck(request.getUsername(), request.getPassword())) {
+        CheckLogin check = new CheckLogin(request);
+        if (check.Process()) {
             // outbound.writeObject("Your login request was successful!");
             this.loggedInUser = repository.findOwner(request.getUsername());
             outbound.writeObject(true);
