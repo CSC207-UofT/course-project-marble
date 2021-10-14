@@ -22,7 +22,12 @@ public class ClientUserInterface {
         outbound.flush();
 
         if (answer == 1) {
-            this.login();
+            boolean bool = this.login();
+            if (!bool){
+                System.out.println("Login failed exiting");
+                disconnect();
+                System.exit(-1);
+            }
         } else if (answer == 2) {
             this.createUser();
         } else {
@@ -75,6 +80,7 @@ public class ClientUserInterface {
         clientSocket.close();
     }
     public static void main(String[] args) throws IOException {
+        Scanner scan = new Scanner(System.in);
         ClientUserInterface client = new ClientUserInterface();
 
         try {
@@ -83,7 +89,21 @@ public class ClientUserInterface {
         catch (IOException | ClassNotFoundException e){
             System.exit(-1);
         }
+        String input = "0";
+        while (! input.equals("q")){
+            System.out.println("Hello. You may now enter the following to do the following accounts");
+            System.out.println("Check your balance enter: b");
+            System.out.println("Deposit enter: d");
+            System.out.println("Get your transaction history: h");
+            System.out.println("Transfer money to someone else's account: t");
+            System.out.println("View your accounts: v");
+            System.out.println("Withdraw money: w");
+            System.out.println("To quit: q");
+            input = scan.nextLine();
 
+
+
+        }
 
     }
 
