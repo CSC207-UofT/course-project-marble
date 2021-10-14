@@ -1,0 +1,23 @@
+Domain: Banking + Financial Planning App
+
+Specification:
+  Running the project initiates a prompt that allows the user to create an account or login to an existing account. 
+  Each user has financial accounts (i.e savings and chequing), budget, and a total balance. Both types of financial 
+  accounts have a transaction history, where a user can see transactions made on those accounts 
+  (transactions themselves have a date, amount, and type of transaction). 
+  Each user also has a monthly limit where the user is limited on the amount of money they can withdraw over a certain 
+  period of time. Users can see how much interest they accumulate over x number of years based on compound interest 
+  for the savings account. Users are able to record debt and see the projected growth of their investments based on 
+  their investment’s performance history. Given all of this information, the user is able to select a prompt that 
+  will allow them to perform a specific banking need. Some examples of this are checking their balance, deposit, 
+  withdraw, transfer money, view their accounts, and view transaction history. These actions will be recorded and 
+  the users accounts will be updated accordingly. 
+
+Input:
+b - check balance
+d - deposit money
+h - get transaction history
+t - transfer money to someone else’s account
+v - view your accounts
+w - withdraw money
+q - quit
