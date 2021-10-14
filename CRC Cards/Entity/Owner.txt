@@ -1,0 +1,19 @@
+Class name: Owner
+Parent class: none
+Children: none
+Properties to note: none
+
+Responsibilities:
+* provides a databank of information to be used by other clases for the
+  specific User account
+* creates new Accounts belonging to only the user
+   Methods:
+	* createAccount()
+   Variables: 
+	* String fullName
+	* String username
+	* String password
+	* HashMap<String, Account> Accounts
+
+Collaborators:
+* Account

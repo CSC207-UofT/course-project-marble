@@ -1,0 +1,14 @@
+Class name: Chequing
+Parent class: Account
+Children: none
+Properties to note: none
+
+Responsibilities:
+* provides a basic bank account with no special features
+   Methods:
+	* none outside of what's specified in parent class
+   Variables: 
+	* none outside of what's specified in parent class
+
+Collaborators:
+* none

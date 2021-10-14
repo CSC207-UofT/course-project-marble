@@ -1,0 +1,15 @@
+Class name: ActionRequest
+Parent class: none
+Children: LoginRequest
+Properties to note: an Abstract class
+
+Responsibilities:
+* acts as the base instance type for all classes in the 
+  Action_request_response package
+   Methods:
+	* none
+   Variables: 
+	* none
+
+Collaborators:
+* none

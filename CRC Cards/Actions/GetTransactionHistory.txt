@@ -1,0 +1,15 @@
+Class name: GetTransactionHistory
+Parent class: Actions
+Children: none
+Properties to note: none
+
+Responsibilities:
+* sends back a history of transactions made in an Account
+   Methods:
+	* returnHistory()
+   Variables: 
+	* none
+
+Collaborators:
+* Account
+* Owner
