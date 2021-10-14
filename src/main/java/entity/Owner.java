@@ -56,13 +56,24 @@ public class Owner {
             this.accounts.put(newAccountID, newAccount);
             return true;
         }
-        else if(accountType.equals("Saving")){
-            Account newAccount = new Saving(listOfAccountsID);
+        return false;
+
+    }
+
+
+    /**
+     * This method creates accounts under the owner. Takes in extra argument. Constructor overloading.
+     * @param accountType The type of accounts that the user wants to create: Saving, Chequing
+     * @param interestRate This specifies the current interestRate when you start the account.
+     * @return return true if the account is successfully created, else false
+     */
+    public boolean createAccount(String accountType, double interestRate){
+        if(accountType.equals("Saving")){
+            Account newAccount = new Saving(listOfAccountsID, interestRate);
             int newAccountID = newAccount.getAccountID();
             listOfAccountsID.add(newAccountID);
             this.accounts.put(newAccountID, newAccount);
-            return true;
-        }
+            return true;}
         return false;
     }
 

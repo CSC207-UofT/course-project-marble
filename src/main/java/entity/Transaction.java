@@ -1,10 +1,12 @@
 package entity;
 
+import java.util.Date;
+
 public class Transaction {
     /**
      *
      */
-    private final String date; // DD/MM/YYYY
+    private final Date date; // DD/MM/YYYY
     private final Owner owner;
     private final Account initAccount;
     private final Account targetAccount;
@@ -19,7 +21,7 @@ public class Transaction {
      * @param transactionType The type of transactions: Deposit, Withdrawal, Transfer
      * @param transactionStatus The transaction status: Hold, Success
      */
-    public Transaction(String date,
+    public Transaction(Date date,
                        Owner owner,
                        Account initAccount,
                        Account targetAccount,
@@ -35,7 +37,7 @@ public class Transaction {
     }
 
 
-    public String getDate(){return this.date;}
+    public Date getDate(){return this.date;}
     public Owner getOwner(){return this.owner;}
     public Account getInitAccount(){return this.initAccount;}
     public Account getTargetAccount(){return this.targetAccount;}
