@@ -1,0 +1,14 @@
+Class name: CallActions
+Parent class: none
+Children: none
+Properties to note: none
+
+Responsibilities:
+* processes a request made in the interface
+   Methods:
+	* processActionRequest()
+   Variables: 
+	* none
+
+Collaborators:
+* ActionRequest

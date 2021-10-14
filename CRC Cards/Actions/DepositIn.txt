@@ -1,0 +1,15 @@
+Class name: Deposit
+Parent class: Actions
+Children: none
+Properties to note: none
+
+Responsibilities:
+* adds in an integer value to an existing Account's balance
+   Methods:
+	* depositIn()
+   Variables: 
+	* none
+
+Collaborators:
+* Account
+* Owner

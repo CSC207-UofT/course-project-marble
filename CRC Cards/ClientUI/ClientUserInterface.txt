@@ -1,0 +1,20 @@
+Class name: ClientUserInterface
+Parent class: none
+Children: none
+Properties to note: none
+
+Responsibilities:
+* interacts with the person using the program 
+   Methods:
+	* connect()
+	* createUser()
+	* login()
+	* disconnect()
+	* main()
+   Variables: 
+	* Socket clientSocket
+	* ObjectOutputStream outbound
+	* ObjectInputStream inbound
+
+Collaborators:
+* Owner

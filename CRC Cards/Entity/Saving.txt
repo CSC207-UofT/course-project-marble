@@ -1,0 +1,14 @@
+Class name: Saving
+Parent class: Account
+Children: none
+Properties to note: none
+
+Responsibilities:
+* provides a basic bank account with an interest rate
+   Methods:
+	* getInterestRate()
+   Variables: 
+	* double insterestRate
+
+Collaborators:
+* none

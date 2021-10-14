@@ -1,0 +1,15 @@
+Class name: ViewAccounts
+Parent class: Actions
+Children: none
+Properties to note: none
+
+Responsibilities:
+* sends back a summary of data from all Accounts owned by an Owner
+   Methods:
+	* displayAccountsInfo()
+   Variables: 
+	* none
+
+Collaborators:
+* Account
+* Owner

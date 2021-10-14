@@ -1,0 +1,30 @@
+Class name: Server
+Parent class: none
+Children: none
+Properties to note: none
+
+Responsibilities:
+* processes requests made from the interface
+* confirms or denies authentication into certain user accounts
+   Methods:
+	* createOwner()
+	* findOwner()
+	* loginCheck()
+	* getRepository()
+	* addOwner()
+	* loginOwner()
+   Variables: 
+	* ServerSocket serverSocket
+	* Socket clientSocket
+	* ObjectOutputStream outbound
+	* ObjectInputStream inbound
+	* HashMap<String, String> passwords
+	* boolean auth
+	* boolean login
+	* OwnerRepository repository
+	* private Owner loggedInUser
+
+
+
+Collaborators:
+* Actions
