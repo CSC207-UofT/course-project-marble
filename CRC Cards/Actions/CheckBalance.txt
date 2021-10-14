@@ -1,0 +1,15 @@
+Class name: CheckBalance
+Parent class: Actions
+Children: none
+Properties to note: none
+
+Responsibilities:
+* displays the ammount of money a specified existing Account has
+   Methods:
+	* checkAccountBalance()
+   Variables: 
+	* none
+
+Collaborators:
+* Account
+* Owner

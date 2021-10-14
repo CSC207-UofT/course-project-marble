@@ -1,0 +1,11 @@
+Class name: Actions
+Parent class: none 
+Children classes: Transfer, Withdrawal, GetTransactionHistory,
+		Deposit, ViewAccounts, CheckBalance
+Properties to note: an abstract class
+
+Responsibilities:
+* Serves as a common instance type for all classes in Actions package
+
+Collaborators:
+* none

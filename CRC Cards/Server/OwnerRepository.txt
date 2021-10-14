@@ -1,0 +1,23 @@
+Class name: OwnerRepository
+Parent class: none
+Children: none
+Properties to note: none
+
+Responsibilities:
+* maintains the data of all Owner bank account made
+* finds a bank account
+* checks if, given input, a person can access a specific bank account
+* creates a new bank account if prompted
+   Methods:
+	* createOwner()
+	* findOwner()
+	* loginCheck()
+	* getRepository()
+	* addOwner()
+	* loginOwner()
+   Variables: 
+	* HashMap<String, Owner> owners
+
+
+Collaborators:
+* Owner

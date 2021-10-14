@@ -1,0 +1,20 @@
+Class name: Account
+Parent class: none
+Children: Chequing, Savings
+Properties to note: an Abstract class
+
+Responsibilities:
+* acts as baseline instance type for all different types of Accounts
+* provides framework for all methods and variables its children should
+  have
+   Methods:
+	* getBalance()
+	* increaseBalance()
+	* decreaseBalance()
+   Variables: 
+	* String accountID
+	* int balance
+	* ArrayList<Transaction> transactionHistory
+
+Collaborators:
+* none
