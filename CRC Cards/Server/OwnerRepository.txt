@@ -11,7 +11,7 @@ Responsibilities:
    Methods:
 	* createOwner()
 	* findOwner()
-	* loginCheck()
+	* getOwners()
 	* getRepository()
 	* addOwner()
 	* loginOwner()

@@ -6,13 +6,13 @@ import server.OwnerRepository;
 
 import java.util.Iterator;
 
-public class CheckLogin {
-    String username;
-    String password;
+public class CheckLogin extends Actions{
+    private String username;
+    private String password;
 
     public CheckLogin(LoginRequest request) {
-        this.username = request.getUsername();
-        this.password = request.getPassword();
+        username = request.getUsername();
+        password = request.getPassword();
     }
 
     /**
@@ -21,7 +21,7 @@ public class CheckLogin {
      * password or user does not exist).
      * @return true if the password matches, return false if not
      */
-    public boolean Process(){
+    public boolean process(){
         OwnerRepository ownerRepo = new OwnerRepository();
         Iterator owners = ownerRepo.getOwners();
         while (owners.hasNext()) {

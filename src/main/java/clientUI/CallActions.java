@@ -11,7 +11,7 @@ public class CallActions {
     public boolean processActionRequest(ActionRequest request) {
         if (request instanceof LoginRequest) {
             CheckLogin obj = new CheckLogin((LoginRequest) request);
-            boolean result = obj.Process();
+            boolean result = obj.process();
             return result;
         }
         return false;

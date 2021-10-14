@@ -4,7 +4,6 @@ package server;
 import action_request_response.LoginRequest;
 import actions.CheckLogin;
 import entity.Owner;
-import action_request_response.ActionRequest;
 
 import java.io.*;
 import java.net.Socket;
@@ -79,7 +78,7 @@ public class Server {
         // If it logged in then the user can see everything
         LoginRequest request = (LoginRequest) inbound.readObject();
         CheckLogin check = new CheckLogin(request);
-        if (check.Process()) {
+        if (check.process()) {
             // outbound.writeObject("Your login request was successful!");
             this.loggedInUser = repository.findOwner(request.getUsername());
             outbound.writeObject(true);

@@ -1,0 +1,16 @@
+Class name: CheckLogin
+Parent class: Actions
+Children classes: none
+Properties to note:
+
+Responsibilities:
+* checks if a login request is valid, that is if input username and password matches the username and password
+stored in OwnerRepository
+   Methods:
+	* process()
+   Variables:
+	* username
+	* password
+
+Collaborators:
+* OwnerRepository
