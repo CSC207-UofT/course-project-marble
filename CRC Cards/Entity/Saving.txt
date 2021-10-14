@@ -7,8 +7,12 @@ Responsibilities:
 * provides a basic bank account with an interest rate
    Methods:
 	* getInterestRate()
+	* changeInterestRate(int newInterestRate)
+	* getSavingsRecordsList()
+
    Variables: 
 	* double insterestRate
+	* ArrayList<SavingsRecord> SavingsRecordsList
 
 Collaborators:
-* none
+* SavingRecords
