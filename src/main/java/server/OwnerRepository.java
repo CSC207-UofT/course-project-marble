@@ -15,7 +15,7 @@ public class OwnerRepository {
      * unique account later.
      */
     private OwnerRepository() {
-        this.listOfOwners = new HashMap<String, Owner>();
+        this.listOfOwners = new HashMap<>();
 //        listOfOwners.put("rtc", new Owner("Ruiting", "rtc", "abc")); // test case
     }
 
@@ -35,7 +35,7 @@ public class OwnerRepository {
      * getOwners is a method that Actions calls to return a Iterator of the Owners stored in listOfOwners
      * @return Iterator of the Owners
      */
-    public Iterator getOwners() {
+    public Iterator<Owner> getOwners() {
         return listOfOwners.values().iterator();
     }
 
