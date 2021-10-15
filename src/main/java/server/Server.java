@@ -15,7 +15,6 @@ public class Server {
     private ObjectOutputStream outbound;
     private ObjectInputStream inbound;
     //    private HashMap<String, String> passwords;
-    private boolean auth;
     private boolean login;
     private OwnerRepository repository;
     private Owner loggedInUser;
@@ -35,7 +34,6 @@ public class Server {
         serverSocket = new ServerSocket(port);
         clientSocket = serverSocket.accept();
         System.out.println("Connected");
-        auth = false;
         outbound = new ObjectOutputStream(clientSocket.getOutputStream());
         inbound = new ObjectInputStream(clientSocket.getInputStream());
         repository = new OwnerRepository();
@@ -52,9 +50,6 @@ public class Server {
 
     }
 
-    public boolean getAuth() {
-        return auth;
-    }
 
     /**
      * Creates a user according to the client's requests and stores it in the OwnerRepository
@@ -83,7 +78,6 @@ public class Server {
         outbound.close();
         clientSocket.close();
         serverSocket.close();
-        auth = false;
     }
 
     public Socket getNewSocket() {
