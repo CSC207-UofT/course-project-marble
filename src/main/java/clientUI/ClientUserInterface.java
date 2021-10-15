@@ -13,6 +13,13 @@ public class ClientUserInterface {
     private ObjectOutputStream outbound;
     private ObjectInputStream inbound;
 
+    /**
+     *
+     * @param ip of the server
+     * @param port of the server
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     public void Connect(String ip, int port) throws IOException, ClassNotFoundException {
         System.out.println("Starting connection");
         clientSocket = new Socket(ip, port);

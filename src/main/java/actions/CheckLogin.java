@@ -22,7 +22,7 @@ public class CheckLogin extends Actions{
      * @return true if the password matches, return false if not
      */
     public boolean process(){
-        OwnerRepository ownerRepo = new OwnerRepository();
+        OwnerRepository ownerRepo = OwnerRepository.getOwnerRepository();
         Iterator owners = ownerRepo.getOwners();
         while (owners.hasNext()) {
             Owner owner = (Owner) owners.next();

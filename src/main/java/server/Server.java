@@ -39,7 +39,7 @@ public class Server {
         System.out.println("Connected");
         outbound = new ObjectOutputStream(clientSocket.getOutputStream());
         inbound = new ObjectInputStream(clientSocket.getInputStream());
-        repository = new OwnerRepository();
+        repository = OwnerRepository.getOwnerRepository();
         outbound.writeObject("What do you want to do? Please return 1 to login or 2 to register!");
         outbound.flush();
         int answer = (int) inbound.readObject();
