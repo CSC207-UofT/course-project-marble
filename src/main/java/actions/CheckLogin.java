@@ -23,9 +23,9 @@ public class CheckLogin extends Actions{
      */
     public boolean process(){
         OwnerRepository ownerRepo = OwnerRepository.getOwnerRepository();
-        Iterator owners = ownerRepo.getOwners();
+        Iterator<Owner> owners = ownerRepo.getOwners();
         while (owners.hasNext()) {
-            Owner owner = (Owner) owners.next();
+            Owner owner = owners.next();
             if (username.equals(owner.getUsername())) {
                 return owner.comparePassword(password);
             }
