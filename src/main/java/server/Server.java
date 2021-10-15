@@ -5,9 +5,11 @@ import action_request_response.LoginRequest;
 import actions.CheckLogin;
 import entity.Owner;
 
-import java.io.*;
-import java.net.Socket;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
+import java.net.Socket;
 
 public class Server {
     private ServerSocket serverSocket;
@@ -21,9 +23,10 @@ public class Server {
     // storage server needed object
 
     /**
-          *This method starts the server and waits for the user to connect before sending options
-          *@param port The port we want the server to listen to. By default 8000 but needs to be changed
-         */
+     * This method starts the server and waits for the user to connect before sending options
+     *
+     * @param port The port we want the server to listen to. By default 8000 but needs to be changed
+     */
     public void start(int port) throws IOException, ClassNotFoundException {
 
         /*
@@ -53,7 +56,8 @@ public class Server {
 
     /**
      * Creates a user according to the client's requests and stores it in the OwnerRepository
-     * @throws IOException Throws an IOException if the outbound or inbound runs into an issue
+     *
+     * @throws IOException            Throws an IOException if the outbound or inbound runs into an issue
      * @throws ClassNotFoundException If the object that was received is not defined
      */
     public void createUser() throws IOException, ClassNotFoundException {
@@ -71,6 +75,7 @@ public class Server {
 
     /**
      * Closes all inbound and outbound connections and shuts the server down.
+     *
      * @throws IOException For outbound and inbound streams
      */
     public void stop() throws IOException {
@@ -87,7 +92,8 @@ public class Server {
 
     /**
      * Attempt to login the user
-     * @throws IOException Inbound and outbound Streams don't work
+     *
+     * @throws IOException            Inbound and outbound Streams don't work
      * @throws ClassNotFoundException Object that is sent is not Found
      */
     public void login() throws IOException, ClassNotFoundException {

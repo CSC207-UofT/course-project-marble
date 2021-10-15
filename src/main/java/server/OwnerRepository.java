@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.*;
 
 public class OwnerRepository {
-    private HashMap<String, Owner> listOfOwners; // <String username, Owner Object>
+    private final HashMap<String, Owner> listOfOwners; // <String username, Owner Object>
 
 
     /**

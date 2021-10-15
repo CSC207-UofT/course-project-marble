@@ -2,7 +2,7 @@ package entity;
 
 import java.util.ArrayList;
 
-public class Saving extends Account{
+public class Saving extends Account {
     private double interestRate;
     private final ArrayList<SavingsRecord> SavingsRecordsList;
 
@@ -21,6 +21,7 @@ public class Saving extends Account{
 
     /**
      * get the interest rate of the savings account
+     *
      * @return the current interest rate
      */
     public double getInterestRate() {
@@ -30,10 +31,11 @@ public class Saving extends Account{
 
     /**
      * change the interest rate in the savings account
+     *
      * @param newInterestRate the new interest rate
      * @return true if the interest rate is set.
      */
-    public boolean changeInterestRate(int newInterestRate){
+    public boolean changeInterestRate(int newInterestRate) {
         this.interestRate = newInterestRate;
         SavingsRecordsList.add(new SavingsRecord(this.getAccountID(), this.interestRate));
         return true;

@@ -14,7 +14,7 @@ public class Withdrawal extends Actions{
                     " does not exist for this user.";
         } else{
             accounts.get(Integer.valueOf(id)).decreaseBalance(num);
-            return "Successfully withdrawn $" + String.valueOf(num) +
+            return "Successfully withdrawn $" + num +
                     " from account with ID" + id;
         }
     }
