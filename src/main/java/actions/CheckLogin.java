@@ -7,8 +7,8 @@ import server.OwnerRepository;
 import java.util.Iterator;
 
 public class CheckLogin extends Actions{
-    private String username;
-    private String password;
+    private final String username;
+    private final String password;
 
     public CheckLogin(LoginRequest request) {
         username = request.getUsername();
