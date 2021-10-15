@@ -1,6 +1,8 @@
 package server;
 
 import entity.Owner;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import server.OwnerRepository;
 
@@ -12,17 +14,20 @@ class OwnerRepositoryTest {
 
     private OwnerRepository ownerRepo;
 
+    @Before
+    public void setUp() {
+        ownerRepo = OwnerRepository.getOwnerRepository();
+    }
+
     @Test
     void createOwner_OwnerExists() {
-        this.ownerRepo = new OwnerRepository();
-        ownerRepo.createOwner("Ruiting", "rtc", "abc");
-        assertFalse(ownerRepo.createOwner("Ruiting", "rtc", "abc"));
+        ownerRepo.createOwner("User1", "User", "LOLXD");
+        assertFalse(ownerRepo.createOwner("User1", "User", "LOLXD"));
     }
 
     @Test
     void createOwner_OwnerDoesNotExist() {
-        this.ownerRepo = new OwnerRepository();
-        assertTrue(ownerRepo.createOwner("Ruiting", "rtc", "abc"));
+        assertTrue(ownerRepo.createOwner("User1", "User", "LOLXD"););
     }
 
     @Test
@@ -31,5 +36,10 @@ class OwnerRepositoryTest {
 
     @Test
     void getOwners() {
+    }
+
+    @After
+    public void tearDown() {
+        ownerRepo.deleteOwner("User1");
     }
 }
