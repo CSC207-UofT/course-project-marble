@@ -1,3 +1,5 @@
+package Actions;
+
 import action_request_response.LoginRequest;
 import actions.CheckLogin;
 import org.junit.After;
