@@ -14,11 +14,9 @@ import java.net.Socket;
 public class Server {
     private ServerSocket serverSocket;
     private Socket clientSocket;
-    private ObjectOutputStream outbound;
-    private ObjectInputStream inbound;
     //    private HashMap<String, String> passwords;
     private boolean login;
-    private OwnerRepository repository;
+    protected static OwnerRepository repository;
     private Owner loggedInUser;
     // storage server needed object
 
@@ -27,7 +25,7 @@ public class Server {
      *
      * @param port The port we want the server to listen to. By default 8000 but needs to be changed
      */
-    public void start(int port) throws IOException, ClassNotFoundException {
+    public void start(int port) throws IOException {
 
         /*
           This method starts the server and waits for the user to connect before sending options
@@ -35,67 +33,65 @@ public class Server {
          */
         System.out.println("Starting server");
         serverSocket = new ServerSocket(port);
-        clientSocket = serverSocket.accept();
-        System.out.println("Connected");
-        outbound = new ObjectOutputStream(clientSocket.getOutputStream());
-        inbound = new ObjectInputStream(clientSocket.getInputStream());
+        System.out.printf("Server has started listening on port: %s%n", port);
         repository = OwnerRepository.getOwnerRepository();
-        outbound.writeObject("What do you want to do? Please return 1 to login or 2 to register!");
-        outbound.flush();
+    }
+
+    public Socket accept(){
+        Socket accept1 = null;
+        try {
+            accept1 = serverSocket.accept();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return accept1;
+
+    }
+
+
+
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
+        Server server = new Server();
+        server.start(8000);
+        Socket socket;
+        while (true){
+            socket = server.accept();
+            System.out.println("New Connection established");
+            ServerThread thread = new ServerThread(socket);
+            thread.start();
+    }
+}
+
+
+static class ServerThread extends Thread{
+    private final ObjectOutputStream outbound;
+    private final ObjectInputStream inbound;
+    Socket clientSocket;
+    private Owner loggedInUser;
+
+    ServerThread(Socket socket) throws IOException, ClassNotFoundException {
+        this.clientSocket = socket;
+        this.outbound = new ObjectOutputStream(clientSocket.getOutputStream());
+        this.inbound = new ObjectInputStream(clientSocket.getInputStream());
         int answer = (int) inbound.readObject();
         if (answer == 1) {
             this.login();
         } else if (answer == 2) {
             this.createUser();
-        } else {
-            stop();
         }
-
     }
-
-
-    /**
-     * Creates a user according to the client's requests and stores it in the OwnerRepository
-     *
-     * @throws IOException            Throws an IOException if the outbound or inbound runs into an issue
-     * @throws ClassNotFoundException If the object that was received is not defined
-     */
     public void createUser() throws IOException, ClassNotFoundException {
-        String name = (String) this.inbound.readObject();
+        String name = (String) inbound.readObject();
         System.out.println(name);
-        String username = (String) this.inbound.readObject();
+        String username = (String) inbound.readObject();
         System.out.println(username);
-        String password = (String) this.inbound.readObject();
+        String password = (String) inbound.readObject();
         System.out.println(password);
-        repository.createOwner(name, username, password);
-        this.loggedInUser = repository.findOwner(username);
-        this.outbound.writeObject("Thanks! You have created an account. You  are now logged into it!");
+        Server.repository.createOwner(name, username, password);
+        this.loggedInUser = Server.repository.findOwner(username);
+        outbound.writeObject("Thanks! You have created an account. You  are now logged into it!");
 
     }
-
-    /**
-     * Closes all inbound and outbound connections and shuts the server down.
-     *
-     * @throws IOException For outbound and inbound streams
-     */
-    public void stop() throws IOException {
-        inbound.close();
-        outbound.close();
-        clientSocket.close();
-        serverSocket.close();
-    }
-
-    public Socket getNewSocket() {
-        //implement this
-        return null;
-    }
-
-    /**
-     * Attempt to login the user
-     *
-     * @throws IOException            Inbound and outbound Streams don't work
-     * @throws ClassNotFoundException Object that is sent is not Found
-     */
     public void login() throws IOException, ClassNotFoundException {
         // implement this So what  we do: Login successful then
         // Send the owner instance to the clientUserInterface that made the request otherwise we send false
@@ -104,19 +100,14 @@ public class Server {
         CheckLogin check = new CheckLogin(request);
         if (check.process()) {
             // outbound.writeObject("Your login request was successful!");
-            this.loggedInUser = repository.findOwner(request.getUsername());
+            this.loggedInUser = Server.repository.findOwner(request.getUsername());
             outbound.writeObject(true);
         } else {
             outbound.writeObject(false);
         }
         outbound.flush();
     }
+} }
 
-
-    public static void main(String[] args) throws IOException, ClassNotFoundException {
-        Server server = new Server();
-        server.start(8000);
-    }
-}
 
 
