@@ -50,6 +50,17 @@ public class Server {
 
 
 
+    /**
+     * Closes all inbound and outbound connections and shuts the server down.
+     *
+     * @throws IOException For outbound and inbound streams
+     */
+    public void stop() throws IOException {
+        clientSocket.close();
+        serverSocket.close();
+    }
+
+
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         Server server = new Server();
         server.start(8000);
