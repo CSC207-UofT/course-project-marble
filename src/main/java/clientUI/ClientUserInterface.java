@@ -13,25 +13,18 @@ public class ClientUserInterface {
     private ObjectOutputStream outbound;
     private ObjectInputStream inbound;
 
-    /**
-     *
-     * @param ip of the server
-     * @param port of the server
-     * @throws IOException
-     * @throws ClassNotFoundException
-     */
+
     public void Connect(String ip, int port) throws IOException, ClassNotFoundException {
         System.out.println("Starting connection");
         clientSocket = new Socket(ip, port);
         outbound = new ObjectOutputStream(clientSocket.getOutputStream());
         inbound = new ObjectInputStream(clientSocket.getInputStream());
         System.out.println("Connected");
-        System.out.println((String) inbound.readObject());
+        System.out.println("What do you want to do? Please return 1 to login or 2 to register!");
         Scanner sc = new Scanner(System.in);
         int answer = sc.nextInt();
         outbound.writeObject(answer);
         outbound.flush();
-
         if (answer == 1) {
             boolean bool = this.login();
             if (!bool) {
@@ -93,7 +86,7 @@ public class ClientUserInterface {
         clientSocket.close();
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         ClientUserInterface client = new ClientUserInterface();
 
