@@ -54,12 +54,9 @@ public class ClientUserInterface {
         outbound.writeObject(password);
         String message = (String) inbound.readObject();
         System.out.println(message);
-
-
     }
 
     public boolean login() throws IOException, ClassNotFoundException {
-
         Scanner sc = new Scanner(System.in);
         System.out.println("Please enter your username");
         String username = sc.nextLine();
@@ -76,7 +73,6 @@ public class ClientUserInterface {
             System.out.println("Failure");
             return false;
         }
-
     }
 
     public void disconnect() throws IOException {
