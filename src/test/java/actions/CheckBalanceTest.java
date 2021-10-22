@@ -1,9 +1,7 @@
-package Actions;
+package actions;
 
 import entity.Owner;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class CheckBalanceTest {
     private Integer accountID;

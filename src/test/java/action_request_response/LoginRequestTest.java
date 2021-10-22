@@ -1,9 +1,8 @@
-package Action_request_response;
+package action_request_response;
 
-import action_request_response.LoginRequest;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class LoginRequestTest {
 

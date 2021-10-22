@@ -1,6 +1,4 @@
-package Actions;
-
-import static org.junit.jupiter.api.Assertions.*;
+package actions;
 
 class GetTransactionHistoryTest {
 

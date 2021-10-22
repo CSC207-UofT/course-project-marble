@@ -1,14 +1,10 @@
-package server;
-
-import entity.Owner;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import server.OwnerRepository;
 
-import java.util.HashMap;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class OwnerRepositoryTest {
 
@@ -27,7 +23,7 @@ class OwnerRepositoryTest {
 
     @Test
     void createOwner_OwnerDoesNotExist() {
-        assertTrue(ownerRepo.createOwner("User1", "User", "LOLXD"););
+        assertTrue(ownerRepo.createOwner("User1", "User", "LOLXD"));
     }
 
     @Test
