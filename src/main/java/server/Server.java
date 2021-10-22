@@ -103,19 +103,19 @@ static class ServerThread extends Thread{
         try {
             answer = (int) inbound.readObject();
         } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
+            return;
         }
         if (answer == 1) {
             try {
                 this.login();
             } catch (IOException | ClassNotFoundException e) {
-                e.printStackTrace();
+                return;
             }
         } else if (answer == 2) {
             try {
                 this.createUser();
             } catch (IOException | ClassNotFoundException e) {
-                e.printStackTrace();
+                return;
             }
         }
         String message = "";
@@ -125,7 +125,7 @@ static class ServerThread extends Thread{
             } catch (IOException | ClassNotFoundException e) {
                 System.out.println("Invalid Message received. " +
                         "Cancelling connection");
-                this.interrupt();
+                message = "q";
             }
         }
         System.out.println("Disconnecting" + loggedInUser);
@@ -155,6 +155,7 @@ static class ServerThread extends Thread{
             outbound.writeObject(true);
         } else {
             outbound.writeObject(false);
+            this.interrupt();
         }
 
         outbound.flush();
