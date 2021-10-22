@@ -12,7 +12,7 @@ public class ClientUserInterface {
     private Socket clientSocket;
     private ObjectOutputStream outbound;
     private ObjectInputStream inbound;
-
+    private String username;
 
     public void Connect(String ip, int port) throws IOException, ClassNotFoundException {
         System.out.println("Starting connection");
@@ -54,6 +54,7 @@ public class ClientUserInterface {
         outbound.writeObject(password);
         String message = (String) inbound.readObject();
         System.out.println(message);
+        this.username = username;
     }
 
     public boolean login() throws IOException, ClassNotFoundException {
@@ -68,6 +69,7 @@ public class ClientUserInterface {
         boolean temp = (Boolean) inbound.readObject();
         if (temp) {
             System.out.println("Success");
+            this.username = username;
             return true;
         } else {
             System.out.println("Failure");
