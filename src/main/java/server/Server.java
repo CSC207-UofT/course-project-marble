@@ -15,10 +15,8 @@ import java.util.Scanner;
 public class Server {
     private ServerSocket serverSocket;
     private Socket clientSocket;
-    //    private HashMap<String, String> passwords;
     protected static OwnerRepository repository;
     private Owner loggedInUser;
-    // storage server needed object
 
     /**
      * This method starts the server and waits for the user to
@@ -99,7 +97,7 @@ static class ServerThread extends Thread{
     @Override
     public void run(){
         System.out.println("Starting  sequence");
-        int answer = 0;
+        int answer;
         try {
             answer = (int) inbound.readObject();
         } catch (IOException | ClassNotFoundException e) {
