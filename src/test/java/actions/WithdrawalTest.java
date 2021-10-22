@@ -1,8 +1,6 @@
-package Actions;
+package actions;
 
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class WithdrawalTest {
 
