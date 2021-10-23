@@ -27,23 +27,11 @@ public class CheckLoginTest {
         assertTrue(ck.process());
     }
 
-    @Test(timeout = 200)
-    public void testCheckLoginIncorrectUsername() {
-        LoginRequest request = new LoginRequest("User2", "password");
-        CheckLogin ck = new CheckLogin(request);
-        assertFalse(ck.process());
-    }
+import static org.junit.jupiter.api.Assertions.*;
 
-    @Test(timeout = 200)
-    public void testCheckLoginIncorrectPassword() {
-        LoginRequest request = new LoginRequest("User1", "pass");
-        CheckLogin ck = new CheckLogin(request);
-        assertFalse(ck.process());
-    }
+class CheckLoginTest {
 
-    @After
-    public void tearDown() {
-        ownerRepo.deleteOwner("User1");
+    @Test
+    void process() {
     }
-
 }
