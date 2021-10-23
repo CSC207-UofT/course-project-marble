@@ -38,6 +38,11 @@ public class Owner {
         this.password = md.digest(password.getBytes(StandardCharsets.UTF_8));
     }
 
+    @Override
+    public String toString() {
+        return this.username;
+    }
+
 
     public String getName() {
         return this.fullName;
