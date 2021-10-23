@@ -24,13 +24,6 @@ public class Server {
      *             By default 8000 but needs to be changed
      */
     public void start(int port) throws IOException {
-
-        /*
-          This method starts the server and waits for the user to
-           connect before sending options
-          @param port: Port what we want the server to listen to.
-           By default 8000 but needs to be changed
-         */
         System.out.println("Starting server");
         this.serverSocket = new ServerSocket(port);
         System.out.printf("Server has started listening on port: %s%n", port);
@@ -68,7 +61,8 @@ public class Server {
         while (checkNewUser) {
             socket = server.accept();
             System.out.println("New Connection established");
-            System.out.println("Do you want to allow this connection " +
+            System.out.println("Do you want to allow a connection " +
+                    "after this one? " +
                     "or stop here? Default is yes. y/n. ");
             String userInput = sc.nextLine();
             if (userInput.equals("no")) {
@@ -103,6 +97,10 @@ static class ServerThread extends Thread{
         if (answer == 1) {
             try {
                 this.login();
+                if (this.loggedInUser == null) {
+                    this.close();
+                    return;
+                }
             } catch (IOException | ClassNotFoundException e) {
                 return;
             }
@@ -157,9 +155,9 @@ static class ServerThread extends Thread{
             outbound.writeObject(true);
         } else {
             outbound.writeObject(false);
-            this.interrupt();
+            this.loggedInUser = null;
+            return;
         }
-
         outbound.flush();
     }
 }
