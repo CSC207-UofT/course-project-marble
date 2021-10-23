@@ -14,9 +14,7 @@ import java.util.Scanner;
 
 public class Server {
     private ServerSocket serverSocket;
-    private Socket clientSocket;
     protected static OwnerRepository repository;
-    private Owner loggedInUser;
 
     /**
      * This method starts the server and waits for the user to
@@ -34,7 +32,7 @@ public class Server {
            By default 8000 but needs to be changed
          */
         System.out.println("Starting server");
-        serverSocket = new ServerSocket(port);
+        this.serverSocket = new ServerSocket(port);
         System.out.printf("Server has started listening on port: %s%n", port);
         repository = OwnerRepository.getOwnerRepository();
     }
@@ -42,7 +40,7 @@ public class Server {
     public Socket accept() {
         Socket accept1 = null;
         try {
-            accept1 = serverSocket.accept();
+            accept1 = this.serverSocket.accept();
         } catch (IOException e) {
             System.out.println("No connection was found. Exiting");
             System.exit(-1);
@@ -57,8 +55,7 @@ public class Server {
      * @throws IOException For outbound and inbound streams
      */
     public void stop() throws IOException {
-        clientSocket.close();
-        serverSocket.close();
+        this.serverSocket.close();
     }
 
 
@@ -127,7 +124,14 @@ static class ServerThread extends Thread{
             }
         }
         System.out.println("Disconnecting" + loggedInUser);
-        this.interrupt();
+        try {
+            this.close();
+        } catch (IOException e) {
+            System.out.println("Caught an IO exception ");
+        }
+    }
+    void close() throws IOException {
+        this.clientSocket.close();
     }
         void createUser() throws IOException, ClassNotFoundException {
         String name = (String) inbound.readObject();
