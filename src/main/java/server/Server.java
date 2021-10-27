@@ -3,6 +3,7 @@ package server;
 
 import action_request_response.LoginRequest;
 import actions.CheckLogin;
+import actions.CreateOwner;
 import entity.Owner;
 
 import java.io.IOException;
@@ -103,12 +104,22 @@ public class Server {
                         return;
                     }
                 } catch (IOException | ClassNotFoundException e) {
+                    try {
+                        this.close();
+                    } catch (IOException e2) {
+                        System.out.println("Caught an IO exception when closing socket connection");
+                    }
                     return;
                 }
             } else if (answer == 2) {
                 try {
                     this.createUser();
                 } catch (IOException | ClassNotFoundException e) {
+                    try {
+                        this.close();
+                    } catch (IOException e2) {
+                        System.out.println("Caught an IO exception when closing socket connection");
+                    }
                     return;
                 }
             }
@@ -126,25 +137,12 @@ public class Server {
             try {
                 this.close();
             } catch (IOException e) {
-                System.out.println("Caught an IO exception ");
+                System.out.println("Caught an IO exception when closing socket connection");
             }
         }
 
         void close() throws IOException {
             this.clientSocket.close();
-        }
-
-        void createUser() throws IOException, ClassNotFoundException {
-            String name = (String) inbound.readObject();
-            System.out.println(name);
-            String username = (String) inbound.readObject();
-            System.out.println(username);
-            String password = (String) inbound.readObject();
-            System.out.println(password);
-            Server.repository.createOwner(name, username, password);
-            this.loggedInUser = Server.repository.findOwner(username);
-            outbound.writeObject("Thanks! You have created an account." +
-                    " You  are now logged into it!");
         }
 
         private void login() throws IOException, ClassNotFoundException {
@@ -158,9 +156,26 @@ public class Server {
                 this.loggedInUser = Server.repository.findOwner(request.getUsername());
                 outbound.writeObject(true);
             } else {
-                outbound.writeObject(false);
                 this.loggedInUser = null;
-                return;
+                outbound.writeObject(false);
+            }
+            outbound.flush();
+        }
+
+        private void createUser() throws IOException, ClassNotFoundException {
+            String name = (String) inbound.readObject();
+            System.out.println(name);
+            String username = (String) inbound.readObject();
+            System.out.println(username);
+            String password = (String) inbound.readObject();
+            System.out.println(password);
+            CreateOwner create = new CreateOwner(name, username, password);
+            if (create.process()) {
+                this.loggedInUser = Server.repository.findOwner(username);
+                outbound.writeObject(true);
+            } else {
+                this.loggedInUser = null;
+                outbound.writeObject(false);
             }
             outbound.flush();
         }
