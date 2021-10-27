@@ -26,35 +26,48 @@ public class ClientUserInterface {
         outbound.writeObject(answer);
         outbound.flush();
         if (answer == 1) {
-            boolean bool = this.login();
-            if (!bool) {
+            boolean result = this.login();
+            if (!result) {
                 System.out.println("Login failed exiting");
                 disconnect();
                 System.exit(-1);
             }
         } else if (answer == 2) {
-            this.createUser();
+            boolean result = this.createUser();
+            if (!result) {
+                System.out.println("Login failed exiting");
+                disconnect();
+                System.exit(-1);
+            }
         } else {
             this.disconnect();
         }
     }
 
-    public void createUser() throws IOException, ClassNotFoundException {
+    public boolean createUser() throws IOException, ClassNotFoundException {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Please enter your name");
-        String name = sc.nextLine();
-        outbound.writeObject(name);
-        outbound.flush();
+        System.out.println("Please enter your fullname");
+        String fullname = sc.nextLine();
         System.out.println("Please enter your chosen username");
         String username = sc.nextLine();
         System.out.println("Please enter your password");
         String password = sc.nextLine();
+        outbound.writeObject(fullname);
         outbound.writeObject(username);
-        outbound.flush();
         outbound.writeObject(password);
-        String message = (String) inbound.readObject();
-        System.out.println(message);
-        this.username = username;
+        outbound.flush();
+        boolean result = (Boolean) inbound.readObject();
+        if (result) {
+            this.username = username;
+            System.out.println("Thanks! You have created an account. " +
+                    "You are now logged into it!");
+            return true;
+        } else {
+            this.username = null;
+            System.out.println("Username already exist. Please change to another username.");
+            return false;
+        }
+
     }
 
     public boolean login() throws IOException, ClassNotFoundException {
