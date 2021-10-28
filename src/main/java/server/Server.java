@@ -66,7 +66,7 @@ public class Server {
                     "after this one? " +
                     "or stop here? Default is yes. y/n. ");
             String userInput = sc.nextLine();
-            if (userInput.equals("no")) {
+            if (userInput.equals("n")) {
                 checkNewUser = false;
             }
             new ServerThread(socket).start();
@@ -78,7 +78,7 @@ public class Server {
     static class ServerThread extends Thread {
         private final ObjectOutputStream outbound;
         private final ObjectInputStream inbound;
-        Socket clientSocket;
+        private final Socket  clientSocket;
         private final ActionFactory factory;
 
         ServerThread(Socket socket) throws IOException {
@@ -96,7 +96,7 @@ public class Server {
 
             while (!quit) {
                 try {
-                    ActionRequest request = (ActionRequest) inbound.readObject();
+                    ActionRequest request = (ActionRequest) this.inbound.readObject();
                     System.out.println("read object");
 
                     if (request.isQuit()) {
@@ -109,8 +109,8 @@ public class Server {
                         if (action != null) {
                             boolean result = action.process();
                             System.out.println("result " + result);
-                            outbound.writeObject(result);
-                            outbound.flush();
+                            this.outbound.writeObject(result);
+                            this.outbound.flush();
                             System.out.println("Flushed result");
                         }
                     }
@@ -123,7 +123,6 @@ public class Server {
 
                 }
             }
-            System.out.flush();
         }
 
         void close() {
