@@ -7,10 +7,10 @@ public abstract class FinancialInstrument {
     private final int volume;
     public float annualInterestRate;
 
-    public FinancialInstrument(Date dateCreated, int volume, float interestRate){
+    public FinancialInstrument(Date dateCreated, int volume, float annualInterestRate){
         this.dateCreated = dateCreated;
         this.volume = volume;
-        this.interestRate = interestRate;
+        this.annualInterestRate = annualInterestRate;
     }
     public abstract float withdraw();
     public abstract float getValue();
@@ -27,15 +27,7 @@ public abstract class FinancialInstrument {
         return dateCreated;
     }
 
-    public void setDateCreated(Date dateCreated) {
-        this.dateCreated = dateCreated;
-    }
-
-    public void setInterestRate(float interestRate) {
-        this.interestRate = interestRate;
-    }
-
-    public void setVolume(int volume) {
-        this.volume = volume;
+    public void setAnnualInterestRate(float annualInterestRate) {
+        this.annualInterestRate = annualInterestRate;
     }
 }
