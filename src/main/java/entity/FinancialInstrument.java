@@ -3,18 +3,20 @@ package entity;
 import java.util.Date;
 
 public abstract class FinancialInstrument {
-    private Date dateCreated;
-    private int volume;
-    public float interestRate;
+    private final Date dateCreated;
+    private final int volume;
+    public float annualInterestRate;
 
     public FinancialInstrument(Date dateCreated, int volume, float interestRate){
         this.dateCreated = dateCreated;
         this.volume = volume;
         this.interestRate = interestRate;
     }
+    public abstract float withdraw();
+    public abstract float getValue();
 
-    public float getInterestRate() {
-        return interestRate;
+    public float getAnnualInterestRate() {
+        return annualInterestRate;
     }
 
     public int getVolume() {
