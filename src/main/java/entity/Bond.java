@@ -6,27 +6,28 @@ import java.util.concurrent.TimeUnit;
 public class Bond extends FinancialInstrument{
     private final Date dateOfMaturity;
     private final float pricePerBond;
-
+    private final int volume;
     public Bond(Date dateCreated, int volume, float annualInterestRate, float pricePerBond, Date dateOfMaturity) {
         super(dateCreated, volume, annualInterestRate);
         this.dateOfMaturity = dateOfMaturity;
         this.pricePerBond = pricePerBond;
+        this.volume = volume;
     }
 
     @Override
     public float withdraw() {
         Date currentDate = new java.util.Date();
         boolean matured = currentDate.after(this.dateOfMaturity);
-        
+
         if (matured){
             long diffInMillies = Math.abs(super.getDateCreated().getTime() - this.dateOfMaturity.getTime());
             long  diff = TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
             float periodInterest = (float) diff/365 * super.getAnnualInterestRate();
             return pricePerBond * super.getVolume() * (1 + periodInterest);
         }
-        
+
         else{
-            return pricePerBond * super.getVolume();
+            return pricePerBond * this.volume;
         }
     }
 
@@ -36,10 +37,12 @@ public class Bond extends FinancialInstrument{
     }
 
     public Date getDateOfMaturity() {
-        return dateOfMaturity;
+        return this.dateOfMaturity;
     }
+    public float getTotalCost(){
+        return this.pricePerBond * this.volume;}
 
     public float getPricePerBond() {
-        return pricePerBond;
+        return this.pricePerBond;
     }
 }
