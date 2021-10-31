@@ -8,7 +8,7 @@ public class Bond extends FinancialInstrument{
     private final float pricePerBond;
     private final int volume;
     public Bond(Date dateCreated, int volume, float annualInterestRate, float pricePerBond, Date dateOfMaturity) {
-        super(dateCreated, volume, annualInterestRate);
+        super(dateCreated, annualInterestRate);
         this.dateOfMaturity = dateOfMaturity;
         this.pricePerBond = pricePerBond;
         this.volume = volume;
@@ -23,7 +23,7 @@ public class Bond extends FinancialInstrument{
             long diffInMillies = Math.abs(super.getDateCreated().getTime() - this.dateOfMaturity.getTime());
             long  diff = TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
             float periodInterest = (float) diff/365 * super.getAnnualInterestRate();
-            return pricePerBond * super.getVolume() * (1 + periodInterest);
+            return pricePerBond * this.volume * (1 + periodInterest);
         }
 
         else{
