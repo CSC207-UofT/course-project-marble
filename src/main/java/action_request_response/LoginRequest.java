@@ -1,16 +1,11 @@
 package action_request_response;
 
 public class LoginRequest extends ActionRequest {
-    String username;
-    String password;
+    private final String password;
 
-    public LoginRequest(String username, String pwd) {
-        this.username = username;
-        this.password = pwd;
-    }
-
-    public String getUsername() {
-        return username;
+    public LoginRequest(String username, String password) {
+        super(username);
+        this.password = password;
     }
 
     public String getPassword() {

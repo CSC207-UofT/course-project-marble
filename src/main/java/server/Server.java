@@ -1,9 +1,8 @@
 package server;
 
 
-import action_request_response.LoginRequest;
-import actions.CheckLogin;
-import entity.Owner;
+import action_request_response.ActionRequest;
+import actions.Actions;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -21,7 +20,7 @@ public class Server {
      * connect before sending options
      *
      * @param port The port we want the server to listen to.
-     *             By default 8000 but needs to be changed
+     *             By default, it is 8000 but needs to be changed
      */
     public void start(int port) throws IOException {
         System.out.println("Starting server");
@@ -44,11 +43,13 @@ public class Server {
 
     /**
      * Closes all inbound and outbound connections and shuts the server down.
-     *
-     * @throws IOException For outbound and inbound streams
      */
-    public void stop() throws IOException {
-        this.serverSocket.close();
+    public void stop() {
+        try {
+            this.serverSocket.close();
+        } catch (IOException e) {
+            System.out.println("Caught an IO exception when closing socket connection");
+        }
     }
 
 
@@ -65,105 +66,73 @@ public class Server {
                     "after this one? " +
                     "or stop here? Default is yes. y/n. ");
             String userInput = sc.nextLine();
-            if (userInput.equals("no")) {
+            if (userInput.equals("n")) {
                 checkNewUser = false;
             }
             new ServerThread(socket).start();
         }
+        server.stop();
     }
 
 
     static class ServerThread extends Thread {
         private final ObjectOutputStream outbound;
         private final ObjectInputStream inbound;
-        Socket clientSocket;
-        private Owner loggedInUser;
+        private final Socket  clientSocket;
+        private final ActionFactory factory;
 
         ServerThread(Socket socket) throws IOException {
             this.clientSocket = socket;
             this.outbound = new ObjectOutputStream(clientSocket.getOutputStream());
             this.inbound = new ObjectInputStream(clientSocket.getInputStream());
+            this.factory = new ActionFactory();
 
         }
 
         @Override
         public void run() {
-            System.out.println("Starting  sequence");
-            int answer;
-            try {
-                answer = (int) inbound.readObject();
-            } catch (IOException | ClassNotFoundException e) {
-                return;
-            }
-            if (answer == 1) {
+            System.out.println("Starting sequence");
+            boolean quit = false;
+
+            while (!quit) {
                 try {
-                    this.login();
-                    if (this.loggedInUser == null) {
+                    ActionRequest request = (ActionRequest) this.inbound.readObject();
+                    System.out.println("read object");
+
+                    if (request.isQuit()) {
+                        System.out.println("Disconnecting " + request.getUsername());
                         this.close();
-                        return;
+                        quit = true;
+
+                    } else {
+                        Actions action = factory.getAction(request);
+                        if (action != null) {
+                            boolean result = action.process();
+                            System.out.println("result " + result);
+                            this.outbound.writeObject(result);
+                            this.outbound.flush();
+                            System.out.println("Flushed result");
+                        }
                     }
+
                 } catch (IOException | ClassNotFoundException e) {
-                    return;
-                }
-            } else if (answer == 2) {
-                try {
-                    this.createUser();
-                } catch (IOException | ClassNotFoundException e) {
-                    return;
-                }
-            }
-            String message = "";
-            while (!message.equals("q")) {
-                try {
-                    message = (String) inbound.readObject();
-                } catch (IOException | ClassNotFoundException e) {
-                    System.out.println("Invalid Message received. " +
-                            "Cancelling connection");
-                    message = "q";
+                    System.out.println("Caught an IO exception when closing socket connection");
+                    System.out.println("Disconnecting");
+                    this.close();
+                    quit = true;
+
                 }
             }
-            System.out.println("Disconnecting" + loggedInUser);
+        }
+
+        void close() {
             try {
-                this.close();
+                this.clientSocket.close();
             } catch (IOException e) {
-                System.out.println("Caught an IO exception ");
+                System.out.println("Caught an IO exception when closing socket connection");
             }
         }
 
-        void close() throws IOException {
-            this.clientSocket.close();
-        }
-
-        void createUser() throws IOException, ClassNotFoundException {
-            String name = (String) inbound.readObject();
-            System.out.println(name);
-            String username = (String) inbound.readObject();
-            System.out.println(username);
-            String password = (String) inbound.readObject();
-            System.out.println(password);
-            Server.repository.createOwner(name, username, password);
-            this.loggedInUser = Server.repository.findOwner(username);
-            outbound.writeObject("Thanks! You have created an account." +
-                    " You  are now logged into it!");
-        }
-
-        private void login() throws IOException, ClassNotFoundException {
-            // implement this So what  we do: Login successful then
-            // Send the owner instance to the clientUserInterface that made the request
-            //  otherwise we send false
-            // If it logged in then the user can see everything
-            LoginRequest request = (LoginRequest) inbound.readObject();
-            CheckLogin check = new CheckLogin(request);
-            if (check.process()) {
-                this.loggedInUser = Server.repository.findOwner(request.getUsername());
-                outbound.writeObject(true);
-            } else {
-                outbound.writeObject(false);
-                this.loggedInUser = null;
-                return;
-            }
-            outbound.flush();
-        }
     }
 }
 

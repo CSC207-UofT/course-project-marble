@@ -3,7 +3,7 @@ package server;
 import entity.Owner;
 
 import java.util.HashMap;
-import java.util.*;
+import java.util.Iterator;
 
 public class OwnerRepository {
     private final HashMap<String, Owner> listOfOwners; // <String username, Owner Object>
@@ -16,11 +16,10 @@ public class OwnerRepository {
      */
     private OwnerRepository() {
         this.listOfOwners = new HashMap<>();
-       //listOfOwners.put("rtc", new Owner("Ruiting", "rtc", "abc")); // test case
+        listOfOwners.put("rtc", new Owner("Ruiting", "rtc", "abc")); // test case
     }
 
     /**
-     *
      * @return a new ownerRepository is there does not already exist one, otherwise return the ownerRepository that
      * already exits
      */
@@ -33,6 +32,7 @@ public class OwnerRepository {
 
     /**
      * getOwners is a method that Actions calls to return a Iterator of the Owners stored in listOfOwners
+     *
      * @return Iterator of the Owners
      */
     public Iterator<Owner> getOwners() {
@@ -41,19 +41,18 @@ public class OwnerRepository {
 
     /**
      * Call the Owner constructor, creates an Owner object.
+     *
      * @return true if the Owner creation is successful, else false.
      */
-    public boolean createOwner (String fullName, String username, String password){
-        if(listOfOwners.containsKey(username)){
+    public boolean addOwner(Owner owner) {
+        if (listOfOwners.containsKey(owner.getUsername())) {
             return false;
         }
-        Owner user = new Owner(fullName, username, password);
-        listOfOwners.put(username, user);
+        listOfOwners.put(owner.getUsername(), owner);
         return true;
     }
 
     /**
-     *
      * @param username of the Owner
      * @return an Owner object of the given username
      */
@@ -62,12 +61,11 @@ public class OwnerRepository {
     }
 
     /**
-     *
      * @param username of the Owner
      * @return whether the Owner is deleted successfully
      */
     public boolean deleteOwner(String username) {
-        if(listOfOwners.containsKey(username)){
+        if (listOfOwners.containsKey(username)) {
             listOfOwners.remove(username);
             return true;
         }

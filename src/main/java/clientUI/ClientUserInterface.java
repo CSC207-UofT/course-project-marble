@@ -1,6 +1,8 @@
 package clientUI;
 
+import action_request_response.CreateUserRequest;
 import action_request_response.LoginRequest;
+import action_request_response.UserQuitRequest;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -20,41 +22,33 @@ public class ClientUserInterface {
         outbound = new ObjectOutputStream(clientSocket.getOutputStream());
         inbound = new ObjectInputStream(clientSocket.getInputStream());
         System.out.println("Connected");
-        System.out.println("What do you want to do? Please return 1 to login or 2 to register!");
-        Scanner sc = new Scanner(System.in);
-        int answer = sc.nextInt();
-        outbound.writeObject(answer);
-        outbound.flush();
-        if (answer == 1) {
-            boolean bool = this.login();
-            if (!bool) {
-                System.out.println("Login failed exiting");
-                disconnect();
-                System.exit(-1);
-            }
-        } else if (answer == 2) {
-            this.createUser();
-        } else {
-            this.disconnect();
-        }
     }
 
-    public void createUser() throws IOException, ClassNotFoundException {
+    public boolean createUser() throws IOException, ClassNotFoundException {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Please enter your name");
-        String name = sc.nextLine();
-        outbound.writeObject(name);
-        outbound.flush();
+        System.out.println("Please enter your fullname");
+        String fullname = sc.nextLine();
         System.out.println("Please enter your chosen username");
         String username = sc.nextLine();
         System.out.println("Please enter your password");
         String password = sc.nextLine();
-        outbound.writeObject(username);
+        CreateUserRequest request = new CreateUserRequest(fullname, username, password);
+
+        outbound.writeObject(request);
         outbound.flush();
-        outbound.writeObject(password);
-        String message = (String) inbound.readObject();
-        System.out.println(message);
-        this.username = username;
+
+        boolean result = (Boolean) inbound.readObject();
+        if (result) {
+            this.username = username;
+            System.out.println("Thanks! You have created an account. " +
+                    "You are now logged into it!");
+            return true;
+        } else {
+            this.username = null;
+            System.out.println("Username already exist. Please change to another username.");
+            return false;
+        }
+
     }
 
     public boolean login() throws IOException, ClassNotFoundException {
@@ -66,33 +60,75 @@ public class ClientUserInterface {
         LoginRequest request = new LoginRequest(username, password);
         outbound.writeObject(request);
         outbound.flush();
-        boolean temp = (Boolean) inbound.readObject();
-        if (temp) {
+
+        boolean result = (Boolean) inbound.readObject();
+        System.out.println("Got result");
+        if (result) {
             System.out.println("Success");
             this.username = username;
             return true;
         } else {
+            this.username = null;
             System.out.println("Failure");
             return false;
         }
     }
 
     public void disconnect() throws IOException {
-        System.out.println("Disconnected");
+        UserQuitRequest request = new UserQuitRequest(this.username);
+        outbound.writeObject(request);
+        outbound.flush();
+        System.out.println("Quit request flushed");
         inbound.close();
         outbound.close();
         clientSocket.close();
+        System.out.println("Disconnected");
     }
 
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         ClientUserInterface client = new ClientUserInterface();
-
         try {
             client.Connect("127.0.0.1", 8000);
         } catch (IOException | ClassNotFoundException e) {
             System.exit(-1);
         }
+
+        while (client.username == null) {
+            System.out.println("What do you want to do? Please return 1 to login or 2 to register!");
+            System.out.println("Enter 'q' to exit the program");
+            Scanner sc = new Scanner(System.in);
+            String answer = sc.nextLine();
+
+            if (answer.equals("1")) {
+                try {
+                    boolean result = client.login();
+                    if (!result) {
+                        System.out.println("Login failed exiting");
+                    }
+                } catch (IOException | ClassNotFoundException e) {
+                    System.out.println("Invalid command");
+                }
+
+            } else if (answer.equals("2")) {
+                try {
+                    boolean result = client.createUser();
+                    if (!result) {
+                        System.out.println("Login failed exiting");
+                    }
+                } catch (IOException | ClassNotFoundException e) {
+                    System.out.println("Invalid command");
+                }
+            } else if (answer.equals("q")) {
+                try {
+                    client.disconnect();
+                } catch (IOException e) {
+                    System.out.println("Caught an IO exception when closing socket connection");
+                }
+                return;
+            }
+        }
+
         String input = "0";
         while (!input.equals("q")) {
             System.out.println("Hello. You may now enter the following to do the following accounts");
@@ -104,6 +140,15 @@ public class ClientUserInterface {
             System.out.println("Withdraw money: w");
             System.out.println("To quit: q");
             input = scan.nextLine();
+
+            if (input.equals("q")) {
+                try {
+                    client.disconnect();
+                } catch (IOException e) {
+                    System.out.println("Caught an IO exception when closing socket connection");
+                }
+                return;
+            }
 
         }
 
