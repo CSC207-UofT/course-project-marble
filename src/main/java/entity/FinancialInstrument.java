@@ -6,7 +6,7 @@ public abstract class FinancialInstrument {
     private final Date dateCreated;
     public float annualInterestRate;
 
-    public FinancialInstrument(Date dateCreated, float annualInterestRate){
+    public FinancialInstrument(Date dateCreated, float annualInterestRate) {
         this.dateCreated = dateCreated;
         this.annualInterestRate = annualInterestRate;
     }
