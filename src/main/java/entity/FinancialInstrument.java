@@ -3,11 +3,11 @@ package entity;
 import java.text.SimpleDateFormat;
 
 public abstract class FinancialInstrument {
-    private final Date dateCreated;
-    public float annualInterestRate;
+    private final SimpleDateFormat dateCreated;
+    public double annualInterestRate;
 
-    public FinancialInstrument(Date dateCreated, float annualInterestRate) {
-        this.dateCreated = dateCreated;
+    public FinancialInstrument(double annualInterestRate) {
+        this.dateCreated = new SimpleDateFormat("MM/yyyy");
         this.annualInterestRate = annualInterestRate;
     }
 

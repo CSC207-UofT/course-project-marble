@@ -3,19 +3,14 @@ package entity;
 import java.util.Date;
 
 public class Savings extends Depositable {
-    private Date lastInterestDate;
 
     public Savings(float annualInterestRate) {
         super(annualInterestRate);
     }
 
-    public Date getLastInterestDate() {
-        return this.lastInterestDate;
-    }
-
     @Override
-    public float deposit(float amount) {
-        float temp = this.getValue();
+    public double deposit(double amount) {
+        double temp = this.getValue();
         temp = temp + amount;
         super.setBalance(temp);
         return super.getBalance();
@@ -30,7 +25,7 @@ public class Savings extends Depositable {
     }
 
     @Override
-    public float getValue() {
+    public double getValue() {
         return super.getBalance();
     }
 }

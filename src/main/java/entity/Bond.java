@@ -1,11 +1,11 @@
 package entity;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.concurrent.TimeUnit;
 
 public class Bond extends FinancialInstrument{
-    private final Date dateOfMaturity;
-    private final float pricePerBond;
+    private final SimpleDateFormat dateOfMaturity;
+    private final double pricePerBond;
     private final int volume;
     public Bond(Date dateCreated, int volume, float annualInterestRate, double pricePerBond, SimpleDateFormat dateOfMaturity) {
         super(annualInterestRate);
@@ -28,7 +28,7 @@ public class Bond extends FinancialInstrument{
     public double getTotalCost(){
         return this.pricePerBond * this.volume;}
 
-    public float getPricePerBond() {
+    public double getPricePerBond() {
         return this.pricePerBond;
     }
 }
