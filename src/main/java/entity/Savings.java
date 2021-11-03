@@ -23,8 +23,8 @@ public class Savings extends Depositable {
 
     @Override
     public void addInterest() {
-        float monthlyInterest = super.getAnnualInterestRate() / 12;
-        float temp = super.getBalance();
+        double monthlyInterest = super.getAnnualInterestRate() / 12;
+        double temp = super.getBalance();
         temp = temp + (temp * (monthlyInterest / 100));
         super.setBalance(temp);
     }

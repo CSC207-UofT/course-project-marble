@@ -1,6 +1,6 @@
 package entity;
 
-import java.util.Date;
+import java.text.SimpleDateFormat;
 
 public abstract class FinancialInstrument {
     private final Date dateCreated;
@@ -11,18 +11,19 @@ public abstract class FinancialInstrument {
         this.annualInterestRate = annualInterestRate;
     }
 
-    public abstract float getValue();
+    public abstract double getValue();
 
-    public float getAnnualInterestRate() {
+    public double getAnnualInterestRate() {
         return annualInterestRate;
     }
 
 
-    public Date getDateCreated() {
+    public SimpleDateFormat getDateCreated() {
         return dateCreated;
     }
 
-    public void setAnnualInterestRate(float annualInterestRate) {
+    public void setAnnualInterestRate(double annualInterestRate) {
         this.annualInterestRate = annualInterestRate;
     }
+
 }

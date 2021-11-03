@@ -7,22 +7,25 @@ public class Bond extends FinancialInstrument{
     private final Date dateOfMaturity;
     private final float pricePerBond;
     private final int volume;
-    public Bond(Date dateCreated, int volume, float annualInterestRate, float pricePerBond, Date dateOfMaturity) {
-        super(dateCreated, annualInterestRate);
+    public Bond(Date dateCreated, int volume, float annualInterestRate, double pricePerBond, SimpleDateFormat dateOfMaturity) {
+        super(annualInterestRate);
         this.dateOfMaturity = dateOfMaturity;
         this.pricePerBond = pricePerBond;
         this.volume = volume;
     }
 
     @Override
-    public float getValue() {
-        return 0;
+    public double getValue() {
+//        if (new SimpleDateFormat("MM/yyyy").parse(date).before(new Date())) {
+
+//        }
+        return 1;
     }
 
-    public Date getDateOfMaturity() {
+    public SimpleDateFormat getDateOfMaturity() {
         return this.dateOfMaturity;
     }
-    public float getTotalCost(){
+    public double getTotalCost(){
         return this.pricePerBond * this.volume;}
 
     public float getPricePerBond() {

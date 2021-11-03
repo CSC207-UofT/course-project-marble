@@ -1,19 +1,22 @@
 package entity;
 
+import java.text.SimpleDateFormat;
+
 public abstract class Depositable extends FinancialInstrument{
-    private float balance;
-    public Depositable(float annualInterestRate){
-        super(new java.util.Date(), annualInterestRate);
+    private double balance;
+    public Depositable(double annualInterestRate){
+        super(annualInterestRate);
+
         this.balance = 0;
     }
 
-    public float getBalance() {
+    public double getBalance() {
         return balance;
     }
 
-    public void setBalance(float balance) {
+    public void setBalance(double balance) {
         this.balance = balance;
     }
-    public abstract float deposit(float amount);
+    public abstract double deposit(double amount);
     public abstract void addInterest();
 }
