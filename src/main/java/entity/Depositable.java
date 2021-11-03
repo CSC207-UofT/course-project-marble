@@ -15,4 +15,5 @@ public abstract class Depositable extends FinancialInstrument{
         this.balance = balance;
     }
     public abstract float deposit(float amount);
+    public abstract void addInterest();
 }

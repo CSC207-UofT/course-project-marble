@@ -10,7 +10,7 @@ public abstract class FinancialInstrument {
         this.dateCreated = dateCreated;
         this.annualInterestRate = annualInterestRate;
     }
-    public abstract float withdraw();
+
     public abstract float getValue();
 
     public float getAnnualInterestRate() {

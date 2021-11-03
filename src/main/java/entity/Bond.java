@@ -15,22 +15,6 @@ public class Bond extends FinancialInstrument{
     }
 
     @Override
-    public float withdraw() {
-        Date currentDate = new java.util.Date();
-        boolean matured = currentDate.after(this.dateOfMaturity);
-        if (matured){
-            long diffInMillieSeconds = Math.abs(super.getDateCreated().getTime() - this.dateOfMaturity.getTime());
-            long  diff = TimeUnit.DAYS.convert(diffInMillieSeconds, TimeUnit.MILLISECONDS);
-            float periodInterest = (float) diff/365 * super.getAnnualInterestRate();
-            return pricePerBond * this.volume * (1 + periodInterest);
-        }
-
-        else{
-            return pricePerBond * this.volume;
-        }
-    }
-
-    @Override
     public float getValue() {
         return 0;
     }
