@@ -19,11 +19,13 @@ public class Savings extends Depositable{
     }
     @Override
     public float withdraw() {
-        return 0;
+        float temp = super.getBalance();
+        super.setBalance(0);
+        return temp;
     }
 
     @Override
     public float getValue() {
-        return 0;
+        return super.getBalance();
     }
 }
