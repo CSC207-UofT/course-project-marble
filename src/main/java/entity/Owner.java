@@ -12,8 +12,8 @@ public class Owner {
     private final String fullName;
     private final String username;
     private final byte[] password;
-    private HashMap<Integer, Account> accounts; // accountID Integer, Account Object
-    private static ArrayList<Integer> listOfAccountsID;
+    private int balance;
+
 
 
     /**
@@ -51,11 +51,6 @@ public class Owner {
     public String getUsername() {
         return this.username;
     }
-
-    public HashMap<Integer, Account> getAccounts() {
-        return this.accounts;
-    }
-
 
     /**
      * This method creates accounts under the owner.
@@ -118,4 +113,6 @@ public class Owner {
         }
         return false;
     }
+
+
 }

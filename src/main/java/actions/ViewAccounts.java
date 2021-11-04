@@ -1,6 +1,5 @@
 package actions;
 
-import entity.Account;
 import entity.Owner;
 
 import java.util.HashMap;
