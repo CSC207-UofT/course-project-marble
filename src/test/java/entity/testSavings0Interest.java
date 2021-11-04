@@ -1,13 +1,13 @@
 package entity;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class testSavings0Interest {
+public class testSavings0Interest {
     private Savings SavingAcc;
-    @Before
+    @BeforeEach
     public void setUp() {
         SavingAcc = new Savings(0.0);
     }
