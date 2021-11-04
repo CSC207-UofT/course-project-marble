@@ -2,7 +2,7 @@ package entity;
 
 public class Savings extends Depositable {
 
-    public Savings(float annualInterestRate) {
+    public Savings(double annualInterestRate) {
         super(annualInterestRate);
     }
 
