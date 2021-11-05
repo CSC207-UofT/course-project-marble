@@ -143,19 +143,11 @@ public class ClientUserInterface {
             System.out.println("Withdraw money: w");
             System.out.println("To quit: q");
             input = scan.nextLine();
-
-            if (input.equals("q")) {
-                try {
-                    client.disconnect();
-                } catch (IOException e) {
-                    System.out.println("Caught an IO exception when closing socket connection");
-                }
-                return;
             }
-
-        }
-
+            try {
+                client.disconnect();
+            } catch (IOException e) {
+                System.out.println("Caught an IO exception when closing socket connection");
+            }
     }
-
-
 }
