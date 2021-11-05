@@ -1,8 +1,6 @@
 package entity;
 
-import java.text.SimpleDateFormat;
-
-public abstract class Depositable extends FinancialInstrument{
+public abstract class Depositable extends FinancialAsset {
     private double balance;
     public Depositable(double annualInterestRate){
         super(annualInterestRate);

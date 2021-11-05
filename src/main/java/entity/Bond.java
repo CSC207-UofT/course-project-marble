@@ -3,7 +3,7 @@ package entity;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Bond extends FinancialInstrument{
+public class Bond extends FinancialAsset {
     private final SimpleDateFormat dateOfMaturity;
     private final double pricePerBond;
     private final int volume;
