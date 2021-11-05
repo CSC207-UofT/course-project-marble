@@ -1,5 +1,7 @@
 package entity;
 
+import static java.lang.Math.round;
+
 public class Savings extends Depositable {
 
     public Savings(double annualInterestRate) {
@@ -27,6 +29,9 @@ public class Savings extends Depositable {
         double monthlyInterest = super.getAnnualInterestRate() / 12;
         double temp = super.getBalance();
         temp = temp + (temp * (monthlyInterest / 100));
+        temp = temp * 100;
+        temp = round(temp);
+        temp = temp / 100;
         super.setBalance(temp);
     }
 
