@@ -14,7 +14,7 @@ public class testCreditCardSingularDeposit {
     @Test
     void checkAmount(){
         creditCard.deposit(-10.0);
-        assertEquals(-100.0, creditCard.getValue());
+        assertEquals(-10.0, creditCard.getValue());
     }
 
 }
