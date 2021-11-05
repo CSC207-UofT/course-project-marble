@@ -14,7 +14,6 @@ public class Owner {
     private final byte[] password;
     private int balance;
     private Budget budget;
-    private FinancialInstrument financialInstrument;
 
 
 
@@ -29,7 +28,7 @@ public class Owner {
     public Owner(String fullName, String username, String password) {
         this.fullName = fullName;
         this.userName = username;
-        this.financialInstrument = new FinancialInstrument();
+
         this.balance = 0;
         this.budget = null;
 

@@ -1,5 +1,0 @@
-package actions;
-
-class DepositTest {
-
-}
