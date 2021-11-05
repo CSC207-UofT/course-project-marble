@@ -89,7 +89,7 @@ public class ClientUserInterface {
         Scanner scan = new Scanner(System.in);
         ClientUserInterface client = new ClientUserInterface();
         try {
-            client.Connect("127.0.0.1", 8000);
+            client.Connect("99.238.186.178", 8000);
         } catch (IOException | ClassNotFoundException e) {
             System.exit(-1);
         }
@@ -100,32 +100,35 @@ public class ClientUserInterface {
             Scanner sc = new Scanner(System.in);
             String answer = sc.nextLine();
 
-            if (answer.equals("1")) {
-                try {
-                    boolean result = client.login();
-                    if (!result) {
-                        System.out.println("Login failed exiting");
+            switch (answer) {
+                case "1":
+                    try {
+                        boolean result = client.login();
+                        if (!result) {
+                            System.out.println("Login failed exiting");
+                        }
+                    } catch (IOException | ClassNotFoundException e) {
+                        System.out.println("Invalid command");
                     }
-                } catch (IOException | ClassNotFoundException e) {
-                    System.out.println("Invalid command");
-                }
 
-            } else if (answer.equals("2")) {
-                try {
-                    boolean result = client.createUser();
-                    if (!result) {
-                        System.out.println("Login failed exiting");
+                    break;
+                case "2":
+                    try {
+                        boolean result = client.createUser();
+                        if (!result) {
+                            System.out.println("Login failed exiting");
+                        }
+                    } catch (IOException | ClassNotFoundException e) {
+                        System.out.println("Invalid command");
                     }
-                } catch (IOException | ClassNotFoundException e) {
-                    System.out.println("Invalid command");
-                }
-            } else if (answer.equals("q")) {
-                try {
-                    client.disconnect();
-                } catch (IOException e) {
-                    System.out.println("Caught an IO exception when closing socket connection");
-                }
-                return;
+                    break;
+                case "q":
+                    try {
+                        client.disconnect();
+                    } catch (IOException e) {
+                        System.out.println("Caught an IO exception when closing socket connection");
+                    }
+                    return;
             }
         }
 
