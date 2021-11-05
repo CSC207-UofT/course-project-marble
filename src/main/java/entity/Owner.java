@@ -4,16 +4,18 @@ package entity;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 
 public class Owner {
     private final String fullName;
-    private final String username;
+    private final String userName;
     private final byte[] password;
-    private HashMap<Integer, Account> accounts; // accountID Integer, Account Object
-    private static ArrayList<Integer> listOfAccountsID;
+    private int balance;
+    private Budget budget;
+    private FinancialInstrument financialInstrument;
+
 
 
     /**
@@ -26,7 +28,10 @@ public class Owner {
      */
     public Owner(String fullName, String username, String password) {
         this.fullName = fullName;
-        this.username = username;
+        this.userName = username;
+        this.financialInstrument = new FinancialInstrument();
+        this.balance = 0;
+        this.budget = null;
 
         MessageDigest md = null;
         try {
@@ -40,7 +45,7 @@ public class Owner {
 
     @Override
     public String toString() {
-        return this.username;
+        return this.userName;
     }
 
 
@@ -48,52 +53,45 @@ public class Owner {
         return this.fullName;
     }
 
-    public String getUsername() {
-        return this.username;
-    }
-
-    public HashMap<Integer, Account> getAccounts() {
-        return this.accounts;
+    public String getUserName() {
+        return this.userName;
     }
 
 
     /**
-     * This method creates accounts under the owner.
-     *
-     * @param accountType The type of accounts that the user wants to create: Saving, Chequing
-     * @return return true if the account is successfully created, else false
+     * setBalance is to get owner's balance. Work with getBalance() when you want to adjust the balance.
+     * This means there would be no increaseBalance or decreaseBalance, and should instead use
+     * getBalance and setBalance by the Actions package.
+     * @param amount the amount that you going to set the balance to
      */
-    public boolean createAccount(String accountType) {
-        if (accountType.equals("Chequing")) {
-            Account newAccount = new Chequing(listOfAccountsID);
-            int newAccountID = newAccount.getAccountID();
-            listOfAccountsID.add(newAccountID);
-            this.accounts.put(newAccountID, newAccount);
-            return true;
-        }
-        return false;
-
+    public void setBalance(int amount){
+        this.balance = amount;
     }
 
+    public int getBalance(){
+        return this.balance;
+    }
 
     /**
-     * This method creates accounts under the owner. Takes in extra argument. Constructor overloading.
+     * This method will store the Budget object that is created in the Action class.
+     * Budget object is/should created and customized under Actions using Budget's methods.
+     * @param categories a HashMap of all the categories and their budgets
+     * @param date the date when this budget starts
+     * @param period the period (eg. monthly, weekly, yearly, seasonal) for Actions to check when to
+     *               reset the remainingBudget based on the date.
      *
-     * @param accountType  The type of accounts that the user wants to create: Saving, Chequing
-     * @param interestRate This specifies the current interestRate when you start the account.
-     * @return return true if the account is successfully created, else false
      */
-    public boolean createAccount(String accountType, double interestRate) {
-        if (accountType.equals("Saving")) {
-            Account newAccount = new Saving(listOfAccountsID, interestRate);
-            int newAccountID = newAccount.getAccountID();
-            listOfAccountsID.add(newAccountID);
-            this.accounts.put(newAccountID, newAccount);
-            return true;
-        }
-        return false;
+    public void setBudget(HashMap<String, Integer> categories, Date date, String period){
+        this.budget = new Budget(categories, date, period);
     }
 
+    /**
+     * This method will get the Budget object of the Owner
+     * @return Budget object that can be used to get various information, if budget has not been set, return null
+     */
+    public Budget getBudget(){
+        return this.budget;
+    }
 
     /**
      * This function comparePasswords, hashes the parameter inputPassword and
@@ -118,4 +116,6 @@ public class Owner {
         }
         return false;
     }
+
+
 }
