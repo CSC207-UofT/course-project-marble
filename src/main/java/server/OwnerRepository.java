@@ -45,10 +45,10 @@ public class OwnerRepository {
      * @return true if the Owner creation is successful, else false.
      */
     public boolean addOwner(Owner owner) {
-        if (listOfOwners.containsKey(owner.getUsername())) {
+        if (listOfOwners.containsKey(owner.getUserName())) {
             return false;
         }
-        listOfOwners.put(owner.getUsername(), owner);
+        listOfOwners.put(owner.getUserName(), owner);
         return true;
     }
 
