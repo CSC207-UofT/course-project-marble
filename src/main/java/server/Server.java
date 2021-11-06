@@ -29,6 +29,10 @@ public class Server {
         repository = OwnerRepository.getOwnerRepository();
     }
 
+    /**
+     * This method waits for a connection to accept and returns that socket
+     * @return the Socket for the client that has connected
+     */
     public Socket accept() {
         Socket accept1 = null;
         try {
@@ -63,8 +67,8 @@ public class Server {
             socket = server.accept();
             System.out.println("New Connection established");
             System.out.println("Do you want to allow a connection " +
-                    "after this one? " +
-                    "or stop here? Default is yes. y/n. ");
+                    "after this one? ");
+            System.out.println("Default is yes. y/n.");
             String userInput = sc.nextLine();
             if (userInput.equals("n")) {
                 checkNewUser = false;
@@ -124,7 +128,9 @@ public class Server {
                 }
             }
         }
-
+        /**
+         * This method will close the client socket's connection.
+         */
         void close() {
             try {
                 this.clientSocket.close();
