@@ -1,5 +1,5 @@
 package entity;
-
+import java.time.LocalDate;
 public class Date implements Comparable<Date>{
     private final int month;
     private final int year;
@@ -9,6 +9,13 @@ public class Date implements Comparable<Date>{
         this.month = month;
         this.year = year;
         this.day = day;
+    }
+
+    public Date() {
+        LocalDate date = LocalDate.now();
+        this.year = date.getYear();
+        this.month = date.getMonthValue();
+        this.day = date.getDayOfMonth();
     }
 
     @Override
