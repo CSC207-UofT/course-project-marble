@@ -51,5 +51,4 @@ public class Date implements Comparable<Date>{
     public int getDay() {
         return this.day;
     }
-
 }
