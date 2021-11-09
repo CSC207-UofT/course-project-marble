@@ -3,10 +3,18 @@ package entity;
 import static java.lang.Math.round;
 
 public class CreditCard extends Depositable {
+    /**
+     * Constructor. Passes 19.9% interest to the super constructor
+     */
     public CreditCard() {
         super(19.9);
     }
 
+    /**
+     * Deposits money into the account
+     * @param amount being deposited
+     * @return new balance
+     */
     @Override
     public double deposit(double amount) {
         double temp = this.getValue();
@@ -15,6 +23,9 @@ public class CreditCard extends Depositable {
         return super.getBalance();
     }
 
+    /**
+     * Adds a month of interest to the credit card
+     */
     @Override
     public void addInterest() {
         double monthlyInterest = super.getAnnualInterestRate() / 12;
@@ -29,6 +40,10 @@ public class CreditCard extends Depositable {
         super.setBalance(temp);
     }
 
+    /**
+     * Returns value today
+     * @return worth of the account
+     */
     @Override
     public double getValue() {
         return super.getBalance();
