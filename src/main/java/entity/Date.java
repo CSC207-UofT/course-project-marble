@@ -11,7 +11,7 @@ public class Date implements Comparable<Date>{
      * @param year The year
      * @param day The day [0,31]
      */
-    public Date(int month, int year, int day) {
+    public Date(int month, int day, int year) {
         this.month = month;
         this.year = year;
         this.day = day;
@@ -62,6 +62,30 @@ public class Date implements Comparable<Date>{
         int myDate = this.year * 10000 + this.month * 100 + this.day;
         int inputDate = date.getYear() * 10000 + date.getMonth() * 100 + date.getDay();
         return Integer.compare(myDate, inputDate);
+    }
+
+    /**
+     * Returns the month difference between this date and a given date
+     * @param date a date in Date type
+     * @return difference between this date and a given date
+     */
+    public int monthDifference(Date date) {
+        int order;
+        int dayDifference;
+        // this is less than date
+        if (this.compareTo(date) < 0) {
+            order = 1;
+        } else {
+            order = -1;
+        }
+
+        if (date.getDay() * order < this.day * order) {
+            dayDifference = -1;
+        } else {
+            dayDifference = 0;
+        }
+        return (date.getYear() - this.year) * 12 * order + (date.getMonth() - this.month) * order + dayDifference;
+
     }
 
     /**

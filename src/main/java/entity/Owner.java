@@ -4,8 +4,8 @@ package entity;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.HashMap;
 
 public class Owner {
@@ -14,6 +14,8 @@ public class Owner {
     private final byte[] password;
     private int balance;
     private Budget budget;
+    private final ArrayList<SpendingRecord> listOfSpendingRecord;
+    private final ArrayList<DepositRecord> listOfDepositRecord;
 
 
 
@@ -28,6 +30,8 @@ public class Owner {
     public Owner(String fullName, String username, String password) {
         this.fullName = fullName;
         this.userName = username;
+        this.listOfDepositRecord = new ArrayList<>();
+        this.listOfSpendingRecord = new ArrayList<>();
 
         this.balance = 0;
         this.budget = null;
@@ -56,6 +60,21 @@ public class Owner {
         return this.userName;
     }
 
+    public ArrayList<DepositRecord> getListOfDepositRecord(){
+        return this.listOfDepositRecord;
+    }
+
+    public ArrayList<SpendingRecord> getListOfSpendingRecord(){
+        return this.listOfSpendingRecord;
+    }
+
+    public void addDepositRecord(DepositRecord newDepositRecord){
+        this.listOfDepositRecord.add(newDepositRecord);
+    }
+
+    public void addSpendingRecord(SpendingRecord newSpendingRecord){
+        this.listOfSpendingRecord.add(newSpendingRecord);
+    }
 
     /**
      * setBalance is to get owner's balance. Work with getBalance() when you want to adjust the balance.
