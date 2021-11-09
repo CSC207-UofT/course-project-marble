@@ -5,11 +5,15 @@ public class Bond extends NonDepositable {
     private final Date dateOfMaturity;
     private boolean cashedOut;
     public Bond(int volume, float annualInterestRate, double pricePerBond, Date dateOfMaturity) {
-        super(annualInterestRate,  volume, pricePerBond);
+        super(annualInterestRate, volume, pricePerBond);
         cashedOut = false;
         this.dateOfMaturity = dateOfMaturity;
     }
 
+    /**
+     * Returns the current value of the bond
+     * @return current value of the bond
+     */
     @Override
     public double getValue() {
         if (cashedOut){
@@ -24,16 +28,33 @@ public class Bond extends NonDepositable {
         return interestRate * super.getVolume() * this.getPricePerBond() + (super.getVolume() * this.getPricePerBond());
     }
 
+    /**
+     * Returns the date of maturity of the bonds
+     * @return dateOfMaturity
+     */
     public Date getDateOfMaturity() {
         return this.dateOfMaturity;
     }
+
+    /**
+     * Return the total cost of the bonds
+     * @return total cost of the bonds
+     */
     public double getTotalCost(){
         return super.getPricePerAsset() * super.getVolume();}
 
+    /**
+     * Retrurns price per bond
+     * @return price per bond
+     */
     public double getPricePerBond() {
         return super.getPricePerAsset();
     }
 
+    /**
+     * Cashes out the bond if it hasn't been already
+     * @return The value of the bond at cash out
+     */
     @Override
     public double cashOut() {
         if (cashedOut){
