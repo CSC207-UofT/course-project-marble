@@ -1,7 +1,6 @@
 package entity;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 
 public class Budget {
@@ -16,11 +15,12 @@ public class Budget {
         for (Integer value: categories.values()){
             this.totalBudget += value;
         }
-        this.goalBudget = new HashMap<String, Integer>(categories);
-        this.remainingBudget = new HashMap<String, Integer>(categories);
+        this.goalBudget = new HashMap<>(categories);
+        this.remainingBudget = new HashMap<>(categories);
         this.date = date;
         this.period = period;
     }
+
 
     public int getTotalBudget(){
         return this.totalBudget;
@@ -61,14 +61,14 @@ public class Budget {
      * @return an ArrayList of categories of the budget
      */
     public ArrayList<String> getCategories(){
-        return new ArrayList<String>(this.goalBudget.keySet());
+        return new ArrayList<>(this.goalBudget.keySet());
     }
 
     /**
      * reset the remainingBudget, use when the set time of the budget is over
      */
     public void resetRemainingBudget(){
-        this.remainingBudget = new HashMap<String, Integer>(this.goalBudget);
+        this.remainingBudget = new HashMap<>(this.goalBudget);
     }
 
     /**
