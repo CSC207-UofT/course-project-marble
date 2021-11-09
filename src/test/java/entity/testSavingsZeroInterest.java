@@ -5,18 +5,18 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class testSavings0Interest {
+public class testSavingsZeroInterest {
     private Savings SavingAcc;
     @BeforeEach
     public void setUp() {
         SavingAcc = new Savings(0.0);
     }
     @Test
-    public void checkAddInterest0Times() {
+    public void checkAddInterestZeroTimes() {
         assertEquals(0, SavingAcc.getValue());
     }
     @Test
-    public void checkAddInterest0Times0Balance(){
+    public void checkAddInterestZeroTimes0Balance(){
         SavingAcc.addInterest();
         assertEquals(0, SavingAcc.getValue());
     }

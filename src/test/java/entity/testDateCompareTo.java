@@ -1,6 +1,7 @@
 package entity;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -24,7 +25,7 @@ public class testDateCompareTo {
     }
 
     @Test
-    public void smallerOnLargerDates(){
+    public void smallerOnLargerDates() {
         assertEquals(-1, d1.compareTo(d2));
     }
 
