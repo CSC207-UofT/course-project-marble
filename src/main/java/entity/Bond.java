@@ -19,7 +19,9 @@ public class Bond extends NonDepositable {
         if (dateToday.compareTo(this.dateOfMaturity) < 0) {
             return 0;
         }
-        return this.getPricePerBond() * super.getVolume();
+        int monthDiff = this.dateOfMaturity.monthDifference(super.getDateCreated());
+        double interestRate = (annualInterestRate / 100) * (monthDiff) / 12;
+        return interestRate * super.getVolume() * this.getPricePerBond() + (super.getVolume() * this.getPricePerBond());
     }
 
     public Date getDateOfMaturity() {
