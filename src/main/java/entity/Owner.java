@@ -15,8 +15,8 @@ public class Owner {
     private final byte[] password;
     private int balance;
     private Budget budget;
-    private final ArrayList<SpendingRecord> ListOfSpendingRecord;
-    private final ArrayList<DepositRecord> ListOfDepositRecord;
+    private final ArrayList<SpendingRecord> listOfSpendingRecord;
+    private final ArrayList<DepositRecord> listOfDepositRecord;
 
 
 
@@ -31,8 +31,8 @@ public class Owner {
     public Owner(String fullName, String username, String password) {
         this.fullName = fullName;
         this.userName = username;
-        this.ListOfDepositRecord = new ArrayList<>();
-        this.ListOfSpendingRecord = new ArrayList<>();
+        this.listOfDepositRecord = new ArrayList<>();
+        this.listOfSpendingRecord = new ArrayList<>();
 
         this.balance = 0;
         this.budget = null;
@@ -62,19 +62,19 @@ public class Owner {
     }
 
     public ArrayList<DepositRecord> getListOfDepositRecord(){
-        return this.ListOfDepositRecord;
+        return this.listOfDepositRecord;
     }
 
     public ArrayList<SpendingRecord> getListOfSpendingRecord(){
-        return this.ListOfSpendingRecord;
+        return this.listOfSpendingRecord;
     }
 
     public void addDepositRecord(DepositRecord newDepositRecord){
-        this.ListOfDepositRecord.add(newDepositRecord);
+        this.listOfDepositRecord.add(newDepositRecord);
     }
 
     public void addSpendingRecord(SpendingRecord newSpendingRecord){
-        this.ListOfSpendingRecord.add(newSpendingRecord);
+        this.listOfSpendingRecord.add(newSpendingRecord);
     }
 
     /**
