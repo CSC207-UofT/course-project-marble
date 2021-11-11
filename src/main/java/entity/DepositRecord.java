@@ -1,13 +1,9 @@
 package entity;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-
 public abstract class DepositRecord {
 
-    private double amount;
-    private LocalDateTime purchaseDate;
-    private ArrayList<SpendingRecord> depositRecordList;
+    private final double amount;
+    private final Date depositDate;
 
 
     /**
@@ -15,17 +11,16 @@ public abstract class DepositRecord {
      * @param amount : the amount of deposit.
      * @param depositDate : the date of the deposit.
      */
-    public DepositRecord(double amount, LocalDateTime depositDate){
-        this.amount = -amount;
-        this.purchaseDate = depositDate;
+    public DepositRecord(double amount, Date depositDate){
+        this.amount = amount;
+        this.depositDate = depositDate;
     }
 
-    public boolean addDepositRecord(SpendingRecord s){
-        this.depositRecordList.add(s);
-        return true;
+    public double getAmount() {
+        return amount;
     }
 
-    public ArrayList<SpendingRecord> getDepositRecordList() {
-        return depositRecordList;
+    public Date getPurchaseDate() {
+        return depositDate;
     }
 }
