@@ -16,7 +16,7 @@ public class Categories {
     public void addSpending(Date date, double amount){
         if (Spending.containsKey(date)){
             Double temp = Spending.get(date);
-            Spending.put(date, (Double) temp);
+            Spending.put(date, (Double) temp + amount);
         }
         else {
             Spending.put(date, (Double) amount);
