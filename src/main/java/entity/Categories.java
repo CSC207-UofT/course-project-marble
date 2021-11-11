@@ -4,13 +4,14 @@ import java.util.HashMap;
 
 public class Categories {
     private final String name;
-    private int budget;
+    private double budget;
     private HashMap<Date, Double> Spending;
 
 
 
-    public Categories(String name) {
+    public Categories(String name, double budget) {
         this.name = name;
+        this.budget = budget;
         Spending = new HashMap<Date, Double>();
     }
     public void addSpending(Date date, double amount){
@@ -32,5 +33,13 @@ public class Categories {
 
     public String getName() {
         return name;
+    }
+
+    public double getBudget() {
+        return budget;
+    }
+
+    public void setBudget(int budget) {
+        this.budget = budget;
     }
 }
