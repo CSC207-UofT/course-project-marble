@@ -2,7 +2,7 @@ package actions;
 
 import action_request_response.CreateUserRequest;
 import entity.Owner;
-import server.OwnerRepository;
+import entity.OwnerRepository;
 
 public class CreateOwner extends Actions {
     private final String fullName;
