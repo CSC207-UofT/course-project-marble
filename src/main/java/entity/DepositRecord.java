@@ -1,12 +1,9 @@
 package entity;
 
-import java.util.ArrayList;
-
 public abstract class DepositRecord {
 
-    private double amount;
-    private Date purchaseDate;
-    private ArrayList<SpendingRecord> depositRecordList;
+    private final double amount;
+    private final Date depositDate;
 
 
     /**
@@ -15,16 +12,15 @@ public abstract class DepositRecord {
      * @param depositDate : the date of the deposit.
      */
     public DepositRecord(double amount, Date depositDate){
-        this.amount = -amount;
-        this.purchaseDate = depositDate;
+        this.amount = amount;
+        this.depositDate = depositDate;
     }
 
-    public boolean addDepositRecord(SpendingRecord s){
-        this.depositRecordList.add(s);
-        return true;
+    public double getAmount() {
+        return amount;
     }
 
-    public ArrayList<SpendingRecord> getDepositRecordList() {
-        return depositRecordList;
+    public Date getPurchaseDate() {
+        return depositDate;
     }
 }
