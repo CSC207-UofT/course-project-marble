@@ -5,6 +5,7 @@ public class SpendingRecord{
 
     private double amount;
     private Date SpendingDate;
+    private String category;
 
     /**
      * This is a constructor object to create a spending Record. When an owner purchases an item, this object is
@@ -12,18 +13,23 @@ public class SpendingRecord{
      *
      * @param amount : the amount for the item.
      * @param SpendingDate : the date of purchase.
+     * @param category: the spending category. This will help organize budget.
      */
 
-    public SpendingRecord(double amount, Date SpendingDate){
+    public SpendingRecord(double amount, Date SpendingDate, String category){
+        this.category = category;
         this.amount = -amount;
         this.SpendingDate = SpendingDate;
     }
 
     public double getAmount() {
-        return amount;
+        return this.amount;
     }
 
     public Date getSpendingDate() {
-        return SpendingDate;
+        return this.SpendingDate;
+    }
+    public String getCategory(){
+        return this.category;
     }
 }
