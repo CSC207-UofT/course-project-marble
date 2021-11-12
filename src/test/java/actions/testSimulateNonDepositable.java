@@ -1,11 +1,12 @@
-package Actions;
+package actions;
 
-import actions.SimulateNonDepositable;
-import entity.*;
-import org.junit.jupiter.api.Test;
+import entity.Bond;
+import entity.Date;
+import entity.NonDepositable;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class testSimulateNonDepositable {
     private Date endDateMature; // future date when asset reaches maturity
