@@ -2,17 +2,17 @@ package Actions;
 
 import actions.SimulateDepositable;
 import entity.*;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
-public class SimulateDepositableTest {
+public class testSimulateDepositable {
     private Date endDate; // future date
     private Depositable assetSavings;
     private Depositable assetCreditCard;
 
-    @Before
+    @BeforeEach
     public void setup(){
         endDate = new Date(2, 1, 2022);
         assetSavings = new Savings(12.0);

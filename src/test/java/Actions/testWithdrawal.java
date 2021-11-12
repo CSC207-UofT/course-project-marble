@@ -2,15 +2,15 @@ package Actions;
 import actions.Withdrawal;
 import entity.Owner;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
-public class WithdrawalTest {
+public class testWithdrawal {
     private Owner user;
 
-    @Before
+    @BeforeEach
     public void setup() {
         user = new Owner("John Doe", "jd_123", "password");
         user.setBalance(1000);
