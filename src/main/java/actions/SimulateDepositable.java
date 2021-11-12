@@ -6,7 +6,7 @@ import entity.Depositable;
 public class SimulateDepositable extends Simulate {
     private final Date endDate; // future date
     private final Date startDate; // current date
-    private Depositable asset;
+    private final Depositable asset;
 
     public SimulateDepositable(Date endDate, Depositable asset) {
         super();
@@ -20,11 +20,14 @@ public class SimulateDepositable extends Simulate {
      * @return returns the Depositable asset after calculating the simulated worth of the depositable.
      */
     @Override
-    public Depositable getAssetValue() {
+    public double getAssetValue() {
         int num_months = startDate.monthDifference(endDate);
+        double temp = asset.getValue();
         for (int i = 1; i <= num_months; i++) {
             asset.addInterest();
         }
-        return asset;
+        double assetSimulatedValue = asset.getValue();
+        asset.setBalance(temp);
+        return assetSimulatedValue;
     }
 }

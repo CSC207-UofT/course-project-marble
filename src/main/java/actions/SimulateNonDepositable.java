@@ -3,7 +3,7 @@ package actions;
 import entity.NonDepositable;
 
 public class SimulateNonDepositable extends Simulate {
-    private NonDepositable asset;
+    private final NonDepositable asset;
 
     public SimulateNonDepositable(NonDepositable asset) {
         super();
@@ -14,7 +14,7 @@ public class SimulateNonDepositable extends Simulate {
      * @return returns the NonDepositable asset after calculating the simulated worth of the Nondepositable.
      */
     @Override
-    public NonDepositable getAssetValue() {
-        return asset;
+    public double getAssetValue() {
+        return asset.getValue();
     }
 }
