@@ -2,17 +2,17 @@ package Actions;
 
 import actions.SimulateNonDepositable;
 import entity.*;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
-public class SimulateNonDepositableTest {
+public class testSimulateNonDepositable {
     private Date endDateMature; // future date when asset reaches maturity
     private Date endDateImmature; // future date before asset reaches maturity
     private NonDepositable assetBond;
 
-    @Before
+    @BeforeEach
     public void setup() {
         endDateImmature = new Date(7, 16, 2022);
         endDateMature = new Date(11, 1, 2021);
