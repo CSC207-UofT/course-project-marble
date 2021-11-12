@@ -1,7 +1,5 @@
-package Actions;
-import actions.Withdrawal;
+package actions;
 import entity.Owner;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

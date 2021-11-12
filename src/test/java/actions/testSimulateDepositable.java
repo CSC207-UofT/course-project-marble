@@ -1,11 +1,14 @@
-package Actions;
+package actions;
 
-import actions.SimulateDepositable;
-import entity.*;
-import org.junit.jupiter.api.Test;
+
+import entity.CreditCard;
+import entity.Date;
+import entity.Depositable;
+import entity.Savings;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class testSimulateDepositable {
     private Date endDate; // future date
