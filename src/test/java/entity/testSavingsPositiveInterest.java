@@ -7,31 +7,36 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class testSavingsPositiveInterest {
     private Savings savings;
+
     @BeforeEach
-    void setup(){
-    this.savings = new Savings(12);
+    void setup() {
+        this.savings = new Savings(12);
     }
+
     @Test
-    void noDeposit(){
+    void noDeposit() {
         savings.addInterest();
         assertEquals(0, savings.getValue());
     }
+
     @Test
-    void depositWithdraw(){
+    void depositWithdraw() {
         savings.deposit(10);
         savings.addInterest();
         savings.deposit(-0.1);
         assertEquals(10, savings.getValue());
     }
+
     @Test
-    void depositOnce(){
+    void depositOnce() {
         savings.deposit(100.5);
         savings.addInterest();
         savings.addInterest();
         assertEquals(102.53, savings.getValue());
     }
+
     @Test
-    void depositTwice(){
+    void depositTwice() {
         savings.deposit(10);
         savings.addInterest();
         savings.addInterest();

@@ -1,7 +1,7 @@
 package actions;
 import action_request_response.LoginRequest;
 import entity.Owner;
-import server.OwnerRepository;
+import entity.OwnerRepository;
 
 import java.util.Iterator;
 

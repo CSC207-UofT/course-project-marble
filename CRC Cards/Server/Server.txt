@@ -27,4 +27,4 @@ Responsibilities:
 
 
 Collaborators:
-* Actions
+* actions
