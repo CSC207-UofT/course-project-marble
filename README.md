@@ -1,8 +1,8 @@
-## Financial planning Group Marbles
+# Financial planning Group Marbles
 
 A financial planner that supports using multiple users and can handle multiple users concurrently.
 
-# Installation Instructions
+## Installation Instructions
 
   git clone https://github.com/CSC207-UofT/course-project-marble
  
