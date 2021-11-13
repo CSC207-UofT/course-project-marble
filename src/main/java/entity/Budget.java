@@ -9,9 +9,9 @@ public class Budget {
 
     /**
      * Instances of Budget
-     * Categories: the types of budget categories (ex: food, clothing, gas...)
-     * Date: the date the budget is created
-     * Period: The period of the renewal of the budget (ex: weekly, bi-weekly, monthly)
+     * categories: the types of budget categories (ex: food, clothing, gas...)
+     * date: the date the budget is created
+     * period: The period of the renewal of the budget (ex: weekly, bi-weekly, monthly)
      * */
 
     private int totalBudget;
