@@ -1,12 +1,12 @@
-Class name: ViewInvestments
+Class name: UpdateDepositable
 Parent class: actions
 Children: none
 Properties to note: none
 
 Responsibilities:
-* Display investment information, account type, date, interest rate.
+* Calculate the amount in assets based on added interest per month.
    Methods:
-	* displayDepositable()
+	* valueDepositable()
    Variables:
 	* Depositable account
 
