@@ -1,1 +1,14 @@
-Display all transactions
+Class name: TransactionHistory
+Parent class: Actions
+Children: none
+Properties to note: none
+
+Responsibilities:
+* displays all transaction history in balance.
+   Methods:
+	* displayTransactionHistory()
+   Variables:
+	* Owner user
+
+Collaborators:
+* Owner

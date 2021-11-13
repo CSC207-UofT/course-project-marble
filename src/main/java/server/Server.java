@@ -2,7 +2,9 @@ package server;
 
 
 import action_request_response.ActionRequest;
+import action_request_response.ActionResponse;
 import actions.Actions;
+//import entity.OwnerRepository;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -13,7 +15,7 @@ import java.util.Scanner;
 
 public class Server {
     private ServerSocket serverSocket;
-    protected static OwnerRepository repository;
+//    protected static OwnerRepository repository;
 
     /**
      * This method starts the server and waits for the user to
@@ -26,7 +28,7 @@ public class Server {
         System.out.println("Starting server");
         this.serverSocket = new ServerSocket(port);
         System.out.printf("Server has started listening on port: %s%n", port);
-        repository = OwnerRepository.getOwnerRepository();
+//        repository = OwnerRepository.getOwnerRepository();
     }
 
     /**
@@ -111,7 +113,7 @@ public class Server {
                     } else {
                         Actions action = factory.getAction(request);
                         if (action != null) {
-                            boolean result = action.process();
+                            ActionResponse result = action.process();
                             System.out.println("result " + result);
                             this.outbound.writeObject(result);
                             this.outbound.flush();

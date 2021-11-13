@@ -14,7 +14,7 @@ public class CheckBalance extends Actions {
      *
      * @return return the total balance of the owners accounts.
      */
-    public int checkTotalBalance() {
+    public double checkTotalBalance() {
         return owner.getBalance();
     }
 }

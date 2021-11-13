@@ -1,31 +1,18 @@
 package entity;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-
-public abstract class DepositRecord {
-
-    private double amount;
-    private LocalDateTime purchaseDate;
-    private ArrayList<SpendingRecord> depositRecordList;
-
+public class DepositRecord extends Record{
 
     /**
+     * This is a constructor object to create a deposit Record. When an owner deposits an amount, this object is
+     * created.
      *
      * @param amount : the amount of deposit.
      * @param depositDate : the date of the deposit.
+     * @param category :
+     * @param description : the description of deposit.
      */
-    public DepositRecord(double amount, LocalDateTime depositDate){
-        this.amount = -amount;
-        this.purchaseDate = depositDate;
+    public DepositRecord(double amount, Date depositDate, String category, String description){
+        super(amount, depositDate, category, description);
     }
 
-    public boolean addDepositRecord(SpendingRecord s){
-        this.depositRecordList.add(s);
-        return true;
-    }
-
-    public ArrayList<SpendingRecord> getDepositRecordList() {
-        return depositRecordList;
-    }
 }

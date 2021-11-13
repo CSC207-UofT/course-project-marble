@@ -1,8 +1,11 @@
 package actions;
 
+import action_request_response.ActionResponse;
 import action_request_response.CreateUserRequest;
+import action_request_response.CreateUserResponse;
+import action_request_response.LoginResponse;
 import entity.Owner;
-import server.OwnerRepository;
+import entity.OwnerRepository;
 
 public class CreateOwner extends Actions {
     private final String fullName;
@@ -16,11 +19,11 @@ public class CreateOwner extends Actions {
     }
 
     @Override
-    public boolean process() {
+    public ActionResponse process() {
         System.out.println("CreateOwner processing");
         OwnerRepository ownerRepo = OwnerRepository.getOwnerRepository();
         Owner owner = new Owner(fullName, username, password);
-        return ownerRepo.addOwner(owner);
+        return new CreateUserResponse(ownerRepo.addOwner(owner));
     }
 
 }
