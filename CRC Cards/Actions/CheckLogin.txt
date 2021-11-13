@@ -1,5 +1,5 @@
 Class name: CheckLogin
-Parent class: Actions
+Parent class: actions
 Children classes: none
 Properties to note:
 

@@ -1,10 +1,14 @@
 package entity;
 
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+
 public class SpendingRecord{
 
     private double amount;
-    private Date SpendingDate;
+    private LocalDateTime purchaseDate;
+    private ArrayList<SpendingRecord> spendingRecordList;
 
     /**
      * This is a constructor object to create a spending Record. When an owner purchases an item, this object is
