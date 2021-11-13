@@ -1,12 +1,14 @@
 package actions;
 
+import action_request_response.ActionResponse;
+
 public abstract class Actions {
-    private boolean result;
+    private ActionResponse result;
 
     public Actions() {
     }
 
-    public boolean process() {
+    public ActionResponse process() {
         return result;
     }
 }
