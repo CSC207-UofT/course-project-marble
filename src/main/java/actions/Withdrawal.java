@@ -17,7 +17,7 @@ public class Withdrawal extends Actions{
      */
     public boolean withdraw(int num){
         if (num <= user.getBalance()) {
-            SpendingRecord spending = new SpendingRecord(num, this.date);
+            SpendingRecord spending = new SpendingRecord(num, this.date, null);
             user.addSpendingRecord(spending);
             user.setBalance(user.getBalance() - num);
             return true;

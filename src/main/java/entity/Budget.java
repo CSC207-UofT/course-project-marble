@@ -3,7 +3,17 @@ package entity;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+
 public class Budget {
+
+
+    /**
+     * Instances of Budget
+     * categories: the types of budget categories (ex: food, clothing, gas...)
+     * date: the date the budget is created
+     * period: The period of the renewal of the budget (ex: weekly, bi-weekly, monthly)
+     * */
+
     private int totalBudget;
     private HashMap<String, Integer> goalBudget;
     private HashMap<String, Integer> remainingBudget;
