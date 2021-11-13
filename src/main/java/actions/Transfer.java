@@ -1,7 +1,6 @@
 package actions;
 import entity.*;
 
-
 public class Transfer extends Actions{
     private Owner user;
     private final Date date;
