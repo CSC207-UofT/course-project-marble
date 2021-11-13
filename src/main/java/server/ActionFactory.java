@@ -1,12 +1,8 @@
 package server;
 
 
-import action_request_response.ActionRequest;
-import action_request_response.CreateUserRequest;
-import action_request_response.LoginRequest;
-import actions.Actions;
-import actions.CheckLogin;
-import actions.CreateOwner;
+import action_request_response.*;
+import actions.*;
 
 public class ActionFactory {
     public Actions getAction(ActionRequest request) {
@@ -14,7 +10,15 @@ public class ActionFactory {
             return new CheckLogin((LoginRequest) request);
         } else if (request instanceof CreateUserRequest) {
             return new CreateOwner((CreateUserRequest) request);
-        } else {
+        } else if (request instanceof CashOutRequest){
+            return new CashOut((CashOutRequest) request);
+        } else if (request instanceof DepositRequest){
+            return new Deposit((DepositRequest) request);
+        } else if (request instanceof OwnerInfoRequest){
+            return new OwnerInfo((OwnerInfoRequest) request);
+        } else if (request instanceof CompareBudgetRequest) {
+            return new CompareBudget((CompareBudgetRequest) request);
+        } else{
             return null;
         }
     }

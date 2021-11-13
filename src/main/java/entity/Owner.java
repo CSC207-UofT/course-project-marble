@@ -12,7 +12,7 @@ public class Owner {
     private final String fullName;
     private final String userName;
     private final byte[] password;
-    private int balance;
+    private double balance;
     private Budget budget;
     private final ArrayList<SpendingRecord> listOfSpendingRecord;
     private final ArrayList<DepositRecord> listOfDepositRecord;
@@ -82,11 +82,11 @@ public class Owner {
      * getBalance and setBalance by the Actions package.
      * @param amount the amount that you going to set the balance to
      */
-    public void setBalance(int amount){
+    public void setBalance(double amount){
         this.balance = amount;
     }
 
-    public int getBalance(){
+    public double getBalance(){
         return this.balance;
     }
 

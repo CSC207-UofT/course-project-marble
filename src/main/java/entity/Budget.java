@@ -110,4 +110,14 @@ public class Budget {
         this.goalBudget = newBudget;
         return true;
     }
+
+    /**
+     * New methods for added because some Action classes needed them
+     *
+     */
+    public double getGoalCategoryBudget(String catergoryName) {
+        return goalBudget.get(catergoryName);
+    }
+
+
 }

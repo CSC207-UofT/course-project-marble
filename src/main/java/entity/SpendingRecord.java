@@ -3,9 +3,9 @@ package entity;
 
 public class SpendingRecord{
 
-    private double amount;
-    private Date SpendingDate;
-    private String category;
+    private final double amount;
+    private final Date SpendingDate;
+    private final String category;
 
     /**
      * This is a constructor object to create a spending Record. When an owner purchases an item, this object is
