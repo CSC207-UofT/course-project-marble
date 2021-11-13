@@ -13,6 +13,7 @@ public class SpendingRecord{
      *
      * @param amount : the amount for the item.
      * @param SpendingDate : the date of purchase.
+     * @param category: the spending category. This will help organize budget.
      */
 
     public SpendingRecord(double amount, Date SpendingDate, String category){
