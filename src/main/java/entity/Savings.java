@@ -28,6 +28,9 @@ public class Savings extends Depositable {
     public void addInterest() {
         double monthlyInterest = super.getAnnualInterestRate() / 12;
         double temp = super.getBalance();
+        if (temp <= 0){
+            return;
+        }
         temp = temp + (temp * (monthlyInterest / 100));
         temp = temp * 100;
         temp = round(temp);
