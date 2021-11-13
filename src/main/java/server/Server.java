@@ -2,6 +2,7 @@ package server;
 
 
 import action_request_response.ActionRequest;
+import action_request_response.ActionResponse;
 import actions.Actions;
 //import entity.OwnerRepository;
 
@@ -112,7 +113,7 @@ public class Server {
                     } else {
                         Actions action = factory.getAction(request);
                         if (action != null) {
-                            boolean result = action.process();
+                            ActionResponse result = action.process();
                             System.out.println("result " + result);
                             this.outbound.writeObject(result);
                             this.outbound.flush();

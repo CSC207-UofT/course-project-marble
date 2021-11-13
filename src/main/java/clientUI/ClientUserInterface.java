@@ -1,8 +1,6 @@
 package clientUI;
 
-import action_request_response.CreateUserRequest;
-import action_request_response.LoginRequest;
-import action_request_response.UserQuitRequest;
+import action_request_response.*;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -37,8 +35,8 @@ public class ClientUserInterface {
         outbound.writeObject(request);
         outbound.flush();
 
-        boolean result = (Boolean) inbound.readObject();
-        if (result) {
+        CreateUserResponse result = (CreateUserResponse) inbound.readObject();
+        if (result.getResult()) {
             this.username = username;
             System.out.println("Thanks! You have created an account. " +
                     "You are now logged into it!");
@@ -61,9 +59,9 @@ public class ClientUserInterface {
         outbound.writeObject(request);
         outbound.flush();
 
-        boolean result = (Boolean) inbound.readObject();
+        LoginResponse result = (LoginResponse) inbound.readObject();
         System.out.println("Got result");
-        if (result) {
+        if (result.getResult()) {
             System.out.println("Success");
             this.username = username;
             return true;
@@ -89,7 +87,7 @@ public class ClientUserInterface {
         Scanner scan = new Scanner(System.in);
         ClientUserInterface client = new ClientUserInterface();
         try {
-            client.Connect("99.238.186.178", 8000);
+            client.Connect("127.0.0.1", 8000);
         } catch (IOException | ClassNotFoundException e) {
             System.exit(-1);
         }
@@ -144,6 +142,8 @@ public class ClientUserInterface {
             System.out.println("To quit: q");
             input = scan.nextLine();
             }
+
+            
             try {
                 client.disconnect();
             } catch (IOException e) {

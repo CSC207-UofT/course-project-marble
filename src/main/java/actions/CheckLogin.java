@@ -1,5 +1,7 @@
 package actions;
+import action_request_response.ActionResponse;
 import action_request_response.LoginRequest;
+import action_request_response.LoginResponse;
 import entity.Owner;
 import entity.OwnerRepository;
 
@@ -20,17 +22,17 @@ public class CheckLogin extends Actions{
      * password or user does not exist).
      */
     @Override
-    public boolean process(){
+    public ActionResponse process(){
         System.out.println("CheckLogin processing");
         OwnerRepository ownerRepo = OwnerRepository.getOwnerRepository();
         Iterator<Owner> owners = ownerRepo.getOwners();
         while (owners.hasNext()) {
             Owner owner = owners.next();
             if (username.equals(owner.getUserName())) {
-                return owner.comparePassword(password);
+                return new LoginResponse(owner.comparePassword(password));
             }
         }
-        return false;
+        return new LoginResponse(false);
     }
 
 }
