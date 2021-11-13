@@ -4,7 +4,7 @@ Children: none
 Properties to note: none
 
 Responsibilities:
-* transfers a double balance between specified, existing Accounts
+* transfer money between specified, existing Accounts
    Methods:
 	* transferBalance()
 	* transferDepositable()
@@ -13,5 +13,4 @@ Responsibilities:
 	* Date date
 
 Collaborators:
-* Account
 * Owner
