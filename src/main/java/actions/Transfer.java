@@ -20,7 +20,7 @@ public class Transfer extends Actions{
     public boolean transferBalance(double num, Depositable account){
         if (num <= user.getBalance()){
             user.setBalance(user.getBalance() - num);
-            account.setBalance(account.getBalance() + num);
+            account.deposit(num);
             SpendingRecord withdrawal = new SpendingRecord(num, this.date, null, "Banking transfer");
             user.addRecord(withdrawal);
             return true;
@@ -38,8 +38,8 @@ public class Transfer extends Actions{
      */
     public boolean transferDepositable(double num, Depositable account1, Depositable account2){
         if (num <= account1.getBalance()){
-            account1.setBalance(account1.getBalance() - num);
-            account2.setBalance(account2.getBalance() + num);
+            account1.deposit(-num);
+            account2.deposit(num);
             return true;
         }
         System.out.println("Unable to transfer money from account. Please try again.");
@@ -54,7 +54,7 @@ public class Transfer extends Actions{
      */
     public boolean transferDepositable(double num, Depositable account1){
         if (num <= account1.getBalance()){
-            account1.setBalance(account1.getBalance() - num);
+            account1.deposit(-num);
             user.setBalance(user.getBalance() + num);
             DepositRecord deposit = new DepositRecord(num, this.date, null, "Banking transfer");
             user.addRecord(deposit);
