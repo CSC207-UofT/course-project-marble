@@ -8,6 +8,7 @@ public class ViewInvestments{
     public ViewInvestments(Depositable account){
         this.account = account;
     }
+
     /**
      * This method displays information on the Depositable accounts.
      */

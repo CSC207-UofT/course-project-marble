@@ -1,5 +1,5 @@
 Class name: TransactionHistory
-Parent class: Actions
+Parent class: actions
 Children: none
 Properties to note: none
 

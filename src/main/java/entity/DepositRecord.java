@@ -14,5 +14,4 @@ public class DepositRecord extends Record{
     public DepositRecord(double amount, Date depositDate, String category, String description){
         super(amount, depositDate, category, description);
     }
-
 }
