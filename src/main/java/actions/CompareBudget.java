@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class CompareBudget extends Actions{
     private final Budget budget;
-    private final int total;
+    private final double total;
     private final ArrayList<String> ruleBudget;
 
     public CompareBudget(CompareBudgetRequest request){
@@ -30,7 +30,7 @@ public class CompareBudget extends Actions{
 
     private String format(){
         ArrayList<String> categories = budget.getCategories();
-        String display = "Total Amount to Budget: " + Integer.toString(total) + "\n";
+        String display = "Total Amount to Budget: " + Double.toString(total) + "\n";
         display = display + "Budget Based on 50/30/20 Rule: \n" +
                 "Needs: $" + ruleBudget.get(0) + "\n" +
                 "Wants: $" + ruleBudget.get(1) + "\n" +

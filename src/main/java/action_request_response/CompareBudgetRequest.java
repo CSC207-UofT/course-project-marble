@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class CompareBudgetRequest extends ActionRequest{
     private final Budget budget;
-    private final int total;
+    private final double total;
     private final ArrayList<String> ruleBudget;
 
     public CompareBudgetRequest(Owner owner){
@@ -24,11 +24,11 @@ public class CompareBudgetRequest extends ActionRequest{
 
     public Budget getBudget() { return budget; }
 
-    public int getTotal() { return total; }
+    public double getTotal() { return total; }
 
     public ArrayList<String> getRuleBudget() { return ruleBudget; }
 
-    private ArrayList<String> calculateRuleAmount(int total){
+    private ArrayList<String> calculateRuleAmount(double total){
         ArrayList<String> values = new ArrayList<>();
         double temp = (double)Math.round(total*0.5*100)/100;
         values.add(Double.toString(temp));
