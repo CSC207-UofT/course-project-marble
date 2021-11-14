@@ -1,0 +1,18 @@
+Class name: CreateUserRequest
+Parent class: ActionRequest
+Children: none
+Properties to note: none
+
+Responsibilities:
+* records down the information needed for a CreateUser object
+  to be used
+   Methods:
+	* getFullname()
+	* getPassword()
+   Variables:
+	* String fullname
+	* String password
+	* String username (from parent)
+
+Collaborators:
+* None
