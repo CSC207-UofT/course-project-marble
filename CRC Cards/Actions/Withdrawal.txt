@@ -1,17 +1,22 @@
 Withdrawing from balance (and maybe savings???)
 
 Class name: Withdrawal
-Parent class: actions
+Parent class: Actions
 Children: none
 Properties to note: none
 
 Responsibilities:
-* subtracts an integer balance from a specified, existing account
+* subtracts an integer balance from a specified, existing account. Updates the users transaction record.
    Methods:
-	* withdrawOut()
+	* process()
    Variables:
-	* Owner own
+	* Owner user
+	* Date date
+	* double cost
+	* String category
+	* String description
 
 Collaborators:
-* Account
 * Owner
+* WithdrawalRequest
+* WithdrawalResponse
