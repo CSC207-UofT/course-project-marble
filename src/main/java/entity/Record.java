@@ -1,10 +1,10 @@
 package entity;
 
 public class Record implements Comparable<Record>{
-    private double amount;
-    private Date date;
-    private String category;
-    private String description;
+    private final double amount;
+    private final Date date;
+    private final String category;
+    private final String description;
 
     /**
      * @param amount : the amount of money recorded.
@@ -13,12 +13,20 @@ public class Record implements Comparable<Record>{
      * @param description : description of activity.
      */
     public Record(double amount, Date date, String category, String description){
-        this.amount = -amount;
+        this.amount = amount;
         this.date = date;
         this.category = category;
         this.description = description;
     }
-
+    @Override
+    public String toString(){
+        if (this.amount > 0){
+        return "On " + this.date + " you deposited " + this.amount + " dollars";
+        }
+        else{
+            return "On " + this.date + " you spent " + this.amount + " dollars";
+        }
+    }
     /**
      * Getter for the amount
      * @return the double amount of the record.

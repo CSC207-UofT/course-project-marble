@@ -17,3 +17,5 @@ Collaborators:
 * OwnerInfoRequest
 * OwnerInfoResponse
 * StringBuilder
+
+Display Owner "profile" (their info)

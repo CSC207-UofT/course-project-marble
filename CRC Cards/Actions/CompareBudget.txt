@@ -1,3 +1,4 @@
+string_reformat_and_docstrings
 Class name: CompareBudget
 Parent class: actions
 Children: none
@@ -18,3 +19,6 @@ Collaborators:
 * Budget
 * ArrayList
 * StringBuilder
+
+Calculates 50/20/30 values and displays it in comparison to actual
+main
