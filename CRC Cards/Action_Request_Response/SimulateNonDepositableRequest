@@ -1,0 +1,13 @@
+Class name: SimulateNonDepositableRequest
+Parent class: ActionRequest
+Children: none
+
+Responsibilities:
+* Makes an action request for SimulateNonDepositable
+  Methods:
+    * getNonDepositableAsset()
+  Variables:
+    * NonDepositable nonDepositableAsset
+    
+Collaborator:
+* SimulateNonDepositable
