@@ -1,15 +1,18 @@
 Class name: ActionRequest
 Parent class: none
-Children: LoginRequest
+Children: AddExpenseRequest, CashOutRequest, CompareBudgetRequest,
+          CreateUserRequest, DepositRequest, LoginRequest,
+          OwnerInfoRequest, UserQuitRequest
 Properties to note: an Abstract class
 
 Responsibilities:
-* acts as the base instance type for all classes in the 
+* acts as the base instance type for all Request classes in the
   Action_request_response package
    Methods:
-	* none
+	* isQuit()
+	* getUsername()
    Variables: 
-	* none
+	* String username
 
 Collaborators:
-* none
+* Serializable

@@ -1,7 +1,6 @@
 package action_request_response;
 
 import entity.Depositable;
-import entity.Owner;
 
 public class DepositRequest extends ActionRequest{
     private final Depositable depositable;

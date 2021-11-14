@@ -1,5 +1,4 @@
 package action_request_response;
-import entity.Owner;
 import entity.OwnerRepository;
 
 public class OwnerInfoRequest extends ActionRequest{
