@@ -1,6 +1,5 @@
 package entity;
 
-
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -14,8 +13,8 @@ public class Owner {
     private final byte[] password;
     private double balance;
     private Budget budget;
-    private final ArrayList<SpendingRecord> listOfSpendingRecord;
-    private final ArrayList<DepositRecord> listOfDepositRecord;
+    private final ArrayList<Record> listRecord;
+
 
 
     /**
@@ -29,8 +28,7 @@ public class Owner {
     public Owner(String fullName, String username, String password) {
         this.fullName = fullName;
         this.userName = username;
-        this.listOfDepositRecord = new ArrayList<>();
-        this.listOfSpendingRecord = new ArrayList<>();
+        this.listRecord = new ArrayList<>();
 
         this.balance = 0;
         this.budget = null;
@@ -59,30 +57,24 @@ public class Owner {
         return this.userName;
     }
 
-    public ArrayList<DepositRecord> getListOfDepositRecord(){
-        return this.listOfDepositRecord;
+    public ArrayList<Record> getListRecord(){
+        return this.listRecord;
     }
 
-    public ArrayList<SpendingRecord> getListOfSpendingRecord(){
-        return this.listOfSpendingRecord;
+
+    public void addRecord(Record newRecord){
+        this.listRecord.add(newRecord);
     }
 
-    public void addDepositRecord(DepositRecord newDepositRecord){
-        this.listOfDepositRecord.add(newDepositRecord);
-    }
-
-    public void addSpendingRecord(SpendingRecord newSpendingRecord){
-        this.listOfSpendingRecord.add(newSpendingRecord);
-    }
 
     /**
      * setBalance is to get owner's balance. Work with getBalance() when you want to adjust the balance.
      * This means there would be no increaseBalance or decreaseBalance, and should instead use
      * getBalance and setBalance by the Actions package.
-     * @param amount the amount that you going to set the balance to
+     * @param amount the amount that you're going to set the balance to
      */
     public void setBalance(double amount){
-        this.balance = amount;
+        this.balance = (double)Math.round(amount * 100)/100;
     }
 
     public double getBalance(){
@@ -91,7 +83,7 @@ public class Owner {
 
     /**
      * This method will store the Budget object that is created in the Action class.
-     * Budget object is/should created and customized under Actions using Budget's methods.
+     * Budget object is/should be created and customized under Actions using Budget's methods.
      * @param categories a HashMap of all the categories and their budgets
      * @param date the date when this budget starts
      * @param period the period (eg. monthly, weekly, yearly, seasonal) for Actions to check when to
@@ -134,5 +126,5 @@ public class Owner {
         return false;
     }
 
-
 }
+
