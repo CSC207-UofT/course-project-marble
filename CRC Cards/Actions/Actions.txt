@@ -6,7 +6,11 @@ ViewInvestments, Withdrawal
 Properties to note: an abstract class
 
 Responsibilities:
-* Serves as a common instance type for all classes in actions package
+* Serves as a common instance type for all classes in actions package and
+  ensure all Actions have a method to process a request
+    * process()
+    Variables:
+    *  ActionResponse result
 
 Collaborators:
-* none
+* ActionResponse

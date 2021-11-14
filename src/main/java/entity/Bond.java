@@ -4,6 +4,7 @@ package entity;
 public class Bond extends NonDepositable {
     private final Date dateOfMaturity;
     private boolean cashedOut;
+
     public Bond(int volume, float annualInterestRate, double pricePerBond, Date dateOfMaturity) {
         super(annualInterestRate, volume, pricePerBond);
         cashedOut = false;
@@ -12,11 +13,12 @@ public class Bond extends NonDepositable {
 
     /**
      * Returns the current value of the bond
+     *
      * @return current value of the bond
      */
     @Override
     public double getValue() {
-        if (cashedOut){
+        if (cashedOut) {
             return 0;
         }
         Date dateToday = new Date();
@@ -30,6 +32,7 @@ public class Bond extends NonDepositable {
 
     /**
      * Returns the date of maturity of the bonds
+     *
      * @return dateOfMaturity
      */
     public Date getDateOfMaturity() {
@@ -38,13 +41,16 @@ public class Bond extends NonDepositable {
 
     /**
      * Return the total cost of the bonds
+     *
      * @return total cost of the bonds
      */
-    public double getTotalCost(){
-        return super.getPricePerAsset() * super.getVolume();}
+    public double getTotalCost() {
+        return super.getPricePerAsset() * super.getVolume();
+    }
 
     /**
      * Retrurns price per bond
+     *
      * @return price per bond
      */
     public double getPricePerBond() {
@@ -53,11 +59,12 @@ public class Bond extends NonDepositable {
 
     /**
      * Cashes out the bond if it hasn't been already
+     *
      * @return The value of the bond at cash out
      */
     @Override
     public double cashOut() {
-        if (cashedOut){
+        if (cashedOut) {
             return -1;
         }
         Date dateToday = new Date();

@@ -2,7 +2,6 @@ package actions;
 import action_request_response.ActionResponse;
 import action_request_response.OwnerInfoRequest;
 import action_request_response.OwnerInfoResponse;
-import entity.Owner;
 
 public class OwnerInfo extends Actions{
     private final String fullname;

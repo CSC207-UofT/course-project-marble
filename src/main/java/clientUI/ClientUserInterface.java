@@ -141,13 +141,13 @@ public class ClientUserInterface {
             System.out.println("Withdraw money: w");
             System.out.println("To quit: q");
             input = scan.nextLine();
-            }
+        }
 
-            
-            try {
-                client.disconnect();
-            } catch (IOException e) {
-                System.out.println("Caught an IO exception when closing socket connection");
-            }
+
+        try {
+            client.disconnect();
+        } catch (IOException e) {
+            System.out.println("Caught an IO exception when closing socket connection");
+        }
     }
 }
