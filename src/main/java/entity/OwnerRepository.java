@@ -14,7 +14,6 @@ public class OwnerRepository {
      */
     private OwnerRepository() {
         this.listOfOwners = new HashMap<>();
-        listOfOwners.put("rtc", new Owner("Ruiting", "rtc", "abc")); // test case
     }
 
     /**
@@ -38,9 +37,10 @@ public class OwnerRepository {
     }
 
     /**
-     * Call the Owner constructor, creates an Owner object.
+     * Adds an Owner to the listOfOwners
      *
-     * @return true if the Owner creation is successful, else false.
+     * @param owner to be added to listOfOwners
+     * @return true if the Owner addition is successful, else false.
      */
     public boolean addOwner(Owner owner) {
         if (listOfOwners.containsKey(owner.getUserName())) {
