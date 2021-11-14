@@ -1,0 +1,14 @@
+Class name: SimulateDepositable
+Parent class: Simulate
+Children: None
+
+Responsibilities:
+* Simulates the growth of depositable assets
+  Methods:
+   * getAssetValue()
+  Variables:
+   * NonDepositable asset
+   
+Collaborators:
+  * SimulateRequest
+  * NonDepositable
