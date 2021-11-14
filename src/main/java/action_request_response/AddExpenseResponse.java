@@ -1,9 +1,9 @@
 package action_request_response;
 
-public class ExpensesResponse extends ActionResponse{
+public class AddExpenseResponse extends ActionResponse{
     private final boolean result;
 
-    public ExpensesResponse(boolean result){
+    public AddExpenseResponse(boolean result){
         this.result = result;
     }
 

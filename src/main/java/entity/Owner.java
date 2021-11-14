@@ -99,7 +99,7 @@ public class Owner {
      *               reset the remainingBudget based on the date.
      *
      */
-    public void setBudget(HashMap<String, Integer> categories, Date date, String period){
+    public void setBudget(HashMap<String, Double> categories, Date date, String period){
         this.budget = new Budget(categories, date, period);
     }
 
