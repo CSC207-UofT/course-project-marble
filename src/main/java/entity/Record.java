@@ -8,10 +8,10 @@ public class Record implements Comparable<Record>{
 
     /**
      *
-     * @param amount : the amount of money recorded.
-     * @param date : the date of the activity.
+     * @param amount :the amount of money recorded.
+     * @param date :the date of the activity.
      * @param category :
-     * @param description : description of activity.
+     * @param description :description of activity.
      */
     public Record(double amount, Date date, String category, String description){
         this.amount = -amount;
