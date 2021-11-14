@@ -18,6 +18,8 @@ public class ActionFactory {
             return new OwnerInfo((OwnerInfoRequest) request);
         } else if (request instanceof CompareBudgetRequest) {
             return new CompareBudget((CompareBudgetRequest) request);
+        } else if (request instanceof AddExpenseRequest){
+            return new AddExpense((AddExpenseRequest) request);
         } else{
             return null;
         }
