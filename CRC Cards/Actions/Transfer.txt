@@ -4,12 +4,13 @@ Children: none
 Properties to note: none
 
 Responsibilities:
-* transfers an integer balance between specified, existing Accounts
+* transfers money between specified, existing Accounts
    Methods:
-	* transfer()
-   Variables: 
-	* none
+   * transferBalance()
+   * transferDepositable()
+   Variables:
+   * Owner user
+   * Date date
 
 Collaborators:
-* Account
 * Owner

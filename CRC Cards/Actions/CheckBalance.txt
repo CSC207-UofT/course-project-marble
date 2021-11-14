@@ -12,5 +12,4 @@ Responsibilities:
 	* none
 
 Collaborators:
-* Account
 * Owner
