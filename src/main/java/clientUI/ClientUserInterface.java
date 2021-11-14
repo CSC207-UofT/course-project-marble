@@ -137,24 +137,44 @@ public class ClientUserInterface {
 
     public void deposit() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Please enter your username");
-        String username = sc.nextLine();
-        System.out.println("Please enter your password");
-        String password = sc.nextLine();
-        LoginRequest request = new LoginRequest(username, password);
-        outbound.writeObject(request);
-        outbound.flush();
+        System.out.println("Please enter how much you want to deposit?");
+        double amount = Double.parseDouble(sc.nextLine());
+        DepositRequest request = new DepositRequest(this.username, amount);
+        try {
+            outbound.writeObject(request);
+            outbound.flush();
+        } catch (IOException e) {
+            System.out.println("There was an error. Please try again.");
+            return;
+        }
 
-        LoginResponse result = (LoginResponse) inbound.readObject();
-        System.out.println("Got result");
-        if (result.getResult()) {
-            System.out.println("Success");
-            this.username = username;
-            return true;
-        } else {
-            this.username = null;
-            System.out.println("Failure");
-            return false;
+        try {
+            DepositResponse result = (DepositResponse) inbound.readObject();
+            if (result.getResult()) {
+                System.out.println("Deposit successfully");
+            } else {
+                System.out.println("Deposit failed. Please try again.");
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("There was an error. Please try again");
+        }
+    }
+
+    public void displayDepositRecord() {
+        DisplayDepositRecordRequest request = new DisplayDepositRecordRequest(this.username);
+        try {
+            outbound.writeObject(request);
+            outbound.flush();
+        } catch (IOException e) {
+            System.out.println("There was an error. Please try again.");
+            return;
+        }
+
+        try {
+            DisplayDepositRecordResponse result = (DisplayDepositRecordResponse) inbound.readObject();
+            System.out.println(result.getResult());
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("There was an error. Please try again");
         }
     }
 
