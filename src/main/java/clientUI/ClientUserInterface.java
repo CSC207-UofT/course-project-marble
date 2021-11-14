@@ -60,6 +60,92 @@ public class ClientUserInterface {
         outbound.flush();
 
         LoginResponse result = (LoginResponse) inbound.readObject();
+        if (result.getResult()) {
+            System.out.println("Success");
+            this.username = username;
+            return true;
+        } else {
+            this.username = null;
+            System.out.println("Failure");
+            return false;
+        }
+    }
+
+    public void ownerInfo(){
+        OwnerInfoRequest request = new OwnerInfoRequest(username);
+        try {
+            outbound.writeObject(request);
+            outbound.flush();
+        } catch (IOException e) {
+            System.out.println("An error occurred. Please try again");
+        }
+        try {
+            OwnerInfoResponse result = (OwnerInfoResponse) inbound.readObject();
+            System.out.println(result.getDisplay());
+        } catch (IOException| ClassNotFoundException e) {
+            System.out.println("An error occurred. Please try again");
+        }
+    }
+
+    public void withdrawal() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Please enter how much you want to withdraw");
+        double amount = Double.parseDouble(sc.nextLine());
+        System.out.println("What category did you withdraw from?");
+        String category = sc.nextLine();
+        System.out.println("Why do you need this?");
+        String description = sc.nextLine();
+        WithdrawalRequest request = new WithdrawalRequest(this.username, amount, category, description);
+        try {
+            outbound.writeObject(request);
+            outbound.flush();
+        } catch (IOException e) {
+            System.out.println("There was an error. Please try again.");
+            return;
+        }
+        boolean response;
+        try {
+            WithdrawalResponse result = (WithdrawalResponse) inbound.readObject();
+            response = result.getResult();
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("There was an error. Please try again");
+            return;
+        }
+        if (response){
+            System.out.println("Your withdrawal was successful!");
+        }
+        else{
+            System.out.println("Your withdrawal could not be completed");
+        }
+    }
+    public void DisplayWithdrawalRecord(){
+        DisplayWithdrawalRecordRequest request = new DisplayWithdrawalRecordRequest(username);
+        try {
+            outbound.writeObject(request);
+            outbound.flush();
+        } catch (IOException e) {
+            System.out.println("There was an error. Please try again.");
+            return;
+        }
+        try {
+            DisplayWithdrawalRecordResponse result = (DisplayWithdrawalRecordResponse) inbound.readObject();
+            System.out.println(result.getResult());
+        } catch (IOException| ClassNotFoundException e) {
+            System.out.println("An error occurred. Please try again");
+        }
+    }
+
+    public void deposit() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Please enter your username");
+        String username = sc.nextLine();
+        System.out.println("Please enter your password");
+        String password = sc.nextLine();
+        LoginRequest request = new LoginRequest(username, password);
+        outbound.writeObject(request);
+        outbound.flush();
+
+        LoginResponse result = (LoginResponse) inbound.readObject();
         System.out.println("Got result");
         if (result.getResult()) {
             System.out.println("Success");
