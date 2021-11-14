@@ -1,5 +1,4 @@
 package actions;
-
 import action_request_response.ActionResponse;
 import action_request_response.LoginRequest;
 import action_request_response.LoginResponse;
@@ -8,7 +7,7 @@ import entity.OwnerRepository;
 
 import java.util.Iterator;
 
-public class CheckLogin extends Actions {
+public class CheckLogin extends Actions{
     private final String username;
     private final String password;
 
@@ -23,7 +22,7 @@ public class CheckLogin extends Actions {
      * password or user does not exist).
      */
     @Override
-    public ActionResponse process() {
+    public ActionResponse process(){
         System.out.println("CheckLogin processing");
         OwnerRepository ownerRepo = OwnerRepository.getOwnerRepository();
         Iterator<Owner> owners = ownerRepo.getOwners();

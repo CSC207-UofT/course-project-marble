@@ -1,14 +1,1 @@
-Class name: ViewInvestments
-Parent class: actions
-Children: none
-Properties to note: none
-
-Responsibilities:
-* Display investment information, account type, date, interest rate.
-   Methods:
-	* displayDepositable()
-   Variables:
-	* Depositable account
-
-Collaborators:
-* Depositable
+Display all investments + info (type, date, etc._
