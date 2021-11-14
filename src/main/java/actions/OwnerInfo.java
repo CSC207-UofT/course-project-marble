@@ -10,7 +10,7 @@ public class OwnerInfo extends Actions{
     private final double balance;
 
     public OwnerInfo(OwnerInfoRequest request){
-        fullname = request.getFullname();
+        fullname = request.getFullName();
         username = request.getUsername();
         balance = request.getBalance();
     }

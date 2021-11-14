@@ -4,6 +4,7 @@ import action_request_response.CashOutRequest;
 import action_request_response.CashOutResponse;
 import entity.NonDepositable;
 import entity.Owner;
+import entity.OwnerRepository;
 import java.lang.Math;
 
 public class CashOut extends Actions{
@@ -11,7 +12,7 @@ public class CashOut extends Actions{
     private final NonDepositable investment;
 
     public CashOut(CashOutRequest request){
-        this.owner = request.getOwner();
+        this.owner = OwnerRepository.getOwnerRepository().findOwner(request.getUsername());
         this.investment = request.getInvestment();
     }
 

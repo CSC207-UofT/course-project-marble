@@ -1,19 +1,19 @@
 package action_request_response;
 
 import entity.NonDepositable;
-import entity.Owner;
+import entity.OwnerRepository;
 
 public class CashOutRequest extends ActionRequest{
-    private final Owner owner;
+    private final String username;
     private final NonDepositable investment;
 
-    public CashOutRequest(Owner owner, NonDepositable investment){
-        super(owner.getUserName());
-        this.owner = owner;
+    public CashOutRequest(String username, NonDepositable investment){
+        super(username);
+        this.username = username;
         this.investment = investment;
     }
 
-    public Owner getOwner(){ return owner; }
+    public String getUsername(){ return username; }
 
     public NonDepositable getInvestment(){ return investment; }
 }
