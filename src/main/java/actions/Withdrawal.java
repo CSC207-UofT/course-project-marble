@@ -20,7 +20,7 @@ public class Withdrawal extends Actions{
     }
 
     /**
-     * This method withdraws money from the users balance and updates the record.
+     * This method withdraws money from the users balance and updates the users record.
      * @return an action response result of true if money is withdrawn,
      * an action response of false if money can not be withdrawn.
      */

@@ -4,7 +4,7 @@ public class WithdrawalResponse extends ActionResponse{
     private final boolean result;
 
     /**
-     * Constructor that creates a Withdrawal response returned from the Withdrawal action
+     * Constructor that create a Withdrawal response returned from the Withdrawal action
      * @param result a boolean of whether the amount was withdrawn from the users balance.
      */
     public WithdrawalResponse(boolean result){

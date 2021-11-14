@@ -15,7 +15,7 @@ public class DisplayWithdrawalRecord extends Actions{
     }
 
     /**
-     * This method returns an action response of the users withdrawn record.
+     * This method returns an action response of the users withdrawal record.
      */
     @Override
     public ActionResponse process(){

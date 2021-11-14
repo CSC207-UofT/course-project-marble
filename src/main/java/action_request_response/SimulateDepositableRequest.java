@@ -8,7 +8,7 @@ public class SimulateDepositableRequest extends ActionRequest {
     private final Depositable depositableAsset;
 
     /**
-     * Constructor that creates a SimulateDepositable request that is used in the SimulateDepositable action
+     * Constructor that creates a SimulateDepositable request that is used in SimulateDepositable action
      * @param username Users username
      * @param depositableAsset The depositable financial asset the user is simulating
      * @param endDate The future date the simulation must estimate

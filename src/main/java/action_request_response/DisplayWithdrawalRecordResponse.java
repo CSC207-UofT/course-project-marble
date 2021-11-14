@@ -8,7 +8,7 @@ public class DisplayWithdrawalRecordResponse extends ActionResponse {
     private final ArrayList<Record> result;
 
     /**
-     * Constructor that creates a DisplayWithdrawal response returned from the DisplayWithdrawalRecord action
+     * Constructor that creates a DisplayWithdrawal response returned from DisplayWithdrawalRecord action
      * @param result the list of withdrawals in the users record
      */
     public DisplayWithdrawalRecordResponse(ArrayList<Record> result){
