@@ -4,15 +4,15 @@ import entity.Depositable;
 
 import entity.Date;
 
-public class UpdateDepositable{
+public class UpdateDepositable extends Actions{
     private Depositable account;
 
     public UpdateDepositable(Depositable account) {
         this.account = account;
     }
     /**
-     * This method calculates the current balance of Depositable accounts.
-     * @return balance of Depositable account.
+     * This method calculates the current balance of Depositable account.
+     * @return current balance of Depositable account.
      */
     public double valueDepositable(){
         Date d = new Date();

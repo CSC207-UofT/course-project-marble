@@ -6,9 +6,9 @@ Properties to note: none
 Responsibilities:
 * displays all transaction history in balance.
    Methods:
-	* displayTransactionHistory()
+   * displayHistory()
    Variables:
-	* Owner user
+   * Owner user
 
 Collaborators:
 * Owner

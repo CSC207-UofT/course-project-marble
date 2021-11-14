@@ -1,6 +1,6 @@
 package actions;
 import entity.*;
-
+import entity.Record;
 
 public class Transfer extends Actions{
     private Owner user;
@@ -21,8 +21,8 @@ public class Transfer extends Actions{
         if (num <= user.getBalance()){
             user.setBalance(user.getBalance() - num);
             account.deposit(num);
-            //SpendingRecord withdrawal = new SpendingRecord(num, this.date, null, "Banking transfer");
-            //user.addRecord(withdrawal);
+            Record withdrawal = new Record(num, this.date, null, "Banking transfer");
+            user.addRecord(withdrawal);
             return true;
         }
         System.out.println("Unable to transfer money from account. Please try again.");
@@ -56,8 +56,8 @@ public class Transfer extends Actions{
         if (num <= account1.getBalance()){
             account1.deposit(-num);
             user.setBalance(user.getBalance() + num);
-            DepositRecord deposit = new DepositRecord(num, this.date, null, "Banking transfer");
-            //user.addRecord(deposit);
+            Record deposit = new Record(-num, this.date, null, "Banking transfer");
+            user.addRecord(deposit);
             return true;
         }
         System.out.println("Unable to transfer money from account. Please try again.");

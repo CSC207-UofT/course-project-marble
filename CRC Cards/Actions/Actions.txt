@@ -1,7 +1,8 @@
 Class name: actions
 Parent class: none 
-Children classes: Transfer, Withdrawal, GetTransactionHistory,
-		Deposit, ViewAccounts, CheckBalance
+Children classes: CashOut, CheckBalance, CheckLogin, CompareBudget, Deposit, DisplaySpendingRecord,
+DisplayDepositRecord, Expenses, NetWorth, OwnerInfo, Simulations, TransactionHistory, Transfer, UpdateDepositable,
+ViewInvestments, Withdrawal
 Properties to note: an abstract class
 
 Responsibilities:

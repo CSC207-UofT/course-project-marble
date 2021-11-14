@@ -6,9 +6,9 @@ Properties to note: none
 Responsibilities:
 * Display investment information, account type, date, interest rate.
    Methods:
-	* displayDepositable()
+   * displayDepositable()
    Variables:
-	* Depositable account
+   * Depositable account
 
 Collaborators:
 * Depositable

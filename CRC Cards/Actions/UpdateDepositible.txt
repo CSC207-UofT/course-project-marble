@@ -6,9 +6,9 @@ Properties to note: none
 Responsibilities:
 * Calculate the amount in assets based on added interest per month.
    Methods:
-	* valueDepositable()
+   * valueDepositable()
    Variables:
-	* Depositable account
+   * Depositable account
 
 Collaborators:
 * Depositable

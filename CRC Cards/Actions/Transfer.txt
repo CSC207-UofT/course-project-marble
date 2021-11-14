@@ -6,11 +6,11 @@ Properties to note: none
 Responsibilities:
 * transfers money between specified, existing Accounts
    Methods:
-	* transferBalance()
-	* transferDepositable()
+   * transferBalance()
+   * transferDepositable()
    Variables:
-	* Owner user
-	* Date date
+   * Owner user
+   * Date date
 
 Collaborators:
 * Owner
