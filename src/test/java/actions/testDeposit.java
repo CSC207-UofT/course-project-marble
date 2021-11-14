@@ -6,6 +6,7 @@ import action_request_response.DepositResponse;
 
 import entity.*;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -13,15 +14,24 @@ import static org.junit.jupiter.api.Assertions.*;
 public class testDeposit {
     private Owner owner;
     private DepositRequest request;
+
     @BeforeEach
     public void setup(){
-        owner = new Owner("Oliver Twist", "OliveBoyz", "1234");
+        Owner own = new Owner("Oliver Twist", "OliveBoyz", "1234");
+        OwnerRepository.getOwnerRepository().addOwner(own);
+        owner = OwnerRepository.getOwnerRepository().findOwner("OliveBoyz");
+    }
+
+    @AfterEach
+    public void teardown(){
+        OwnerRepository.getOwnerRepository().deleteOwner("OliveBoyz");
+
     }
 
     @Test
     public void testDepositSavings(){
         Savings savings = new Savings(5.5);
-        request = new DepositRequest(owner, 11.50, savings);
+        request = new DepositRequest("OliveBoyz", 11.50, savings);
         Deposit callDeposit = new Deposit(request);
         ActionResponse response = callDeposit.process();
 
@@ -32,7 +42,7 @@ public class testDeposit {
 
     @Test
     public void testDepositBalance(){
-        request = new DepositRequest(owner, 11.5);
+        request = new DepositRequest("OliveBoyz", 11.5);
         Deposit callDeposit = new Deposit(request);
         ActionResponse response = callDeposit.process();
 
@@ -43,7 +53,7 @@ public class testDeposit {
     @Test
     public void testDepositCreditCard(){
         CreditCard creditCard = new CreditCard();
-        request = new DepositRequest(owner, 11.50, creditCard);
+        request = new DepositRequest("OliveBoyz", 11.50, creditCard);
         Deposit callDeposit = new Deposit(request);
         ActionResponse response = callDeposit.process();
 
@@ -53,7 +63,7 @@ public class testDeposit {
 
     @Test
     public void testDepositNegativeValue(){
-        request = new DepositRequest(owner, -11.5);
+        request = new DepositRequest("OliveBoyz", -11.5);
         Deposit callDeposit = new Deposit(request);
         ActionResponse response = callDeposit.process();
 

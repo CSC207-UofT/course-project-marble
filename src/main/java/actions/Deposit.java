@@ -4,6 +4,7 @@ import action_request_response.DepositRequest;
 import action_request_response.DepositResponse;
 import entity.Owner;
 import entity.Depositable;
+import entity.OwnerRepository;
 
 public class Deposit extends Actions{
     private final Owner owner;
@@ -11,7 +12,7 @@ public class Deposit extends Actions{
     private final double amount;
 
     public Deposit(DepositRequest request){
-        this.owner = request.getOwner();
+        this.owner = OwnerRepository.getOwnerRepository().findOwner(request.getUsername());
         this.depositable = request.getDepositable();
         this.amount = request.getAmount();
     }
