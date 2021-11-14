@@ -9,9 +9,9 @@ public class Budget {
 
     /**
      * Instances of Budget
-     * categories: the types of budget categories (ex: food, clothing, gas...)
-     * date: the date the budget is created
-     * period: The period of the renewal of the budget (ex: weekly, bi-weekly, monthly)
+     * Categories: the types of budget categories (ex: food, clothing, gas...)
+     * Date: the date the budget is created
+     * Period: The period of the renewal of the budget (ex: weekly, bi-weekly, monthly)
      * */
 
     private double totalBudget;
@@ -110,4 +110,14 @@ public class Budget {
         this.goalBudget = newBudget;
         return true;
     }
+
+    /**
+     * New methods for added because some Action classes needed them
+     *
+     */
+    public double getGoalCategoryBudget(String catergoryName) {
+        return goalBudget.get(catergoryName);
+    }
+
+
 }

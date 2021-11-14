@@ -1,19 +1,34 @@
 package entity;
 
-public class SpendingRecord extends Record{
+
+public class SpendingRecord{
+
+    private final double amount;
+    private final Date SpendingDate;
+    private final String category;
 
     /**
      * This is a constructor object to create a spending Record. When an owner purchases an item, this object is
      * created.
      *
      * @param amount : the amount for the item.
-     * @param purchaseDate : the date of purchase.
-     * @param category :
-     * @param description: the description of purchase.
+     * @param SpendingDate : the date of purchase.
      */
 
-    public SpendingRecord(double amount, Date purchaseDate, String category, String description){
-        super(amount, purchaseDate, category, description);
+    public SpendingRecord(double amount, Date SpendingDate, String category){
+        this.category = category;
+        this.amount = -amount;
+        this.SpendingDate = SpendingDate;
     }
 
+    public double getAmount() {
+        return this.amount;
+    }
+
+    public Date getSpendingDate() {
+        return this.SpendingDate;
+    }
+    public String getCategory(){
+        return this.category;
+    }
 }

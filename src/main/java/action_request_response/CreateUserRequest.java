@@ -1,6 +1,6 @@
 package action_request_response;
 
-public class CreateUserRequest extends ActionRequest {
+public class CreateUserRequest extends ActionRequest{
     private final String fullname;
     private final String password;
 
@@ -10,9 +10,7 @@ public class CreateUserRequest extends ActionRequest {
         this.password = password;
     }
 
-    public String getFullname() {
-        return fullname;
-    }
+    public String getFullname() {return fullname; }
 
     public String getPassword() {
         return password;
