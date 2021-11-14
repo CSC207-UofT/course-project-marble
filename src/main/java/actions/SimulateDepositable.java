@@ -1,5 +1,6 @@
 package actions;
 
+import action_request_response.SimulateDepositableRequest;
 import entity.Date;
 import entity.Depositable;
 
@@ -8,17 +9,19 @@ public class SimulateDepositable extends Simulate {
     private final Date startDate; // current date
     private final Depositable asset;
 
-    public SimulateDepositable(Date endDate, Depositable asset) {
+    public SimulateDepositable(SimulateDepositableRequest request){
         super();
-        this.endDate = endDate;
+        this.endDate = request.getEndDate();
         this.startDate = new Date();
-        this.asset = asset;
+        this.asset = request.getDepositableAsset();
     }
 
     /**
      * This method calculates the asset value of a depositable asset
-     * @return returns the Depositable asset after calculating the simulated worth of the depositable.
+     * @return returns the worth of the Depositable asset after calculating the simulated
+     * worth of the depositable.
      */
+
     @Override
     public double getAssetValue() {
         int num_months = startDate.monthDifference(endDate);
