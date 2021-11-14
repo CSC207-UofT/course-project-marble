@@ -1,0 +1,9 @@
+Class Name: DisplayWithdrawalRecordRequest
+Parent class: ActionRequest
+Children: None
+
+Responsibilities:
+* Provides an action request to be used in DisplayWithdrawalRecord
+
+Collaborators:
+* DisplayWithdrawalRecord
