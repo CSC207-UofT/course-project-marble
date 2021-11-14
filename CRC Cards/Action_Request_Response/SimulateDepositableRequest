@@ -1,0 +1,15 @@
+Class name: SimulateDepositableRequest
+Parent class: ActionRequest
+Children: none
+
+Responsibilities:
+* Makes an action request for SimulateDepositable
+  Methods:
+    * getEndDate()
+    * getDepositablAsset()
+  Variables:
+    * Date endDate
+    * Depositable depositableAsset
+    
+Collaborator:
+* SimulateDepositable
