@@ -12,10 +12,5 @@ public class DisplayDepositRecord {
         this.user = user;
     }
 
-    /**
-     * This method returns the users deposit record as an ArrayList
-     */
-    public ArrayList<DepositRecord> getUserDepositRecord(){
-        return user.getListOfDepositRecord();
-    }
+
 }

@@ -10,11 +10,7 @@ public class DisplaySpendingRecord {
         this.user = user;
     }
 
-    /**
-     * This method returns the users spending record as an ArrayList
-     */
-    public ArrayList<SpendingRecord> getUserSpendingRecord(){
-        return user.getListOfSpendingRecord();
-    }
+
+
 }
 
