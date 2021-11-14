@@ -7,7 +7,6 @@ public class Record implements Comparable<Record>{
     private String description;
 
     /**
-     *
      * @param amount : the amount of money recorded.
      * @param date : the date of the activity.
      * @param category :
