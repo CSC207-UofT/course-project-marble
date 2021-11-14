@@ -14,15 +14,15 @@ public class Budget {
      * Period: The period of the renewal of the budget (ex: weekly, bi-weekly, monthly)
      * */
 
-    private int totalBudget;
-    private HashMap<String, Integer> goalBudget;
-    private HashMap<String, Integer> remainingBudget;
+    private double totalBudget;
+    private HashMap<String, Double> goalBudget;
+    private HashMap<String, Double> remainingBudget;
     private Date date;
     private String period;
 
 
-    public Budget(HashMap<String, Integer> categories, Date date, String period){
-        for (Integer value: categories.values()){
+    public Budget(HashMap<String, Double> categories, Date date, String period){
+        for (Double value: categories.values()){
             this.totalBudget += value;
         }
         this.goalBudget = new HashMap<>(categories);
@@ -32,13 +32,13 @@ public class Budget {
     }
 
 
-    public int getTotalBudget(){
+    public double getTotalBudget(){
         return this.totalBudget;
     }
 
     public int getTotalRemainingBudget(){
         int sum = 0;
-        for (Integer value: this.remainingBudget.values()){
+        for (Double value: this.remainingBudget.values()){
             sum += value;
         }
         return sum;
@@ -46,7 +46,7 @@ public class Budget {
 
     public String getPeriod(){return this.period;}
     public Date getDate(){return this.date;}
-    public HashMap<String, Integer> getRemainingBudget(){return this.remainingBudget;}
+    public HashMap<String, Double> getRemainingBudget(){return this.remainingBudget;}
     public void adjustPeriod(String newPeriod){this.period = newPeriod;}
     public void adjustDate(Date newDate){this.date = newDate;}
 
@@ -58,7 +58,7 @@ public class Budget {
      * @param decreaseBy the amount that is going to decrease the budget of the category by.
      * @return True if the amount still has left over or = 0, else False
      */
-    public boolean adjustOneCategoryInRemainingBudget(String category, int decreaseBy){
+    public boolean adjustOneCategoryInRemainingBudget(String category, double decreaseBy){
         if(this.remainingBudget.get(category) - decreaseBy >= 0){
             this.remainingBudget.put(category, this.remainingBudget.get(category) - decreaseBy);
             return true;
@@ -99,7 +99,7 @@ public class Budget {
      * Best done together with resetRemainingBudget FIRST, then call adjustBudget, if the new
      * budget is going LESS than the current Budget.
      */
-    public boolean adjustBudget(HashMap<String, Integer> newBudget) {
+    public boolean adjustBudget(HashMap<String, Double> newBudget) {
         for (String key: newBudget.keySet()){
             if (this.remainingBudget.get(key) + (newBudget.get(key) - this.goalBudget.get(key)) < 0){
                 return false;
@@ -110,4 +110,14 @@ public class Budget {
         this.goalBudget = newBudget;
         return true;
     }
+
+    /**
+     * New methods for added because some Action classes needed them
+     *
+     */
+    public double getGoalCategoryBudget(String catergoryName) {
+        return goalBudget.get(catergoryName);
+    }
+
+
 }
