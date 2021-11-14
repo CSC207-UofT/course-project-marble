@@ -1,1 +1,14 @@
-Calculate the amount in assets based on "added interest" per month
+Class name: UpdateDepositable
+Parent class: actions
+Children: none
+Properties to note: none
+
+Responsibilities:
+* Calculate the amount in assets based on added interest per month.
+   Methods:
+   * valueDepositable()
+   Variables:
+   * Depositable account
+
+Collaborators:
+* Depositable
