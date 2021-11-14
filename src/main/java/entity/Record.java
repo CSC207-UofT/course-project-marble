@@ -9,7 +9,7 @@ public class Record implements Comparable<Record>{
     /**
      * @param amount : the amount of money recorded.
      * @param date : the date of the activity.
-     * @param category :
+     * @param category : category of record.
      * @param description : description of activity.
      */
     public Record(double amount, Date date, String category, String description){
