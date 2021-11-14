@@ -1,5 +1,6 @@
 package actions;
 import entity.*;
+import entity.Record;
 
 import java.util.ArrayList;
 
@@ -13,8 +14,8 @@ public class DisplaySpendingRecord {
     /**
      * This method returns the users spending record as an ArrayList
      */
-    public ArrayList<SpendingRecord> getUserSpendingRecord(){
-        return user.getListOfSpendingRecord();
-    }
+    /**public ArrayList<Record> getUserSpendingRecord(){
+        return user.getListRecord();
+    }*/
 }
 

@@ -1,6 +1,6 @@
 package actions;
 
-import entity.DepositRecord;
+import entity.Record;
 import entity.Owner;
 
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ public class DisplayDepositRecord {
     /**
      * This method returns the users deposit record as an ArrayList
      */
-    public ArrayList<DepositRecord> getUserDepositRecord(){
-        return user.getListOfDepositRecord();
-    }
+    /**public ArrayList<Record> getUserDepositRecord(){
+        return user.getListRecord();
+    } */
 }
