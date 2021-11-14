@@ -25,7 +25,6 @@ public class Transfer extends Actions{
             user.addRecord(withdrawal);
             return true;
         }
-        System.out.println("Unable to transfer money from account. Please try again.");
         return false;
     }
 
@@ -42,7 +41,6 @@ public class Transfer extends Actions{
             account2.deposit(num);
             return true;
         }
-        System.out.println("Unable to transfer money from account. Please try again.");
         return false;
     }
 
@@ -60,7 +58,6 @@ public class Transfer extends Actions{
             user.addRecord(deposit);
             return true;
         }
-        System.out.println("Unable to transfer money from account. Please try again.");
         return false;
     }
 }

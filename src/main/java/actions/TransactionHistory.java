@@ -23,7 +23,7 @@ public class TransactionHistory extends Actions{
                 display.append(String.format("%-22s%-22s%-22s%-22s\n",r.getDate(),r.getDescription(),"-$"+(-1*r.getAmount()),""));
             }
             else{
-                display.append(String.format("%-22s%-22s%-22s%-22s\n",r.getDate(),r.getDescription(),"","$"+(-1*r.getAmount())));
+                display.append(String.format("%-22s%-22s%-22s%-22s\n",r.getDate(),r.getDescription(),"","$"+(r.getAmount())));
             }
         }
         return display.toString();
