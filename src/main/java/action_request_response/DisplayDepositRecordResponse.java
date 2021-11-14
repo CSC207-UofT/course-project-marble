@@ -8,7 +8,7 @@ public class DisplayDepositRecordResponse extends ActionResponse {
     private final ArrayList<Record> result;
 
     /**
-     * Constructor that creates a DisplayDepositRecord response returned from the DisplayDepositRecord action
+     * Constructor that creates a DisplayDepositRecord response returned from DisplayDepositRecord action
      * @param result an ArrayList of the users deposits.
      */
     public DisplayDepositRecordResponse(ArrayList<Record> result){

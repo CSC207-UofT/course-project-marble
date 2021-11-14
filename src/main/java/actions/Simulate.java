@@ -12,7 +12,7 @@ public abstract class Simulate extends Actions{
 
     public abstract double getAssetValue(); // hook method
 
-    /** template method: This method returns an action response for the simulated asset value
+    /** Template method: This method returns an action response for the simulated asset value
      * for a particular asset */
     @Override
     public ActionResponse process() {

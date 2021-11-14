@@ -6,7 +6,7 @@ public class WithdrawalRequest extends ActionRequest {
     private final String description;
 
     /**
-     * Constructor that creates a Withdrawal request that is used in the Withdrawal action.
+     * Constructor that create a Withdrawal request that is used in the Withdrawal action.
      *
      * @param username users username
      * @param cost The amount of money withdrawn

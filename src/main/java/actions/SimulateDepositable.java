@@ -17,7 +17,7 @@ public class SimulateDepositable extends Simulate {
     }
 
     /**
-     * This method calculates the asset value of a depositable asset
+     * This method calculates the asset value of the depositable asset
      * @return returns the worth of the Depositable asset after calculating the simulated
      * worth of the depositable.
      */

@@ -11,7 +11,7 @@ public class SimulateNonDepositable extends Simulate {
         this.asset = request.getNonDepositableAsset();
     }
     /**
-     * This method calculates the asset value of a nondepositable asset
+     * This method calculates the asset value of the nondepositable asset
      * @return returns the worth of the NonDepositable asset after calculating the simulated worth of the Nondepositable.
      */
 

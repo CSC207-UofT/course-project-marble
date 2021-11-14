@@ -17,7 +17,7 @@ public class DisplayDepositRecord extends Actions {
     }
 
     /**
-     * This method returns an action response of the deposit record.
+     * This method returns an action response of the deposits record.
      */
     @Override
     public ActionResponse process(){

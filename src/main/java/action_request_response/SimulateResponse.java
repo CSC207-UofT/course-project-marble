@@ -4,7 +4,7 @@ public class SimulateResponse extends ActionResponse {
     private final double result;
 
     /**
-     * Constructor that creates a Simulate response returned from the Simulate action.
+     * Constructor that create a Simulate response returned from the Simulate action.
      * @param result The simulated value of the Financial Asset
      */
     public SimulateResponse(double result) {
