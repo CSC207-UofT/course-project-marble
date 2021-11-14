@@ -8,7 +8,7 @@ import entity.Depositable;
 public class Deposit extends Actions{
     private final Owner owner;
     private final Depositable depositable;
-    private final int amount;
+    private final double amount;
 
     public Deposit(DepositRequest request){
         this.owner = request.getOwner();

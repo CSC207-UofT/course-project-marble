@@ -6,16 +6,16 @@ import entity.Owner;
 public class DepositRequest extends ActionRequest{
     private final Owner owner;
     private final Depositable depositable;
-    private final int amount;
+    private final double amount;
 
-    public DepositRequest(Owner owner, int amount){
+    public DepositRequest(Owner owner, double amount){
         super(owner.getName());
         this.owner = owner;
         this.amount = amount;
         this.depositable = null;
     }
 
-    public DepositRequest(Owner owner, int amount, Depositable depositable){
+    public DepositRequest(Owner owner, double amount, Depositable depositable){
         super(owner.getName());
         this.owner = owner;
         this.amount = amount;
@@ -23,6 +23,6 @@ public class DepositRequest extends ActionRequest{
     }
 
     public Owner getOwner(){ return owner; }
-    public int getAmount(){ return amount; }
+    public double getAmount(){ return amount; }
     public Depositable getDepositable(){ return depositable; }
 }
