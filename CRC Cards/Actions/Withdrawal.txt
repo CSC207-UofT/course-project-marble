@@ -1,5 +1,3 @@
-Withdrawing from balance (and maybe savings???)
-
 Class name: Withdrawal
 Parent class: Actions
 Children: none
