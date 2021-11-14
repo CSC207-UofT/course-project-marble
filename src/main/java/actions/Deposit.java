@@ -4,12 +4,24 @@ import action_request_response.DepositRequest;
 import action_request_response.DepositResponse;
 import entity.*;
 
+/**
+ * Class is responsible for handling a request by user to
+ * put money into a Depositable object or their account balance
+ *
+ * Note that this does not allow negative values to be put in (must
+ * use Withdraw class)
+ */
 public class Deposit extends Actions{
     private final Owner owner;
     private final Depositable depositable;
     private final double amount;
     private final Date date;
 
+    /**
+     * Initializer for class
+     * @param request contains all data for an object of the class to
+     *                process
+     */
     public Deposit(DepositRequest request){
         this.owner = OwnerRepository.getOwnerRepository().findOwner(request.getUsername());
         this.depositable = request.getDepositable();
@@ -18,6 +30,10 @@ public class Deposit extends Actions{
 
     }
 
+    /**
+     * Processes the request the class object was made for
+     * @return the response to if the process was successful or not
+     */
     @Override
     public ActionResponse process(){
         if (amount < 0){
