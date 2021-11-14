@@ -18,7 +18,6 @@ public class Owner {
     private final ArrayList<DepositRecord> listOfDepositRecord;
 
 
-
     /**
      * This is a constructor method to create an Owner object. Basically when this is called, a new Owner object is
      * created. Whether if its from reading the backup txt files or called to create a new owner.
