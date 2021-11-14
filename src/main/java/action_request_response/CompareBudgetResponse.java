@@ -8,7 +8,7 @@ public class CompareBudgetResponse extends ActionResponse{
 
     public String getDisplay(){
         if (display.equals("")){
-            return "No Budget Formed to Compare";
+            return "No Budget Formed to Compare\n";
         } else {
             return display;
         }

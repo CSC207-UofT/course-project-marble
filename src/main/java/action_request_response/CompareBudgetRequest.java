@@ -2,6 +2,7 @@ package action_request_response;
 
 import entity.Budget;
 import entity.Owner;
+import entity.OwnerRepository;
 
 import java.util.ArrayList;
 
@@ -10,8 +11,9 @@ public class CompareBudgetRequest extends ActionRequest{
     private final double total;
     private final ArrayList<String> ruleBudget;
 
-    public CompareBudgetRequest(Owner owner){
-        super(owner.getUserName());
+    public CompareBudgetRequest(String username){
+        super(username);
+        Owner owner = OwnerRepository.getOwnerRepository().findOwner(username);
         budget = owner.getBudget();
         if (!(budget == null)) {
             total = budget.getTotalBudget();
