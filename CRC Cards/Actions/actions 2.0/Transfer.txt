@@ -1,1 +1,16 @@
-Transfers for depositable classes
+Class name: Transfer
+Parent class: actions
+Children: none
+Properties to note: none
+
+Responsibilities:
+* transfers money between specified, existing Accounts
+   Methods:
+   * transferBalance()
+   * transferDepositable()
+   Variables:
+   * Owner user
+   * Date date
+
+Collaborators:
+* Owner
