@@ -1,0 +1,15 @@
+Class name: DisplayWithdrawalRecord
+Parent Class: Actions
+Children: None
+
+Responsibilities:
+* Displays the withdrawals recorded from the users transaction records.
+  Methods:
+    * process()
+  Variables:
+    * Owner user
+    
+Collaborators:
+* WithdrawalRecordRequest
+* WithdrawalReordResponse
+* Record
