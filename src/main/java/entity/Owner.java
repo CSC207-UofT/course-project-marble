@@ -19,7 +19,7 @@ public class Owner {
 
     /**
      * This is a constructor method to create an Owner object. Basically when this is called, a new Owner object is
-     * created. Whether if its from reading the backup txt files or called to create a new owner.
+     * created. Whether if it's from reading the backup txt files or called to create a new owner.
      *
      * @param fullName The full name of the user is stored here.
      * @param username The username that the person decided to use and to login is stored here.
