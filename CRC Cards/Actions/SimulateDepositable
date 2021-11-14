@@ -7,8 +7,11 @@ Responsibilities:
   Methods:
    * getAssetValue()
   Variables:
-   * NonDepositable asset
+   * Depositable asset
+   * Date endDate
+   * Date startDate
    
 Collaborators:
-  * SimulateRequest
-  * NonDepositable
+  * SimulateDepositableRequest
+  * Date
+  * Depositable
