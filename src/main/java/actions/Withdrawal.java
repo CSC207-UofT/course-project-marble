@@ -1,6 +1,6 @@
 package actions;
 import entity.*;
-
+import entity.Record;
 public class Withdrawal extends Actions{
     private Owner user;
     private final Date date;
@@ -17,8 +17,8 @@ public class Withdrawal extends Actions{
      */
     public boolean withdraw(int num){
         if (num <= user.getBalance()) {
-            //SpendingRecord spending = new SpendingRecord(num, this.date, null, null);
-            //user.addRecord(spending);
+            Record spending = new Record(num, this.date, null, null);
+            user.addRecord(spending);
             user.setBalance(user.getBalance() - num);
             return true;
         }
