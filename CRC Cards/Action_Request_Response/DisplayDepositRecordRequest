@@ -1,0 +1,9 @@
+Class Name: DisplayDepositRecordRequest
+Parent class: ActionRequest
+Children: None
+
+Responsibilities:
+* Creates a DisplayDepositRecord request that is used in the corresponding action.
+
+Collaborator:
+* DisplayDepositRecord 
