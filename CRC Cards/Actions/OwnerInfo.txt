@@ -1,18 +1,1 @@
-Class name: OwnerInfo
-Parent class: actions
-Children: none
-Properties to note: none
-
-Responsibilities:
-* Returns the information of the Owner object corresponding
-  to a username (automatically assumes the username has an
-  owner object connected to it)
-   Variables:
-	* String fullname
-    * String username
-    * double balance
-
-Collaborators:
-* ActionResponse
-* OwnerInfoRequest
-* OwnerInfoResponse
+Display Owner "profile" (their info)
