@@ -51,7 +51,6 @@ public class Owner {
                 this.userName + "\nBalance: " + this.balance + "\n";
     }
 
-
     public String getName() {
         return this.fullName;
     }
