@@ -32,6 +32,8 @@ public class ActionFactory {
             return new CreateSaving((CreateSavingRequest) request);
         } else if (request instanceof DepositSavingRequest){
             return new ChangeBalanceSaving((DepositSavingRequest) request);
+        } else if (request instanceof  StoreDataInJsonRequest){
+            return new StoreDataJson((StoreDataInJsonRequest) request);
         } else{
             return null;
         }

@@ -1,5 +1,9 @@
 package entity;
 
+import server.JSONTranslator;
+
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Iterator;
 
@@ -22,10 +26,21 @@ public class OwnerRepository {
      */
     public static OwnerRepository getOwnerRepository() {
         if (ownerRepository == null) {
-            ownerRepository = new OwnerRepository();
+            if (new File("OwnerRepo.json").exists()){
+                try {
+                    JSONTranslator jsonT = new JSONTranslator();
+                    ownerRepository = (OwnerRepository) jsonT.readFromJSON(OwnerRepository.class, "OwnerRepo.json");
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+            }
+            else{
+                ownerRepository = new OwnerRepository();
+            }
         }
         return ownerRepository;
     }
+
 
     /**
      * getOwners is a method that Actions calls to return a Iterator of the Owners stored in listOfOwners
