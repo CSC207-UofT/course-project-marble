@@ -10,7 +10,7 @@ public class testSavingsPositiveInterest {
 
     @BeforeEach
     void setup() {
-        this.savings = new Savings(12);
+        this.savings = new Savings(12, "Savings1");
     }
 
     @Test

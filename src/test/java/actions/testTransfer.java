@@ -12,8 +12,8 @@ public class testTransfer {
     @BeforeEach
     public void setup() {
         user = new Owner("John Doe", "jd_123", "password");
-        account1 = new Savings(2.4);
-        account2 = new CreditCard();
+        account1 = new Savings(2.4, "Savings1");
+        account2 = new CreditCard("CreditCard1");
         user.setBalance(1000);
         account1.setBalance(2000);
         account2.setBalance(-1567);

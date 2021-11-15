@@ -12,9 +12,19 @@ public class Date implements Comparable<Date>{
      * @param day The day [0,31]
      */
     public Date(int month, int day, int year) {
+        if (month > 12 | month < 0){
+            this.month = 1;
+        }
+        else {
         this.month = month;
+        }
         this.year = year;
-        this.day = day;
+        if ( day > 31 | day < 0){
+            this.day = 1;
+        }
+        else{
+            this.day = day;
+        }
     }
 
     /**

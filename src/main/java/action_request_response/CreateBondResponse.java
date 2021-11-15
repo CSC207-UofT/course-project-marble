@@ -1,9 +1,9 @@
 package action_request_response;
 
-public class CashOutResponse extends ActionResponse {
+public class CreateBondResponse extends ActionResponse {
     private final boolean result;
 
-    public CashOutResponse(boolean result) {
+    public CreateBondResponse(boolean result) {
         this.result = result;
     }
 

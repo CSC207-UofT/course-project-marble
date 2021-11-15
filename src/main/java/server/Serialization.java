@@ -54,7 +54,7 @@ public class Serialization{
 
     //TESTING PURPOSES AND SHOWING HOW TO USE CLASS
     public static void main(String []args) throws IOException {
-        Bond b = new Bond(3, 4, 3.23, new Date(2021,2,1));
+        Bond b = new Bond(3, 4, 3.23, new Date(2021,2,1), "bond1");
         printData(b);
         Serialization ser = new Serialization();
         ser.Serialize(b);

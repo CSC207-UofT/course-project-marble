@@ -9,7 +9,7 @@ public class testCreditCardSingularDeposit {
     private CreditCard creditCard;
     @BeforeEach
     void setUp() {
-        creditCard = new CreditCard();
+        creditCard = new CreditCard("CreditCard1");
     }
     @Test
     void checkAmount(){

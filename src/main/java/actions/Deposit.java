@@ -13,7 +13,6 @@ import entity.*;
  */
 public class Deposit extends Actions{
     private final Owner owner;
-    private final Depositable depositable;
     private final double amount;
     private final Date date;
 
@@ -24,7 +23,6 @@ public class Deposit extends Actions{
      */
     public Deposit(DepositRequest request){
         this.owner = OwnerRepository.getOwnerRepository().findOwner(request.getUsername());
-        this.depositable = request.getDepositable();
         this.amount = request.getAmount();
         this.date = new Date();
 
@@ -39,18 +37,11 @@ public class Deposit extends Actions{
         if (amount < 0){
             return new DepositResponse(false);
         }
-        if (depositable == null) {
-            double currentAmount = owner.getBalance();
-            owner.setBalance(currentAmount + amount);
-            Record deposit = new Record(amount, date, "Deposit",
-                    "Into Balance");
-            owner.addRecord(deposit);
-        } else {
-            depositable.deposit(amount);
-            Record deposit = new Record(amount, date, "Deposit",
-                    "Other");
-            owner.addRecord(deposit);
-        }
+        double currentAmount = owner.getBalance();
+        owner.setBalance(currentAmount + amount);
+        Record deposit = new Record(amount, date, "Deposit",
+                "Into Balance");
+        owner.addRecord(deposit);
         return new DepositResponse(true);
     }
 }

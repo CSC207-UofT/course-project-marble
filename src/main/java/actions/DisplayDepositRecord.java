@@ -27,6 +27,6 @@ public class DisplayDepositRecord extends Actions {
                 depositRecord.add(user.getListRecord().get(i));
             }
         }
-        return new DisplayDepositRecordResponse(depositRecord);
+        return new DisplayDepositRecordResponse(depositRecord.toString());
     }
 }

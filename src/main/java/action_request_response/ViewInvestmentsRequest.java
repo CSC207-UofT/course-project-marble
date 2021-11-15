@@ -1,12 +1,12 @@
 package action_request_response;
 
-public class DisplayDepositRecordRequest extends ActionRequest {
+public class ViewInvestmentsRequest extends ActionRequest {
     /**
      * Constructor that creates a DisplayDepositRecord request that's used in the DisplayDepositRecord action.
      *
      * @param username the users username
      */
-    public DisplayDepositRecordRequest(String username) {
+    public ViewInvestmentsRequest(String username) {
         super(username);
     }
 }
