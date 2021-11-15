@@ -47,7 +47,7 @@ public class Owner {
 
     @Override
     public String toString() {
-        return "User Profile:\n Name: " + this.fullName + "\nUsername: " +
+        return "User Profile:\nName: " + this.fullName + "\nUsername: " +
                 this.userName + "\nBalance: $" + this.balance + "\n";
     }
 
