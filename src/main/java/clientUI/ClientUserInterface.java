@@ -72,7 +72,7 @@ public class ClientUserInterface {
         }
     }
 
-    public void ownerInfo(){
+    public void ownerInfo() {
         OwnerInfoRequest request = new OwnerInfoRequest(username);
         try {
             outbound.writeObject(request);
@@ -83,7 +83,7 @@ public class ClientUserInterface {
         try {
             OwnerInfoResponse result = (OwnerInfoResponse) inbound.readObject();
             System.out.println(result.getDisplay());
-        } catch (IOException| ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             System.out.println("An error occurred. Please try again");
         }
     }
@@ -112,14 +112,14 @@ public class ClientUserInterface {
             System.out.println("There was an error. Please try again");
             return;
         }
-        if (response){
+        if (response) {
             System.out.println("Your withdrawal was successful!");
-        }
-        else{
+        } else {
             System.out.println("Your withdrawal could not be completed");
         }
     }
-    public void displayWithdrawalRecord(){
+
+    public void displayWithdrawalRecord() {
         DisplayWithdrawalRecordRequest request = new DisplayWithdrawalRecordRequest(username);
         try {
             outbound.writeObject(request);
@@ -131,7 +131,7 @@ public class ClientUserInterface {
         try {
             DisplayWithdrawalRecordResponse result = (DisplayWithdrawalRecordResponse) inbound.readObject();
             System.out.println(result.getResult());
-        } catch (IOException| ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             System.out.println("An error occurred. Please try again");
         }
     }
@@ -179,7 +179,7 @@ public class ClientUserInterface {
         }
     }
 
-    public void updateDepositable(){
+    public void updateDepositable() {
         UpdateDepositableRequest request = new UpdateDepositableRequest(this.username);
         try {
             outbound.writeObject(request);
@@ -190,8 +190,7 @@ public class ClientUserInterface {
         try {
             UpdateDepositableResponse result = (UpdateDepositableResponse) inbound.readObject();
             System.out.println("You were successful");
-        }
-        catch (IOException | ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             System.out.println("There was an error. Please try again");
         }
     }
@@ -212,7 +211,8 @@ public class ClientUserInterface {
             System.out.println("There was an error. Please try again");
         }
     }
-    public void cashOut(){
+
+    public void cashOut() {
         Scanner sc = new Scanner(System.in);
         System.out.println("What is the name of the asset you want to cash out?");
         String name = sc.nextLine();
@@ -227,10 +227,9 @@ public class ClientUserInterface {
         try {
             CashOutResponse result = (CashOutResponse) inbound.readObject();
             boolean response = result.getResult();
-            if (response){
+            if (response) {
                 System.out.println("You were successful");
-            }
-            else {
+            } else {
                 System.out.println("You were not successful");
             }
         } catch (IOException | ClassNotFoundException e) {
@@ -238,7 +237,8 @@ public class ClientUserInterface {
         }
 
     }
-    public void createBond(){
+
+    public void createBond() {
         Scanner sc = new Scanner(System.in);
         System.out.println("What is the name of the bond?");
         String name = sc.nextLine();
@@ -255,7 +255,25 @@ public class ClientUserInterface {
         System.out.println("What is the day of Maturity");
         int day = Integer.parseInt(sc.nextLine());
         Date dateOfMaturity = new Date(month, day, year);
-        CreateBondRequest = new CreateBondRequest(this.username, name, interestRate, pricePerBond, volume, dateOfMaturity);
+        CreateBondRequest request = new CreateBondRequest(this.username, name, interestRate, pricePerBond, volume, dateOfMaturity);
+        try {
+            outbound.writeObject(request);
+            outbound.flush();
+        } catch (IOException e) {
+            System.out.println("There was an error. Please try again.");
+            return;
+        }
+        try {
+            CreateBondResponse result = (CreateBondResponse) inbound.readObject();
+            boolean response = result.getResult();
+            if (response) {
+                System.out.println("You were successful");
+            } else {
+                System.out.println("You do not have enough money to afford this purchase");
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("There was an error. Please try again");
+        }
     }
 
     public void disconnect() throws IOException {
@@ -325,9 +343,10 @@ public class ClientUserInterface {
             System.out.println("View your withdrawal record history: e");
             System.out.println("View all of your assets: f");
             System.out.println("Cash out a non-depositable asset: g");
+            System.out.println("Buy a new bond: h")
             System.out.println("To quit: q");
             input = scan.nextLine();
-            switch (input){
+            switch (input) {
                 case "a":
                     client.ownerInfo();
                     break;
@@ -344,8 +363,13 @@ public class ClientUserInterface {
                     break;
                 case "f":
                     client.viewInvestments();
+                    break;
                 case "g":
                     client.cashOut();
+                    break;
+                case "h":
+                    client.createBond();
+                    break;
                 case "q":
                     try {
                         client.disconnect();
