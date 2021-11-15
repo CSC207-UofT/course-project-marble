@@ -1,6 +1,7 @@
 package entity;
+import java.io.Serializable;
 import java.time.LocalDate;
-public class Date implements Comparable<Date>{
+public class Date implements Comparable<Date>, Serializable{
     private final int month;
     private final int year;
     private final int day;
