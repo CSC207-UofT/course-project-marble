@@ -33,6 +33,7 @@ public class ClientUserInterface {
         String password = sc.nextLine();
         CreateUserRequest request = new CreateUserRequest(fullname, username, password);
 
+
         outbound.writeObject(request);
         outbound.flush();
 
@@ -295,6 +296,7 @@ public class ClientUserInterface {
             System.out.println("There was an error. Please try again");
         }
     }
+
     public void changeSavingsBalance(){
         Scanner sc = new Scanner(System.in);
         System.out.println("Which savings account?");
@@ -321,6 +323,30 @@ public class ClientUserInterface {
             System.out.println("There was an error. Please try again");
         }
     }
+
+    private void storeOwnerRepo() {
+        StoreDataInJsonRequest request = new StoreDataInJsonRequest("OwnerRepo.json");
+        try {
+            outbound.writeObject(request);
+            outbound.flush();
+        } catch (IOException e) {
+            System.out.println("There was an error. Please try again.");
+            return;
+        }
+        try {
+            StoreDataInJsonResponse result = (StoreDataInJsonResponse) inbound.readObject();
+            boolean response = result.getResult();
+            if (response) {
+                System.out.println("You were successful, data is stored");
+            } else {
+                System.out.println("You can't store the data");
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("There was an error. Please try again");
+        }
+    }
+
+
     public void disconnect() throws IOException {
         UserQuitRequest request = new UserQuitRequest(this.username);
         outbound.writeObject(request);
@@ -379,7 +405,8 @@ public class ClientUserInterface {
         }
         client.updateDepositable();
         String input;
-        while (true) {
+        boolean running = true;
+        while (running) {
             System.out.println("Hello. You may now enter the following:");
             System.out.println("Get basic owner info: a");
             System.out.println("Deposit enter: b");
@@ -426,7 +453,9 @@ public class ClientUserInterface {
                     break;
                 case "q":
                     try {
+                        client.storeOwnerRepo();
                         client.disconnect();
+                        running = false;
                         break;
                     } catch (IOException e) {
                         System.out.println("Caught an IO exception when closing socket connection");
