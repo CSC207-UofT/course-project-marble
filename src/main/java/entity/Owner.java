@@ -47,10 +47,9 @@ public class Owner {
 
     @Override
     public String toString() {
-        return "Your full name is " + this.fullName + ".\n Your username is " +
-                this.userName + ".\n and your balance is" + this.balance;
+        return "User Profile:\n Name: " + this.fullName + "\nUsername: " +
+                this.userName + "\nBalance: " + this.balance + "\n";
     }
-
 
     public String getName() {
         return this.fullName;

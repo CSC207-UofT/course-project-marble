@@ -399,6 +399,7 @@ public class ClientUserInterface {
                     break;
                 case "b":
                     client.deposit();
+                    break;
                 case "c":
                     client.withdrawal();
                     break;
