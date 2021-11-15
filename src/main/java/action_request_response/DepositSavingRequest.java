@@ -4,7 +4,7 @@ public class DepositSavingRequest extends ActionRequest {
     private final String name;
     private final String amount;
 
-    public DepositSavingRequest(String username, String name, String amount) {
+    public DepositSavingRequest(String username, String name, double amount) {
         super(username);
         this.name = name;
         this.amount = amount;

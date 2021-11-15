@@ -294,7 +294,32 @@ public class ClientUserInterface {
             System.out.println("There was an error. Please try again");
         }
     }
-
+    public void changeSavingsBalance(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Which savings account?");
+        String name = sc.nextLine();
+        System.out.println("How much? +ve value to add to your savings. -ve to remove");
+        double amount = Double.parseDouble(sc.nextLine());
+        DepositSavingRequest request = new DepositSavingRequest(username, name, amount);
+        try {
+            outbound.writeObject(request);
+            outbound.flush();
+        } catch (IOException e) {
+            System.out.println("There was an error. Please try again.");
+            return;
+        }
+        try {
+            DepositSavingResponse result = (DepositSavingResponse) inbound.readObject();
+            boolean response = result.getResult();
+            if (response) {
+                System.out.println("You were successful");
+            } else {
+                System.out.println("You do not have enough money to afford this purchase");
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("There was an error. Please try again");
+        }
+    }
     public void disconnect() throws IOException {
         UserQuitRequest request = new UserQuitRequest(this.username);
         outbound.writeObject(request);
