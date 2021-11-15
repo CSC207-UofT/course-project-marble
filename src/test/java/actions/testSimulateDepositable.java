@@ -13,8 +13,8 @@ public class testSimulateDepositable {
 
     @BeforeEach
     public void setup(){
-        assetSavings = new Savings(12.0);
-        assetCreditCard = new CreditCard();
+        assetSavings = new Savings(12.0, "Savings1");
+        assetCreditCard = new CreditCard("CreditCard1");
         assetSavings.setBalance(200);
         assetCreditCard.setBalance(-100);
     }

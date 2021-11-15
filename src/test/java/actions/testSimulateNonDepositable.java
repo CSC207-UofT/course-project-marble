@@ -22,7 +22,7 @@ public class testSimulateNonDepositable {
     @Test
     public void testSimulationImmature(){
         Date endDateImmature = new Date(7, 16, 2022);
-        assetBond = new Bond(2, 7, 1000, endDateImmature);
+        assetBond = new Bond(2, 7, 1000, endDateImmature, "Bond1");
         SimulateNonDepositableRequest request = new SimulateNonDepositableRequest("jd_123", assetBond);
         SimulateNonDepositable simulation = new SimulateNonDepositable(request);
         SimulateResponse response = (SimulateResponse) simulation.process();

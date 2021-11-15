@@ -30,7 +30,7 @@ public class testDeposit {
 
     @Test
     public void testDepositSavings(){
-        Savings savings = new Savings(5.5);
+        Savings savings = new Savings(5.5, "Savings1");
         request = new DepositRequest("OliveBoyz", 11.50, savings);
         Deposit callDeposit = new Deposit(request);
         ActionResponse response = callDeposit.process();
@@ -52,7 +52,7 @@ public class testDeposit {
 
     @Test
     public void testDepositCreditCard(){
-        CreditCard creditCard = new CreditCard();
+        CreditCard creditCard = new CreditCard("CreditCard1");
         request = new DepositRequest("OliveBoyz", 11.50, creditCard);
         Deposit callDeposit = new Deposit(request);
         ActionResponse response = callDeposit.process();
