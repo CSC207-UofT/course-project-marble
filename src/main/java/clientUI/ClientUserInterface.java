@@ -294,7 +294,6 @@ public class ClientUserInterface {
                     } catch (IOException | ClassNotFoundException e) {
                         System.out.println("Invalid command");
                     }
-
                     break;
                 case "2":
                     try {
@@ -357,8 +356,6 @@ public class ClientUserInterface {
 
             }
         }
-
-
         try {
             client.disconnect();
         } catch (IOException e) {

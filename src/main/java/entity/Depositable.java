@@ -2,8 +2,8 @@ package entity;
 
 public abstract class Depositable extends FinancialAsset {
     private double balance;
-    public Depositable(double annualInterestRate){
-        super(annualInterestRate);
+    public Depositable(double annualInterestRate, String name){
+        super(annualInterestRate, name);
 
         this.balance = 0;
     }

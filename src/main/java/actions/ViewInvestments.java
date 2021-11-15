@@ -10,8 +10,8 @@ import java.util.ArrayList;
 public class ViewInvestments extends Actions{
     private final ArrayList<FinancialAsset> listAssets;
 
-    public ViewInvestments(Depositable account){
-        this.account = account;
+    public ViewInvestments(ViewInvestmentsRequest request){
+        this.listAssets = OwnerRepository.getOwnerRepository().findOwner(request.getUsername()).getListAssets();
     }
 
     /**
