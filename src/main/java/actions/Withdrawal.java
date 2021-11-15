@@ -26,7 +26,7 @@ public class Withdrawal extends Actions{
      */
     @Override
     public ActionResponse process(){
-        if (cost >= user.getBalance()) {
+        if (cost <= user.getBalance()) {
             Record withdraw = new Record(-cost, this.date, this.category, this.description);
             user.addRecord(withdraw);
             user.setBalance(user.getBalance() - cost);

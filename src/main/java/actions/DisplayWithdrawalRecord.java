@@ -25,7 +25,7 @@ public class DisplayWithdrawalRecord extends Actions{
                 withdrawnRecord.add(user.getListRecord().get(i));
             }
         }
-        return new DisplayWithdrawalRecordResponse(withdrawnRecord);
+        return new DisplayWithdrawalRecordResponse(withdrawnRecord.toString());
     }
 }
 
