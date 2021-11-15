@@ -81,6 +81,7 @@ public class ClientUserInterface {
             System.out.println("An error occurred. Please try again");
         }
         try {
+            System.out.println("Processing");
             OwnerInfoResponse result = (OwnerInfoResponse) inbound.readObject();
             System.out.println(result.getDisplay());
         } catch (IOException | ClassNotFoundException e) {

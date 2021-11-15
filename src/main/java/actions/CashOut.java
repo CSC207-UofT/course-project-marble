@@ -33,7 +33,7 @@ public class CashOut extends Actions{
         ArrayList<FinancialAsset> listAssets = owner.getListAssets();
         for (FinancialAsset asset:listAssets) {
             if (asset instanceof NonDepositable) {
-                if (name.equals(((NonDepositable) asset).getName())) {
+                if (name.equals((asset).getName())) {
                     investment = (NonDepositable) asset;
                     return;
                 }
