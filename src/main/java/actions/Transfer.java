@@ -21,7 +21,7 @@ public class Transfer extends Actions{
         if (num <= user.getBalance()){
             user.setBalance(user.getBalance() - num);
             account.deposit(num);
-            Record withdrawal = new Record(num, this.date, null, "Banking transfer");
+            Record withdrawal = new Record(-num, this.date, null, "Banking transfer");
             user.addRecord(withdrawal);
             return true;
         }
@@ -54,7 +54,7 @@ public class Transfer extends Actions{
         if (num <= account1.getBalance()){
             account1.deposit(-num);
             user.setBalance(user.getBalance() + num);
-            Record deposit = new Record(-num, this.date, null, "Banking transfer");
+            Record deposit = new Record(num, this.date, null, "Banking transfer");
             user.addRecord(deposit);
             return true;
         }
