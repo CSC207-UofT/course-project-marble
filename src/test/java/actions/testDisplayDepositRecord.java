@@ -10,6 +10,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class testDisplayDepositRecord {
@@ -31,6 +33,8 @@ public class testDisplayDepositRecord {
         DisplayDepositRecordRequest request = new DisplayDepositRecordRequest("jd_123");
         DisplayDepositRecord depositRecord = new DisplayDepositRecord(request);
         DisplayDepositRecordResponse response = (DisplayDepositRecordResponse) depositRecord.process();
-        assertEquals(200, response.getResult().get(0).getAmount());
+        ArrayList<Record> expected = new ArrayList<>();
+        expected.add(new Record(200, new Date(2, 1, 2021), "Bills", "Electricity Bill"));
+        assertEquals(expected.toString(), response.getResult());
     }
 }
