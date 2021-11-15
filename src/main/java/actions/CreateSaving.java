@@ -25,5 +25,6 @@ public class CreateSaving extends Actions{
     public ActionResponse process() {
         Savings saving = new Savings(interestRate, name);
         owner.addAsset(saving);
+        return new ActionResponse();
     }
 }
