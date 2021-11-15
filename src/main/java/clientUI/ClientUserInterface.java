@@ -324,6 +324,9 @@ public class ClientUserInterface {
         }
     }
 
+    /**
+     * Stores the current OwnerRepo into a json via actions, this occurs before program terminates
+     */
     private void storeOwnerRepo() {
         StoreDataInJsonRequest request = new StoreDataInJsonRequest("OwnerRepo.json");
         try {
