@@ -1,0 +1,13 @@
+Class name: SimulateResponse
+Parent class: ActionResponse
+Children: none
+
+Responsibilities:
+* Makes an action response for simulate to return the value of the simulated asset
+  Methods:
+    * getResult()
+  Variables:
+    * double result
+    
+Collaborator:
+* Simulate

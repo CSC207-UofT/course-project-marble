@@ -1,0 +1,11 @@
+Class Name: Simulate
+Parent Class: Actions
+Children: SimulateNonDepositable, SimulateDepositable
+
+Responsibilities:
+* Abstract class that simulates the growth of a financial asset.
+  Methods:
+    * process()
+ 
+ Collaborators:
+ * SimulateResponse

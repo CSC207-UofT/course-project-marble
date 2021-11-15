@@ -1,0 +1,17 @@
+Class name: ActionResponse
+Parent class: none
+Children: AddExpenseRequest, CashOutResponse, CompareBudgetResponse,
+          CreateUserResponse, DepositResponse, LoginResponse,
+          OwnerInfoResponse
+Properties to note: an Abstract class
+
+Responsibilities:
+* acts as the base instance type for all Response classes in the
+  Action_request_response package
+   Methods:
+	* none
+   Variables:
+	* none
+
+Collaborators:
+* Serializable

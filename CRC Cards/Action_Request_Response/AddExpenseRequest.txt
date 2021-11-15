@@ -1,0 +1,18 @@
+Class name: AddExpenseRequest
+Parent class: ActionRequest
+Children: none
+Properties to note: none
+
+Responsibilities:
+* records down the information needed for an AddExpense object
+  to be used
+   Methods:
+	* getCategory()
+	* getAmount()
+   Variables:
+	* String category
+    * double amount
+    * String username (from parent)
+
+Collaborators:
+* none

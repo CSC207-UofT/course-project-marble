@@ -1,0 +1,15 @@
+Class name: DepositResponse
+Parent class: ActionResponse
+Children: none
+Properties to note: none
+
+Responsibilities:
+* provides a response to whether a DepositResponse object was able
+  to do what it was supposed to or not
+   Methods:
+	* getResult()
+   Variables:
+	* boolean result
+
+Collaborators:
+* none

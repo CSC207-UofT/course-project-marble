@@ -13,13 +13,14 @@ public class Owner {
     private final byte[] password;
     private double balance;
     private Budget budget;
+    private final ArrayList<FinancialAsset> listAssets;
     private final ArrayList<Record> listRecord;
 
 
 
     /**
      * This is a constructor method to create an Owner object. Basically when this is called, a new Owner object is
-     * created. Whether if its from reading the backup txt files or called to create a new owner.
+     * created. Whether if it's from reading the backup txt files or called to create a new owner.
      *
      * @param fullName The full name of the user is stored here.
      * @param username The username that the person decided to use and to login is stored here.
@@ -41,6 +42,7 @@ public class Owner {
         }
         assert md != null;
         this.password = md.digest(password.getBytes(StandardCharsets.UTF_8));
+        listAssets = new ArrayList<>();
     }
 
     @Override
@@ -66,6 +68,13 @@ public class Owner {
         this.listRecord.add(newRecord);
     }
 
+    public void addAsset(FinancialAsset newAsset){
+        this.listAssets.add(newAsset);
+    }
+
+    public ArrayList<FinancialAsset> getListAssets() {
+        return listAssets;
+    }
 
     /**
      * setBalance is to get owner's balance. Work with getBalance() when you want to adjust the balance.

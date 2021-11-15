@@ -8,7 +8,10 @@ import entity.OwnerRepository;
 
 import java.util.ArrayList;
 /**
- * Atm for phase 1 expenses only works if the category for the expense already
+ * This class is responsible for handling the User request to attempt to add an
+ * expense into their budget (if their budget exists)
+ *
+ * At the moment for phase 1 expenses only works if the category for the expense already
  * exists in the budget. Note it only adjusts the budget. Value in balance and
  * a record must be done separately by calling on different Actions by the user
  */
@@ -16,12 +19,22 @@ public class AddExpense extends Actions{
     private final Owner owner;
     private final String category;
     private final double amount;
+
+    /**
+     * Initializes an AddExpense object
+     * @param request object containing all the information an object of
+     *                the class needs to process and respond back
+     */
     public AddExpense(AddExpenseRequest request){
         this.owner = OwnerRepository.getOwnerRepository().findOwner(request.getUsername());
         this.category = request.getCategory();
         this.amount = request.getAmount();
     }
 
+    /**
+     *
+     * @return the response from attempted use of an object of this class
+     */
     @Override
     public ActionResponse process(){
         if (owner.getBudget() == null){

@@ -1,0 +1,13 @@
+Class name: DisplayDepositRecordResponse
+Parent class: ActionResponse
+Children: None
+
+Responsibilities:
+* Provides an action response of the array list of deposit records.
+  Methods:
+    * getResult()
+  Variables:
+    * ArrayList<Record> result
+
+Collaborator:
+* DisplayDepositRecord
