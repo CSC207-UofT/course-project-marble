@@ -1,2 +1,5 @@
-package actions;public class ChangeBalanceSaving {
+package actions;
+
+public class ChangeBalanceSaving extends Actions {
+
 }
