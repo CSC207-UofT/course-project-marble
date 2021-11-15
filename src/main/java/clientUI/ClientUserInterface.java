@@ -257,8 +257,6 @@ public class ClientUserInterface {
             System.out.println("There was an error. Please try again");
         }
     }
-    }
-
     public void createBond() {
         Scanner sc = new Scanner(System.in);
         System.out.println("What is the name of the bond?");
@@ -365,7 +363,7 @@ public class ClientUserInterface {
             System.out.println("View all of your assets: f");
             System.out.println("Cash out a non-depositable asset: g");
             System.out.println("Buy a new bond: h");
-            System.out.println("Create a new savings account");
+            System.out.println("Create a new savings account: i");
             System.out.println("To quit: q");
             input = scan.nextLine();
             switch (input) {
@@ -394,21 +392,17 @@ public class ClientUserInterface {
                     break;
                 case "i":
                     client.createSavings();
-                    break
+                    break;
                 case "q":
                     try {
                         client.disconnect();
+                        break;
                     } catch (IOException e) {
                         System.out.println("Caught an IO exception when closing socket connection");
                     }
                     break;
 
             }
-        }
-        try {
-            client.disconnect();
-        } catch (IOException e) {
-            System.out.println("Caught an IO exception when closing socket connection");
         }
     }
 }
