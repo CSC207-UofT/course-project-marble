@@ -188,7 +188,7 @@ public class ClientUserInterface {
             System.out.println("There was an error. Please try again.");
         }
         try {
-            UpdateDepositableResponse result = (UpdateDepositableResponse) inbound.readObject();
+            ActionResponse result = (ActionResponse) inbound.readObject();
             System.out.println("You were successful");
         } catch (IOException | ClassNotFoundException e) {
             System.out.println("There was an error. Please try again");
@@ -236,6 +236,27 @@ public class ClientUserInterface {
             System.out.println("There was an error. Please try again");
         }
 
+    }
+    public void createSavings(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("What is the savings accounts name?");
+        String name = sc.nextLine();
+        System.out.println("What is the interestRate?");
+        double interestRate = Double.parseDouble(sc.nextLine());
+        CreateSavingRequest request = new CreateSavingRequest(this.username, interestRate, name);
+        try {
+            outbound.writeObject(request);
+            outbound.flush();
+        } catch (IOException e) {
+            System.out.println("There was an error. Please try again.");
+        }
+        try {
+            ActionResponse result = (ActionResponse) inbound.readObject();
+            System.out.println("You were successful");
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("There was an error. Please try again");
+        }
+    }
     }
 
     public void createBond() {
@@ -343,7 +364,8 @@ public class ClientUserInterface {
             System.out.println("View your withdrawal record history: e");
             System.out.println("View all of your assets: f");
             System.out.println("Cash out a non-depositable asset: g");
-            System.out.println("Buy a new bond: h")
+            System.out.println("Buy a new bond: h");
+            System.out.println("Create a new savings account");
             System.out.println("To quit: q");
             input = scan.nextLine();
             switch (input) {
@@ -370,6 +392,9 @@ public class ClientUserInterface {
                 case "h":
                     client.createBond();
                     break;
+                case "i":
+                    client.createSavings();
+                    break
                 case "q":
                     try {
                         client.disconnect();

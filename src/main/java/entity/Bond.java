@@ -5,7 +5,7 @@ public class Bond extends NonDepositable {
     private final Date dateOfMaturity;
     private boolean cashedOut;
 
-    public Bond(int volume, float annualInterestRate, double pricePerBond, Date dateOfMaturity, String name) {
+    public Bond(int volume, double annualInterestRate, double pricePerBond, Date dateOfMaturity, String name) {
         super(annualInterestRate, volume, pricePerBond, name);
         cashedOut = false;
         this.dateOfMaturity = dateOfMaturity;

@@ -9,7 +9,7 @@ public class CreateBondRequest extends ActionRequest {
     private final int volume;
     private final double InterestRate;
 
-    public CreateBondRequest(String username, String name, float interestRate, double pricePerAsset, int volume, Date dateOfMaturity) {
+    public CreateBondRequest(String username, String name, double interestRate, double pricePerAsset, int volume, Date dateOfMaturity) {
         super(username);
         this.name = name;
         this.pricePerAsset = pricePerAsset;
