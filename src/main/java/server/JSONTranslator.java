@@ -8,32 +8,35 @@ import entity.Date;
 import java.io.*;
 
 public class JSONTranslator {
+    /**
+     *
+     * @param javaObj java object to be stored into json file
+     * @param fileName name of json file that java object will be stored in
+     * @throws IOException In/Out stream error
+     */
     public void writeToJSON(Object javaObj, String fileName) throws IOException {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String json = gson.toJson(javaObj);
         try(FileWriter writer = new FileWriter(fileName)){
             gson.toJson(javaObj, writer);
         }catch (IOException e){
             e.printStackTrace();
         }
     }
+
+    /**
+     * reads JSON file and returns a java Object of type t
+     * @param t the type of class
+     * @param fileName the name of the file it will read from
+     * @return JavaObject converted from json
+     * @throws FileNotFoundException for issues where file not found
+     */
     public Object readFromJSON(Class<?> t, String fileName) throws FileNotFoundException {
         Gson gson = new Gson();
         try(Reader reader = new FileReader(fileName)){
-            Object javaObj = gson.fromJson(reader, t);
-            return javaObj;
+            return gson.fromJson(reader, t);
         } catch (IOException e) {
             e.printStackTrace();
         }
         return null;
-    }
-
-    //TESTING PURPOSES
-    public static void main(String [] args) throws IOException {
-        Bond b = new Bond(3, 4.00, 3.23, new Date(2021,2,1), "Jackson");
-        System.out.println(b);
-        JSONTranslator jsonT = new JSONTranslator();
-        jsonT.writeToJSON(b, "Data.json");
-        System.out.println(jsonT.readFromJSON(Bond.class, "Data.json"));
     }
 }
