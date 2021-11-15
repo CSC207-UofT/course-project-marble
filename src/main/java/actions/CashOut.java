@@ -35,7 +35,7 @@ public class CashOut extends Actions{
             if (asset instanceof NonDepositable) {
                 if (name.equals(((NonDepositable) asset).getName())) {
                     investment = (NonDepositable) asset;
-                    break;
+                    return;
                 }
             }
         }

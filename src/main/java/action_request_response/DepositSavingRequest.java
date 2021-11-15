@@ -2,7 +2,7 @@ package action_request_response;
 
 public class DepositSavingRequest extends ActionRequest {
     private final String name;
-    private final String amount;
+    private final double amount;
 
     public DepositSavingRequest(String username, String name, double amount) {
         super(username);
@@ -14,7 +14,7 @@ public class DepositSavingRequest extends ActionRequest {
         return name;
     }
 
-    public String getAmount() {
+    public double getAmount() {
         return amount;
     }
 }

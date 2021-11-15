@@ -47,8 +47,9 @@ public class Bond extends NonDepositable {
     public double getTotalCost() {
         return super.getPricePerAsset() * super.getVolume();
     }
+
     /**
-     * Retrurns price per bond
+     * Returns price per bond
      *
      * @return price per bond
      */

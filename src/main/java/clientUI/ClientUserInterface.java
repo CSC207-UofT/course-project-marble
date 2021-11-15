@@ -389,6 +389,7 @@ public class ClientUserInterface {
             System.out.println("Cash out a non-depositable asset: g");
             System.out.println("Buy a new bond: h");
             System.out.println("Create a new savings account: i");
+            System.out.println("Add or remove money from a Savings account : j");
             System.out.println("To quit: q");
             input = scan.nextLine();
             switch (input) {
@@ -417,6 +418,9 @@ public class ClientUserInterface {
                     break;
                 case "i":
                     client.createSavings();
+                    break;
+                case "j" :
+                    client.changeSavingsBalance();
                     break;
                 case "q":
                     try {

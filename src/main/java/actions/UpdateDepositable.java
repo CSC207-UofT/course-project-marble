@@ -35,7 +35,7 @@ public class UpdateDepositable extends Actions{
                 valueDepositable((Depositable) asset);
             }
         }
-        return new UpdateDepositableResponse();
+        return new ActionResponse();
     }
 
 }

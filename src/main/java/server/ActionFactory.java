@@ -26,6 +26,12 @@ public class ActionFactory {
             return new ViewInvestments((ViewInvestmentsRequest) request);
         } else if (request instanceof CashOutRequest){
             return new CashOut((CashOutRequest) request);
+        } else if (request instanceof CreateBondRequest){
+            return new CreateBond((CreateBondRequest) request);
+        } else if (request instanceof CreateSavingRequest){
+            return new CreateSaving((CreateSavingRequest) request);
+        } else if (request instanceof DepositSavingRequest){
+            return new ChangeBalanceSaving((DepositSavingRequest) request);
         } else{
             return null;
         }
