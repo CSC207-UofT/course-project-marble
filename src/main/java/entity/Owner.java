@@ -13,6 +13,7 @@ public class Owner {
     private final byte[] password;
     private double balance;
     private Budget budget;
+    private final ArrayList<FinancialAsset> listAssets;
     private final ArrayList<Record> listRecord;
 
 
@@ -41,6 +42,7 @@ public class Owner {
         }
         assert md != null;
         this.password = md.digest(password.getBytes(StandardCharsets.UTF_8));
+        listAssets = new ArrayList<>();
     }
 
     @Override
@@ -66,6 +68,13 @@ public class Owner {
         this.listRecord.add(newRecord);
     }
 
+    public void addAsset(FinancialAsset newAsset){
+        this.listAssets.add(newAsset);
+    }
+
+    public ArrayList<FinancialAsset> getListAssets() {
+        return listAssets;
+    }
 
     /**
      * setBalance is to get owner's balance. Work with getBalance() when you want to adjust the balance.

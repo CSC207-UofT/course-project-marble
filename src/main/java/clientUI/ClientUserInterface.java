@@ -1,6 +1,7 @@
 package clientUI;
 
 import action_request_response.*;
+import entity.Date;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -118,7 +119,7 @@ public class ClientUserInterface {
             System.out.println("Your withdrawal could not be completed");
         }
     }
-    public void DisplayWithdrawalRecord(){
+    public void displayWithdrawalRecord(){
         DisplayWithdrawalRecordRequest request = new DisplayWithdrawalRecordRequest(username);
         try {
             outbound.writeObject(request);
@@ -178,6 +179,85 @@ public class ClientUserInterface {
         }
     }
 
+    public void updateDepositable(){
+        UpdateDepositableRequest request = new UpdateDepositableRequest(this.username);
+        try {
+            outbound.writeObject(request);
+            outbound.flush();
+        } catch (IOException e) {
+            System.out.println("There was an error. Please try again.");
+        }
+        try {
+            UpdateDepositableResponse result = (UpdateDepositableResponse) inbound.readObject();
+            System.out.println("You were successful");
+        }
+        catch (IOException | ClassNotFoundException e) {
+            System.out.println("There was an error. Please try again");
+        }
+    }
+
+    public void viewInvestments() {
+        ViewInvestmentsRequest request = new ViewInvestmentsRequest(username);
+        try {
+            outbound.writeObject(request);
+            outbound.flush();
+        } catch (IOException e) {
+            System.out.println("There was an error. Please try again.");
+            return;
+        }
+        try {
+            ViewInvestmentsResponse result = (ViewInvestmentsResponse) inbound.readObject();
+            System.out.println(result.getResult());
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("There was an error. Please try again");
+        }
+    }
+    public void cashOut(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("What is the name of the asset you want to cash out?");
+        String name = sc.nextLine();
+        CashOutRequest request = new CashOutRequest(username, name);
+        try {
+            outbound.writeObject(request);
+            outbound.flush();
+        } catch (IOException e) {
+            System.out.println("There was an error. Please try again.");
+            return;
+        }
+        try {
+            CashOutResponse result = (CashOutResponse) inbound.readObject();
+            boolean response = result.getResult();
+            if (response){
+                System.out.println("You were successful");
+            }
+            else {
+                System.out.println("You were not successful");
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("There was an error. Please try again");
+        }
+
+    }
+    public void createBond(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("What is the name of the bond?");
+        String name = sc.nextLine();
+        System.out.println("What is the interestRate?");
+        float interestRate = Float.parseFloat(sc.nextLine());
+        System.out.println("How much does each bond cost?");
+        double pricePerBond = Double.parseDouble(sc.nextLine());
+        System.out.println("How many bonds did you buy?");
+        int volume = Integer.parseInt(sc.nextLine());
+        System.out.println("What is the year of Maturity?");
+        int year = Integer.parseInt(sc.nextLine());
+        System.out.println("What is the month of Maturity?");
+        int month = Integer.parseInt(sc.nextLine());
+        System.out.println("What is the day of Maturity");
+        int day = Integer.parseInt(sc.nextLine());
+        Date dateOfMaturity = new Date(month, day, year);
+        CreateBondRequest = new CreateBondRequest(this.username, name, interestRate, pricePerBond, volume, dateOfMaturity);
+    }
+
     public void disconnect() throws IOException {
         UserQuitRequest request = new UserQuitRequest(this.username);
         outbound.writeObject(request);
@@ -235,18 +315,47 @@ public class ClientUserInterface {
                     return;
             }
         }
-
-        String input = "0";
-        while (!input.equals("q")) {
-            System.out.println("Hello. You may now enter the following to do the following accounts");
-            System.out.println("Check your balance enter: b");
-            System.out.println("Deposit enter: d");
-            System.out.println("Get your transaction history: h");
-            System.out.println("Transfer money to someone else's account: t");
-            System.out.println("View your accounts: v");
-            System.out.println("Withdraw money: w");
+        client.updateDepositable();
+        String input;
+        while (true) {
+            System.out.println("Hello. You may now enter the following:");
+            System.out.println("Get basic owner info: a");
+            System.out.println("Deposit enter: b");
+            System.out.println("Withdraw money: c");
+            System.out.println("View your deposit record history: d");
+            System.out.println("View your withdrawal record history: e");
+            System.out.println("View all of your assets: f");
+            System.out.println("Cash out a non-depositable asset: g");
             System.out.println("To quit: q");
             input = scan.nextLine();
+            switch (input){
+                case "a":
+                    client.ownerInfo();
+                    break;
+                case "b":
+                    client.deposit();
+                case "c":
+                    client.withdrawal();
+                    break;
+                case "d":
+                    client.displayDepositRecord();
+                    break;
+                case "e":
+                    client.displayWithdrawalRecord();
+                    break;
+                case "f":
+                    client.viewInvestments();
+                case "g":
+                    client.cashOut();
+                case "q":
+                    try {
+                        client.disconnect();
+                    } catch (IOException e) {
+                        System.out.println("Caught an IO exception when closing socket connection");
+                    }
+                    break;
+
+            }
         }
 
 

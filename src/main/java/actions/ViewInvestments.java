@@ -1,9 +1,14 @@
 package actions;
 
+import action_request_response.ActionResponse;
+import action_request_response.ViewInvestmentsRequest;
+import action_request_response.ViewInvestmentsResponse;
 import entity.*;
 
+import java.util.ArrayList;
+
 public class ViewInvestments extends Actions{
-    private Depositable account;
+    private final ArrayList<FinancialAsset> listAssets;
 
     public ViewInvestments(Depositable account){
         this.account = account;
@@ -13,21 +18,8 @@ public class ViewInvestments extends Actions{
      * This method displays information on the Depositable accounts.
      * @return String of Depositable accounts.
      */
-    public String displayDepositable(){
-        StringBuilder display = new StringBuilder();
-        UpdateDepositable update = new UpdateDepositable(account);
-        if (account instanceof Savings){
-            display.append(String.format("%-18s%-18s%-18s%-18s\n","Account Type","Date Created", "Current Balance",
-                    "Annual Interest Rate"));
-            display.append(String.format("%-18s%-18s%-18s%-18s\n","Savings",account.getDateCreated(), update.valueDepositable(),
-                    account.getAnnualInterestRate()));
-        }
-        else{
-            display.append(String.format("%-18s%-18s%-18s%-18s\n","Account Type","Date Created", "Current Balance",
-                    "Annual Interest Rate"));
-            display.append(String.format("%-18s%-18s%-18s%-18s\n","Credit",account.getDateCreated(), update.valueDepositable(),
-                    account.getAnnualInterestRate()));
-        }
-        return display.toString();
+    @Override
+    public ActionResponse process() {
+        return new ViewInvestmentsResponse(listAssets.toString());
     }
 }

@@ -12,15 +12,12 @@ public class UpdateDepositable extends Actions{
     }
     /**
      * This method calculates the current balance of Depositable account.
-     * @return current balance of Depositable account.
      */
-    public double valueDepositable(){
-        Date d = new Date();
-        int numMonth = d.monthDifference(account.getDateCreated());
+    public void valueDepositable(Depositable asset){
+        int numMonth = date.monthDifference(asset.getDateCreated());
         for(int i=0; i<numMonth;i++){
-            account.addInterest();
+            asset.addInterest();
         }
-        return account.getBalance();
     }
 
 }

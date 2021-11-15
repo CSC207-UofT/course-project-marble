@@ -11,7 +11,10 @@ public abstract class Depositable extends FinancialAsset {
     public double getBalance() {
         return balance;
     }
-
+    @Override
+    public String toString(){
+        return "This asset created on " + super.getDateCreated() +  "has a balance of " + this.balance;
+    }
     public void setBalance(double balance) {
         this.balance = balance;
     }

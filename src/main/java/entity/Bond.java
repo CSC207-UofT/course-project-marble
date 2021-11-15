@@ -5,8 +5,8 @@ public class Bond extends NonDepositable {
     private final Date dateOfMaturity;
     private boolean cashedOut;
 
-    public Bond(int volume, float annualInterestRate, double pricePerBond, Date dateOfMaturity) {
-        super(annualInterestRate, volume, pricePerBond);
+    public Bond(int volume, float annualInterestRate, double pricePerBond, Date dateOfMaturity, String name) {
+        super(annualInterestRate, volume, pricePerBond, name);
         cashedOut = false;
         this.dateOfMaturity = dateOfMaturity;
     }
@@ -47,7 +47,6 @@ public class Bond extends NonDepositable {
     public double getTotalCost() {
         return super.getPricePerAsset() * super.getVolume();
     }
-
     /**
      * Retrurns price per bond
      *
