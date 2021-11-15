@@ -2,7 +2,6 @@ package actions;
 
 import action_request_response.UpdateDepositableRequest;
 import action_request_response.ActionResponse;
-import action_request_response.UpdateDepositableResponse;
 import entity.Date;
 import entity.Depositable;
 import entity.FinancialAsset;
