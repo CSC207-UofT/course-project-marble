@@ -13,7 +13,6 @@ import org.junit.jupiter.api.BeforeEach;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class testDisplayWithdrawalRecord {
-
     @BeforeEach
     public void setup() {
         OwnerRepository.getOwnerRepository().addOwner(new Owner("John Doe", "jd_123", "password"));
