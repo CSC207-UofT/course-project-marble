@@ -1,29 +1,30 @@
 package entity;
+
 import java.io.Serializable;
 import java.time.LocalDate;
-public class Date implements Comparable<Date>, Serializable{
+
+public class Date implements Comparable<Date>, Serializable {
     private final int month;
     private final int year;
     private final int day;
 
     /**
      * Constructor to create a date Object at a certain date.
+     *
      * @param month The month [1,12]
-     * @param year The year
-     * @param day The day [0,31]
+     * @param year  The year
+     * @param day   The day [0,31]
      */
     public Date(int month, int day, int year) {
-        if (month > 12 | month < 0){
+        if (month > 12 | month < 0) {
             this.month = 1;
-        }
-        else {
-        this.month = month;
+        } else {
+            this.month = month;
         }
         this.year = year;
-        if ( day > 31 | day < 0){
+        if (day > 31 | day < 0) {
             this.day = 1;
-        }
-        else{
+        } else {
             this.day = day;
         }
     }
@@ -40,6 +41,7 @@ public class Date implements Comparable<Date>, Serializable{
 
     /**
      * Returns the date in dd/mm/yyyy form.
+     *
      * @return String representation of the day
      */
     @Override
@@ -49,22 +51,24 @@ public class Date implements Comparable<Date>, Serializable{
 
     /**
      * Check if a passed object is equal to the instantiated date
+     *
      * @param obj Object that is being checked
      * @return returns true if they are the same object and date
      */
     @Override
-    public boolean equals(Object obj){
-        if (this == obj){
+    public boolean equals(Object obj) {
+        if (this == obj) {
             return true;
         }
-        if (this.getClass() != obj.getClass()){
+        if (this.getClass() != obj.getClass()) {
             return false;
         }
         return this.month == ((Date) obj).getMonth() && this.day == ((Date) obj).getDay() && this.year == ((Date) obj).getYear();
     }
 
     /**
-     *  Compare the current date object to another one that is passed
+     * Compare the current date object to another one that is passed
+     *
      * @param date Date object being compared too
      * @return -1 if less than, 0 if equal, 1 if greater than
      */
@@ -77,6 +81,7 @@ public class Date implements Comparable<Date>, Serializable{
 
     /**
      * Returns the month difference between this date and a given date
+     *
      * @param date a date in Date type
      * @return difference between this date and a given date
      */
@@ -101,6 +106,7 @@ public class Date implements Comparable<Date>, Serializable{
 
     /**
      * Getter for the month
+     *
      * @return integer value of the month.
      */
     public int getMonth() {
@@ -109,6 +115,7 @@ public class Date implements Comparable<Date>, Serializable{
 
     /**
      * Getter for the year
+     *
      * @return integer value of the year.
      */
     public int getYear() {
@@ -117,6 +124,7 @@ public class Date implements Comparable<Date>, Serializable{
 
     /**
      * Getter for the day
+     *
      * @return integer value of the day.
      */
     public int getDay() {
