@@ -7,7 +7,7 @@ import entity.Depositable;
  * a Deposit object needs to process a request from the User
  * to deposit
  */
-public class DepositRequest extends ActionRequest{
+public class DepositRequest extends ActionRequest {
     private final Depositable depositable;
     private final double amount;
 
@@ -16,9 +16,9 @@ public class DepositRequest extends ActionRequest{
      * balance
      *
      * @param username username connected owner object the request is for
-     * @param amount amount of money that the request wants to deposit in
+     * @param amount   amount of money that the request wants to deposit in
      */
-    public DepositRequest(String username, double amount){
+    public DepositRequest(String username, double amount) {
         super(username);
         this.amount = amount;
         this.depositable = null;
@@ -27,16 +27,21 @@ public class DepositRequest extends ActionRequest{
     /**
      * Initializer for when request wants to deposit into a Depositable object
      *
-     * @param username username connected owner object the request is for
-     * @param amount amount of money that the request wants to deposit in
+     * @param username    username connected owner object the request is for
+     * @param amount      amount of money that the request wants to deposit in
      * @param depositable Depositable object
      */
-    public DepositRequest(String username, double amount, Depositable depositable){
+    public DepositRequest(String username, double amount, Depositable depositable) {
         super(username);
         this.amount = amount;
         this.depositable = depositable;
     }
 
-    public double getAmount(){ return amount; }
-    public Depositable getDepositable(){ return depositable; }
+    public double getAmount() {
+        return amount;
+    }
+
+    public Depositable getDepositable() {
+        return depositable;
+    }
 }

@@ -31,7 +31,7 @@ public class testDateCompareTo {
 
     @Test
     public void dateEqual() {
-        assertTrue(d1.equals(d4));
+        assertEquals(d1, d4);
     }
 
     @Test

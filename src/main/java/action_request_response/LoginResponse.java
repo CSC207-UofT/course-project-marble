@@ -11,6 +11,7 @@ public class LoginResponse extends ActionResponse {
     public LoginResponse(boolean result) {
         this.result = result;
     }
+
     /**
      * Getter method for result in LoginResponse
      *

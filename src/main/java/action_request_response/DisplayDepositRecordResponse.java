@@ -9,9 +9,10 @@ public class DisplayDepositRecordResponse extends ActionResponse {
 
     /**
      * Constructor that creates a DisplayDepositRecord response returned from DisplayDepositRecord action
+     *
      * @param result an ArrayList of the users deposits.
      */
-    public DisplayDepositRecordResponse(ArrayList<Record> result){
+    public DisplayDepositRecordResponse(ArrayList<Record> result) {
         this.result = result;
     }
 

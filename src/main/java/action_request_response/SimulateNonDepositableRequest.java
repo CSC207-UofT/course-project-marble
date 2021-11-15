@@ -6,9 +6,10 @@ public class SimulateNonDepositableRequest extends ActionRequest {
     private final NonDepositable nonDepositableAsset;
 
     /**
-     * Constructer that creates a SimulateNonDepositable request that is used in the SimulateNonDepositable action
+     * Constructor that creates a SimulateNonDepositable request that is used in the SimulateNonDepositable action
+     *
      * @param username the users username
-     * @param asset the nondepositable asset the user is simulating on.
+     * @param asset    the non depositable asset the user is simulating on.
      */
     public SimulateNonDepositableRequest(String username, NonDepositable asset) {
         super(username);
