@@ -13,6 +13,7 @@ public class CreditCard extends Depositable {
 
     /**
      * Deposits money into the account
+     *
      * @param amount being deposited
      * @return new balance
      */
@@ -31,7 +32,7 @@ public class CreditCard extends Depositable {
     public void addInterest() {
         double monthlyInterest = super.getAnnualInterestRate() / 12;
         double temp = super.getBalance();
-        if (temp >= 0.0){
+        if (temp >= 0.0) {
             return;
         }
         temp = temp + (temp * (monthlyInterest / 100));
@@ -43,6 +44,7 @@ public class CreditCard extends Depositable {
 
     /**
      * Returns value today
+     *
      * @return worth of the account
      */
     @Override

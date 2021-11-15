@@ -17,7 +17,6 @@ public class Owner {
     private final ArrayList<Record> listRecord;
 
 
-
     /**
      * This is a constructor method to create an Owner object. Basically when this is called, a new Owner object is
      * created. Whether if it's from reading the backup txt files or called to create a new owner.
@@ -59,16 +58,16 @@ public class Owner {
         return this.userName;
     }
 
-    public ArrayList<Record> getListRecord(){
+    public ArrayList<Record> getListRecord() {
         return this.listRecord;
     }
 
 
-    public void addRecord(Record newRecord){
+    public void addRecord(Record newRecord) {
         this.listRecord.add(newRecord);
     }
 
-    public void addAsset(FinancialAsset newAsset){
+    public void addAsset(FinancialAsset newAsset) {
         this.listAssets.add(newAsset);
     }
 
@@ -80,34 +79,36 @@ public class Owner {
      * setBalance is to get owner's balance. Work with getBalance() when you want to adjust the balance.
      * This means there would be no increaseBalance or decreaseBalance, and should instead use
      * getBalance and setBalance by the Actions package.
+     *
      * @param amount the amount that you're going to set the balance to
      */
-    public void setBalance(double amount){
-        this.balance = (double)Math.round(amount * 100)/100;
+    public void setBalance(double amount) {
+        this.balance = (double) Math.round(amount * 100) / 100;
     }
 
-    public double getBalance(){
+    public double getBalance() {
         return this.balance;
     }
 
     /**
      * This method will store the Budget object that is created in the Action class.
      * Budget object is/should be created and customized under Actions using Budget's methods.
-     * @param categories a HashMap of all the categories and their budgets
-     * @param date the date when this budget starts
-     * @param period the period (eg. monthly, weekly, yearly, seasonal) for Actions to check when to
-     *               reset the remainingBudget based on the date.
      *
+     * @param categories a HashMap of all the categories and their budgets
+     * @param date       the date when this budget starts
+     * @param period     the period (eg. monthly, weekly, yearly, seasonal) for Actions to check when to
+     *                   reset the remainingBudget based on the date.
      */
-    public void setBudget(HashMap<String, Double> categories, Date date, String period){
+    public void setBudget(HashMap<String, Double> categories, Date date, String period) {
         this.budget = new Budget(categories, date, period);
     }
 
     /**
      * This method will get the Budget object of the Owner
+     *
      * @return Budget object that can be used to get various information, if budget has not been set, return null
      */
-    public Budget getBudget(){
+    public Budget getBudget() {
         return this.budget;
     }
 

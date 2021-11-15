@@ -26,15 +26,14 @@ public class OwnerRepository {
      */
     public static OwnerRepository getOwnerRepository() {
         if (ownerRepository == null) {
-            if (new File("OwnerRepo.json").exists()){
+            if (new File("OwnerRepo.json").exists()) {
                 try {
                     JSONTranslator jsonT = new JSONTranslator();
                     ownerRepository = (OwnerRepository) jsonT.readFromJSON(OwnerRepository.class, "OwnerRepo.json");
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
-            }
-            else{
+            } else {
                 ownerRepository = new OwnerRepository();
             }
         }

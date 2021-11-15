@@ -239,7 +239,8 @@ public class ClientUserInterface {
         }
 
     }
-    public void createSavings(){
+
+    public void createSavings() {
         Scanner sc = new Scanner(System.in);
         System.out.println("What is the savings accounts name?");
         String name = sc.nextLine();
@@ -259,6 +260,7 @@ public class ClientUserInterface {
             System.out.println("There was an error. Please try again");
         }
     }
+
     public void createBond() {
         Scanner sc = new Scanner(System.in);
         System.out.println("What is the name of the bond?");
@@ -297,7 +299,7 @@ public class ClientUserInterface {
         }
     }
 
-    public void changeSavingsBalance(){
+    public void changeSavingsBalance() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Which savings account?");
         String name = sc.nextLine();
@@ -451,7 +453,7 @@ public class ClientUserInterface {
                 case "i":
                     client.createSavings();
                     break;
-                case "j" :
+                case "j":
                     client.changeSavingsBalance();
                     break;
                 case "q":

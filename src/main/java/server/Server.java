@@ -30,6 +30,7 @@ public class Server {
 
     /**
      * This method waits for a connection to accept and returns that socket
+     *
      * @return the Socket for the client that has connected
      */
     public Socket accept() {
@@ -81,7 +82,7 @@ public class Server {
     static class ServerThread extends Thread {
         private final ObjectOutputStream outbound;
         private final ObjectInputStream inbound;
-        private final Socket  clientSocket;
+        private final Socket clientSocket;
         private final ActionFactory factory;
 
         ServerThread(Socket socket) throws IOException {
@@ -127,6 +128,7 @@ public class Server {
                 }
             }
         }
+
         /**
          * This method will close the client socket's connection.
          */
