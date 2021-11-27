@@ -120,10 +120,10 @@ public class Server {
                     }
 
                 } catch (IOException | ClassNotFoundException e) {
-                    System.out.println("Caught an IO exception when closing socket connection");
-                    System.out.println("Disconnecting");
-                    this.close();
-                    quit = true;
+                        System.out.println("Caught an IO exception when closing socket connection");
+                        System.out.println("Disconnecting");
+                        this.close();
+                        quit = true;
 
                 }
             }

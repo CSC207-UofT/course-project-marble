@@ -18,6 +18,7 @@ public class ChangeBalanceSaving extends Actions {
 
     public ChangeBalanceSaving(DepositSavingRequest request){
         owner = OwnerRepository.getOwnerRepository().findOwner(request.getUsername());
+        amount = request.getAmount();
         ArrayList<FinancialAsset> listAssets = owner.getListAssets();
         for (FinancialAsset asset: listAssets){
             if (asset instanceof Savings && Objects.equals(asset.getName(), request.getName())){
@@ -29,7 +30,7 @@ public class ChangeBalanceSaving extends Actions {
     }
     @Override
     public ActionResponse process(){
-        if (savings.getValue() + amount < 0) {
+        if (savings == null || savings.getValue() + amount < 0) {
             return new DepositSavingResponse(false);
         }
         double temp = owner.getBalance();
