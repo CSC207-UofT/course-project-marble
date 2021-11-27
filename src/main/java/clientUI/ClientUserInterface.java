@@ -44,6 +44,7 @@ public class ClientUserInterface {
         CreateUserRequest request = new CreateUserRequest(fullname, username, password);
         boolean connectionStatus = sendObject(request);
         if (!connectionStatus){
+            return false;
         }
         try {
             CreateUserResponse result = (CreateUserResponse) inbound.readObject();
@@ -307,6 +308,27 @@ public class ClientUserInterface {
         }
     }
 
+    public void splash(){
+        System.out.println("What do you want to do? Please return 1 to login or 2 to register!");
+        System.out.println("Enter 'q' to exit the program");
+        Scanner sc = new Scanner(System.in);
+        String answer = sc.nextLine();
+
+        switch (answer) {
+            case "1":
+                this.login();
+                break;
+            case "2":
+                boolean result2 = this.createUser();
+                if (!result2) {
+                    System.out.println("Login failed exiting");
+                }
+                break;
+            case "q":
+                this.disconnect();
+        }
+    }
+
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         ClientUserInterface client = new ClientUserInterface();
@@ -317,57 +339,13 @@ public class ClientUserInterface {
         }
 
         while (client.username == null) {
-            System.out.println("What do you want to do? Please return 1 to login or 2 to register!");
-            System.out.println("Enter 'q' to exit the program");
-            Scanner sc = new Scanner(System.in);
-            String answer = sc.nextLine();
-
-            switch (answer) {
-                case "1":
-                    try {
-                        boolean result = client.login();
-                        if (!result) {
-                            System.out.println("Login failed exiting");
-                        }
-                    } catch (IOException | ClassNotFoundException e) {
-                        System.out.println("Invalid command");
-                    }
-                    break;
-                case "2":
-                    try {
-                        boolean result = client.createUser();
-                        if (!result) {
-                            System.out.println("Login failed exiting");
-                        }
-                    } catch (IOException | ClassNotFoundException e) {
-                        System.out.println("Invalid command");
-                    }
-                    break;
-                case "q":
-                    try {
-                        client.disconnect();
-                    } catch (IOException e) {
-                        System.out.println("Caught an IO exception when closing socket connection");
-                    }
-                    return;
-            }
+            client.splash();
         }
         client.updateDepositable();
         String input;
         boolean running = true;
         while (running) {
-            System.out.println("Hello. You may now enter the following:");
-            System.out.println("Get basic owner info: a");
-            System.out.println("Deposit enter: b");
-            System.out.println("Withdraw money: c");
-            System.out.println("View your deposit record history: d");
-            System.out.println("View your withdrawal record history: e");
-            System.out.println("View all of your assets: f");
-            System.out.println("Cash out a non-depositable asset: g");
-            System.out.println("Buy a new bond: h");
-            System.out.println("Create a new savings account: i");
-            System.out.println("Add or remove money from a Savings account : j");
-            System.out.println("To quit: q");
+            Printer.menu();
             input = scan.nextLine();
             switch (input) {
                 case "a":
