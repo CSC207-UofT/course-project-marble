@@ -1,6 +1,9 @@
 package actions;
 
-public abstract class Simulate {
+import action_request_response.ActionResponse;
+import action_request_response.SimulateResponse;
+
+public abstract class Simulate extends Actions{
     /**
      * This is a constructor method for an abstract class for simulating worth of depositable and
      * nondepositable assets.
@@ -9,8 +12,10 @@ public abstract class Simulate {
 
     public abstract double getAssetValue(); // hook method
 
-    /** template method: This method returns a simulated asset value for a particular asset */
-    public double getSimulatedAssetValue() {
-        return getAssetValue();
+    /** Template method: This method returns an action response for the simulated asset value
+     * for a particular asset */
+    @Override
+    public ActionResponse process() {
+        return new SimulateResponse(getAssetValue());
     }
 }

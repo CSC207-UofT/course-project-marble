@@ -1,3 +1,5 @@
+Withdrawing from balance (and maybe savings???)
+
 Class name: Withdrawal
 Parent class: actions
 Children: none
@@ -7,7 +9,7 @@ Responsibilities:
 * subtracts an integer balance from a specified, existing account
    Methods:
 	* withdrawOut()
-   Variables: 
+   Variables:
 	* Owner own
 
 Collaborators:

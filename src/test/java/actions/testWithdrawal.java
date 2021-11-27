@@ -1,5 +1,11 @@
 package actions;
+
+import action_request_response.WithdrawalRequest;
+import action_request_response.WithdrawalResponse;
 import entity.Owner;
+import entity.OwnerRepository;
+
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -10,20 +16,31 @@ public class testWithdrawal {
 
     @BeforeEach
     public void setup() {
-        user = new Owner("John Doe", "jd_123", "password");
+        OwnerRepository.getOwnerRepository().addOwner(new Owner("John Doe", "jd_123", "password"));
+        user = OwnerRepository.getOwnerRepository().findOwner("jd_123");
         user.setBalance(1000);
+    }
+
+    @AfterEach
+    public void teardown() {
+        OwnerRepository.getOwnerRepository().deleteOwner("jd_123");
     }
 
     @Test
     public void testWithdrawSuccess(){
-        Withdrawal userWithdrawal = new Withdrawal(user);
-        assertTrue(userWithdrawal.withdraw(200));
-        assertEquals(800, user.getBalance());
+        WithdrawalRequest withdrawRequest = new WithdrawalRequest("jd_123", 200.0, "Bill", "Electricity");
+        Withdrawal withdraw = new Withdrawal(withdrawRequest);
+        WithdrawalResponse response = (WithdrawalResponse) withdraw.process();
+        assertEquals(800.0, user.getBalance());
+        assertTrue(response.getResult());
     }
+
     @Test
     public void testWithdrawFailure(){
-        Withdrawal userWithdrawal = new Withdrawal(user);
-        assertFalse(userWithdrawal.withdraw(2000));
-        assertEquals(1000, user.getBalance());
+        WithdrawalRequest withdrawRequest = new WithdrawalRequest("jd_123", 2000.0, "Entertainment", "New Furniture");
+        Withdrawal withdraw = new Withdrawal(withdrawRequest);
+        WithdrawalResponse response = (WithdrawalResponse) withdraw.process();
+        assertEquals(1000.0, user.getBalance());
+        assertFalse(response.getResult());
     }
 }

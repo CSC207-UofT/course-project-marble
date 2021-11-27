@@ -1,19 +1,24 @@
 package action_request_response;
 
-import entity.NonDepositable;
-import entity.OwnerRepository;
+/**
+ * Class is responsible for containing the information CashOut
+ * uses to process a CashOut request
+ */
+public class CashOutRequest extends ActionRequest {
+    private final String name;
 
-public class CashOutRequest extends ActionRequest{
-    private final String username;
-    private final NonDepositable investment;
-
-    public CashOutRequest(String username, NonDepositable investment){
+    /**
+     * Initializer
+     *
+     * @param username username attached to the Owner object request is for
+     * @param name     The name of the asset.
+     */
+    public CashOutRequest(String username, String name) {
         super(username);
-        this.username = username;
-        this.investment = investment;
+        this.name = name;
     }
 
-    public String getUsername(){ return username; }
-
-    public NonDepositable getInvestment(){ return investment; }
+    public String getName() {
+        return name;
+    }
 }

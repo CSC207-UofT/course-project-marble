@@ -28,8 +28,9 @@ public class testCashOut {
         OwnerRepository.getOwnerRepository().addOwner(own);
         owner = OwnerRepository.getOwnerRepository().findOwner("jd");
         Date dateOfMaturity = new Date();
-        investment = new Bond(5, 5f, 12.5, dateOfMaturity);
-        request = new CashOutRequest("jd", investment);
+        investment = new Bond(5, 5f, 12.5, dateOfMaturity, "Bond1");
+        owner.addAsset(investment);
+        request = new CashOutRequest("jd", "Bond1");
         callAction = new CashOut(request);
     }
     @AfterEach
@@ -52,7 +53,7 @@ public class testCashOut {
         assertEquals(62.5, owner.getBalance());
         // trying to call on an action twice means putting in a new request
         // the second time you call for it
-        request = new CashOutRequest("jd", investment);
+        request = new CashOutRequest("jd", "Bond1");
         callAction = new CashOut(request);
         result = callAction.process();
         assertFalse(((CashOutResponse) result).getResult());
@@ -62,8 +63,8 @@ public class testCashOut {
     @Test
     public void testCashOutNonMature(){
         Date fakeDate = new Date(11, 12, 2300);
-        investment = new Bond(5, 5f, 12.5, fakeDate);
-        request = new CashOutRequest("jd", investment);
+        investment = new Bond(5, 5f, 12.5, fakeDate, "Bond2");
+        request = new CashOutRequest("jd", "Bond2");
         callAction = new CashOut(request);
         ActionResponse result = callAction.process();
         assertFalse(((CashOutResponse) result).getResult());

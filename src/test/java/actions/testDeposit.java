@@ -29,18 +29,6 @@ public class testDeposit {
     }
 
     @Test
-    public void testDepositSavings(){
-        Savings savings = new Savings(5.5);
-        request = new DepositRequest("OliveBoyz", 11.50, savings);
-        Deposit callDeposit = new Deposit(request);
-        ActionResponse response = callDeposit.process();
-
-        assertTrue(((DepositResponse) response).getResult());
-        assertEquals(11.5, savings.getBalance());
-
-    }
-
-    @Test
     public void testDepositBalance(){
         request = new DepositRequest("OliveBoyz", 11.5);
         Deposit callDeposit = new Deposit(request);
@@ -48,17 +36,6 @@ public class testDeposit {
 
         assertTrue(((DepositResponse) response).getResult());
         assertEquals(11.50, owner.getBalance());
-    }
-
-    @Test
-    public void testDepositCreditCard(){
-        CreditCard creditCard = new CreditCard();
-        request = new DepositRequest("OliveBoyz", 11.50, creditCard);
-        Deposit callDeposit = new Deposit(request);
-        ActionResponse response = callDeposit.process();
-
-        assertTrue(((DepositResponse) response).getResult());
-        assertEquals(11.5, creditCard.getBalance());
     }
 
     @Test

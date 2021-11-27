@@ -1,0 +1,13 @@
+Class Name: WithdrawalResponse
+Parent class: ActionResponse
+Children: None
+
+Responsibilities:
+* Provides a response to whether an amount is withdrawn from the balance
+  Methods:
+    * getResult()
+  Variables:
+    * boolean result
+
+Collaborator:
+* Withdrawal

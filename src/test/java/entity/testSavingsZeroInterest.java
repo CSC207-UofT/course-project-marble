@@ -9,7 +9,7 @@ public class testSavingsZeroInterest {
     private Savings SavingAcc;
     @BeforeEach
     public void setUp() {
-        SavingAcc = new Savings(0.0);
+        SavingAcc = new Savings(0.0, "Savings1");
     }
     @Test
     public void checkAddInterestZeroTimes() {

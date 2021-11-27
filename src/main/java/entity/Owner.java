@@ -1,6 +1,5 @@
 package entity;
 
-
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -14,14 +13,13 @@ public class Owner {
     private final byte[] password;
     private double balance;
     private Budget budget;
-    private final ArrayList<SpendingRecord> listOfSpendingRecord;
-    private final ArrayList<DepositRecord> listOfDepositRecord;
-
+    private final ArrayList<FinancialAsset> listAssets;
+    private final ArrayList<Record> listRecord;
 
 
     /**
      * This is a constructor method to create an Owner object. Basically when this is called, a new Owner object is
-     * created. Whether if its from reading the backup txt files or called to create a new owner.
+     * created. Whether if it's from reading the backup txt files or called to create a new owner.
      *
      * @param fullName The full name of the user is stored here.
      * @param username The username that the person decided to use and to login is stored here.
@@ -30,8 +28,7 @@ public class Owner {
     public Owner(String fullName, String username, String password) {
         this.fullName = fullName;
         this.userName = username;
-        this.listOfDepositRecord = new ArrayList<>();
-        this.listOfSpendingRecord = new ArrayList<>();
+        this.listRecord = new ArrayList<>();
 
         this.balance = 0;
         this.budget = null;
@@ -44,13 +41,14 @@ public class Owner {
         }
         assert md != null;
         this.password = md.digest(password.getBytes(StandardCharsets.UTF_8));
+        listAssets = new ArrayList<>();
     }
 
     @Override
     public String toString() {
-        return this.userName;
+        return "User Profile:\nName: " + this.fullName + "\nUsername: " +
+                this.userName + "\nBalance: $" + this.balance + "\n";
     }
-
 
     public String getName() {
         return this.fullName;
@@ -60,54 +58,57 @@ public class Owner {
         return this.userName;
     }
 
-    public ArrayList<DepositRecord> getListOfDepositRecord(){
-        return this.listOfDepositRecord;
+    public ArrayList<Record> getListRecord() {
+        return this.listRecord;
     }
 
-    public ArrayList<SpendingRecord> getListOfSpendingRecord(){
-        return this.listOfSpendingRecord;
+
+    public void addRecord(Record newRecord) {
+        this.listRecord.add(newRecord);
     }
 
-    public void addDepositRecord(DepositRecord newDepositRecord){
-        this.listOfDepositRecord.add(newDepositRecord);
+    public void addAsset(FinancialAsset newAsset) {
+        this.listAssets.add(newAsset);
     }
 
-    public void addSpendingRecord(SpendingRecord newSpendingRecord){
-        this.listOfSpendingRecord.add(newSpendingRecord);
+    public ArrayList<FinancialAsset> getListAssets() {
+        return listAssets;
     }
 
     /**
      * setBalance is to get owner's balance. Work with getBalance() when you want to adjust the balance.
      * This means there would be no increaseBalance or decreaseBalance, and should instead use
      * getBalance and setBalance by the Actions package.
-     * @param amount the amount that you going to set the balance to
+     *
+     * @param amount the amount that you're going to set the balance to
      */
-    public void setBalance(double amount){
-        this.balance = amount;
+    public void setBalance(double amount) {
+        this.balance = (double) Math.round(amount * 100) / 100;
     }
 
-    public double getBalance(){
+    public double getBalance() {
         return this.balance;
     }
 
     /**
      * This method will store the Budget object that is created in the Action class.
-     * Budget object is/should created and customized under Actions using Budget's methods.
-     * @param categories a HashMap of all the categories and their budgets
-     * @param date the date when this budget starts
-     * @param period the period (eg. monthly, weekly, yearly, seasonal) for Actions to check when to
-     *               reset the remainingBudget based on the date.
+     * Budget object is/should be created and customized under Actions using Budget's methods.
      *
+     * @param categories a HashMap of all the categories and their budgets
+     * @param date       the date when this budget starts
+     * @param period     the period (eg. monthly, weekly, yearly, seasonal) for Actions to check when to
+     *                   reset the remainingBudget based on the date.
      */
-    public void setBudget(HashMap<String, Double> categories, Date date, String period){
+    public void setBudget(HashMap<String, Double> categories, Date date, String period) {
         this.budget = new Budget(categories, date, period);
     }
 
     /**
      * This method will get the Budget object of the Owner
+     *
      * @return Budget object that can be used to get various information, if budget has not been set, return null
      */
-    public Budget getBudget(){
+    public Budget getBudget() {
         return this.budget;
     }
 
@@ -135,5 +136,5 @@ public class Owner {
         return false;
     }
 
-
 }
+

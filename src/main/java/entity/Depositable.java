@@ -2,8 +2,9 @@ package entity;
 
 public abstract class Depositable extends FinancialAsset {
     private double balance;
-    public Depositable(double annualInterestRate){
-        super(annualInterestRate);
+
+    public Depositable(double annualInterestRate, String name) {
+        super(annualInterestRate, name);
 
         this.balance = 0;
     }
@@ -12,9 +13,16 @@ public abstract class Depositable extends FinancialAsset {
         return balance;
     }
 
+    @Override
+    public String toString() {
+        return "This asset created on " + super.getDateCreated() + "has a balance of " + this.balance;
+    }
+
     public void setBalance(double balance) {
         this.balance = balance;
     }
+
     public abstract double deposit(double amount);
+
     public abstract void addInterest();
 }

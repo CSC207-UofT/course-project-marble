@@ -1,0 +1,24 @@
+string_reformat_and_docstrings
+Class name: CompareBudget
+Parent class: actions
+Children: none
+Properties to note: none
+
+Responsibilities:
+* From the total budget amount, calculates an ideal budget
+  following the 50/20/30 rule and returns a display of both it and
+  the User's current budget
+	* Budget budget
+    * double total
+    * ArrayList<String> ruleBudget
+
+Collaborators:
+* ActionResponse
+* CompareBudgetRequest
+* CompareBudgetResponse
+* Budget
+* ArrayList
+* StringBuilder
+
+Calculates 50/20/30 values and displays it in comparison to actual
+main

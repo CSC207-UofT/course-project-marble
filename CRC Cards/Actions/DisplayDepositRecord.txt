@@ -1,0 +1,17 @@
+Class name: DisplayDepositRecord
+Parent Class: Actions
+Children: None
+
+Responsibilities:
+* Displays the deposit record from the users transaction record.
+  Methods:
+    * process()
+  Variables:
+    * Owner user
+    
+ Collaborators:
+  * DisplayDepositRecordRequest
+  * DisplayDepositRecordResponse
+  * OwnerRepository
+  * Record
+  * Owner
