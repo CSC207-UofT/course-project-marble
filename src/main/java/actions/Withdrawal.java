@@ -1,8 +1,12 @@
 package actions;
+
 import action_request_response.ActionResponse;
 import action_request_response.WithdrawalRequest;
 import action_request_response.WithdrawalResponse;
-import entity.*;
+import entity.Date;
+import entity.Owner;
+import entity.OwnerRepository;
+import entity.Record;
 
 public class Withdrawal extends Actions{
     private final Owner user;
