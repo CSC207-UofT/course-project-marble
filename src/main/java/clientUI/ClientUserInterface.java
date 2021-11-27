@@ -33,7 +33,7 @@ public class ClientUserInterface {
         }
     }
 
-    public boolean createUser() throws IOException, ClassNotFoundException {
+    public boolean createUser() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Please enter your fullname");
         String fullname = sc.nextLine();
@@ -45,51 +45,49 @@ public class ClientUserInterface {
         boolean connectionStatus = sendObject(request);
         if (!connectionStatus){
         }
-
-        CreateUserResponse result = (CreateUserResponse) inbound.readObject();
-        if (result.getResult()) {
-            this.username = username;
-            System.out.println("Thanks! You have created an account. " +
-                    "You are now logged into it!");
-            return true;
-        } else {
-            this.username = null;
-            System.out.println("Username already exist. Please change to another username.");
+        try {
+            CreateUserResponse result = (CreateUserResponse) inbound.readObject();
+            if (result.getResult()) {
+                this.username = username;
+                System.out.println("Thanks! You have created an account. " +
+                        "You are now logged into it!");
+                return true;
+            } else {
+                this.username = null;
+                System.out.println("Username already exist. Please change to another username.");
+                return false;
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("An error occurred. Please try again");
             return false;
         }
-
     }
 
-    public boolean login() throws IOException, ClassNotFoundException {
+    public void login() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Please enter your username");
         String username = sc.nextLine();
         System.out.println("Please enter your password");
         String password = sc.nextLine();
         LoginRequest request = new LoginRequest(username, password);
-        outbound.writeObject(request);
-        outbound.flush();
-
-        LoginResponse result = (LoginResponse) inbound.readObject();
-        if (result.getResult()) {
-            System.out.println("Success");
-            this.username = username;
-            return true;
-        } else {
-            this.username = null;
-            System.out.println("Failure");
-            return false;
+        sendObject(request);
+        try {
+            LoginResponse result = (LoginResponse) inbound.readObject();
+            if (result.getResult()) {
+                this.username = username;
+                System.out.println("Login successful!");
+            } else {
+                this.username = null;
+                System.out.println("Login Failed. Please try again.");
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("An error occurred. Please try again");
         }
     }
 
     public void ownerInfo() {
         OwnerInfoRequest request = new OwnerInfoRequest(username);
-        try {
-            outbound.writeObject(request);
-            outbound.flush();
-        } catch (IOException e) {
-            System.out.println("An error occurred. Please try again");
-        }
+        sendObject(request);
         try {
             System.out.println("Processing");
             OwnerInfoResponse result = (OwnerInfoResponse) inbound.readObject();
@@ -141,7 +139,6 @@ public class ClientUserInterface {
         double amount = Double.parseDouble(sc.nextLine());
         DepositRequest request = new DepositRequest(this.username, amount);
         sendObject(request);
-
         try {
             DepositResponse result = (DepositResponse) inbound.readObject();
             if (result.getResult()) {
@@ -214,12 +211,7 @@ public class ClientUserInterface {
         System.out.println("What is the interestRate?");
         double interestRate = Double.parseDouble(sc.nextLine());
         CreateSavingRequest request = new CreateSavingRequest(this.username, interestRate, name);
-        try {
-            outbound.writeObject(request);
-            outbound.flush();
-        } catch (IOException e) {
-            System.out.println("There was an error. Please try again.");
-        }
+        sendObject(request);
         try {
             ActionResponse result = (ActionResponse) inbound.readObject();
             System.out.println("You were successful");
@@ -246,13 +238,7 @@ public class ClientUserInterface {
         int day = Integer.parseInt(sc.nextLine());
         Date dateOfMaturity = new Date(month, day, year);
         CreateBondRequest request = new CreateBondRequest(this.username, name, interestRate, pricePerBond, volume, dateOfMaturity);
-        try {
-            outbound.writeObject(request);
-            outbound.flush();
-        } catch (IOException e) {
-            System.out.println("There was an error. Please try again.");
-            return;
-        }
+        sendObject(request);
         try {
             CreateBondResponse result = (CreateBondResponse) inbound.readObject();
             boolean response = result.getResult();
@@ -273,13 +259,7 @@ public class ClientUserInterface {
         System.out.println("How much? +ve value to add to your savings. -ve to remove");
         double amount = Double.parseDouble(sc.nextLine());
         DepositSavingRequest request = new DepositSavingRequest(username, name, amount);
-        try {
-            outbound.writeObject(request);
-            outbound.flush();
-        } catch (IOException e) {
-            System.out.println("There was an error. Please try again.");
-            return;
-        }
+        sendObject(request);
         try {
             DepositSavingResponse result = (DepositSavingResponse) inbound.readObject();
             boolean response = result.getResult();
@@ -298,13 +278,7 @@ public class ClientUserInterface {
      */
     private void storeOwnerRepository() {
         StoreDataInJsonRequest request = new StoreDataInJsonRequest("OwnerRepo.json");
-        try {
-            outbound.writeObject(request);
-            outbound.flush();
-        } catch (IOException e) {
-            System.out.println("There was an error. Please try again.");
-            return;
-        }
+        sendObject(request);
         try {
             StoreDataInJsonResponse result = (StoreDataInJsonResponse) inbound.readObject();
             boolean response = result.getResult();
@@ -319,15 +293,18 @@ public class ClientUserInterface {
     }
 
 
-    public void disconnect() throws IOException {
+    public void disconnect() {
         UserQuitRequest request = new UserQuitRequest(this.username);
-        outbound.writeObject(request);
-        outbound.flush();
+        sendObject(request);
         System.out.println("Quit request flushed");
-        inbound.close();
-        outbound.close();
-        clientSocket.close();
-        System.out.println("Disconnected");
+        try {
+            inbound.close();
+            outbound.close();
+            clientSocket.close();
+            System.out.println("Disconnected");
+        } catch (IOException e) {
+            System.out.println("Caught an IO exception when closing socket connection");
+        }
     }
 
     public static void main(String[] args) {
@@ -424,16 +401,10 @@ public class ClientUserInterface {
                     client.changeSavingsBalance();
                     break;
                 case "q":
-                    try {
-                        client.storeOwnerRepository();
-                        client.disconnect();
-                        running = false;
-                        break;
-                    } catch (IOException e) {
-                        System.out.println("Caught an IO exception when closing socket connection");
-                    }
+                    client.storeOwnerRepository();
+                    client.disconnect();
+                    running = false;
                     break;
-
             }
         }
     }
