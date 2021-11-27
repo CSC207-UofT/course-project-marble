@@ -108,13 +108,7 @@ public class ClientUserInterface {
         System.out.println("Why do you need this?");
         String description = sc.nextLine();
         WithdrawalRequest request = new WithdrawalRequest(this.username, amount, category, description);
-        try {
-            outbound.writeObject(request);
-            outbound.flush();
-        } catch (IOException e) {
-            System.out.println("There was an error. Please try again.");
-            return;
-        }
+        sendObject(request);
         boolean response;
         try {
             WithdrawalResponse result = (WithdrawalResponse) inbound.readObject();
@@ -132,13 +126,7 @@ public class ClientUserInterface {
 
     public void displayWithdrawalRecord() {
         DisplayWithdrawalRecordRequest request = new DisplayWithdrawalRecordRequest(username);
-        try {
-            outbound.writeObject(request);
-            outbound.flush();
-        } catch (IOException e) {
-            System.out.println("There was an error. Please try again.");
-            return;
-        }
+        sendObject(request);
         try {
             DisplayWithdrawalRecordResponse result = (DisplayWithdrawalRecordResponse) inbound.readObject();
             System.out.println(result.getResult());
@@ -152,13 +140,7 @@ public class ClientUserInterface {
         System.out.println("Please enter how much you want to deposit?");
         double amount = Double.parseDouble(sc.nextLine());
         DepositRequest request = new DepositRequest(this.username, amount);
-        try {
-            outbound.writeObject(request);
-            outbound.flush();
-        } catch (IOException e) {
-            System.out.println("There was an error. Please try again.");
-            return;
-        }
+        sendObject(request);
 
         try {
             DepositResponse result = (DepositResponse) inbound.readObject();
@@ -174,14 +156,7 @@ public class ClientUserInterface {
 
     public void displayDepositRecord() {
         DisplayDepositRecordRequest request = new DisplayDepositRecordRequest(this.username);
-        try {
-            outbound.writeObject(request);
-            outbound.flush();
-        } catch (IOException e) {
-            System.out.println("There was an error. Please try again.");
-            return;
-        }
-
+        sendObject(request);
         try {
             DisplayDepositRecordResponse result = (DisplayDepositRecordResponse) inbound.readObject();
             System.out.println(result.getResult());
@@ -192,12 +167,7 @@ public class ClientUserInterface {
 
     public void updateDepositable() {
         UpdateDepositableRequest request = new UpdateDepositableRequest(this.username);
-        try {
-            outbound.writeObject(request);
-            outbound.flush();
-        } catch (IOException e) {
-            System.out.println("There was an error. Please try again.");
-        }
+        sendObject(request);
         try {
             ActionResponse result = (ActionResponse) inbound.readObject();
             System.out.println("You were successful");
@@ -208,13 +178,7 @@ public class ClientUserInterface {
 
     public void viewInvestments() {
         ViewInvestmentsRequest request = new ViewInvestmentsRequest(username);
-        try {
-            outbound.writeObject(request);
-            outbound.flush();
-        } catch (IOException e) {
-            System.out.println("There was an error. Please try again.");
-            return;
-        }
+        sendObject(request);
         try {
             ViewInvestmentsResponse result = (ViewInvestmentsResponse) inbound.readObject();
             System.out.println(result.getResult());
@@ -228,13 +192,7 @@ public class ClientUserInterface {
         System.out.println("What is the name of the asset you want to cash out?");
         String name = sc.nextLine();
         CashOutRequest request = new CashOutRequest(username, name);
-        try {
-            outbound.writeObject(request);
-            outbound.flush();
-        } catch (IOException e) {
-            System.out.println("There was an error. Please try again.");
-            return;
-        }
+        sendObject(request);
         try {
             CashOutResponse result = (CashOutResponse) inbound.readObject();
             boolean response = result.getResult();
@@ -338,7 +296,7 @@ public class ClientUserInterface {
     /**
      * Stores the current OwnerRepo into a json via actions, this occurs before program terminates
      */
-    private void storeOwnerRepo() {
+    private void storeOwnerRepository() {
         StoreDataInJsonRequest request = new StoreDataInJsonRequest("OwnerRepo.json");
         try {
             outbound.writeObject(request);
@@ -467,7 +425,7 @@ public class ClientUserInterface {
                     break;
                 case "q":
                     try {
-                        client.storeOwnerRepo();
+                        client.storeOwnerRepository();
                         client.disconnect();
                         running = false;
                         break;
