@@ -4,14 +4,16 @@ import java.io.Serializable;
 
 public abstract class ActionRequest implements Serializable {
     private final String username;
+    private final Commands command;
 
     /**
      * Constructor that creates an instance of ActionRequest given a username
      *
      * @param username String username of the user
      */
-    public ActionRequest(String username) {
+    public ActionRequest(String username, Commands command) {
         this.username = username;
+        this.command = command;
     }
 
     /**
@@ -30,5 +32,13 @@ public abstract class ActionRequest implements Serializable {
      */
     public String getUsername() {
         return username;
+    }
+
+    /**
+     * This is a getter for the command instance variable in the data class\
+     * @return enum of the action type
+     */
+    public Commands getCommand() {
+        return command;
     }
 }
