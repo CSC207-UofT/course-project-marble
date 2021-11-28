@@ -1,7 +1,10 @@
 package actions;
+import action_request_response.ActionRequest;
 import action_request_response.ActionResponse;
 import action_request_response.DepositResponse;
 import entity.*;
+
+import java.util.ArrayList;
 
 /**
  * Class is responsible for handling a request by user to
@@ -20,11 +23,11 @@ public class Deposit extends Actions{
      * @param request contains all data for an object of the class to
      *                process
      */
-    public Deposit(DepositRequest request){
+    public Deposit(ActionRequest request){
         this.owner = OwnerRepository.getOwnerRepository().findOwner(request.getUsername());
-        this.amount = request.getAmount();
+        ArrayList<String> userInputs = request.getUserInputs();
+        this.amount = Double.parseDouble(userInputs.get(0));
         this.date = new Date();
-
     }
 
     /**

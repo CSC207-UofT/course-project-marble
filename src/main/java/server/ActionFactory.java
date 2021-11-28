@@ -12,6 +12,8 @@ public class ActionFactory {
                 return new CheckLogin(request);
             case WITHDRAWAL:
                 return new Withdrawal(request);
+            case DEPOSIT:
+                return new Deposit(request);
         }
         if (request instanceof LoginRequest) {
             return new CheckLogin((LoginRequest) request);
