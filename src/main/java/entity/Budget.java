@@ -12,6 +12,7 @@ public class Budget {
      * categories: the types of budget categories (ex: food, clothing, gas...)
      * date: the date the budget is created
      * period: The period of the renewal of the budget (ex: weekly, bi-weekly, monthly)
+
      */
 
     private double totalBudget;
@@ -20,6 +21,7 @@ public class Budget {
     private Date date;
     private String period;
     private boolean active;
+    private final HashMap<Date, Budget> budgetHistory = new HashMap<>();
 
 
     public String toString(){
@@ -40,6 +42,8 @@ public class Budget {
         this.remainingBudget = new HashMap<>(categories);
         this.date = date;
         this.period = period;
+        this.budgetHistory.put(this.getDate(),this);
+
     }
 
 
@@ -150,6 +154,26 @@ public class Budget {
     public double getGoalCategoryBudget(String catergoryName) {
         return goalBudget.get(catergoryName);
     }
+    /**
+     * addBudgetHistory takes a budget and stores it into a BudgetHistory period.
+     * Ex: (January 1rst, 2021: ("food": 50, "rent": 1500, "memberships and subscriptions": 100))
+     * */
+    public void addBudgetHistory(Budget newBudget){this.budgetHistory.put(newBudget.getDate(), newBudget);}
+    /**
+     * getAllBudgetHistoryPeriods returns a list of all the periods where budgets were made.*/
+    public ArrayList<Date> getAllBudgetHistoryPeriods(){return new ArrayList<Date>(this.budgetHistory.keySet());}
+
+    /**
+     * getPeriodBudgets takes the requested period and returns all the budget amounts of each category of that period.
+     * */
+    public Budget getDateBudget(Date period){return this.budgetHistory.get(period);}
+
+    /**
+     * getCategoriesInPeriod returns all the categories budgeted in that period.*/
+    public ArrayList<String> getDateCategories(Date period){ return new ArrayList<String>(this.budgetHistory.get(period).getCategories());}
+
+    public HashMap<Date, Budget> getBudgetHistory(){return this.budgetHistory;}
+
 
 
 }
