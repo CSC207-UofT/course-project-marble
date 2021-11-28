@@ -15,7 +15,7 @@ public class Owner {
     private Budget budget;
     private final ArrayList<FinancialAsset> listAssets;
     private final ArrayList<Record> listRecord;
-    private final ArrayList<Integer> budgetHistory;
+    private final HashMap<Date, HashMap<String, Double>> budgetHistory;
 
 
 
@@ -26,12 +26,14 @@ public class Owner {
      * @param fullName The full name of the user is stored here.
      * @param username The username that the person decided to use and to login is stored here.
      * @param password The password
+     *
+     *
      */
     public Owner(String fullName, String username, String password) {
         this.fullName = fullName;
         this.userName = username;
         this.listRecord = new ArrayList<>();
-        this.budgetHistory = new ArrayList<>();
+        this.budgetHistory = new HashMap<Date, HashMap<String, Double>>();
 
         this.balance = 0;
         this.budget = null;
@@ -78,9 +80,29 @@ public class Owner {
         return listAssets;
     }
 
-    public void addBudgetHistory(int residue){this.budgetHistory.add(residue);}
+    /**
+     * addBudgetHistory takes an amount for a category and stores it into BudgetHistory period.
+     * Since there are multiple budgets for a period, period is used as a key.
+     * Ex: (January 1rst, 2021: ("food": 50, "rent": 1500, "memberships and subscriptions": 100))
+     * */
+    public void addBudgetHistory(double amount, String category, Date period){
+        this.budgetHistory.put(period, new HashMap<>());
+//        will the above erase the previous?
+        this.budgetHistory.get(period).put(category, amount);
+    }
+    /**
+     * getAllBudgetHistoryPeriods returns a list of all the periods where budgets were made.*/
+    public ArrayList<Date> getAllBudgetHistoryPeriods(){return new ArrayList<Date>(this.budgetHistory.keySet());}
 
-    public ArrayList<Integer> getBudgetHistory(){return this.budgetHistory;}
+    /**
+     * getPeriodBudgets takes the requested period and returns all the budget amounts of each category of that period.
+     * */
+    public HashMap<String, Double> getPeriodBudgets(Date period){return this.budgetHistory.get(period);}
+
+    /**
+     * getCategoriesInPeriod returns all the categories budgeted in that period.*/
+    public ArrayList<String> getCategoriesInPeriod(Date period){ return new ArrayList<String>(this.budgetHistory.get(period).keySet());}
+
 
     /**
      * setBalance is to get owner's balance. Work with getBalance() when you want to adjust the balance.
