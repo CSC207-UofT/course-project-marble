@@ -10,6 +10,10 @@ public class ActionFactory {
         switch (command){
             case LOGIN:
                 return new CheckLogin(request);
+            case CREATEUSER:
+                return new CreateOwner(request);
+            case OWNERINFO:
+                return new OwnerInfo(request);
             case WITHDRAWAL:
                 return new Withdrawal(request);
             case DEPOSIT:

@@ -17,7 +17,7 @@ public class OwnerInfo extends Actions{
      * @param request contains the needed information the class
      *                object will process
      */
-    public OwnerInfo(OwnerInfoRequest request){
+    public OwnerInfo(ActionRequest request){
         owner = OwnerRepository.getOwnerRepository().findOwner(request.getUsername());
     }
 
