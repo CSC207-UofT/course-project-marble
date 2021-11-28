@@ -10,7 +10,8 @@ public class ActionFactory {
         switch (command){
             case LOGIN:
                 return new CheckLogin(request);
-
+            case WITHDRAWAL:
+                return new Withdrawal(request);
         }
         if (request instanceof LoginRequest) {
             return new CheckLogin((LoginRequest) request);

@@ -1,7 +1,10 @@
 package actions;
+import action_request_response.ActionRequest;
 import action_request_response.ActionResponse;
 import action_request_response.WithdrawalResponse;
 import entity.*;
+
+import java.util.ArrayList;
 
 public class Withdrawal extends Actions{
     private final Owner user;
@@ -10,12 +13,13 @@ public class Withdrawal extends Actions{
     private final String category;
     private final String description;
 
-    public Withdrawal(WithdrawalRequest request){
+    public Withdrawal(ActionRequest request){
         this.user = OwnerRepository.getOwnerRepository().findOwner(request.getUsername());
         this.date = new Date();
-        this.cost = request.getCost();
-        this.category = request.getCategory();
-        this.description = request.getDescription();
+        ArrayList<String> userInputs = request.getUserInputs();
+        this.cost = Double.parseDouble(userInputs.get(0));
+        this.category = userInputs.get(1);
+        this.description = userInputs.get(2);
     }
 
     /**
