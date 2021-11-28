@@ -1,7 +1,6 @@
 package actions;
 
 import action_request_response.ActionResponse;
-import action_request_response.ViewInvestmentsRequest;
 import action_request_response.ViewInvestmentsResponse;
 import entity.*;
 

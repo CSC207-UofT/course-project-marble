@@ -1,7 +1,6 @@
 package actions;
 
 import action_request_response.ActionResponse;
-import action_request_response.OwnerInfoRequest;
 import action_request_response.OwnerInfoResponse;
 import entity.Owner;
 import entity.OwnerRepository;

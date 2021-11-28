@@ -1,6 +1,5 @@
 package actions;
 
-import action_request_response.SimulateDepositableRequest;
 import entity.Date;
 import entity.Depositable;
 

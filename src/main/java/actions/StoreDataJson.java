@@ -1,7 +1,6 @@
 package actions;
 
 import action_request_response.ActionResponse;
-import action_request_response.StoreDataInJsonRequest;
 import action_request_response.StoreDataInJsonResponse;
 import entity.OwnerRepository;
 import server.JSONTranslator;

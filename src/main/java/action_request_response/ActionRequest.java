@@ -3,10 +3,10 @@ package action_request_response;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public abstract class ActionRequest implements Serializable {
+public  class ActionRequest implements Serializable {
     private final String username;
     private final Commands command;
-    ArrayList<String> userInputs;
+    private final ArrayList<String> userInputs;
 
     /**
      * Constructor that creates an instance of ActionRequest given a username
@@ -43,5 +43,9 @@ public abstract class ActionRequest implements Serializable {
      */
     public Commands getCommand() {
         return command;
+    }
+
+    public ArrayList<String> getUserInputs() {
+        return userInputs;
     }
 }

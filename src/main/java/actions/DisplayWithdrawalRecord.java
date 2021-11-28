@@ -1,6 +1,5 @@
 package actions;
 import action_request_response.ActionResponse;
-import action_request_response.DisplayWithdrawalRecordRequest;
 import action_request_response.DisplayWithdrawalRecordResponse;
 import entity.*;
 import entity.Record;

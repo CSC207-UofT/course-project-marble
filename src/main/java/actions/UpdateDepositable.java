@@ -1,6 +1,5 @@
 package actions;
 
-import action_request_response.UpdateDepositableRequest;
 import action_request_response.ActionResponse;
 import entity.Date;
 import entity.Depositable;

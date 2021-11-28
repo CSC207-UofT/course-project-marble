@@ -6,6 +6,12 @@ import actions.*;
 
 public class ActionFactory {
     public Actions getAction(ActionRequest request) {
+        Commands command = request.getCommand();
+        switch (command){
+            case LOGIN:
+                return new CheckLogin(request);
+
+        }
         if (request instanceof LoginRequest) {
             return new CheckLogin((LoginRequest) request);
         } else if (request instanceof CreateUserRequest) {

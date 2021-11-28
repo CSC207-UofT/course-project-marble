@@ -1,6 +1,5 @@
 package actions;
 
-import action_request_response.SimulateNonDepositableRequest;
 import entity.NonDepositable;
 
 public class SimulateNonDepositable extends Simulate {

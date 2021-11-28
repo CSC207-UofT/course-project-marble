@@ -1,7 +1,6 @@
 package actions;
 
 import action_request_response.ActionResponse;
-import action_request_response.DisplayDepositRecordRequest;
 import action_request_response.DisplayDepositRecordResponse;
 import entity.OwnerRepository;
 import entity.Record;
