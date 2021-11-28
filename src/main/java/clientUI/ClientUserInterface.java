@@ -67,10 +67,11 @@ public class ClientUserInterface {
         String username = sc.nextLine();
         System.out.println("Please enter your password");
         String password = sc.nextLine();
-        LoginRequest request = new LoginRequest(username, password);
-        outbound.writeObject(request);
-        outbound.flush();
-
+        ActionRequest request = new ActionRequest(username, Commands.LOGIN, new ArrayList<String>(List.of(password)));
+        boolean sendStatus = sendObject(request);
+        if (!sendStatus){
+            return false;
+        }
         LoginResponse result = (LoginResponse) inbound.readObject();
         if (result.getResult()) {
             System.out.println("Success");
