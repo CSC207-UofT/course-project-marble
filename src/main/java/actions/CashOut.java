@@ -1,6 +1,5 @@
 package actions;
 import action_request_response.ActionResponse;
-import action_request_response.CashOutRequest;
 import action_request_response.CashOutResponse;
 import entity.FinancialAsset;
 import entity.NonDepositable;
