@@ -22,6 +22,16 @@ public class ClientUserInterface {
         inbound = new ObjectInputStream(clientSocket.getInputStream());
         System.out.println("Connected");
     }
+    public boolean sendObject(Object obj){
+        try {
+            outbound.writeObject(obj);
+            outbound.flush();
+            return true;
+        } catch (IOException e) {
+            System.out.println("There was an error. Please try again.");
+            return false;
+        }
+    }
 
     public boolean createUser() throws IOException, ClassNotFoundException {
         Scanner sc = new Scanner(System.in);
@@ -32,10 +42,9 @@ public class ClientUserInterface {
         System.out.println("Please enter your password");
         String password = sc.nextLine();
         CreateUserRequest request = new CreateUserRequest(fullname, username, password);
-
-
-        outbound.writeObject(request);
-        outbound.flush();
+        boolean connectionStatus = sendObject(request);
+        if (!connectionStatus){
+        }
 
         CreateUserResponse result = (CreateUserResponse) inbound.readObject();
         if (result.getResult()) {
