@@ -2,6 +2,7 @@ package action_request_response;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 public  class ActionRequest implements Serializable {
     private final String username;
@@ -18,6 +19,7 @@ public  class ActionRequest implements Serializable {
         this.command = command;
         this.userInputs = userInputs;
     }
+
 
     /**
      * Returns whether the ActionRequest is a UserQuitRequest
