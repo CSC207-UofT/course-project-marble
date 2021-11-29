@@ -15,6 +15,8 @@ public class Owner {
     private Budget budget;
     private final ArrayList<FinancialAsset> listAssets;
     private final ArrayList<Record> listRecord;
+    private final ArrayList<Integer> budgetHistory;
+
 
 
     /**
@@ -29,6 +31,7 @@ public class Owner {
         this.fullName = fullName;
         this.userName = username;
         this.listRecord = new ArrayList<>();
+        this.budgetHistory = new ArrayList<>();
 
         this.balance = 0;
         this.budget = null;
@@ -74,6 +77,10 @@ public class Owner {
     public ArrayList<FinancialAsset> getListAssets() {
         return listAssets;
     }
+
+    public void addBudgetHistory(int residue){this.budgetHistory.add(residue);}
+
+    public ArrayList<Integer> getBudgetHistory(){return this.budgetHistory;}
 
     /**
      * setBalance is to get owner's balance. Work with getBalance() when you want to adjust the balance.

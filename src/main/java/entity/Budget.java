@@ -19,7 +19,18 @@ public class Budget {
     private HashMap<String, Double> remainingBudget;
     private Date date;
     private String period;
+    private boolean active;
 
+
+    public String toString(){
+        if(this.active){
+            return "This is an active budget, with a total: "+this.totalBudget;
+        }
+        else{
+            return "This is an inactive budget.";
+        }
+
+    }
 
     public Budget(HashMap<String, Double> categories, Date date, String period) {
         for (Double value : categories.values()) {
@@ -63,6 +74,10 @@ public class Budget {
     public void adjustDate(Date newDate) {
         this.date = newDate;
     }
+
+    public boolean getActive(){return this.active;}
+
+    public void setActive(boolean set){this.active = set;}
 
     /**
      * adjust the remainingBudget of a single category. Checks first if there's enough leftover, then subtract the

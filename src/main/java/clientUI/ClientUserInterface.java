@@ -42,6 +42,7 @@ public class ClientUserInterface {
         String username = sc.nextLine();
         System.out.println("Please enter your password");
         String password = sc.nextLine();
+
         ActionRequest request = new ActionRequest(username, Commands.CREATEUSER,
                 new ArrayList<>(List.of(fullName, password)));
         boolean connectionStatus = sendObject(request);
