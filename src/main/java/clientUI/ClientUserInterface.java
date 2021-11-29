@@ -223,8 +223,8 @@ public class ClientUserInterface {
         System.out.println("What is the savings accounts name?");
         String name = sc.nextLine();
         System.out.println("What is the interestRate?");
-        double interestRate = Double.parseDouble(sc.nextLine());
-        CreateSavingRequest request = new CreateSavingRequest(this.username, interestRate, name);
+        String interestRate = sc.nextLine();
+        ActionRequest request = new ActionRequest(this.username,Commands.CREATESAVINGS, new ArrayList<String>(List.of(name, interestRate)));
         sendObject(request);
         try {
             ActionResponse result = (ActionResponse) inbound.readObject();

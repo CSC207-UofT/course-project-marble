@@ -1,9 +1,12 @@
 package actions;
 
+import action_request_response.ActionRequest;
 import action_request_response.ActionResponse;
 import entity.Owner;
 import entity.OwnerRepository;
 import entity.Savings;
+
+import java.util.ArrayList;
 
 public class CreateSaving extends Actions{
     private final String name;
@@ -15,10 +18,11 @@ public class CreateSaving extends Actions{
      * @param request contains all the information a CreateBond object
      *                needs to process the User request
      */
-    public CreateSaving(CreateSavingRequest request){
+    public CreateSaving(ActionRequest request){
         owner = OwnerRepository.getOwnerRepository().findOwner(request.getUsername());
-        name = request.getName();
-        interestRate = request.getInterestRate();
+        ArrayList<String> userInputs = request.getUserInputs();
+        name = userInputs.get(0);
+        interestRate = Double.parseDouble(userInputs.get(1));
     }
 
     public ActionResponse process() {

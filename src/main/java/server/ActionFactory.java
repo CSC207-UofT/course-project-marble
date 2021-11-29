@@ -23,7 +23,9 @@ public class ActionFactory {
             case DISPLAYDEPOSITRECCORD:
                 return new DisplayDepositRecord(request);
             case CREATESAVINGS:
-                return new CreateSaving()
+                return new CreateSaving(request);
+            case CREATEBOND:
+                return new CreateBond(request);
         }
         if (request instanceof LoginRequest) {
             return new CheckLogin((LoginRequest) request);
