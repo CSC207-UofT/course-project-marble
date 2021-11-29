@@ -1,6 +1,6 @@
 package actions;
+import action_request_response.ActionRequest;
 import action_request_response.ActionResponse;
-import action_request_response.DisplayWithdrawalRecordRequest;
 import action_request_response.DisplayWithdrawalRecordResponse;
 import entity.*;
 import entity.Record;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class DisplayWithdrawalRecord extends Actions{
     private final Owner user;
 
-    public DisplayWithdrawalRecord(DisplayWithdrawalRecordRequest request){
+    public DisplayWithdrawalRecord(ActionRequest request){
         this.user = OwnerRepository.getOwnerRepository().findOwner(request.getUsername());
     }
 
