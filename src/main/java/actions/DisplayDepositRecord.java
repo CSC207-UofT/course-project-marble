@@ -1,5 +1,6 @@
 package actions;
 
+import action_request_response.ActionRequest;
 import action_request_response.ActionResponse;
 import action_request_response.DisplayDepositRecordResponse;
 import entity.OwnerRepository;
@@ -11,7 +12,7 @@ import java.util.ArrayList;
 public class DisplayDepositRecord extends Actions {
     private final Owner user;
 
-    public DisplayDepositRecord(DisplayDepositRecordRequest request){
+    public DisplayDepositRecord(ActionRequest request){
         this.user = OwnerRepository.getOwnerRepository().findOwner(request.getUsername());
     }
 

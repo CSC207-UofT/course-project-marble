@@ -20,6 +20,8 @@ public class ActionFactory {
                 return new Deposit(request);
             case DISPLAYWITHDRAWALRECORD:
                 return new DisplayWithdrawalRecord(request);
+            case DISPLAYDEPOSITRECCORD:
+                return new DisplayDepositRecord(request);
             case CREATESAVINGS:
                 return new CreateSaving()
         }
