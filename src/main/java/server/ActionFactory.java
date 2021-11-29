@@ -18,6 +18,10 @@ public class ActionFactory {
                 return new Withdrawal(request);
             case DEPOSIT:
                 return new Deposit(request);
+            case DISPLAYWITHDRAWALRECORD:
+                return new DisplayWithdrawalRecord(request);
+            case CREATESAVINGS:
+                return new CreateSaving()
         }
         if (request instanceof LoginRequest) {
             return new CheckLogin((LoginRequest) request);

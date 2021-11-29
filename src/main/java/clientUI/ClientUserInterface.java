@@ -136,7 +136,7 @@ public class ClientUserInterface {
     }
 
     public void displayWithdrawalRecord() {
-        DisplayWithdrawalRecordRequest request = new DisplayWithdrawalRecordRequest(username);
+        ActionRequest request = new ActionRequest(username, Commands.DISPLAYWITHDRAWALRECORD, new ArrayList<String>());
         sendObject(request);
         try {
             DisplayWithdrawalRecordResponse result = (DisplayWithdrawalRecordResponse) inbound.readObject();
@@ -166,7 +166,7 @@ public class ClientUserInterface {
     }
 
     public void displayDepositRecord() {
-        DisplayDepositRecordRequest request = new DisplayDepositRecordRequest(this.username);
+        ActionRequest request = new ActionRequest(username, Commands.DISPLAYDEPOSITRECCORD, new ArrayList<>());
         sendObject(request);
         try {
             DisplayDepositRecordResponse result = (DisplayDepositRecordResponse) inbound.readObject();
