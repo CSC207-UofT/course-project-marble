@@ -39,13 +39,13 @@ public class ClientUserInterface {
     public boolean createUser() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Please enter your fullname");
-        String fullname = sc.nextLine();
+        String fullName = sc.nextLine();
         System.out.println("Please enter your chosen username");
         String username = sc.nextLine();
         System.out.println("Please enter your password");
         String password = sc.nextLine();
         ActionRequest request = new ActionRequest(username, Commands.CREATEUSER,
-                new ArrayList<String>(List.of(fullname, password)));
+                new ArrayList<String>(List.of(fullName, password)));
         boolean connectionStatus = sendObject(request);
         if (!connectionStatus){
             return false;
@@ -177,7 +177,7 @@ public class ClientUserInterface {
     }
 
     public void updateDepositable() {
-        UpdateDepositableRequest request = new UpdateDepositableRequest(this.username);
+        ActionRequest request = new ActionRequest(this.username, Commands.UPDATEDEPOSITABLE, new ArrayList<>());
         sendObject(request);
         try {
             ActionResponse result = (ActionResponse) inbound.readObject();

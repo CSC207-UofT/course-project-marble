@@ -26,6 +26,8 @@ public class ActionFactory {
                 return new CreateSaving(request);
             case CREATEBOND:
                 return new CreateBond(request);
+            case UPDATEDEPOSITABLE:
+                return new UpdateDepositable(request);
         }
         if (request instanceof LoginRequest) {
             return new CheckLogin((LoginRequest) request);
