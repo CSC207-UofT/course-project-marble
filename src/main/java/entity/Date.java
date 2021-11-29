@@ -11,6 +11,16 @@ public class Date implements Comparable<Date>, Serializable {
     private final LocalDate date;
 
     /**
+     * Returns a Date object corresponding to a giving date String in the format "yyyy=mm-dd"
+     * @param date date String in the format "yyyy=mm-dd"
+     * @return a corresponding Date object to input date
+     */
+    public static Date parseDate(String date) {
+        LocalDate localDate = LocalDate.parse(date);
+        return new Date(localDate.getMonthValue(), localDate.getDayOfMonth(), localDate.getYear());
+    }
+
+    /**
      * Constructor to create a date Object at a certain date.
      *
      * @param month The month [1,12]
@@ -73,6 +83,7 @@ public class Date implements Comparable<Date>, Serializable {
         int inputDate = date.getYear() * 10000 + date.getMonth() * 100 + date.getDay();
         return Integer.compare(myDate, inputDate);
     }
+
     public LocalDate getDate(){
         return this.date;
     }
