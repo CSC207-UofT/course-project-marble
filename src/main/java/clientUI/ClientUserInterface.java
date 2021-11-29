@@ -333,7 +333,7 @@ public class ClientUserInterface {
         Scanner scan = new Scanner(System.in);
         ClientUserInterface client = new ClientUserInterface();
         try {
-            client.Connect("99.238.186.178", 8000);
+            client.Connect("127.0.0.1", 8000);
         } catch (IOException | ClassNotFoundException e) {
             System.exit(-1);
         }
