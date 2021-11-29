@@ -248,7 +248,14 @@ public class ClientUserInterface {
         int month = Integer.parseInt(sc.nextLine());
         System.out.println("What is the day of Maturity");
         int day = Integer.parseInt(sc.nextLine());
-        String date = year + "-" + month + "-" + day;
+
+        String str_month = "0" + month;
+        str_month = str_month.substring(str_month.length() - 2);
+
+        String str_day = "0" + day;
+        str_day = str_day.substring(str_day.length() - 2);
+
+        String date = year + "-" + str_month + "-" + str_day;
         ActionRequest request = new ActionRequest(username, Commands.CREATEBOND,
                 new ArrayList<>(List.of(name, interestRate, pricePerBond, volume, date)));
         sendObject(request);
@@ -326,7 +333,7 @@ public class ClientUserInterface {
         Scanner scan = new Scanner(System.in);
         ClientUserInterface client = new ClientUserInterface();
         try {
-            client.Connect("127.0.0.1", 8000);
+            client.Connect("99.238.186.178", 8000);
         } catch (IOException | ClassNotFoundException e) {
             System.exit(-1);
         }
