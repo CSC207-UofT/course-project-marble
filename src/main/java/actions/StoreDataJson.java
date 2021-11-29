@@ -9,20 +9,19 @@ import java.io.File;
 import java.io.IOException;
 
 public class StoreDataJson extends Actions{
-    private File file;
-    private JSONTranslator jsonT;
-    private String fileName;
+    private final JSONTranslator jsonT;
+    private final String fileName;
 
     /**
      * Initializes the filename where the data will be stored, the file where it will be stored, and the translator
      * that will turn a java obj into json and vice versa
      *
-     * @param request request for storing data
+     * @param fileName file name to store to
      */
-    public StoreDataJson(StoreDataInJsonRequest request) {
-        fileName = request.getUsername();
-        file = new File(fileName);
-        jsonT = new JSONTranslator();
+    public StoreDataJson(String fileName) {
+        this.fileName =  fileName;
+        File file = new File(fileName);
+        this.jsonT = new JSONTranslator();
     }
 
     /**

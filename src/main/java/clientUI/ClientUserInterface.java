@@ -1,15 +1,12 @@
 package clientUI;
 
 import action_request_response.*;
-import entity.Date;
 
-import javax.swing.*;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -46,7 +43,7 @@ public class ClientUserInterface {
         System.out.println("Please enter your password");
         String password = sc.nextLine();
         ActionRequest request = new ActionRequest(username, Commands.CREATEUSER,
-                new ArrayList<String>(List.of(fullName, password)));
+                new ArrayList<>(List.of(fullName, password)));
         boolean connectionStatus = sendObject(request);
         if (!connectionStatus){
             return false;
@@ -75,7 +72,7 @@ public class ClientUserInterface {
         String username = sc.nextLine();
         System.out.println("Please enter your password");
         String password = sc.nextLine();
-        ActionRequest request = new ActionRequest(username, Commands.LOGIN, new ArrayList<String>(List.of(password)));
+        ActionRequest request = new ActionRequest(username, Commands.LOGIN, new ArrayList<>(List.of(password)));
         boolean sendStatus = sendObject(request);
         if (!sendStatus){
             return false;
@@ -119,7 +116,7 @@ public class ClientUserInterface {
         System.out.println("Why do you need this?");
         String description = sc.nextLine();
         ActionRequest request = new ActionRequest(this.username, Commands.WITHDRAWAL,
-                new ArrayList<String>(List.of(amount, category, description)));
+                new ArrayList<>(List.of(amount, category, description)));
         sendObject(request);
         boolean response;
         try {
@@ -151,7 +148,7 @@ public class ClientUserInterface {
         Scanner sc = new Scanner(System.in);
         System.out.println("Please enter how much you want to deposit?");
         String amount = sc.nextLine();
-        ActionRequest request = new ActionRequest(this.username,Commands.DEPOSIT, new ArrayList<String>(List.of(amount)));
+        ActionRequest request = new ActionRequest(this.username,Commands.DEPOSIT, new ArrayList<>(List.of(amount)));
         sendObject(request);
 
         try {
@@ -203,7 +200,7 @@ public class ClientUserInterface {
         Scanner sc = new Scanner(System.in);
         System.out.println("What is the name of the asset you want to cash out?");
         String name = sc.nextLine();
-        ActionRequest request = new ActionRequest(username, Commands.CASHOUT, new ArrayList<String>(List.of(name)));
+        ActionRequest request = new ActionRequest(username, Commands.CASHOUT, new ArrayList<>(List.of(name)));
         sendObject(request);
         try {
             CashOutResponse result = (CashOutResponse) inbound.readObject();
@@ -225,7 +222,7 @@ public class ClientUserInterface {
         String name = sc.nextLine();
         System.out.println("What is the interestRate?");
         String interestRate = sc.nextLine();
-        ActionRequest request = new ActionRequest(this.username,Commands.CREATESAVINGS, new ArrayList<String>(List.of(name, interestRate)));
+        ActionRequest request = new ActionRequest(this.username,Commands.CREATESAVINGS, new ArrayList<>(List.of(name, interestRate)));
         sendObject(request);
         try {
             ActionResponse result = (ActionResponse) inbound.readObject();
@@ -253,7 +250,7 @@ public class ClientUserInterface {
         int day = Integer.parseInt(sc.nextLine());
         String date = year + "-" + month + "-" + day;
         ActionRequest request = new ActionRequest(username, Commands.CREATEBOND,
-                new ArrayList<String>(List.of(name, interestRate, pricePerBond, volume, date)));
+                new ArrayList<>(List.of(name, interestRate, pricePerBond, volume, date)));
         sendObject(request);
         try {
             CreateBondResponse result = (CreateBondResponse) inbound.readObject();
@@ -289,26 +286,6 @@ public class ClientUserInterface {
         }
     }
 
-    /**
-     * Stores the current OwnerRepo into a json via actions, this occurs before program terminates
-     */
-    private void storeOwnerRepository() {
-        StoreDataInJsonRequest request = new StoreDataInJsonRequest("OwnerRepo.json");
-        sendObject(request);
-        try {
-            StoreDataInJsonResponse result = (StoreDataInJsonResponse) inbound.readObject();
-            boolean response = result.getResult();
-            if (response) {
-                System.out.println("You were successful, data is stored");
-            } else {
-                System.out.println("You can't store the data");
-            }
-        } catch (IOException | ClassNotFoundException e) {
-            System.out.println("There was an error. Please try again");
-        }
-    }
-
-
     public void disconnect() {
         ActionRequest request = new ActionRequest(this.username, Commands.USERQUIT, new ArrayList<>());
         sendObject(request);
@@ -333,17 +310,16 @@ public class ClientUserInterface {
             case "1":
                 this.login();
                 return true;
-                break;
             case "2":
                 boolean result2 = this.createUser();
                 if (!result2) {
                     System.out.println("Login failed exiting");
                 }
                 return true;
-                break;
             case "q":
                 return false;
         }
+        return false;
     }
 
     public static void main(String[] args) {
@@ -400,7 +376,6 @@ public class ClientUserInterface {
                     client.changeSavingsBalance();
                     break;
                 case "q":
-                    client.storeOwnerRepository();
                     client.disconnect();
                     running = false;
                     break;
