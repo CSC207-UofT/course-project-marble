@@ -30,6 +30,16 @@ public  class ActionRequest implements Serializable {
         return false;
     }
 
+
+    /**
+     * Overload isQuit method
+     * @param quit whether this is a quit request
+     * @return the input value of whether this is a quit request
+     */
+    public boolean isQuit(boolean quit) {
+        return quit;
+    }
+
     /**
      * Getter method for username in ActionRequest
      *

@@ -45,7 +45,7 @@ public class ClientUserInterface {
         System.out.println("Please enter your password");
         String password = sc.nextLine();
         ActionRequest request = new ActionRequest(username, Commands.CREATEUSER,
-                new ArrayList<String>(List.of(fullname, password));
+                new ArrayList<String>(List.of(fullname, password)));
         boolean connectionStatus = sendObject(request);
         if (!connectionStatus){
             return false;
@@ -98,7 +98,7 @@ public class ClientUserInterface {
 
 
     public void ownerInfo() {
-        ActionRequest request = new ActionRequest(username, Commands.OWNERINFO, new ArrayList<String>());
+        ActionRequest request = new ActionRequest(username, Commands.OWNERINFO, new ArrayList<>());
         sendObject(request);
         try {
             System.out.println("Processing");
@@ -118,7 +118,7 @@ public class ClientUserInterface {
         System.out.println("Why do you need this?");
         String description = sc.nextLine();
         ActionRequest request = new ActionRequest(this.username, Commands.WITHDRAWAL,
-                new ArrayList<String>(List.of(amount, category, description));
+                new ArrayList<String>(List.of(amount, category, description)));
         sendObject(request);
         boolean response;
         try {
@@ -136,7 +136,7 @@ public class ClientUserInterface {
     }
 
     public void displayWithdrawalRecord() {
-        ActionRequest request = new ActionRequest(username, Commands.DISPLAYWITHDRAWALRECORD, new ArrayList<String>());
+        ActionRequest request = new ActionRequest(username, Commands.DISPLAYWITHDRAWALRECORD, new ArrayList<>());
         sendObject(request);
         try {
             DisplayWithdrawalRecordResponse result = (DisplayWithdrawalRecordResponse) inbound.readObject();
@@ -150,7 +150,7 @@ public class ClientUserInterface {
         Scanner sc = new Scanner(System.in);
         System.out.println("Please enter how much you want to deposit?");
         String amount = sc.nextLine();
-        ActionRequest request = new ActionRequest(this.username,Commands.DEPOSIT, new ArrayList<String>(List.of(String)));
+        ActionRequest request = new ActionRequest(this.username,Commands.DEPOSIT, new ArrayList<String>(List.of(amount)));
         sendObject(request);
 
         try {
@@ -239,19 +239,20 @@ public class ClientUserInterface {
         System.out.println("What is the name of the bond?");
         String name = sc.nextLine();
         System.out.println("What is the interestRate?");
-        float interestRate = Float.parseFloat(sc.nextLine());
+        String interestRate = sc.nextLine();
         System.out.println("How much does each bond cost?");
-        double pricePerBond = Double.parseDouble(sc.nextLine());
+        String pricePerBond = sc.nextLine();
         System.out.println("How many bonds did you buy?");
-        int volume = Integer.parseInt(sc.nextLine());
+        String volume = sc.nextLine();
         System.out.println("What is the year of Maturity?");
         int year = Integer.parseInt(sc.nextLine());
         System.out.println("What is the month of Maturity?");
         int month = Integer.parseInt(sc.nextLine());
         System.out.println("What is the day of Maturity");
         int day = Integer.parseInt(sc.nextLine());
-        Date dateOfMaturity = new Date(month, day, year);
-        CreateBondRequest request = new CreateBondRequest(this.username, name, interestRate, pricePerBond, volume, dateOfMaturity);
+        String date = year + "-" + month + "-" + day;
+        ActionRequest request = new ActionRequest(username, Commands.CREATEBOND,
+                new ArrayList<String>(List.of(name, interestRate, pricePerBond, volume, date)));
         sendObject(request);
         try {
             CreateBondResponse result = (CreateBondResponse) inbound.readObject();
