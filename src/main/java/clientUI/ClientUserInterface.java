@@ -188,7 +188,7 @@ public class ClientUserInterface {
     }
 
     public void viewInvestments() {
-        ViewInvestmentsRequest request = new ViewInvestmentsRequest(username);
+        ActionRequest request = new ActionRequest(username, Commands.VIEWINVESTMENTS, new ArrayList<>());
         sendObject(request);
         try {
             ViewInvestmentsResponse result = (ViewInvestmentsResponse) inbound.readObject();
@@ -202,7 +202,7 @@ public class ClientUserInterface {
         Scanner sc = new Scanner(System.in);
         System.out.println("What is the name of the asset you want to cash out?");
         String name = sc.nextLine();
-        CashOutRequest request = new CashOutRequest(username, name);
+        ActionRequest request = new ActionRequest(username, Commands.CASHOUT, new ArrayList<String>(List.of(name)));
         sendObject(request);
         try {
             CashOutResponse result = (CashOutResponse) inbound.readObject();

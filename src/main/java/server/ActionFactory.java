@@ -28,6 +28,10 @@ public class ActionFactory {
                 return new CreateBond(request);
             case UPDATEDEPOSITABLE:
                 return new UpdateDepositable(request);
+            case VIEWINVESTMENTS:
+                return new ViewInvestments(request);
+            case CASHOUT:
+                return new CashOut(request);
         }
         if (request instanceof LoginRequest) {
             return new CheckLogin((LoginRequest) request);
