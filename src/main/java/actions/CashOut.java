@@ -29,7 +29,7 @@ public class CashOut extends Actions{
      */
     public CashOut(ActionRequest request){
         this.owner = OwnerRepository.getOwnerRepository().findOwner(request.getUsername());
-        ArrayList<String> userInputs = request.getUserInputs()
+        ArrayList<String> userInputs = request.getUserInputs();
         String name = userInputs.get(0);
         ArrayList<FinancialAsset> listAssets = owner.getListAssets();
         for (FinancialAsset asset:listAssets) {

@@ -1,4 +1,5 @@
 package actions;
+import action_request_response.ActionRequest;
 import action_request_response.ActionResponse;
 import action_request_response.AddExpenseResponse;
 import entity.Budget;
@@ -16,18 +17,17 @@ import java.util.ArrayList;
  */
 public class AddExpense extends Actions{
     private final Owner owner;
-    private final String category;
-    private final double amount;
+    private final String category = null;
+    private final double amount = Double.parseDouble(null);
 
     /**
      * Initializes an AddExpense object
      * @param request object containing all the information an object of
      *                the class needs to process and respond back
      */
-    public AddExpense(AddExpenseRequest request){
+    public AddExpense(ActionRequest request){
         this.owner = OwnerRepository.getOwnerRepository().findOwner(request.getUsername());
-        this.category = request.getCategory();
-        this.amount = request.getAmount();
+
     }
 
     /**
