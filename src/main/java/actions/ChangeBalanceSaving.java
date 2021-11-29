@@ -1,5 +1,6 @@
 package actions;
 
+import action_request_response.ActionRequest;
 import action_request_response.ActionResponse;
 import action_request_response.DepositSavingResponse;
 import entity.FinancialAsset;
@@ -15,12 +16,14 @@ public class ChangeBalanceSaving extends Actions {
     private final Owner owner;
     private double amount;
 
-    public ChangeBalanceSaving(DepositSavingRequest request){
+    public ChangeBalanceSaving(ActionRequest request){
         owner = OwnerRepository.getOwnerRepository().findOwner(request.getUsername());
-        amount = request.getAmount();
+        ArrayList<String> userInputs = request.getUserInputs();
+        String name = userInputs.get(0);
+        amount = Double.parseDouble(userInputs.get(1));
         ArrayList<FinancialAsset> listAssets = owner.getListAssets();
         for (FinancialAsset asset: listAssets){
-            if (asset instanceof Savings && Objects.equals(asset.getName(), request.getName())){
+            if (asset instanceof Savings && Objects.equals(asset.getName(), name)){
                 savings = (Savings) asset;
                 break;
             }

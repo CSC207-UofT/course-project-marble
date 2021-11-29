@@ -3,6 +3,7 @@ package clientUI;
 import action_request_response.*;
 import entity.Date;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -272,8 +273,8 @@ public class ClientUserInterface {
         System.out.println("Which savings account?");
         String name = sc.nextLine();
         System.out.println("How much? +ve value to add to your savings. -ve to remove");
-        double amount = Double.parseDouble(sc.nextLine());
-        DepositSavingRequest request = new DepositSavingRequest(username, name, amount);
+        String amount = sc.nextLine();
+        ActionRequest request = new ActionRequest(username, Commands.DEPOSITSAVINGS, new ArrayList<>(List.of(name, amount)));
         sendObject(request);
         try {
             DepositSavingResponse result = (DepositSavingResponse) inbound.readObject();
@@ -309,9 +310,9 @@ public class ClientUserInterface {
 
 
     public void disconnect() {
-        UserQuitRequest request = new UserQuitRequest(this.username);
+        ActionRequest request = new ActionRequest(this.username, Commands.USERQUIT, new ArrayList<>());
         sendObject(request);
-        System.out.println("Quit request flushed");
+        System.out.println("Quit sent");
         try {
             inbound.close();
             outbound.close();
@@ -322,7 +323,7 @@ public class ClientUserInterface {
         }
     }
 
-    public void splash(){
+    public boolean splash(){
         System.out.println("What do you want to do? Please return 1 to login or 2 to register!");
         System.out.println("Enter 'q' to exit the program");
         Scanner sc = new Scanner(System.in);
@@ -331,15 +332,17 @@ public class ClientUserInterface {
         switch (answer) {
             case "1":
                 this.login();
+                return true;
                 break;
             case "2":
                 boolean result2 = this.createUser();
                 if (!result2) {
                     System.out.println("Login failed exiting");
                 }
+                return true;
                 break;
             case "q":
-                this.disconnect();
+                return false;
         }
     }
 
@@ -353,7 +356,11 @@ public class ClientUserInterface {
         }
 
         while (client.username == null) {
-            client.splash();
+            boolean tryAgain = client.splash();
+            if (!tryAgain){
+                client.disconnect();
+                return;
+            }
         }
         client.updateDepositable();
         String input;

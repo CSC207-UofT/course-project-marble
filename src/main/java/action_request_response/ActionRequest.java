@@ -2,11 +2,11 @@ package action_request_response;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 
 public  class ActionRequest implements Serializable {
     private final String username;
     private final Commands command;
+    private final boolean  isQuit;
     private final ArrayList<String> userInputs;
 
     /**
@@ -18,6 +18,7 @@ public  class ActionRequest implements Serializable {
         this.username = username;
         this.command = command;
         this.userInputs = userInputs;
+        isQuit = command == Commands.USERQUIT;
     }
 
 
@@ -27,7 +28,7 @@ public  class ActionRequest implements Serializable {
      * @return  boolean of whether the ActionRequest is a UserQuitRequest
      */
     public boolean isQuit() {
-        return false;
+        return isQuit;
     }
 
     /**
