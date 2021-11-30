@@ -98,13 +98,10 @@ public class Owner {
      * This method will store the Budget object that is created in the Action class.
      * Budget object is/should be created and customized under Actions using Budget's methods.
      *
-     * @param categories a HashMap of all the categories and their budgets
      * @param date       the date when this budget starts
-     * @param period     the period (eg. monthly, weekly, yearly, seasonal) for Actions to check when to
-     *                   reset the remainingBudget based on the date.
      */
-    public void setBudget(HashMap<String, Double> categories, Date date, String period) {
-        this.budget = new Budget(categories, date, period);
+    public void setBudget(Date date) {
+        this.budget = new Budget(date);
     }
 
     /**
