@@ -1,7 +1,7 @@
 package actions;
 
+import action_request_response.ActionRequest;
 import action_request_response.ActionResponse;
-import action_request_response.ViewInvestmentsRequest;
 import action_request_response.ViewInvestmentsResponse;
 import entity.*;
 
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class ViewInvestments extends Actions{
     private final ArrayList<FinancialAsset> listAssets;
 
-    public ViewInvestments(ViewInvestmentsRequest request){
+    public ViewInvestments(ActionRequest request){
         this.listAssets = OwnerRepository.getOwnerRepository().findOwner(request.getUsername()).getListAssets();
     }
 

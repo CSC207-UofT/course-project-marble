@@ -1,6 +1,5 @@
 package actions;
 
-import action_request_response.SimulateNonDepositableRequest;
 import action_request_response.SimulateResponse;
 import entity.*;
 import org.junit.jupiter.api.Test;
