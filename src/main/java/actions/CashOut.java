@@ -1,6 +1,6 @@
 package actions;
+import action_request_response.ActionRequest;
 import action_request_response.ActionResponse;
-import action_request_response.CashOutRequest;
 import action_request_response.CashOutResponse;
 import entity.FinancialAsset;
 import entity.NonDepositable;
@@ -19,7 +19,7 @@ import java.util.ArrayList;
  */
 public class CashOut extends Actions{
     private final Owner owner;
-    private NonDepositable investment;
+    private final NonDepositable investment;
 
 
     /**
@@ -27,9 +27,10 @@ public class CashOut extends Actions{
      * @param request contains all the information a CashOut object
      *                needs to process the User request
      */
-    public CashOut(CashOutRequest request){
+    public CashOut(ActionRequest request){
         this.owner = OwnerRepository.getOwnerRepository().findOwner(request.getUsername());
-        String name = request.getName();
+        ArrayList<String> userInputs = request.getUserInputs();
+        String name = userInputs.get(0);
         ArrayList<FinancialAsset> listAssets = owner.getListAssets();
         for (FinancialAsset asset:listAssets) {
             if (asset instanceof NonDepositable) {

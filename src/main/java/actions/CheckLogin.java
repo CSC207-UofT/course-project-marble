@@ -1,20 +1,22 @@
 package actions;
 
+import action_request_response.ActionRequest;
 import action_request_response.ActionResponse;
-import action_request_response.LoginRequest;
 import action_request_response.LoginResponse;
 import entity.Owner;
 import entity.OwnerRepository;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 
 public class CheckLogin extends Actions {
     private final String username;
     private final String password;
 
-    public CheckLogin(LoginRequest request) {
+    public CheckLogin(ActionRequest request) {
         username = request.getUsername();
-        password = request.getPassword();
+        ArrayList<String> userInputs = request.getUserInputs();
+        password = userInputs.get(0);
     }
 
     /**

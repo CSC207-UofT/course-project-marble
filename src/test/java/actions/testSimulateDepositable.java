@@ -1,6 +1,5 @@
 package actions;
 
-import action_request_response.SimulateDepositableRequest;
 import action_request_response.SimulateResponse;
 import entity.*;
 import org.junit.jupiter.api.BeforeEach;

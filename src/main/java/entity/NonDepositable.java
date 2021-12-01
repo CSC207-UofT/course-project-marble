@@ -19,7 +19,7 @@ public abstract class NonDepositable extends FinancialAsset {
 
     @Override
     public String toString() {
-        return "This asset created on " + this.getDateCreated() + "at a price of " + this.getPricePerAsset()
+        return "Asset" + this.name + " created on " + this.getDateCreated() + "at a price of " + this.getPricePerAsset()
                 + " dollars per asset is worth " + this.getValue() + " dollars today";
     }
 
