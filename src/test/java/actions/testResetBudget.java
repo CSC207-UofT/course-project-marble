@@ -19,15 +19,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class testResetBudget {
     private Owner owner;
     private HashMap<String, Double> categories;
-    private Date date = new Date(11, 13, 2021);
-    private ActionRequest request;
+    private final Date date = new Date(11, 13, 2021);
 
     @BeforeEach
     public void setup(){
         Owner newOwner = new Owner("Kevin Thomas", "K.Thomas", "123");
         OwnerRepository.getOwnerRepository().addOwner(newOwner);
         owner = OwnerRepository.getOwnerRepository().findOwner("K.Thomas");
-        categories = new HashMap<String, Double>();
+        categories = new HashMap<>();
         categories.put("Needs", 1000.00);
         categories.put("Wants", 700.00);
         categories.put("Savings/Investment", 100.00);
@@ -42,7 +41,7 @@ public class testResetBudget {
         Budget budget = owner.getBudget();
         categories.put("Needs", 500.00);
         budget.setRemainingBudget(categories);
-        request = new ActionRequest("K.Thomas", Commands.RESETBUDGET, new ArrayList<>());
+        ActionRequest request = new ActionRequest("K.Thomas", Commands.RESETBUDGET, new ArrayList<>());
         ActionResponse result = new ResetBudget(request).process();
         assertEquals(1000.00, owner.getBudget().getRemainingBudget().get("Needs"));
     }
