@@ -47,8 +47,8 @@ public class Budget {
         return this.totalBudget;
     }
 
-    public int getTotalRemainingBudget() {
-        int sum = 0;
+    public double getTotalRemainingBudget() {
+        double sum = 0;
         for (Double value : this.remainingBudget.values()) {
             sum += value;
         }

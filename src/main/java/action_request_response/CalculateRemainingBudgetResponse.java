@@ -18,6 +18,6 @@ public class CalculateRemainingBudgetResponse extends ActionResponse{
         if (!exists) {
             return "Budget Inactive or Does Not Exist";
         }
-        return ("Remaining Budget: 4" + String.valueOf(amount));
+        return ("Total Remaining Budget: 4" + String.valueOf(amount));
     }
 }
