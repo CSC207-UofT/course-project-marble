@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class testAdjustBudget {
     private Owner owner;
     private HashMap<String, Double> categories;
-    private Date date = new Date(11, 13, 2021);
+    private final Date date = new Date(11, 13, 2021);
     private ActionRequest request;
 
     @BeforeEach
@@ -28,7 +28,7 @@ public class testAdjustBudget {
         Owner newOwner = new Owner("Hunter Devon", "Hunter.D", "123");
         OwnerRepository.getOwnerRepository().addOwner(newOwner);
         owner = OwnerRepository.getOwnerRepository().findOwner("Hunter.D");
-        categories = new HashMap<String, Double>();
+        categories = new HashMap<>();
         categories.put("Needs", 1000.00);
         categories.put("Wants", 700.00);
         categories.put("Savings/Investment", 100.00);

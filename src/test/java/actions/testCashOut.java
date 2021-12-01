@@ -1,12 +1,16 @@
 package actions;
 
+import action_request_response.ActionRequest;
 import action_request_response.ActionResponse;
 import action_request_response.CashOutResponse;
+import action_request_response.Commands;
 import entity.*;
-
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -17,7 +21,7 @@ test only utilise bonds
 public class testCashOut {
     private Owner owner;
     private NonDepositable investment;
-    private CashOutRequest request;
+    private ActionRequest request;
     private CashOut callAction;
 
 
@@ -29,7 +33,7 @@ public class testCashOut {
         Date dateOfMaturity = new Date();
         investment = new Bond(5, 5f, 12.5, dateOfMaturity, "Bond1");
         owner.addAsset(investment);
-        request = new CashOutRequest("jd", "Bond1");
+        request = new ActionRequest("jd", Commands.CASHOUT, new ArrayList<>(List.of("Bond1")));
         callAction = new CashOut(request);
     }
     @AfterEach
@@ -52,7 +56,6 @@ public class testCashOut {
         assertEquals(62.5, owner.getBalance());
         // trying to call on an action twice means putting in a new request
         // the second time you call for it
-        request = new CashOutRequest("jd", "Bond1");
         callAction = new CashOut(request);
         result = callAction.process();
         assertFalse(((CashOutResponse) result).getResult());
@@ -63,7 +66,7 @@ public class testCashOut {
     public void testCashOutNonMature(){
         Date fakeDate = new Date(11, 12, 2300);
         investment = new Bond(5, 5f, 12.5, fakeDate, "Bond2");
-        request = new CashOutRequest("jd", "Bond2");
+        request = new ActionRequest("jd", Commands.CASHOUT, new ArrayList<>(List.of("Bond2")));
         callAction = new CashOut(request);
         ActionResponse result = callAction.process();
         assertFalse(((CashOutResponse) result).getResult());

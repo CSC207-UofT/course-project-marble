@@ -1,0 +1,146 @@
+{
+  "listOfOwners": {
+    "rtc": {
+      "fullName": "Ruiting",
+      "userName": "rtc",
+      "password": [
+        -70,
+        120,
+        22,
+        -65,
+        -113,
+        1,
+        -49,
+        -22,
+        65,
+        65,
+        64,
+        -34,
+        93,
+        -82,
+        34,
+        35,
+        -80,
+        3,
+        97,
+        -93,
+        -106,
+        23,
+        122,
+        -100,
+        -76,
+        16,
+        -1,
+        97,
+        -14,
+        0,
+        21,
+        -83
+      ],
+      "balance": -49.67,
+      "listAssets": [
+        {
+          "dateOfMaturity": {
+            "month": 3,
+            "year": 2021,
+            "day": 2,
+            "date": {
+              "year": 2021,
+              "month": 3,
+              "day": 2
+            }
+          },
+          "cashedOut": true,
+          "volume": 5,
+          "pricePerAsset": 10.0,
+          "dateCreated": {
+            "month": 11,
+            "year": 2021,
+            "day": 29,
+            "date": {
+              "year": 2021,
+              "month": 11,
+              "day": 29
+            }
+          },
+          "annualInterestRate": 10.0,
+          "name": "bond1"
+        },
+        {
+          "dateOfMaturity": {
+            "month": 12,
+            "year": 2021,
+            "day": 8,
+            "date": {
+              "year": 2021,
+              "month": 12,
+              "day": 8
+            }
+          },
+          "cashedOut": false,
+          "volume": 5,
+          "pricePerAsset": 10.0,
+          "dateCreated": {
+            "month": 11,
+            "year": 2021,
+            "day": 29,
+            "date": {
+              "year": 2021,
+              "month": 11,
+              "day": 29
+            }
+          },
+          "annualInterestRate": 10.0,
+          "name": "bond2"
+        },
+        {
+          "balance": 5.0,
+          "dateCreated": {
+            "month": 11,
+            "year": 2021,
+            "day": 29,
+            "date": {
+              "year": 2021,
+              "month": 11,
+              "day": 29
+            }
+          },
+          "annualInterestRate": 10.0,
+          "name": "saving1"
+        },
+        {
+          "balance": 98.0,
+          "dateCreated": {
+            "month": 11,
+            "year": 2021,
+            "day": 29,
+            "date": {
+              "year": 2021,
+              "month": 11,
+              "day": 29
+            }
+          },
+          "annualInterestRate": 10.0,
+          "name": "s2"
+        }
+      ],
+      "listRecord": [
+        {
+          "amount": 100.0,
+          "date": {
+            "month": 11,
+            "year": 2021,
+            "day": 29,
+            "date": {
+              "year": 2021,
+              "month": 11,
+              "day": 29
+            }
+          },
+          "category": "Deposit",
+          "description": "Into Balance"
+        }
+      ]
+    }
+  }
+}
