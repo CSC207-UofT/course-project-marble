@@ -1,18 +1,22 @@
 package actions;
 
+import action_request_response.ActionRequest;
 import action_request_response.ActionResponse;
+import action_request_response.Commands;
 import action_request_response.DepositResponse;
-
-import entity.*;
-
+import entity.Owner;
+import entity.OwnerRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 public class testDeposit {
     private Owner owner;
-    private DepositRequest request;
+    private ActionRequest request;
 
     @BeforeEach
     public void setup(){
@@ -29,7 +33,7 @@ public class testDeposit {
 
     @Test
     public void testDepositBalance(){
-        request = new DepositRequest("OliveBoyz", 11.5);
+        request = new ActionRequest("OliveBoyz", Commands.DEPOSIT, new ArrayList<>(List.of("11.5")));
         Deposit callDeposit = new Deposit(request);
         ActionResponse response = callDeposit.process();
 
@@ -39,7 +43,7 @@ public class testDeposit {
 
     @Test
     public void testDepositNegativeValue(){
-        request = new DepositRequest("OliveBoyz", -11.5);
+        request = new ActionRequest("OliveBoyz",Commands.DEPOSIT, new ArrayList<>(List.of("-11.5")));
         Deposit callDeposit = new Deposit(request);
         ActionResponse response = callDeposit.process();
 
