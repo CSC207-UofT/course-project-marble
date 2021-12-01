@@ -1,22 +1,27 @@
 package actions;
 
+import action_request_response.ActionRequest;
 import action_request_response.ActionResponse;
-import action_request_response.AdjustBudgetRequest;
 import action_request_response.AdjustBudgetResponse;
+import action_request_response.Commands;
 import entity.Budget;
 import entity.Date;
 import entity.Owner;
 import entity.OwnerRepository;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import javax.swing.*;
+import java.util.ArrayList;
 import java.util.HashMap;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class testAdjustBudget {
     private Owner owner;
     private HashMap<String, Double> categories;
     private Date date = new Date(11, 13, 2021);
-    private AdjustBudgetRequest request;
-    private AdjustBudget callAdjustBudget;
+    private ActionRequest request;
 
     @BeforeEach
     public void setup(){
@@ -39,23 +44,32 @@ public class testAdjustBudget {
         categories.put("Needs", 900.00);
         budget.setRemainingBudget(categories);
         categories.put("Needs", 2000.00);
-        request = new AdjustBudgetRequest("Hunter.D", categories);
-        callAdjustBudget = new AdjustBudget(request);
-        ActionResponse result = callAdjustBudget.process();
-        assertTrue(((AdjustBudgetResponse)result).getResult());
+        ArrayList<String> testInput = new ArrayList<>();
+        for(String key : categories.keySet()){
+            testInput.add(key);
+            testInput.add(String.valueOf(categories.get(key)));
+        }
+        request = new ActionRequest("Hunter.D", Commands.ADJUSTBUDGET, testInput);
+        ActionResponse result = new AdjustBudget(request).process();
+        assertTrue(((AdjustBudgetResponse) result).getResult());
         assertEquals(1900.00, owner.getBudget().getRemainingBudget().get("Needs"));
     }
 
+    @Test
     public void testFailAdjust(){
         owner.setBudget(categories, date, "monthly");
         Budget budget = owner.getBudget();
         categories.put("Needs", 500.00);
         budget.setRemainingBudget(categories);
         categories.put("Needs", 400.00);
-        request = new AdjustBudgetRequest("Hunter.D", categories);
-        callAdjustBudget = new AdjustBudget(request);
-        ActionResponse result = callAdjustBudget.process();
-        assertFalse(((AdjustBudgetResponse)result).getResult());
+        ArrayList<String> testInput = new ArrayList<>();
+        for(String key : categories.keySet()){
+            testInput.add(key);
+            testInput.add(String.valueOf(categories.get(key)));
+        }
+        request = new ActionRequest("Hunter.D", Commands.ADJUSTBUDGET, testInput);
+        ActionResponse result = new AdjustBudget(request).process();
+        assertFalse(((AdjustBudgetResponse) result).getResult());
         assertEquals(500.00, owner.getBudget().getRemainingBudget().get("Needs"));
     }
 

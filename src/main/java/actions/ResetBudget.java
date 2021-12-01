@@ -1,7 +1,7 @@
 package actions;
 
 import action_request_response.ActionResponse;
-import action_request_response.ResetBudgetRequest;
+import action_request_response.ActionRequest;
 import action_request_response.ResetBudgetResponse;
 import entity.Budget;
 import entity.Owner;
@@ -12,7 +12,7 @@ import java.util.HashMap;
 public class ResetBudget extends Actions{
     private Owner user;
 
-    public ResetBudget(ResetBudgetRequest request){
+    public ResetBudget(ActionRequest request){
         this.user = OwnerRepository.getOwnerRepository().findOwner(request.getUsername());
 
     }

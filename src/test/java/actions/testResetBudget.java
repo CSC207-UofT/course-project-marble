@@ -1,20 +1,26 @@
 package actions;
 
+import action_request_response.ActionRequest;
 import action_request_response.ActionResponse;
-import action_request_response.ResetBudgetRequest;
+import action_request_response.Commands;
 import entity.Budget;
 import entity.Date;
 import entity.Owner;
 import entity.OwnerRepository;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class testResetBudget {
     private Owner owner;
     private HashMap<String, Double> categories;
     private Date date = new Date(11, 13, 2021);
-    private ResetBudgetRequest request;
-    private ResetBudget callResetBudget;
+    private ActionRequest request;
 
     @BeforeEach
     public void setup(){
@@ -36,9 +42,8 @@ public class testResetBudget {
         Budget budget = owner.getBudget();
         categories.put("Needs", 500.00);
         budget.setRemainingBudget(categories);
-        request = new ResetBudgetRequest("K.Thomas");
-        callResetBudget = new ResetBudget(request);
-        ActionResponse result = callResetBudget.process();
+        request = new ActionRequest("K.Thomas", Commands.RESETBUDGET, new ArrayList<>());
+        ActionResponse result = new ResetBudget(request).process();
         assertEquals(1000.00, owner.getBudget().getRemainingBudget().get("Needs"));
     }
 }

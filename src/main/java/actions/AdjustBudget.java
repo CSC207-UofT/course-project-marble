@@ -1,12 +1,13 @@
 package actions;
 
+import action_request_response.ActionRequest;
 import action_request_response.ActionResponse;
-import action_request_response.AdjustBudgetRequest;
 import action_request_response.AdjustBudgetResponse;
 import entity.Budget;
 import entity.Owner;
 import entity.OwnerRepository;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class AdjustBudget extends Actions{
@@ -14,9 +15,14 @@ public class AdjustBudget extends Actions{
     private final HashMap<String, Double> newAdjustedBudget;
 
 
-    public AdjustBudget(AdjustBudgetRequest request){
+    public AdjustBudget(ActionRequest request){
         this.user = OwnerRepository.getOwnerRepository().findOwner(request.getUsername());
-        this.newAdjustedBudget = request.getNewAdjustedBudget();
+        ArrayList<String> userInputs = request.getUserInputs();
+        this.newAdjustedBudget = new HashMap<>();
+        int i;
+        for(i = 0; i < userInputs.size(); i+= 2){
+            this.newAdjustedBudget.put(userInputs.get(i), Double.parseDouble(userInputs.get(i+1)));
+        }
     }
 
     @Override
