@@ -1,12 +1,13 @@
 package clientUI;
 
 import action_request_response.*;
-import entity.Date;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class ClientUserInterface {
@@ -22,65 +23,82 @@ public class ClientUserInterface {
         inbound = new ObjectInputStream(clientSocket.getInputStream());
         System.out.println("Connected");
     }
+    public boolean sendObject(Object obj){
+        try {
+            outbound.writeObject(obj);
+            outbound.flush();
+            return true;
+        } catch (IOException e) {
+            System.out.println("There was an error. Please try again.");
+            return false;
+        }
+    }
 
-    public boolean createUser() throws IOException, ClassNotFoundException {
+    public boolean createUser() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Please enter your fullname");
-        String fullname = sc.nextLine();
+        String fullName = sc.nextLine();
         System.out.println("Please enter your chosen username");
         String username = sc.nextLine();
         System.out.println("Please enter your password");
         String password = sc.nextLine();
-        CreateUserRequest request = new CreateUserRequest(fullname, username, password);
 
-
-        outbound.writeObject(request);
-        outbound.flush();
-
-        CreateUserResponse result = (CreateUserResponse) inbound.readObject();
-        if (result.getResult()) {
-            this.username = username;
-            System.out.println("Thanks! You have created an account. " +
-                    "You are now logged into it!");
-            return true;
-        } else {
-            this.username = null;
-            System.out.println("Username already exist. Please change to another username.");
+        ActionRequest request = new ActionRequest(username, Commands.CREATEUSER,
+                new ArrayList<>(List.of(fullName, password)));
+        boolean connectionStatus = sendObject(request);
+        if (!connectionStatus){
             return false;
         }
-
+        try {
+            CreateUserResponse result = (CreateUserResponse) inbound.readObject();
+            if (result.getResult()) {
+                this.username = username;
+                System.out.println("Thanks! You have created an account. " +
+                        "You are now logged into it!");
+                return true;
+            } else {
+                this.username = null;
+                System.out.println("Username already exist. Please change to another username.");
+                return false;
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("An error occurred. Please try again");
+            return false;
+        }
     }
 
-    public boolean login() throws IOException, ClassNotFoundException {
+    public boolean login() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Please enter your username");
         String username = sc.nextLine();
         System.out.println("Please enter your password");
         String password = sc.nextLine();
-        LoginRequest request = new LoginRequest(username, password);
-        outbound.writeObject(request);
-        outbound.flush();
-
-        LoginResponse result = (LoginResponse) inbound.readObject();
-        if (result.getResult()) {
-            System.out.println("Success");
-            this.username = username;
-            return true;
-        } else {
-            this.username = null;
-            System.out.println("Failure");
+        ActionRequest request = new ActionRequest(username, Commands.LOGIN, new ArrayList<>(List.of(password)));
+        boolean sendStatus = sendObject(request);
+        if (!sendStatus){
+            return false;
+        }
+        try {
+            LoginResponse result = (LoginResponse) inbound.readObject();
+            if (result.getResult()) {
+                this.username = username;
+                System.out.println("Login successful!");
+                return true;
+            } else {
+                this.username = null;
+                System.out.println("Login Failed. Please try again.");
+                return false;
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("An error occurred. Please try again");
             return false;
         }
     }
 
+
     public void ownerInfo() {
-        OwnerInfoRequest request = new OwnerInfoRequest(username);
-        try {
-            outbound.writeObject(request);
-            outbound.flush();
-        } catch (IOException e) {
-            System.out.println("An error occurred. Please try again");
-        }
+        ActionRequest request = new ActionRequest(username, Commands.OWNERINFO, new ArrayList<>());
+        sendObject(request);
         try {
             System.out.println("Processing");
             OwnerInfoResponse result = (OwnerInfoResponse) inbound.readObject();
@@ -93,19 +111,14 @@ public class ClientUserInterface {
     public void withdrawal() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Please enter how much you want to withdraw");
-        double amount = Double.parseDouble(sc.nextLine());
+        String amount = sc.nextLine();
         System.out.println("What category did you withdraw from?");
         String category = sc.nextLine();
         System.out.println("Why do you need this?");
         String description = sc.nextLine();
-        WithdrawalRequest request = new WithdrawalRequest(this.username, amount, category, description);
-        try {
-            outbound.writeObject(request);
-            outbound.flush();
-        } catch (IOException e) {
-            System.out.println("There was an error. Please try again.");
-            return;
-        }
+        ActionRequest request = new ActionRequest(this.username, Commands.WITHDRAWAL,
+                new ArrayList<>(List.of(amount, category, description)));
+        sendObject(request);
         boolean response;
         try {
             WithdrawalResponse result = (WithdrawalResponse) inbound.readObject();
@@ -122,14 +135,8 @@ public class ClientUserInterface {
     }
 
     public void displayWithdrawalRecord() {
-        DisplayWithdrawalRecordRequest request = new DisplayWithdrawalRecordRequest(username);
-        try {
-            outbound.writeObject(request);
-            outbound.flush();
-        } catch (IOException e) {
-            System.out.println("There was an error. Please try again.");
-            return;
-        }
+        ActionRequest request = new ActionRequest(username, Commands.DISPLAYWITHDRAWALRECORD, new ArrayList<>());
+        sendObject(request);
         try {
             DisplayWithdrawalRecordResponse result = (DisplayWithdrawalRecordResponse) inbound.readObject();
             System.out.println(result.getResult());
@@ -141,15 +148,9 @@ public class ClientUserInterface {
     public void deposit() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Please enter how much you want to deposit?");
-        double amount = Double.parseDouble(sc.nextLine());
-        DepositRequest request = new DepositRequest(this.username, amount);
-        try {
-            outbound.writeObject(request);
-            outbound.flush();
-        } catch (IOException e) {
-            System.out.println("There was an error. Please try again.");
-            return;
-        }
+        String amount = sc.nextLine();
+        ActionRequest request = new ActionRequest(this.username,Commands.DEPOSIT, new ArrayList<>(List.of(amount)));
+        sendObject(request);
 
         try {
             DepositResponse result = (DepositResponse) inbound.readObject();
@@ -164,15 +165,8 @@ public class ClientUserInterface {
     }
 
     public void displayDepositRecord() {
-        DisplayDepositRecordRequest request = new DisplayDepositRecordRequest(this.username);
-        try {
-            outbound.writeObject(request);
-            outbound.flush();
-        } catch (IOException e) {
-            System.out.println("There was an error. Please try again.");
-            return;
-        }
-
+        ActionRequest request = new ActionRequest(username, Commands.DISPLAYDEPOSITRECCORD, new ArrayList<>());
+        sendObject(request);
         try {
             DisplayDepositRecordResponse result = (DisplayDepositRecordResponse) inbound.readObject();
             System.out.println(result.getResult());
@@ -182,13 +176,8 @@ public class ClientUserInterface {
     }
 
     public void updateDepositable() {
-        UpdateDepositableRequest request = new UpdateDepositableRequest(this.username);
-        try {
-            outbound.writeObject(request);
-            outbound.flush();
-        } catch (IOException e) {
-            System.out.println("There was an error. Please try again.");
-        }
+        ActionRequest request = new ActionRequest(this.username, Commands.UPDATEDEPOSITABLE, new ArrayList<>());
+        sendObject(request);
         try {
             ActionResponse result = (ActionResponse) inbound.readObject();
             System.out.println("You were successful");
@@ -198,14 +187,8 @@ public class ClientUserInterface {
     }
 
     public void viewInvestments() {
-        ViewInvestmentsRequest request = new ViewInvestmentsRequest(username);
-        try {
-            outbound.writeObject(request);
-            outbound.flush();
-        } catch (IOException e) {
-            System.out.println("There was an error. Please try again.");
-            return;
-        }
+        ActionRequest request = new ActionRequest(username, Commands.VIEWINVESTMENTS, new ArrayList<>());
+        sendObject(request);
         try {
             ViewInvestmentsResponse result = (ViewInvestmentsResponse) inbound.readObject();
             System.out.println(result.getResult());
@@ -218,14 +201,8 @@ public class ClientUserInterface {
         Scanner sc = new Scanner(System.in);
         System.out.println("What is the name of the asset you want to cash out?");
         String name = sc.nextLine();
-        CashOutRequest request = new CashOutRequest(username, name);
-        try {
-            outbound.writeObject(request);
-            outbound.flush();
-        } catch (IOException e) {
-            System.out.println("There was an error. Please try again.");
-            return;
-        }
+        ActionRequest request = new ActionRequest(username, Commands.CASHOUT, new ArrayList<>(List.of(name)));
+        sendObject(request);
         try {
             CashOutResponse result = (CashOutResponse) inbound.readObject();
             boolean response = result.getResult();
@@ -239,19 +216,15 @@ public class ClientUserInterface {
         }
 
     }
-    public void createSavings(){
+
+    public void createSavings() {
         Scanner sc = new Scanner(System.in);
         System.out.println("What is the savings accounts name?");
         String name = sc.nextLine();
         System.out.println("What is the interestRate?");
-        double interestRate = Double.parseDouble(sc.nextLine());
-        CreateSavingRequest request = new CreateSavingRequest(this.username, interestRate, name);
-        try {
-            outbound.writeObject(request);
-            outbound.flush();
-        } catch (IOException e) {
-            System.out.println("There was an error. Please try again.");
-        }
+        String interestRate = sc.nextLine();
+        ActionRequest request = new ActionRequest(this.username,Commands.CREATESAVINGS, new ArrayList<>(List.of(name, interestRate)));
+        sendObject(request);
         try {
             ActionResponse result = (ActionResponse) inbound.readObject();
             System.out.println("You were successful");
@@ -259,31 +232,34 @@ public class ClientUserInterface {
             System.out.println("There was an error. Please try again");
         }
     }
+
     public void createBond() {
         Scanner sc = new Scanner(System.in);
         System.out.println("What is the name of the bond?");
         String name = sc.nextLine();
         System.out.println("What is the interestRate?");
-        float interestRate = Float.parseFloat(sc.nextLine());
+        String interestRate = sc.nextLine();
         System.out.println("How much does each bond cost?");
-        double pricePerBond = Double.parseDouble(sc.nextLine());
+        String pricePerBond = sc.nextLine();
         System.out.println("How many bonds did you buy?");
-        int volume = Integer.parseInt(sc.nextLine());
+        String volume = sc.nextLine();
         System.out.println("What is the year of Maturity?");
         int year = Integer.parseInt(sc.nextLine());
         System.out.println("What is the month of Maturity?");
         int month = Integer.parseInt(sc.nextLine());
         System.out.println("What is the day of Maturity");
         int day = Integer.parseInt(sc.nextLine());
-        Date dateOfMaturity = new Date(month, day, year);
-        CreateBondRequest request = new CreateBondRequest(this.username, name, interestRate, pricePerBond, volume, dateOfMaturity);
-        try {
-            outbound.writeObject(request);
-            outbound.flush();
-        } catch (IOException e) {
-            System.out.println("There was an error. Please try again.");
-            return;
-        }
+
+        String str_month = "0" + month;
+        str_month = str_month.substring(str_month.length() - 2);
+
+        String str_day = "0" + day;
+        str_day = str_day.substring(str_day.length() - 2);
+
+        String date = year + "-" + str_month + "-" + str_day;
+        ActionRequest request = new ActionRequest(username, Commands.CREATEBOND,
+                new ArrayList<>(List.of(name, interestRate, pricePerBond, volume, date)));
+        sendObject(request);
         try {
             CreateBondResponse result = (CreateBondResponse) inbound.readObject();
             boolean response = result.getResult();
@@ -297,20 +273,14 @@ public class ClientUserInterface {
         }
     }
 
-    public void changeSavingsBalance(){
+    public void changeSavingsBalance() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Which savings account?");
         String name = sc.nextLine();
         System.out.println("How much? +ve value to add to your savings. -ve to remove");
-        double amount = Double.parseDouble(sc.nextLine());
-        DepositSavingRequest request = new DepositSavingRequest(username, name, amount);
-        try {
-            outbound.writeObject(request);
-            outbound.flush();
-        } catch (IOException e) {
-            System.out.println("There was an error. Please try again.");
-            return;
-        }
+        String amount = sc.nextLine();
+        ActionRequest request = new ActionRequest(username, Commands.DEPOSITSAVINGS, new ArrayList<>(List.of(name, amount)));
+        sendObject(request);
         try {
             DepositSavingResponse result = (DepositSavingResponse) inbound.readObject();
             boolean response = result.getResult();
@@ -324,41 +294,40 @@ public class ClientUserInterface {
         }
     }
 
-    /**
-     * Stores the current OwnerRepo into a json via actions, this occurs before program terminates
-     */
-    private void storeOwnerRepo() {
-        StoreDataInJsonRequest request = new StoreDataInJsonRequest("OwnerRepo.json");
+    public void disconnect() {
+        ActionRequest request = new ActionRequest(this.username, Commands.USERQUIT, new ArrayList<>());
+        sendObject(request);
+        System.out.println("Quit sent");
         try {
-            outbound.writeObject(request);
-            outbound.flush();
+            inbound.close();
+            outbound.close();
+            clientSocket.close();
+            System.out.println("Disconnected");
         } catch (IOException e) {
-            System.out.println("There was an error. Please try again.");
-            return;
-        }
-        try {
-            StoreDataInJsonResponse result = (StoreDataInJsonResponse) inbound.readObject();
-            boolean response = result.getResult();
-            if (response) {
-                System.out.println("You were successful, data is stored");
-            } else {
-                System.out.println("You can't store the data");
-            }
-        } catch (IOException | ClassNotFoundException e) {
-            System.out.println("There was an error. Please try again");
+            System.out.println("Caught an IO exception when closing socket connection");
         }
     }
 
+    public boolean splash(){
+        System.out.println("What do you want to do? Please return 1 to login or 2 to register!");
+        System.out.println("Enter 'q' to exit the program");
+        Scanner sc = new Scanner(System.in);
+        String answer = sc.nextLine();
 
-    public void disconnect() throws IOException {
-        UserQuitRequest request = new UserQuitRequest(this.username);
-        outbound.writeObject(request);
-        outbound.flush();
-        System.out.println("Quit request flushed");
-        inbound.close();
-        outbound.close();
-        clientSocket.close();
-        System.out.println("Disconnected");
+        switch (answer) {
+            case "1":
+                this.login();
+                return true;
+            case "2":
+                boolean result2 = this.createUser();
+                if (!result2) {
+                    System.out.println("Login failed exiting");
+                }
+                return true;
+            case "q":
+                return false;
+        }
+        return false;
     }
 
     public static void main(String[] args) {
@@ -371,57 +340,17 @@ public class ClientUserInterface {
         }
 
         while (client.username == null) {
-            System.out.println("What do you want to do? Please return 1 to login or 2 to register!");
-            System.out.println("Enter 'q' to exit the program");
-            Scanner sc = new Scanner(System.in);
-            String answer = sc.nextLine();
-
-            switch (answer) {
-                case "1":
-                    try {
-                        boolean result = client.login();
-                        if (!result) {
-                            System.out.println("Login failed exiting");
-                        }
-                    } catch (IOException | ClassNotFoundException e) {
-                        System.out.println("Invalid command");
-                    }
-                    break;
-                case "2":
-                    try {
-                        boolean result = client.createUser();
-                        if (!result) {
-                            System.out.println("Login failed exiting");
-                        }
-                    } catch (IOException | ClassNotFoundException e) {
-                        System.out.println("Invalid command");
-                    }
-                    break;
-                case "q":
-                    try {
-                        client.disconnect();
-                    } catch (IOException e) {
-                        System.out.println("Caught an IO exception when closing socket connection");
-                    }
-                    return;
+            boolean tryAgain = client.splash();
+            if (!tryAgain){
+                client.disconnect();
+                return;
             }
         }
         client.updateDepositable();
         String input;
         boolean running = true;
         while (running) {
-            System.out.println("Hello. You may now enter the following:");
-            System.out.println("Get basic owner info: a");
-            System.out.println("Deposit enter: b");
-            System.out.println("Withdraw money: c");
-            System.out.println("View your deposit record history: d");
-            System.out.println("View your withdrawal record history: e");
-            System.out.println("View all of your assets: f");
-            System.out.println("Cash out a non-depositable asset: g");
-            System.out.println("Buy a new bond: h");
-            System.out.println("Create a new savings account: i");
-            System.out.println("Add or remove money from a Savings account : j");
-            System.out.println("To quit: q");
+            Printer.menu();
             input = scan.nextLine();
             switch (input) {
                 case "a":
@@ -451,18 +380,12 @@ public class ClientUserInterface {
                 case "i":
                     client.createSavings();
                     break;
-                case "j" :
+                case "j":
                     client.changeSavingsBalance();
                     break;
                 case "q":
-                    try {
-                        client.storeOwnerRepo();
-                        client.disconnect();
-                        running = false;
-                        break;
-                    } catch (IOException e) {
-                        System.out.println("Caught an IO exception when closing socket connection");
-                    }
+                    client.disconnect();
+                    running = false;
                     break;
 
             }

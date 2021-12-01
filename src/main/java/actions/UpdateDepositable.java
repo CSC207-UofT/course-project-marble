@@ -1,6 +1,6 @@
 package actions;
 
-import action_request_response.UpdateDepositableRequest;
+import action_request_response.ActionRequest;
 import action_request_response.ActionResponse;
 import entity.Date;
 import entity.Depositable;
@@ -10,10 +10,10 @@ import entity.OwnerRepository;
 import java.util.ArrayList;
 
 public class UpdateDepositable extends Actions{
-    private ArrayList<FinancialAsset> listAssets;
-    private Date date;
+    private final ArrayList<FinancialAsset> listAssets;
+    private final Date date;
 
-    public UpdateDepositable(UpdateDepositableRequest request) {
+    public UpdateDepositable(ActionRequest request) {
         this.listAssets = OwnerRepository.getOwnerRepository().findOwner(request.getUsername()).getListAssets();
         this.date = new Date();
 

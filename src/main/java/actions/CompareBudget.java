@@ -1,6 +1,6 @@
 package actions;
+import action_request_response.ActionRequest;
 import action_request_response.ActionResponse;
-import action_request_response.CompareBudgetRequest;
 import action_request_response.CompareBudgetResponse;
 import entity.Budget;
 import java.util.ArrayList;
@@ -11,19 +11,16 @@ import java.lang.StringBuilder;
  * budget with a standard ideal budget
  */
 public class CompareBudget extends Actions{
-    private final Budget budget;
-    private final double total;
-    private final ArrayList<String> ruleBudget;
+    private final Budget budget = null;
+    private final double total = Double.parseDouble(null);
+    private final ArrayList<String> ruleBudget = null;
 
     /**
      *  Initializer for a CompareBudget object
      * @param request object containing all the information an object of
      *      *                the class needs to process and respond back
      */
-    public CompareBudget(CompareBudgetRequest request){
-        budget = request.getBudget();
-        total = request.getTotal();
-        ruleBudget = request.getRuleBudget();
+    public CompareBudget(ActionRequest request){
     }
 
     /**
