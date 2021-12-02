@@ -41,7 +41,7 @@ public class testWithdrawal {
 
     @Test
     public void testWithdrawFailure(){
-        ActionRequest withdrawRequest = new ActionRequest("jd_123", Commands.WITHDRAWAL, new ArrayList<>(List.of("Bill", "Electricity")));
+        ActionRequest withdrawRequest = new ActionRequest("jd_123", Commands.WITHDRAWAL, new ArrayList<>(List.of("2000.0", "Bill", "Electricity")));
         Withdrawal withdraw = new Withdrawal(withdrawRequest);
         WithdrawalResponse response = (WithdrawalResponse) withdraw.process();
         assertEquals(1000.0, user.getBalance());
