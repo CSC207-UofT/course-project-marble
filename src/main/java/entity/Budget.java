@@ -147,9 +147,11 @@ public class Budget {
     /**
      * New methods for added because some Action classes needed them
      */
-    public double getGoalCategoryBudget(String catergoryName) {
-        return goalBudget.get(catergoryName);
+    public double getGoalCategoryBudget(String catergory) {
+        return goalBudget.get(catergory);
     }
 
-
+    public double getRemainingCategoryBudget(String category) {
+        return remainingBudget.get(category);
+    }
 }
