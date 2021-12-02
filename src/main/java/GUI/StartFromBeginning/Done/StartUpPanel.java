@@ -1,9 +1,8 @@
-package GUI.StartFromBeginning;
+package GUI.StartFromBeginning.Done;
 
 import GUI.GUI_Done.JLoginPanel;
 import GUI.GUI_Done.JRegisterPanel;
 
-import javax.print.attribute.standard.JobName;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
