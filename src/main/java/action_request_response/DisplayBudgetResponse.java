@@ -1,16 +1,17 @@
 package action_request_response;
 
 public class DisplayBudgetResponse extends ActionResponse {
-    private final boolean possible;
-    private String viewBudget;
+    private String result;
 
-    public DisplayBudgetResponse(boolean possible){
-        this.possible = possible;
-        this.viewBudget = "";
+    public DisplayBudgetResponse(){
+        this.result = "No Active or Existing Budget to View";
     }
 
-    public DisplayBudgetResponse(boolean possible, String viewBudget) {
-        this.possible = possible;
-        this.viewBudget = viewBudget;
+    public DisplayBudgetResponse(String result) {
+        this.result = result;
+    }
+
+    public String getResult() {
+        return result;
     }
 }
