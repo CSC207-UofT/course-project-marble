@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class ClientUserInterface {
+public class ClientUserController {
     private Socket clientSocket;
     private ObjectOutputStream outbound;
     private ObjectInputStream inbound;
@@ -23,6 +23,7 @@ public class ClientUserInterface {
         inbound = new ObjectInputStream(clientSocket.getInputStream());
         System.out.println("Connected");
     }
+
     public boolean sendObject(Object obj){
         try {
             outbound.writeObject(obj);
@@ -332,7 +333,7 @@ public class ClientUserInterface {
 
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
-        ClientUserInterface client = new ClientUserInterface();
+        ClientUserController client = new ClientUserController();
         try {
             client.Connect("127.0.0.1", 8000);
         } catch (IOException | ClassNotFoundException e) {
