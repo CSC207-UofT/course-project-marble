@@ -1,7 +1,7 @@
 package actions;
 
+import action_request_response.ActionRequest;
 import action_request_response.ActionResponse;
-import action_request_response.OwnerInfoRequest;
 import action_request_response.OwnerInfoResponse;
 import entity.Owner;
 import entity.OwnerRepository;
@@ -18,7 +18,7 @@ public class OwnerInfo extends Actions{
      * @param request contains the needed information the class
      *                object will process
      */
-    public OwnerInfo(OwnerInfoRequest request){
+    public OwnerInfo(ActionRequest request){
         owner = OwnerRepository.getOwnerRepository().findOwner(request.getUsername());
     }
 

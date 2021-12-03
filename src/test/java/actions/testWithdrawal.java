@@ -1,6 +1,7 @@
 package actions;
 
-import action_request_response.WithdrawalRequest;
+import action_request_response.ActionRequest;
+import action_request_response.Commands;
 import action_request_response.WithdrawalResponse;
 import entity.Owner;
 import entity.OwnerRepository;
@@ -8,6 +9,9 @@ import entity.OwnerRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -28,7 +32,7 @@ public class testWithdrawal {
 
     @Test
     public void testWithdrawSuccess(){
-        WithdrawalRequest withdrawRequest = new WithdrawalRequest("jd_123", 200.0, "Bill", "Electricity");
+        ActionRequest withdrawRequest = new ActionRequest("jd_123", Commands.WITHDRAWAL, new ArrayList<>(List.of("200.0", "Bill", "Electricity")));
         Withdrawal withdraw = new Withdrawal(withdrawRequest);
         WithdrawalResponse response = (WithdrawalResponse) withdraw.process();
         assertEquals(800.0, user.getBalance());
@@ -37,7 +41,7 @@ public class testWithdrawal {
 
     @Test
     public void testWithdrawFailure(){
-        WithdrawalRequest withdrawRequest = new WithdrawalRequest("jd_123", 2000.0, "Entertainment", "New Furniture");
+        ActionRequest withdrawRequest = new ActionRequest("jd_123", Commands.WITHDRAWAL, new ArrayList<>(List.of("2000.0", "Bill", "Electricity")));
         Withdrawal withdraw = new Withdrawal(withdrawRequest);
         WithdrawalResponse response = (WithdrawalResponse) withdraw.process();
         assertEquals(1000.0, user.getBalance());

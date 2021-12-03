@@ -7,6 +7,7 @@ public abstract class FinancialAsset {
 
     /**
      * Constructor. Sets the date to todays date.
+     *
      * @param annualInterestRate annual interest rate which depends on the instrument
      */
     public FinancialAsset(double annualInterestRate, String name) {
@@ -17,18 +18,23 @@ public abstract class FinancialAsset {
 
     /**
      * Getter for the name
+     *
      * @return name of the financial asset
      */
-    public String getName() {return this.name;}
+    public String getName() {
+        return this.name;
+    }
 
     /**
      * Returns the value of the asset today.
+     *
      * @return amount of money
      */
     public abstract double getValue();
 
     /**
      * Getter for the annual interest rate
+     *
      * @return Annual Interest Rate
      */
     public double getAnnualInterestRate() {
@@ -37,6 +43,7 @@ public abstract class FinancialAsset {
 
     /**
      * Getter for dateCreated
+     *
      * @return the Date object for the date the asset was created
      */
     public Date getDateCreated() {
@@ -45,6 +52,7 @@ public abstract class FinancialAsset {
 
     /**
      * Setter for annual interest rate if a concrete class needs to modify it
+     *
      * @param annualInterestRate The new interest rate
      */
     public void setAnnualInterestRate(double annualInterestRate) {

@@ -4,6 +4,7 @@ package server;
 import action_request_response.ActionRequest;
 import action_request_response.ActionResponse;
 import actions.Actions;
+import actions.StoreDataJson;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -30,6 +31,7 @@ public class Server {
 
     /**
      * This method waits for a connection to accept and returns that socket
+     *
      * @return the Socket for the client that has connected
      */
     public Socket accept() {
@@ -81,7 +83,7 @@ public class Server {
     static class ServerThread extends Thread {
         private final ObjectOutputStream outbound;
         private final ObjectInputStream inbound;
-        private final Socket  clientSocket;
+        private final Socket clientSocket;
         private final ActionFactory factory;
 
         ServerThread(Socket socket) throws IOException {
@@ -104,6 +106,7 @@ public class Server {
 
                     if (request.isQuit()) {
                         System.out.println("Disconnecting " + request.getUsername());
+                        new StoreDataJson("OwnerRepo.json").process();
                         this.close();
                         quit = true;
 
@@ -119,14 +122,15 @@ public class Server {
                     }
 
                 } catch (IOException | ClassNotFoundException e) {
-                    System.out.println("Caught an IO exception when closing socket connection");
-                    System.out.println("Disconnecting");
-                    this.close();
-                    quit = true;
+                        System.out.println("Caught an IO exception when closing socket connection");
+                        System.out.println("Disconnecting");
+                        this.close();
+                        quit = true;
 
                 }
             }
         }
+
         /**
          * This method will close the client socket's connection.
          */

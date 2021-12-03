@@ -10,6 +10,7 @@ public class Savings extends Depositable {
 
     /**
      * Deposits money into the savings account. Can also be used to take money out
+     *
      * @param amount The amount that
      * @return The new balance after the deposit
      */
@@ -28,7 +29,7 @@ public class Savings extends Depositable {
     public void addInterest() {
         double monthlyInterest = super.getAnnualInterestRate() / 12;
         double temp = super.getBalance();
-        if (temp <= 0){
+        if (temp <= 0) {
             return;
         }
         temp = temp + (temp * (monthlyInterest / 100));
@@ -40,6 +41,7 @@ public class Savings extends Depositable {
 
     /**
      * Returns the current value of the Savings account
+     *
      * @return Double balance of the savings account
      */
     @Override

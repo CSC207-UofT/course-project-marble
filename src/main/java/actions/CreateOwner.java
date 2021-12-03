@@ -1,20 +1,23 @@
 package actions;
 
+import action_request_response.ActionRequest;
 import action_request_response.ActionResponse;
-import action_request_response.CreateUserRequest;
 import action_request_response.CreateUserResponse;
 import entity.Owner;
 import entity.OwnerRepository;
+
+import java.util.ArrayList;
 
 public class CreateOwner extends Actions {
     private final String fullName;
     private final String username;
     private final String password;
 
-    public CreateOwner(CreateUserRequest request) {
-        fullName = request.getFullname();
+    public CreateOwner(ActionRequest request) {
         username = request.getUsername();
-        password = request.getPassword();
+        ArrayList<String> userInputs = request.getUserInputs();
+        fullName = userInputs.get(0);
+        password = userInputs.get(1);
     }
 
     @Override
