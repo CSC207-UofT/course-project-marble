@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class CreateUser {
     public ActionRequest createUser(){
         Scanner sc = new Scanner(System.in);
-        System.out.println("Please enter your fullname");
+        System.out.println("Please enter your full name");
         String fullName = sc.nextLine();
         System.out.println("Please enter your chosen username");
         String username = sc.nextLine();
