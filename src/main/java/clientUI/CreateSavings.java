@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class createSavings {
+public class CreateSavings {
     public ActionRequest createSavings(String username) {
         Scanner sc = new Scanner(System.in);
         System.out.println("What is the savings accounts name?");

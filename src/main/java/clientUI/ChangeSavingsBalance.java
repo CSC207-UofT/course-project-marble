@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Scanner;
 
 
-public class changeSavingsBalance {
+public class ChangeSavingsBalance {
     public ActionRequest changeSavingsBalance(String username){
         Scanner sc = new Scanner(System.in);
         System.out.println("Which savings account?");
