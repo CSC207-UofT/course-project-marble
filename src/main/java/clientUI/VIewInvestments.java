@@ -7,7 +7,6 @@ import java.util.ArrayList;
 
 public class VIewInvestments {
     public ActionRequest ViewInvestments(String username) {
-        ActionRequest request = new ActionRequest(username, Commands.VIEWINVESTMENTS, new ArrayList<>());
-        return request;
+        return new ActionRequest(username, Commands.VIEWINVESTMENTS, new ArrayList<>());
     }
 }

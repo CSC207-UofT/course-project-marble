@@ -6,9 +6,8 @@ import action_request_response.Commands;
 import java.util.ArrayList;
 
 public class Disconnect {
-    public ActionRequest Disconnect(String username){
-        ActionRequest request = new ActionRequest(username,
+    public ActionRequest disconnect(String username){
+        return new ActionRequest(username,
                 Commands.USERQUIT, new ArrayList<>());
-        return request;
     }
 }

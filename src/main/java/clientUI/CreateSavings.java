@@ -14,7 +14,6 @@ public class CreateSavings {
         String name = sc.nextLine();
         System.out.println("What is the interestRate?");
         String interestRate = sc.nextLine();
-        ActionRequest request = new ActionRequest(username, Commands.CREATESAVINGS, new ArrayList<>(List.of(name, interestRate)));
-        return request;
+        return new ActionRequest(username, Commands.CREATESAVINGS, new ArrayList<>(List.of(name, interestRate)));
     }
 }

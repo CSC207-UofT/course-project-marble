@@ -15,7 +15,6 @@ public class ChangeSavingsBalance {
         String name = sc.nextLine();
         System.out.println("How much? +ve value to add to your savings. -ve to remove");
         String amount = sc.nextLine();
-        ActionRequest request = new ActionRequest(username, Commands.DEPOSITSAVINGS, new ArrayList<>(List.of(name, amount)));
-        return request;
+        return new ActionRequest(username, Commands.DEPOSITSAVINGS, new ArrayList<>(List.of(name, amount)));
     }
 }

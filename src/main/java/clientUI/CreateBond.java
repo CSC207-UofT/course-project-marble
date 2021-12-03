@@ -32,8 +32,7 @@ public class CreateBond {
         str_day = str_day.substring(str_day.length() - 2);
 
         String date = year + "-" + str_month + "-" + str_day;
-        ActionRequest request = new ActionRequest(username, Commands.CREATEBOND,
+        return new ActionRequest(username, Commands.CREATEBOND,
                 new ArrayList<>(List.of(name, interestRate, pricePerBond, volume, date)));
-        return request;
     }
 }

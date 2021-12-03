@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class CreateUser {
-    public ActionRequest CreateUser(){
+    public ActionRequest createUser(){
         Scanner sc = new Scanner(System.in);
         System.out.println("Please enter your fullname");
         String fullName = sc.nextLine();
@@ -17,8 +17,7 @@ public class CreateUser {
         System.out.println("Please enter your password");
         String password = sc.nextLine();
 
-        ActionRequest request = new ActionRequest(username, Commands.CREATEUSER,
+        return new ActionRequest(username, Commands.CREATEUSER,
                 new ArrayList<>(List.of(fullName, password)));
-        return request;
     }
 }
