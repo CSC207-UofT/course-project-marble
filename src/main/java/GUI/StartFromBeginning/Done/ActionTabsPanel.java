@@ -61,7 +61,7 @@ public class ActionTabsPanel extends JPanel {
 
         this.add(depositRec, constraints);
 
-        JButton viewAcc = new JButton("View \n Account \n Details");
+        JButton viewAcc = new JButton("View \n User \n Details");
         constraints.gridy = 4;
 
         viewAcc.addActionListener(new ActionListener() {
