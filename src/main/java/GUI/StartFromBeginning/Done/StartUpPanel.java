@@ -1,8 +1,5 @@
 package GUI.StartFromBeginning.Done;
 
-import GUI.GUI_Done.JLoginPanel;
-import GUI.GUI_Done.JRegisterPanel;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;

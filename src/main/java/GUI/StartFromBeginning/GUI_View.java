@@ -1,9 +1,12 @@
 package GUI.StartFromBeginning;
 
+import GUI.GUI_Done.StateManager;
+import GUI.StartFromBeginning.Done.ActionTabsPanel;
+import GUI.StartFromBeginning.Done.QuickPopupActionPanel;
+import GUI.StartFromBeginning.Done.StartUpPanel;
+
 import javax.swing.*;
-import javax.swing.plaf.nimbus.State;
 import java.awt.*;
-import java.awt.event.ItemEvent;
 
 public class GUI_View{
     private JFrame frame;
@@ -14,6 +17,7 @@ public class GUI_View{
     private int windowHeight;
     private int windowWidth;
     private StateManager sManager;
+    private Model model;
 
     public GUI_View(){
         frame = new JFrame("Marbles Financial");
@@ -24,7 +28,7 @@ public class GUI_View{
         frame.setMinimumSize(new Dimension(1366, 768));
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+        model = new Model();
         start();
     }
 
@@ -34,7 +38,10 @@ public class GUI_View{
     }
 
     public void continueAfterAccess(){
-        //sManager = new StateManager();
-        //sManager.addCompToPane(frame.getContentPane());
+        ActionTabsPanel atPanel = new ActionTabsPanel();
+        frame.add(atPanel);
+
+        QuickPopupActionPanel qpaPanel = new QuickPopupActionPanel();
+        frame.add(qpaPanel);
     }
 }

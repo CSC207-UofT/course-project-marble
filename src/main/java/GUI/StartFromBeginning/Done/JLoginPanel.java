@@ -1,12 +1,17 @@
-package GUI.GUI_Done;
+package GUI.StartFromBeginning.Done;
+import clientUI.ClientUserInterface;
 
+import javax.accessibility.Accessible;
 import javax.swing.*;
+import javax.swing.JPasswordField;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class JRegisterPanel extends JPanel{
-    public JRegisterPanel(){
+public class JLoginPanel extends JPanel{
+
+    public JLoginPanel(){
         super(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.anchor = GridBagConstraints.WEST;
@@ -31,23 +36,22 @@ public class JRegisterPanel extends JPanel{
         this.add(passLabel, constraints);
 
         constraints.gridx = 1;
-        JTextField pass = new JTextField(16);
+        JPasswordField pass = new JPasswordField(16);
         pass.setPreferredSize(new Dimension(120,40));
         pass.setFont(new Font("Serif", Font.PLAIN, 20));
         this.add(pass, constraints);
 
         constraints.gridx = 0;
         constraints.gridy = 2;
-        JButton registerButton = new JButton("Register");
-        registerButton.setPreferredSize(new Dimension(120, 70));
+        JButton loginButton = new JButton("Login");
+        loginButton.setPreferredSize(new Dimension(120, 70));
         constraints.anchor = GridBagConstraints.WEST;
-        registerButton.addActionListener(new ActionListener() {
+        this.add(loginButton,constraints);
+        loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
             }
         });
-        this.add(registerButton,constraints);
 
         constraints.gridx = 1;
         constraints.gridy = 2;
