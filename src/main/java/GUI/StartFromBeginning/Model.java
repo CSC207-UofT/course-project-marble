@@ -4,7 +4,6 @@ public class Model {
     private String name;
     private String username;
     private String balance;
-    private
 
     public Model(){
         this.name = "";
