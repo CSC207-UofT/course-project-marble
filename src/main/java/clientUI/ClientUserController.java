@@ -331,23 +331,23 @@ public class ClientUserController {
         return false;
     }
 
-    public static void main(String[] args) {
+    public void run() {
         Scanner scan = new Scanner(System.in);
-        ClientUserController client = new ClientUserController();
+
         try {
-            client.Connect("127.0.0.1", 8000);
+            this.Connect("127.0.0.1", 8000);
         } catch (IOException | ClassNotFoundException e) {
             System.exit(-1);
         }
 
-        while (client.username == null) {
-            boolean tryAgain = client.splash();
+        while (this.username == null) {
+            boolean tryAgain = this.splash();
             if (!tryAgain){
-                client.disconnect();
+                this.disconnect();
                 return;
             }
         }
-        client.updateDepositable();
+        this.updateDepositable();
         String input;
         boolean running = true;
         while (running) {
@@ -355,37 +355,37 @@ public class ClientUserController {
             input = scan.nextLine();
             switch (input) {
                 case "a":
-                    client.ownerInfo();
+                    this.ownerInfo();
                     break;
                 case "b":
-                    client.deposit();
+                    this.deposit();
                     break;
                 case "c":
-                    client.withdrawal();
+                    this.withdrawal();
                     break;
                 case "d":
-                    client.displayDepositRecord();
+                    this.displayDepositRecord();
                     break;
                 case "e":
-                    client.displayWithdrawalRecord();
+                    this.displayWithdrawalRecord();
                     break;
                 case "f":
-                    client.viewInvestments();
+                    this.viewInvestments();
                     break;
                 case "g":
-                    client.cashOut();
+                    this.cashOut();
                     break;
                 case "h":
-                    client.createBond();
+                    this.createBond();
                     break;
                 case "i":
-                    client.createSavings();
+                    this.createSavings();
                     break;
                 case "j":
-                    client.changeSavingsBalance();
+                    this.changeSavingsBalance();
                     break;
                 case "q":
-                    client.disconnect();
+                    this.disconnect();
                     running = false;
                     break;
 
