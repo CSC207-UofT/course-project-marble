@@ -16,7 +16,6 @@ public class GUI_View{
     private JButton exit;
     private int windowHeight;
     private int windowWidth;
-    private StateManager sManager;
     private Model model;
 
     public GUI_View(){
