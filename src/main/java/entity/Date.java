@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Period;
 
+import static java.lang.Math.max;
+
 public class Date implements Comparable<Date>, Serializable {
     private final int month;
     private final int year;
@@ -96,7 +98,8 @@ public class Date implements Comparable<Date>, Serializable {
      */
     public int monthDifference(Date date) {
         Period period = Period.between(this.date, date.getDate());
-        return period.getMonths();
+        Period periodOtherWayAround = Period.between(date.getDate(), this.date);
+        return Math.abs(period.getMonths()) + Math.abs(period.getYears()) * 12;
     }
 
     /**

@@ -13,10 +13,10 @@ public class testDateCompareTo {
 
     @BeforeEach
     public void setup() {
-        d1 = new Date(11, 2021, 1);
-        d2 = new Date(11, 2021, 4);
-        d3 = new Date(12, 2021, 4);
-        d4 = new Date(11, 2021, 1);
+        d1 = new Date(11, 1, 2021);
+        d2 = new Date(11, 4, 2021);
+        d3 = new Date(12, 4, 2021);
+        d4 = new Date(11, 1, 2021);
     }
 
     @Test

@@ -1,5 +1,7 @@
 package actions;
 
+import action_request_response.ActionRequest;
+import action_request_response.Commands;
 import action_request_response.DisplayWithdrawalRecordResponse;
 import entity.Date;
 import entity.Owner;
@@ -31,7 +33,7 @@ public class testDisplayWithdrawalRecord {
 
     @Test
     public void testDisplayWithdrawalRecordSuccess() {
-        DisplayWithdrawalRecordRequest request = new DisplayWithdrawalRecordRequest("jd_123");
+        ActionRequest request = new ActionRequest("jd_123", Commands.DISPLAYWITHDRAWALRECORD, new ArrayList<>());
         DisplayWithdrawalRecord withdrawalRecord = new DisplayWithdrawalRecord(request);
         DisplayWithdrawalRecordResponse response = (DisplayWithdrawalRecordResponse) withdrawalRecord.process();
         ArrayList<Record> expected = new ArrayList<>();
