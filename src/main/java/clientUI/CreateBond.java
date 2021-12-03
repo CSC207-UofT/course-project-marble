@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class createBond {
+public class CreateBond {
     public ActionRequest createBond(String username) {
         Scanner sc = new Scanner(System.in);
         System.out.println("What is the name of the bond?");
