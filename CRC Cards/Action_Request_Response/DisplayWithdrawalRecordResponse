@@ -1,0 +1,13 @@
+Class Name: DisplayWithdrawalRecordResponse
+Parent Class: ActionResponse
+Children: None
+
+Responsibilities:
+* Provides an action response of the array list of the withdrawal records.
+  Methods:
+    * getResult()
+  Variables:
+    * ArrayList<Record> result
+    
+Collaborator:
+* DisplayWithdrawalRecord

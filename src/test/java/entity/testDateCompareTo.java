@@ -1,9 +1,9 @@
 package entity;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class testDateCompareTo {
     private Date d1;
@@ -31,7 +31,7 @@ public class testDateCompareTo {
 
     @Test
     public void dateEqual() {
-        assertTrue(d1.equals(d4));
+        assertEquals(d1, d4);
     }
 
     @Test

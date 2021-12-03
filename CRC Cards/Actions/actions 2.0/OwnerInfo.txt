@@ -1,1 +1,0 @@
-Display Owner "profile" (their info)

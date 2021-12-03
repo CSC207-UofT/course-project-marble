@@ -6,8 +6,9 @@ public class CreditCard extends Depositable {
     /**
      * Constructor. Passes 19.9% interest to the super constructor
      */
-    public CreditCard() {
-        super(19.9);
+    public CreditCard(String name) {
+        super(19.9, name);
+
     }
 
     /**

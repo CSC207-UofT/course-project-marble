@@ -4,8 +4,8 @@ import static java.lang.Math.round;
 
 public class Savings extends Depositable {
 
-    public Savings(double annualInterestRate) {
-        super(annualInterestRate);
+    public Savings(double annualInterestRate, String name) {
+        super(annualInterestRate, name);
     }
 
     /**

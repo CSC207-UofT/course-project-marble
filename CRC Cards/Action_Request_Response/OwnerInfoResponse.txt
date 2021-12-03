@@ -1,0 +1,15 @@
+Class name: OwnerInfoResponse
+Parent class: ActionResponse
+Children: none
+Properties to note: none
+
+Responsibilities:
+* provides a response to whether a OwnerInfo object was able
+  to do what it was supposed to or not (return a display)
+   Methods:
+	* getDisplay()
+   Variables:
+	* String display
+
+Collaborators:
+* none

@@ -1,6 +1,5 @@
 package entity;
 
-
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -14,6 +13,7 @@ public class Owner {
     private final byte[] password;
     private double balance;
     private Budget budget;
+    private final ArrayList<FinancialAsset> listAssets;
     private final ArrayList<Record> listRecord;
 
 
@@ -42,13 +42,14 @@ public class Owner {
         }
         assert md != null;
         this.password = md.digest(password.getBytes(StandardCharsets.UTF_8));
+        listAssets = new ArrayList<>();
     }
 
     @Override
     public String toString() {
-        return this.userName;
+        return "User Profile:\n Name: " + this.fullName + "\nUsername: " +
+                this.userName + "\nBalance: $" + this.balance + "\n";
     }
-
 
     public String getName() {
         return this.fullName;
@@ -67,6 +68,13 @@ public class Owner {
         this.listRecord.add(newRecord);
     }
 
+    public void addAsset(FinancialAsset newAsset){
+        this.listAssets.add(newAsset);
+    }
+
+    public ArrayList<FinancialAsset> getListAssets() {
+        return listAssets;
+    }
 
     /**
      * setBalance is to get owner's balance. Work with getBalance() when you want to adjust the balance.
@@ -91,7 +99,7 @@ public class Owner {
      *               reset the remainingBudget based on the date.
      *
      */
-    public void setBudget(HashMap<String, Integer> categories, Date date, String period){
+    public void setBudget(HashMap<String, Double> categories, Date date, String period){
         this.budget = new Budget(categories, date, period);
     }
 
@@ -128,3 +136,4 @@ public class Owner {
     }
 
 }
+

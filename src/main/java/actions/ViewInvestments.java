@@ -1,31 +1,25 @@
 package actions;
 
+import action_request_response.ActionResponse;
+import action_request_response.ViewInvestmentsRequest;
+import action_request_response.ViewInvestmentsResponse;
 import entity.*;
 
-public class ViewInvestments{
-    private Depositable account;
+import java.util.ArrayList;
 
-    public ViewInvestments(Depositable account){
-        this.account = account;
+public class ViewInvestments extends Actions{
+    private final ArrayList<FinancialAsset> listAssets;
+
+    public ViewInvestments(ViewInvestmentsRequest request){
+        this.listAssets = OwnerRepository.getOwnerRepository().findOwner(request.getUsername()).getListAssets();
     }
 
     /**
      * This method displays information on the Depositable accounts.
+     * @return String of Depositable accounts.
      */
-    public void displayDepositable(){
-        UpdateDepositable update = new UpdateDepositable(account);
-        if (account instanceof Savings){
-            System.out.printf("%-18s%-18s%-18s%-18s\n","Account Type","Date Created", "Current Balance",
-                    "Annual Interest Rate");
-            System.out.printf("%-18s%-18s%-18s%-18s\n","Savings",account.getDateCreated(), update.valueDepositable(),
-                    account.getAnnualInterestRate());
-        }
-        else{
-            System.out.printf("%-18s%-18s%-18s%-18s\n","Account Type","Date Created", "Current Balance",
-                    "Annual Interest Rate");
-            System.out.printf("%-18s%-18s%-18s%-18s\n","Credit",account.getDateCreated(), update.valueDepositable(),
-                    account.getAnnualInterestRate());
-        }
-
+    @Override
+    public ActionResponse process() {
+        return new ViewInvestmentsResponse(listAssets.toString());
     }
 }
