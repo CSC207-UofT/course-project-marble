@@ -2,7 +2,10 @@ package server;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import entity.Bond;
+import entity.Date;
 import entity.FinancialAsset;
+import entity.Savings;
 
 import java.io.*;
 
