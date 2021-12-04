@@ -7,7 +7,7 @@ public class SimulateResponse extends ActionResponse {
 
     /**
      * Constructor that create a Simulate response returned from the Simulate action.
-     * @param result The simulated values of the Financial Assets
+     * @param result The simulated values of the financial assets
      */
     public SimulateResponse(ArrayList<Double> result) {
         this.result = result;
