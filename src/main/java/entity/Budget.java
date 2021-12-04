@@ -63,9 +63,11 @@ public class Budget {
 
     public HashMap<String, Double> getGoalBudget() {return this.goalBudget;}
 
-    public void setRemainingBudget(HashMap<String, Double> update){this.remainingBudget = update;}
+    public void setRemainingBudget(HashMap<String, Double> update){
+        this.remainingBudget = new HashMap<>(update);    }
 
-    public void setGoalBudget(HashMap<String, Double> update){this.goalBudget = update;}
+    public void setGoalBudget(HashMap<String, Double> update){
+        this.goalBudget = new HashMap<>(update);    }
 
     public void adjustPeriod(String newPeriod) {this.period = newPeriod;}
 
