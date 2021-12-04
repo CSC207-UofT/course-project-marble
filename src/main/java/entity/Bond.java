@@ -2,13 +2,11 @@ package entity;
 
 
 public class Bond extends NonDepositable {
-    private final Date dateOfMaturity;
     private boolean cashedOut;
 
     public Bond(int volume, double annualInterestRate, double pricePerBond, Date dateOfMaturity, String name) {
-        super(annualInterestRate, volume, pricePerBond, name);
+        super(annualInterestRate, volume, pricePerBond, name, dateOfMaturity);
         cashedOut = false;
-        this.dateOfMaturity = dateOfMaturity;
     }
 
     /**
@@ -22,10 +20,10 @@ public class Bond extends NonDepositable {
             return 0;
         }
         Date dateToday = new Date();
-        if (dateToday.compareTo(this.dateOfMaturity) < 0) {
+        if (dateToday.compareTo(super.getDateOfMaturity()) < 0) {
             return 0;
         }
-        int monthDiff = this.dateOfMaturity.monthDifference(super.getDateCreated());
+        int monthDiff = super.getDateOfMaturity().monthDifference(super.getDateCreated());
         double interestRate = (annualInterestRate / 100) * (monthDiff) / 12;
         return interestRate * super.getVolume() * this.getPricePerBond() + (super.getVolume() * this.getPricePerBond());
     }
@@ -36,7 +34,7 @@ public class Bond extends NonDepositable {
      * @return dateOfMaturity
      */
     public Date getDateOfMaturity() {
-        return this.dateOfMaturity;
+        return super.getDateOfMaturity();
     }
 
     /**
@@ -68,7 +66,7 @@ public class Bond extends NonDepositable {
             return -1;
         }
         Date dateToday = new Date();
-        if (dateToday.compareTo(this.dateOfMaturity) < 0) {
+        if (dateToday.compareTo(super.getDateOfMaturity()) < 0) {
             return -1;
         }
         double returnVal = this.getValue();
