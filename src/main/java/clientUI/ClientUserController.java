@@ -198,25 +198,25 @@ public class ClientUserController {
         }
     }
 
-    public void cashOut() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("What is the name of the asset you want to cash out?");
-        String name = sc.nextLine();
-        ActionRequest request = new ActionRequest(username, Commands.CASHOUT, new ArrayList<>(List.of(name)));
-        sendObject(request);
-        try {
-            CashOutResponse result = (CashOutResponse) inbound.readObject();
-            boolean response = result.getResult();
-            if (response) {
-                System.out.println("You were successful");
-            } else {
-                System.out.println("You were not successful");
-            }
-        } catch (IOException | ClassNotFoundException e) {
-            System.out.println("There was an error. Please try again");
-        }
-
-    }
+//    public void cashOut() {
+//        Scanner sc = new Scanner(System.in);
+//        System.out.println("What is the name of the asset you want to cash out?");
+//        String name = sc.nextLine();
+//        ActionRequest request = new ActionRequest(username, Commands.CASHOUT, new ArrayList<>(List.of(name)));
+//        sendObject(request);
+//        try {
+//            CashOutResponse result = (CashOutResponse) inbound.readObject();
+//            boolean response = result.getResult();
+//            if (response) {
+//                System.out.println("You were successful");
+//            } else {
+//                System.out.println("You were not successful");
+//            }
+//        } catch (IOException | ClassNotFoundException e) {
+//            System.out.println("There was an error. Please try again");
+//        }
+//
+//    }
 
     public void createSavings() {
         Scanner sc = new Scanner(System.in);
@@ -274,26 +274,26 @@ public class ClientUserController {
         }
     }
 
-    public void changeSavingsBalance() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Which savings account?");
-        String name = sc.nextLine();
-        System.out.println("How much? +ve value to add to your savings. -ve to remove");
-        String amount = sc.nextLine();
-        ActionRequest request = new ActionRequest(username, Commands.DEPOSITSAVINGS, new ArrayList<>(List.of(name, amount)));
-        sendObject(request);
-        try {
-            DepositSavingResponse result = (DepositSavingResponse) inbound.readObject();
-            boolean response = result.getResult();
-            if (response) {
-                System.out.println("You were successful");
-            } else {
-                System.out.println("You do not have enough money to afford this purchase");
-            }
-        } catch (IOException | ClassNotFoundException e) {
-            System.out.println("There was an error. Please try again");
-        }
-    }
+//    public void changeSavingsBalance() {
+//        Scanner sc = new Scanner(System.in);
+//        System.out.println("Which savings account?");
+//        String name = sc.nextLine();
+//        System.out.println("How much? +ve value to add to your savings. -ve to remove");
+//        String amount = sc.nextLine();
+//        ActionRequest request = new ActionRequest(username, Commands.DEPOSITSAVINGS, new ArrayList<>(List.of(name, amount)));
+//        sendObject(request);
+//        try {
+//            DepositSavingResponse result = (DepositSavingResponse) inbound.readObject();
+//            boolean response = result.getResult();
+//            if (response) {
+//                System.out.println("You were successful");
+//            } else {
+//                System.out.println("You do not have enough money to afford this purchase");
+//            }
+//        } catch (IOException | ClassNotFoundException e) {
+//            System.out.println("There was an error. Please try again");
+//        }
+//    }
 
     public void disconnect() {
         ActionRequest request = new ActionRequest(this.username, Commands.USERQUIT, new ArrayList<>());
@@ -374,7 +374,7 @@ public class ClientUserController {
                     this.viewInvestments();
                     break;
                 case "g":
-                    this.cashOut();
+                    //this.cashOut();
                     break;
                 case "h":
                     this.createBond();
@@ -383,7 +383,7 @@ public class ClientUserController {
                     this.createSavings();
                     break;
                 case "j":
-                    this.changeSavingsBalance();
+                    //this.changeSavingsBalance();
                     break;
                 case "q":
                     this.disconnect();
