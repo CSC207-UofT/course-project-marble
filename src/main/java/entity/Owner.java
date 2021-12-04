@@ -15,7 +15,7 @@ public class Owner {
     private Budget budget;
     private final ArrayList<FinancialAsset> listAssets;
     private final ArrayList<Record> listRecord;
-    private final ArrayList<Double> budgetHistory;
+    private final HashMap<String, Budget> budgetHistory;
 
 
 
@@ -31,7 +31,7 @@ public class Owner {
         this.fullName = fullName;
         this.userName = username;
         this.listRecord = new ArrayList<>();
-        this.budgetHistory = new ArrayList<>();
+        this.budgetHistory = new HashMap<>();
 
         this.balance = 0;
         this.budget = null;
@@ -78,9 +78,9 @@ public class Owner {
         return listAssets;
     }
 
-    public void addBudgetHistory(Double residue){this.budgetHistory.add(residue);}
+    public void addBudgetHistory(Budget newBudget){this.budgetHistory.put(newBudget.getDate(),newBudget);}
 
-    public ArrayList<Double> getBudgetHistory(){return this.budgetHistory;}
+    public HashMap<String, Budget> getBudgetHistory(){return this.budgetHistory;}
 
     /**
      * setBalance is to get owner's balance. Work with getBalance() when you want to adjust the balance.
@@ -101,13 +101,10 @@ public class Owner {
      * This method will store the Budget object that is created in the Action class.
      * Budget object is/should be created and customized under Actions using Budget's methods.
      *
-     * @param categories a HashMap of all the categories and their budgets
      * @param date       the date when this budget starts
-     * @param period     the period (eg. monthly, weekly, yearly, seasonal) for Actions to check when to
-     *                   reset the remainingBudget based on the date.
      */
-    public void setBudget(HashMap<String, Double> categories, Date date, String period) {
-        this.budget = new Budget(categories, date, period);
+    public void setBudget(Date date) {
+        this.budget = new Budget(date);
     }
 
     /**
