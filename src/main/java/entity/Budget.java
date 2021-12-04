@@ -44,8 +44,8 @@ public class Budget {
 
     /**Getter and Setter for Date.
     * getDate returns the date that the Budget was created.*/
-    public Date getDate() {
-        return this.date;
+    public String getDate() {
+        return this.date.toString();
     }
     /**setDate replaces the initial date with a new date.
      * @param newDate: new date of the budget.*/
