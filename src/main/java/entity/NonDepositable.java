@@ -9,7 +9,7 @@ public abstract class NonDepositable extends FinancialAsset {
      * Constructor. Sets the date to todays date.
      *
      * @param annualInterestRate annual interest rate which depends on the instrument
-     * @param name               Name of the asset
+     * @param name Name of the asset
      */
     public NonDepositable(double annualInterestRate, int volume, Double pricePerAsset, String name, Date dateOfMaturity) {
         super(annualInterestRate, name);
