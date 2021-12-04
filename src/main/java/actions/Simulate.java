@@ -35,36 +35,5 @@ public class Simulate extends Actions {
         }
         return new SimulateResponse(simulatedFinancialAssets);
     }
-
-//    /**
-//     * This is a constructor method for an abstract class for simulating worth of depositable and
-//     * nondepositable assets.
-//     */
-//    public Simulate(Owner owner, Date endDate) {
-//        this.owner = owner;
-//        this.endDate = endDate;
-//        this.simulatedFinancialAssets = new ArrayList<>();
-//        this.financialAssetNames = new ArrayList<>();
-//    }
-    
-//    public ArrayList<String> getListAssetNames() {
-//        for (FinancialAsset asset: owner.getListAssets()){
-//            financialAssetNames.add(asset.getName());
-//        }
-//        return financialAssetNames;
-//    }
-//
-//    public ArrayList<Double> simulatedAssets() {
-//        for (FinancialAsset asset : owner.getListAssets()) {
-//            SimulateContext context;
-//            if (asset instanceof Depositable) {
-//                context = new SimulateContext(new DepositableSimulateStrategy((Depositable) asset, endDate));
-//            } else {
-//                context = new SimulateContext(new NonDepositableSimulatesStrategy((NonDepositable) asset, endDate));
-//            }
-//            simulatedFinancialAssets.add(context.executeStrategy());
-//        }
-//        return simulatedFinancialAssets;
-//    }
 }
 
