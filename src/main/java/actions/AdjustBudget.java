@@ -37,8 +37,10 @@ public class AdjustBudget extends Actions{
                 System.out.println("Unable to adjust the budget. Please try again.");
                 return new AdjustBudgetResponse(false);
             }
+            else{
             remainingBudget.put(key, remainingBudget.get(key) +
                     (this.newAdjustedBudget.get(key) - goalBudget.get(key)));
+            }
         }
         budget.setGoalBudget(this.newAdjustedBudget);
         budget.setRemainingBudget(remainingBudget);

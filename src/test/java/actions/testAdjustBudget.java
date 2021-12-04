@@ -41,13 +41,17 @@ public class testAdjustBudget {
     public void testSuccessAdjust(){
         owner.setBudget(categories, date, "monthly");
         Budget budget = owner.getBudget();
-        categories.put("Needs", 900.00);
-        budget.setRemainingBudget(categories);
-        categories.put("Needs", 2000.00);
+        HashMap<String, Double> testCategories = new HashMap<>();
+        testCategories.put("Needs", 900.00);
+        testCategories.put("Wants", 700.00);
+        testCategories.put("Savings/Investment", 100.00);
+        budget.setRemainingBudget(testCategories);
+        testCategories.put("Needs", 2000.00);
         ArrayList<String> testInput = new ArrayList<>();
-        for(String key : categories.keySet()){
+        
+        for(String key : testCategories.keySet()){
             testInput.add(key);
-            testInput.add(String.valueOf(categories.get(key)));
+            testInput.add(String.valueOf(testCategories.get(key)));
         }
         request = new ActionRequest("Hunter.D", Commands.ADJUSTBUDGET, testInput);
         ActionResponse result = new AdjustBudget(request).process();
@@ -59,10 +63,14 @@ public class testAdjustBudget {
     public void testFailAdjust(){
         owner.setBudget(categories, date, "monthly");
         Budget budget = owner.getBudget();
-        categories.put("Needs", 500.00);
-        budget.setRemainingBudget(categories);
-        categories.put("Needs", 400.00);
+        HashMap<String, Double> testCategories = new HashMap<>();
+        testCategories.put("Needs", 500.00);
+        testCategories.put("Wants", 700.00);
+        testCategories.put("Savings/Investment", 100.00);
+        budget.setRemainingBudget(testCategories);
+        testCategories.put("Needs", 400.00);
         ArrayList<String> testInput = new ArrayList<>();
+
         for(String key : categories.keySet()){
             testInput.add(key);
             testInput.add(String.valueOf(categories.get(key)));
