@@ -2,7 +2,8 @@ package entity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
+import java.util.List;
+import java.util.Arrays;
 
 public class Budget {
 
@@ -19,12 +20,11 @@ public class Budget {
     private final HashMap<String, ArrayList<Double>> goalActualBudget;
     private Date date;
     private boolean active;
-    private final HashMap<Date, Budget> budgetHistory = new HashMap<>();
     List<String> categories = Arrays.asList( "Groceries", "Furniture", "Restaurant", "Vacation", "Gas", "Recurring Bill Payment", "Health and Beauty", "Home Improvement", "Entertainment", "Public Transportation and Parking");
 
     public String toString(){
         if(this.active){
-            return "This is an active budget, with a total: "+this.totalBudget;
+            return "This is an active budget.";
         }
         else{
             return "This is an inactive budget.";
@@ -113,16 +113,6 @@ public class Budget {
         return new ArrayList<>(this.categories);
     }
 
-    /**
-     * reset the remainingBudget at the end of the month. Add the budget to budget history.
-     */
-    public void resetRemainingBudget() {
-        this.budgetHistory.put(this.getDate(),this);
-    }
-    /**get the Hashmap of Budgets with the dates they were set at.*/
-    public HashMap<Date, Budget> getBudgetHistory(){
-        return new HashMap<>(this.budgetHistory);
-    }
 
 
 
