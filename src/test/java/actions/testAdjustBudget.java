@@ -48,6 +48,7 @@ public class testAdjustBudget {
         budget.setRemainingBudget(testCategories);
         testCategories.put("Needs", 2000.00);
         ArrayList<String> testInput = new ArrayList<>();
+        
         for(String key : testCategories.keySet()){
             testInput.add(key);
             testInput.add(String.valueOf(testCategories.get(key)));
@@ -69,6 +70,7 @@ public class testAdjustBudget {
         budget.setRemainingBudget(testCategories);
         testCategories.put("Needs", 400.00);
         ArrayList<String> testInput = new ArrayList<>();
+
         for(String key : categories.keySet()){
             testInput.add(key);
             testInput.add(String.valueOf(categories.get(key)));
