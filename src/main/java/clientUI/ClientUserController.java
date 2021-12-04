@@ -68,33 +68,33 @@ public class ClientUserController {
         }
     }
 
-    public boolean login() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Please enter your username");
-        String username = sc.nextLine();
-        System.out.println("Please enter your password");
-        String password = sc.nextLine();
-        ActionRequest request = new ActionRequest(username, Commands.LOGIN, new ArrayList<>(List.of(password)));
-        boolean sendStatus = sendObject(request);
-        if (!sendStatus){
-            return false;
-        }
-        try {
-            LoginResponse result = (LoginResponse) inbound.readObject();
-            if (result.getResult()) {
-                this.username = username;
-                System.out.println("Login successful!");
-                return true;
-            } else {
-                this.username = null;
-                System.out.println("Login Failed. Please try again.");
-                return false;
-            }
-        } catch (IOException | ClassNotFoundException e) {
-            System.out.println("An error occurred. Please try again");
-            return false;
-        }
-    }
+//    public boolean login() {
+//        Scanner sc = new Scanner(System.in);
+//        System.out.println("Please enter your username");
+//        String username = sc.nextLine();
+//        System.out.println("Please enter your password");
+//        String password = sc.nextLine();
+//        ActionRequest request = new ActionRequest(username, Commands.LOGIN, new ArrayList<>(List.of(password)));
+//        boolean sendStatus = sendObject(request);
+//        if (!sendStatus){
+//            return false;
+//        }
+//        try {
+//            LoginResponse result = (LoginResponse) inbound.readObject();
+//            if (result.getResult()) {
+//                this.username = username;
+//                System.out.println("Login successful!");
+//                return true;
+//            } else {
+//                this.username = null;
+//                System.out.println("Login Failed. Please try again.");
+//                return false;
+//            }
+//        } catch (IOException | ClassNotFoundException e) {
+//            System.out.println("An error occurred. Please try again");
+//            return false;
+//        }
+//    }
 
 
     public void ownerInfo() {
@@ -317,8 +317,9 @@ public class ClientUserController {
 
         switch (answer) {
             case "1":
-                this.login();
-                return true;
+                username = new Login(outbound, inbound).login();
+//                this.login();
+//                return true;
             case "2":
                 boolean result2 = this.createUser();
                 if (!result2) {
