@@ -1,7 +1,7 @@
 package actions;
 
 public class SimulateContext {
-    private SimulateStrategy strategy;
+    private final SimulateStrategy strategy;
 
     /**
      * Constructor for the context class that acts to maintain a reference to one of the
@@ -9,10 +9,6 @@ public class SimulateContext {
      * @param strategy The strategy used to simulate the asset value
      */
     public SimulateContext(SimulateStrategy strategy) {
-        this.strategy = strategy;
-    }
-
-    public void setStrategy(SimulateStrategy strategy) {
         this.strategy = strategy;
     }
 
