@@ -99,7 +99,7 @@ public class Date implements Comparable<Date>, Serializable {
     public int monthDifference(Date date) {
         Period period = Period.between(this.date, date.getDate());
         Period periodOtherWayAround = Period.between(date.getDate(), this.date);
-        return max(period.getMonths(), periodOtherWayAround.getMonths());
+        return Math.abs(period.getMonths()) + Math.abs(period.getYears()) * 12;
     }
 
     /**
