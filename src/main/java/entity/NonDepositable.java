@@ -15,7 +15,6 @@ public abstract class NonDepositable extends FinancialAsset {
         super(annualInterestRate, name);
         this.volume = volume;
         this.pricePerAsset = pricePerAsset;
-        this.name = name;
         this.dateOfMaturity = dateOfMaturity;
     }
 
