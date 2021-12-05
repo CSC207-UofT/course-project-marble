@@ -2,6 +2,7 @@ package actions;
 import action_request_response.ActionRequest;
 import action_request_response.ActionResponse;
 import action_request_response.AddExpenseResponse;
+import action_request_response.DisplayBudgetResponse;
 import entity.Budget;
 import entity.Owner;
 import entity.OwnerRepository;
@@ -19,4 +20,15 @@ public class DisplayBudget extends Actions {
         this.budget = user.getBudget();
     }
 
+    public double getTotalBudget() {
+        double total = 0;
+        for (String category : budget.getCategories()) {
+            total += budget.getGoalBudget((category));
+        }
+        return total;
+    }
+
+    public double calculateRemaining(String category) {
+        return (budget.getGoalBudget(category) - budget.getActualBudget(category));
+    }
 }
