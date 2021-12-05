@@ -35,38 +35,38 @@ public class ClientUserController {
         }
     }
 
-    public boolean createUser() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Please enter your fullname");
-        String fullName = sc.nextLine();
-        System.out.println("Please enter your chosen username");
-        String username = sc.nextLine();
-        System.out.println("Please enter your password");
-        String password = sc.nextLine();
-
-        ActionRequest request = new ActionRequest(username, Commands.CREATEUSER,
-                new ArrayList<>(List.of(fullName, password)));
-        boolean connectionStatus = sendObject(request);
-        if (!connectionStatus){
-            return false;
-        }
-        try {
-            CreateUserResponse result = (CreateUserResponse) inbound.readObject();
-            if (result.getResult()) {
-                this.username = username;
-                System.out.println("Thanks! You have created an account. " +
-                        "You are now logged into it!");
-                return true;
-            } else {
-                this.username = null;
-                System.out.println("Username already exist. Please change to another username.");
-                return false;
-            }
-        } catch (IOException | ClassNotFoundException e) {
-            System.out.println("An error occurred. Please try again");
-            return false;
-        }
-    }
+//    public boolean createUser() {
+//        Scanner sc = new Scanner(System.in);
+//        System.out.println("Please enter your fullname");
+//        String fullName = sc.nextLine();
+//        System.out.println("Please enter your chosen username");
+//        String username = sc.nextLine();
+//        System.out.println("Please enter your password");
+//        String password = sc.nextLine();
+//
+//        ActionRequest request = new ActionRequest(username, Commands.CREATEUSER,
+//                new ArrayList<>(List.of(fullName, password)));
+//        boolean connectionStatus = sendObject(request);
+//        if (!connectionStatus){
+//            return false;
+//        }
+//        try {
+//            CreateUserResponse result = (CreateUserResponse) inbound.readObject();
+//            if (result.getResult()) {
+//                this.username = username;
+//                System.out.println("Thanks! You have created an account. " +
+//                        "You are now logged into it!");
+//                return true;
+//            } else {
+//                this.username = null;
+//                System.out.println("Username already exist. Please change to another username.");
+//                return false;
+//            }
+//        } catch (IOException | ClassNotFoundException e) {
+//            System.out.println("An error occurred. Please try again");
+//            return false;
+//        }
+//    }
 
 //    public boolean login() {
 //        Scanner sc = new Scanner(System.in);
@@ -321,10 +321,10 @@ public class ClientUserController {
 //                this.login();
 //                return true;
             case "2":
-                boolean result2 = this.createUser();
-                if (!result2) {
-                    System.out.println("Login failed exiting");
-                }
+//                boolean result2 = this.createUser();
+//                if (!result2) {
+//                    System.out.println("Login failed exiting");
+//                }
                 return true;
             case "q":
                 return false;
