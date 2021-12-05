@@ -1,14 +1,23 @@
 package clientUI;
 
 import action_request_response.ActionRequest;
+import action_request_response.CashOutResponse;
 import action_request_response.Commands;
+import action_request_response.CreateBondResponse;
 
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class CreateBond {
-    public ActionRequest createBond(String username) {
+public class CreateBond extends SendReceive{
+
+    public CreateBond(ObjectOutputStream outbound, ObjectInputStream inbound) {
+        super(outbound, inbound);
+    }
+
+    public void createBond(String username) {
         Scanner sc = new Scanner(System.in);
         System.out.println("What is the name of the bond?");
         String name = sc.nextLine();
@@ -32,7 +41,15 @@ public class CreateBond {
         str_day = str_day.substring(str_day.length() - 2);
 
         String date = year + "-" + str_month + "-" + str_day;
-        return new ActionRequest(username, Commands.CREATEBOND,
+        ActionRequest request = new ActionRequest(username, Commands.CREATEBOND,
                 new ArrayList<>(List.of(name, interestRate, pricePerBond, volume, date)));
+        sendReceiveObject(request);
+        if (response != null) {
+            if (((CreateBondResponse) response).getResult()) {
+                System.out.println("You were successful");
+            } else {
+                System.out.println("You do not have enough money to afford this purchase");
+            }
+        }
     }
 }
