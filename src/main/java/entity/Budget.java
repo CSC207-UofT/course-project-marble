@@ -2,7 +2,8 @@ package entity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
+import java.util.List;
+import java.util.Arrays;
 
 public class Budget {
 
@@ -10,21 +11,20 @@ public class Budget {
     /**
      * Instances of Budget
      * categories: the types of budget categories (ex: food, clothing, gas...)
-     * date: the date the budget is created
-     * period: The period of the renewal of the budget (ex: weekly, bi-weekly, monthly)
+     * date: the date the budget is created. This would likely be the first of the month.
+     * goalActualBudget: a hashmap with categories as keys, corresponding to an array list of 2 doubles; (1) the goal amount
+     * and (2) the actual amount.
+     * active: boolean that indicates whether the budget was set (True) or not (False).
      */
 
-    private double totalBudget;
-    private HashMap<String, Double> goalBudget;
-    private HashMap<String, Double> remainingBudget;
+    private final HashMap<String, ArrayList<Double>> goalActualBudget;
     private Date date;
-    private String period;
     private boolean active;
-
+    List<String> categories = Arrays.asList( "Groceries", "Furniture", "Restaurant", "Vacation", "Gas", "Recurring Bill Payment", "Health and Beauty", "Home Improvement", "Entertainment", "Public Transportation and Parking");
 
     public String toString(){
         if(this.active){
-            return "This is an active budget, with a total: "+this.totalBudget;
+            return "This is an active budget.";
         }
         else{
             return "This is an inactive budget.";
@@ -32,101 +32,90 @@ public class Budget {
 
     }
 
-    public Budget(HashMap<String, Double> categories, Date date, String period) {
-        for (Double value : categories.values()) {
-            this.totalBudget += value;
+    public Budget(Date date) {
+        this.goalActualBudget = new HashMap<String, ArrayList<Double>>();
+        for (String categoryName : this.categories){
+            this.goalActualBudget.put(categoryName, null); /*Should this be initialized as null at first?*/
         }
-        this.goalBudget = new HashMap<>(categories);
-        this.remainingBudget = new HashMap<>(categories);
         this.date = date;
-        this.period = period;
+        this.active = false;
+
     }
 
-
-    public double getTotalBudget() {
-        return this.totalBudget;
+    /**Getter and Setter for Date.
+    * getDate returns the date that the Budget was created.*/
+    public String getDate() {
+        return this.date.toString();
+    }
+    /**setDate replaces the initial date with a new date.
+     * @param newDate: new date of the budget.*/
+    public void setDate(Date newDate) {
+        this.date = newDate;
     }
 
-    public double getTotalRemainingBudget() {
-        double sum = 0;
-        for (Double value : this.remainingBudget.values()) {
-            sum += value;
+    /**getGoalActualBudget returns all the category budgets and current amounts in the budget*/
+    public HashMap<String, ArrayList<Double>> getGoalActualBudget() {
+        return this.goalActualBudget;
+    }
+
+    /** setGoalBudget sets the goal budget in the category to its new value.
+     * @param category : the category the user wants budget.
+     * @param goalBudget : the new value of the category budget.*/
+    public boolean setGoalBudget(String category, Double goalBudget){
+        if (goalActualBudget.containsKey(category)){
+            goalActualBudget.get(category).set(0, goalBudget);
+            return true;
         }
-        return sum;
+        else{
+            return false;
+        }
     }
 
-    public String getPeriod() {return this.period;}
+    /** getActualBudget gets the actual amount spent in the category.
+     * @param category : the category chosen to know the amount spent.
+     * */
 
-    public Date getDate() {return this.date;}
+    public Double getActualBudget(String category){
+        if (goalActualBudget.containsKey(category)){
+            return goalActualBudget.get(category).get(0);
+        }
+        else{
+            return null;
+        }
+    }
+    /** getGaolBudget gets the actual amount spent in the category.
+     * @param category : the category chosen to know the goal amount.
+     * */
 
-    public HashMap<String, Double> getRemainingBudget() {return this.remainingBudget;}
+    public Double getGoalBudget(String category){
+        if (goalActualBudget.containsKey(category)){
+            return goalActualBudget.get(category).get(1);
+        }
+        else{
+            return null;
+        }
+    }
 
-    public HashMap<String, Double> getGoalBudget() {return this.goalBudget;}
-
-    public void setRemainingBudget(HashMap<String, Double> update){this.remainingBudget = update;}
-
-    public void setGoalBudget(HashMap<String, Double> update){this.goalBudget = update;}
-
-    public void adjustPeriod(String newPeriod) {this.period = newPeriod;}
-
-    public void adjustDate(Date newDate) {this.date = newDate;}
-
+    /**getActive returns whether the client set a budget for the month. True for if they did and false otherwise.
+     * */
     public boolean getActive(){return this.active;}
 
+    /**setActive makes the budget active or inactive depending on the input.*/
     public void setActive(boolean set){this.active = set;}
 
-    public ArrayList<String> getCategories() {return new ArrayList<>(this.goalBudget.keySet());}
 
-    // public void resetRemainingBudget() {this.remainingBudget = new HashMap<>(this.goalBudget);}
+    /**
+     * get an ArrayList of categories
+     *
+     * @return an ArrayList of categories of the budget
+     */
+    public ArrayList<String> getCategories() {
+        return new ArrayList<>(this.categories);
+    }
 
-    public double getGoalCategoryBudget(String catergoryName) {return goalBudget.get(catergoryName);}
 
-//    /**
-//     * adjust the remainingBudget of a single category. Checks first if there's enough leftover, then subtract the
-//     * remaining budget if so.
-//     * THIS IS THE METHOD YOU USE TO TRACK THE SPENDINGS OF THE USER
-//     *
-//     * @param category   the category that the owner has listed in the hashmap.
-//     * @param decreaseBy the amount that is going to decrease the budget of the category by.
-//     * @return True if the amount still has left over or = 0, else False
-//     */
-//    public boolean adjustOneCategoryInRemainingBudget(String category, double decreaseBy) {
-//        if (this.remainingBudget.get(category) - decreaseBy >= 0) {
-//            this.remainingBudget.put(category, this.remainingBudget.get(category) - decreaseBy);
-//            return true;
-//        } else {
-//            return false;
-//        }
-//    }
 
-//    /**
-//     * adds extra or take away the remaining amount of budget.
-//     * This method lets the user adjust the overall Budget and the changes will sync up
-//     * with the remaining budget. More budget? Increase the remaining budget in that category. Less budget?
-//     * Decrease the remaining budget in that category.
-//     * <p>
-//     * eg: if the new budget is decreasing the money u can spend on the category: groceries by 20$
-//     * then the remaining budget will -20$ on the category groceries
-//     * and the goalBudget becomes the new budget.
-//     * Will not work if remaining budget goes < 0.
-//     * <p>
-//     * It'll change the initialBudget too.
-//     *
-//     * @param newBudget a new map of budget
-//     * @return True if the adjustment is successful
-//     * <p>
-//     * Best done together with resetRemainingBudget FIRST, then call adjustBudget, if the new
-//     * budget is going LESS than the current Budget.
-//     */
-//    public boolean adjustBudget(HashMap<String, Double> newBudget) {
-//        for (String key : newBudget.keySet()) {
-//            if (this.remainingBudget.get(key) + (newBudget.get(key) - this.goalBudget.get(key)) < 0) {
-//                return false;
-//            }
-//            this.remainingBudget.put(key, this.remainingBudget.get(key) +
-//                    (newBudget.get(key) - this.goalBudget.get(key)));
-//        }
-//        this.goalBudget = newBudget;
-//        return true;
-//    }
+
 }
+
+

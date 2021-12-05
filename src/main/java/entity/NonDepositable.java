@@ -3,18 +3,19 @@ package entity;
 public abstract class NonDepositable extends FinancialAsset {
     private final int volume;
     private final Double pricePerAsset;
+    private final Date dateOfMaturity;
 
     /**
      * Constructor. Sets the date to todays date.
      *
      * @param annualInterestRate annual interest rate which depends on the instrument
-     * @param name               Name of the asset
+     * @param name Name of the asset
      */
-    public NonDepositable(double annualInterestRate, int volume, Double pricePerAsset, String name) {
+    public NonDepositable(double annualInterestRate, int volume, Double pricePerAsset, String name, Date dateOfMaturity) {
         super(annualInterestRate, name);
         this.volume = volume;
         this.pricePerAsset = pricePerAsset;
-        this.name = name;
+        this.dateOfMaturity = dateOfMaturity;
     }
 
     @Override
@@ -27,6 +28,10 @@ public abstract class NonDepositable extends FinancialAsset {
         return volume;
     }
 
+    public Date getDateOfMaturity() {
+        return dateOfMaturity;
+    }
+
     public Double getPricePerAsset() {
         return pricePerAsset;
     }
@@ -36,4 +41,5 @@ public abstract class NonDepositable extends FinancialAsset {
     public String getName() {
         return name;
     }
+
 }

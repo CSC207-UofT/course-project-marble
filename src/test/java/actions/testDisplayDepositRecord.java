@@ -1,7 +1,6 @@
 package actions;
 
-import action_request_response.ActionRequest;
-import action_request_response.Commands;
+import action_request_response.DisplayDepositRecordRequest;
 import action_request_response.DisplayDepositRecordResponse;
 import entity.Date;
 import entity.Owner;
@@ -31,7 +30,7 @@ public class testDisplayDepositRecord {
 
     @Test
     public void testDisplayDepositRecordSuccess() {
-        ActionRequest request = new ActionRequest("jd_123", Commands.DISPLAYDEPOSITRECCORD, new ArrayList<>());
+        DisplayDepositRecordRequest request = new DisplayDepositRecordRequest("jd_123");
         DisplayDepositRecord depositRecord = new DisplayDepositRecord(request);
         DisplayDepositRecordResponse response = (DisplayDepositRecordResponse) depositRecord.process();
         ArrayList<Record> expected = new ArrayList<>();

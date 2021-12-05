@@ -1,6 +1,7 @@
 package action_request_response;
 
 public enum Commands {
+    CALCULATEREMAININGBUDGET,
     CASHOUT,
     ADDEXPENSE,
     COMPAREBUDGET,
@@ -10,6 +11,7 @@ public enum Commands {
     DEPOSIT,
     DEPOSITSAVINGS,
     DISPLAYSAVINGS,
+    DISPLAYBUDGET,
     DISPLAYDEPOSITRECCORD,
     DISPLAYWITHDRAWALRECORD,
     LOGIN,
