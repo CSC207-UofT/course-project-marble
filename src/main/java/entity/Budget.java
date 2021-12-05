@@ -94,7 +94,7 @@ public class Budget {
             return false;
         }
     }
-    /** getGaolBudget gets the actual amount spent in the category.
+    /** getGaolBudget gets the goal amount spent in the category.
      * @param category : the category chosen to know the goal amount.
      * */
 
