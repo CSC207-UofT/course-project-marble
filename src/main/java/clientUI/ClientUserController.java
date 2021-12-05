@@ -187,16 +187,16 @@ public class ClientUserController {
         }
     }
 
-    public void viewInvestments() {
-        ActionRequest request = new ActionRequest(username, Commands.VIEWINVESTMENTS, new ArrayList<>());
-        sendObject(request);
-        try {
-            ViewInvestmentsResponse result = (ViewInvestmentsResponse) inbound.readObject();
-            System.out.println(result.getResult());
-        } catch (IOException | ClassNotFoundException e) {
-            System.out.println("There was an error. Please try again");
-        }
-    }
+//    public void viewInvestments() {
+//        ActionRequest request = new ActionRequest(username, Commands.VIEWINVESTMENTS, new ArrayList<>());
+//        sendObject(request);
+//        try {
+//            ViewInvestmentsResponse result = (ViewInvestmentsResponse) inbound.readObject();
+//            System.out.println(result.getResult());
+//        } catch (IOException | ClassNotFoundException e) {
+//            System.out.println("There was an error. Please try again");
+//        }
+//    }
 
 //    public void cashOut() {
 //        Scanner sc = new Scanner(System.in);
