@@ -396,6 +396,8 @@ public class ClientUserController {
                     new ChangeSavingsBalance(outbound, inbound).changeSavingsBalance(this.username);
                     //this.changeSavingsBalance();
                     break;
+                case "k":
+                    new CompareBudget(outbound, inbound).compareBudget(this.username);
                 case "q":
                     this.disconnect();
                     running = false;
