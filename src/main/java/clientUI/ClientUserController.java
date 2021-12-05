@@ -176,16 +176,16 @@ public class ClientUserController {
         }
     }
 
-    public void updateDepositable() {
-        ActionRequest request = new ActionRequest(this.username, Commands.UPDATEDEPOSITABLE, new ArrayList<>());
-        sendObject(request);
-        try {
-            ActionResponse result = (ActionResponse) inbound.readObject();
-            System.out.println("You were successful");
-        } catch (IOException | ClassNotFoundException e) {
-            System.out.println("There was an error. Please try again");
-        }
-    }
+//    public void updateDepositable() {
+//        ActionRequest request = new ActionRequest(this.username, Commands.UPDATEDEPOSITABLE, new ArrayList<>());
+//        sendObject(request);
+//        try {
+//            ActionResponse result = (ActionResponse) inbound.readObject();
+//            System.out.println("You were successful");
+//        } catch (IOException | ClassNotFoundException e) {
+//            System.out.println("There was an error. Please try again");
+//        }
+//    }
 
 //    public void viewInvestments() {
 //        ActionRequest request = new ActionRequest(username, Commands.VIEWINVESTMENTS, new ArrayList<>());
@@ -348,7 +348,7 @@ public class ClientUserController {
                 return;
             }
         }
-        this.updateDepositable();
+//        this.updateDepositable();
         String input;
         boolean running = true;
         while (running) {
