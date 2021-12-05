@@ -20,6 +20,14 @@ public class DisplayBudget extends Actions {
         this.budget = user.getBudget();
     }
 
+    @Override
+    public ActionResponse process(){
+        if ((budget == null) || !(budget.getActive())){
+            return new DisplayBudgetResponse();
+        }
+        return new DisplayBudgetResponse(createDisplay());
+    }
+
     /**
      * helper methods
      */
