@@ -20,7 +20,7 @@ public class testBudget {
     @Test
     void testSetDate(){
         budget.setDate(new Date(2,1,2021));
-        assertEquals("1,2,2021", budget.getDate());
+        assertEquals("1/2/2021", budget.getDate());
     }
 
 /**Set and get goals and actual amounts in budget.*/
