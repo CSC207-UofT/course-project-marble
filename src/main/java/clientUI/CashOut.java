@@ -16,7 +16,7 @@ public class CashOut extends SendReceive{
     public CashOut(ObjectOutputStream outbound, ObjectInputStream inbound) {
         super(outbound, inbound);
     }
-    public void Cashout(String username){
+    public void cashout(String username){
         Scanner sc = new Scanner(System.in);
         System.out.println("What is the name of the asset you want to cash out?");
         String name = sc.nextLine();

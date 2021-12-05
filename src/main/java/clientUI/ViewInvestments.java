@@ -14,7 +14,7 @@ public class ViewInvestments extends SendReceive{
         super(outbound, inbound);
     }
 
-    public void ViewInvestment(String username) {
+    public void viewInvestment(String username) {
         ActionRequest request = new ActionRequest(username, Commands.VIEWINVESTMENTS, new ArrayList<>());
         sendReceiveObject(request);
         if(response != null){
