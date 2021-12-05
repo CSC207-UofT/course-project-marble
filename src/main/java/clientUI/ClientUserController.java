@@ -218,21 +218,21 @@ public class ClientUserController {
 //
 //    }
 
-    public void createSavings() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("What is the savings accounts name?");
-        String name = sc.nextLine();
-        System.out.println("What is the interestRate?");
-        String interestRate = sc.nextLine();
-        ActionRequest request = new ActionRequest(this.username,Commands.CREATESAVINGS, new ArrayList<>(List.of(name, interestRate)));
-        sendObject(request);
-        try {
-            ActionResponse result = (ActionResponse) inbound.readObject();
-            System.out.println("You were successful");
-        } catch (IOException | ClassNotFoundException e) {
-            System.out.println("There was an error. Please try again");
-        }
-    }
+//    public void createSavings() {
+//        Scanner sc = new Scanner(System.in);
+//        System.out.println("What is the savings accounts name?");
+//        String name = sc.nextLine();
+//        System.out.println("What is the interestRate?");
+//        String interestRate = sc.nextLine();
+//        ActionRequest request = new ActionRequest(this.username,Commands.CREATESAVINGS, new ArrayList<>(List.of(name, interestRate)));
+//        sendObject(request);
+//        try {
+//            ActionResponse result = (ActionResponse) inbound.readObject();
+//            System.out.println("You were successful");
+//        } catch (IOException | ClassNotFoundException e) {
+//            System.out.println("There was an error. Please try again");
+//        }
+//    }
 
 //    public void createBond() {
 //        Scanner sc = new Scanner(System.in);
