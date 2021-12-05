@@ -28,20 +28,20 @@ public class testViewBudgetPerformance {
         OwnerRepository.getOwnerRepository().deleteOwner("jd_123");
     }
 
-    @Test
-    public void testViewBudgetPerformanceSuccess(){
-        ActionRequest request = new ActionRequest("jd_123", Commands.VIEWBUDGETPERFORMANCE, new ArrayList<>());
-        ViewBudgetPerformance budgetPerformance = new ViewBudgetPerformance(request);
-        ViewBudgetPerformanceResponse response = (ViewBudgetPerformanceResponse) budgetPerformance.process();
-        HashMap<Date, HashMap<String,Double>> expected = new HashMap<>();
-        List<String> categories = Arrays.asList( "Groceries", "Furniture", "Restaurant", "Vacation", "Gas", "Recurring Bill Payment", "Health and Beauty", "Home Improvement", "Entertainment", "Public Transportation and Parking");
-        expected.put(new Date(1,1,2021),new HashMap<>());
-        for (String category: categories){
-            expected.get( new Date(1, 1, 2021)).put(category,0.00);
-        }
-
-        assertEquals(expected.toString(), response.getDisplay());
-    }
+//    @Test
+//    public void testViewBudgetPerformanceSuccess(){
+//        ActionRequest request = new ActionRequest("jd_123", Commands.VIEWBUDGETPERFORMANCE, new ArrayList<>());
+//        ViewBudgetPerformance budgetPerformance = new ViewBudgetPerformance(request);
+//        ViewBudgetPerformanceResponse response = (ViewBudgetPerformanceResponse) budgetPerformance.process();
+//        HashMap<Date, HashMap<String,Double>> expected = new HashMap<>();
+//        List<String> categories = Arrays.asList( "Groceries", "Furniture", "Restaurant", "Vacation", "Gas", "Recurring Bill Payment", "Health and Beauty", "Home Improvement", "Entertainment", "Public Transportation and Parking");
+//        expected.put(new Date(1,1,2021),new HashMap<>());
+//        for (String category: categories){
+//            expected.get( new Date(1, 1, 2021)).put(category,0.00);
+//        }
+//
+//        assertEquals(expected.toString(), response.getDisplay());
+//    }
 
 
 
