@@ -234,45 +234,45 @@ public class ClientUserController {
         }
     }
 
-    public void createBond() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("What is the name of the bond?");
-        String name = sc.nextLine();
-        System.out.println("What is the interestRate?");
-        String interestRate = sc.nextLine();
-        System.out.println("How much does each bond cost?");
-        String pricePerBond = sc.nextLine();
-        System.out.println("How many bonds did you buy?");
-        String volume = sc.nextLine();
-        System.out.println("What is the year of Maturity?");
-        int year = Integer.parseInt(sc.nextLine());
-        System.out.println("What is the month of Maturity?");
-        int month = Integer.parseInt(sc.nextLine());
-        System.out.println("What is the day of Maturity");
-        int day = Integer.parseInt(sc.nextLine());
-
-        String str_month = "0" + month;
-        str_month = str_month.substring(str_month.length() - 2);
-
-        String str_day = "0" + day;
-        str_day = str_day.substring(str_day.length() - 2);
-
-        String date = year + "-" + str_month + "-" + str_day;
-        ActionRequest request = new ActionRequest(username, Commands.CREATEBOND,
-                new ArrayList<>(List.of(name, interestRate, pricePerBond, volume, date)));
-        sendObject(request);
-        try {
-            CreateBondResponse result = (CreateBondResponse) inbound.readObject();
-            boolean response = result.getResult();
-            if (response) {
-                System.out.println("You were successful");
-            } else {
-                System.out.println("You do not have enough money to afford this purchase");
-            }
-        } catch (IOException | ClassNotFoundException e) {
-            System.out.println("There was an error. Please try again");
-        }
-    }
+//    public void createBond() {
+//        Scanner sc = new Scanner(System.in);
+//        System.out.println("What is the name of the bond?");
+//        String name = sc.nextLine();
+//        System.out.println("What is the interestRate?");
+//        String interestRate = sc.nextLine();
+//        System.out.println("How much does each bond cost?");
+//        String pricePerBond = sc.nextLine();
+//        System.out.println("How many bonds did you buy?");
+//        String volume = sc.nextLine();
+//        System.out.println("What is the year of Maturity?");
+//        int year = Integer.parseInt(sc.nextLine());
+//        System.out.println("What is the month of Maturity?");
+//        int month = Integer.parseInt(sc.nextLine());
+//        System.out.println("What is the day of Maturity");
+//        int day = Integer.parseInt(sc.nextLine());
+//
+//        String str_month = "0" + month;
+//        str_month = str_month.substring(str_month.length() - 2);
+//
+//        String str_day = "0" + day;
+//        str_day = str_day.substring(str_day.length() - 2);
+//
+//        String date = year + "-" + str_month + "-" + str_day;
+//        ActionRequest request = new ActionRequest(username, Commands.CREATEBOND,
+//                new ArrayList<>(List.of(name, interestRate, pricePerBond, volume, date)));
+//        sendObject(request);
+//        try {
+//            CreateBondResponse result = (CreateBondResponse) inbound.readObject();
+//            boolean response = result.getResult();
+//            if (response) {
+//                System.out.println("You were successful");
+//            } else {
+//                System.out.println("You do not have enough money to afford this purchase");
+//            }
+//        } catch (IOException | ClassNotFoundException e) {
+//            System.out.println("There was an error. Please try again");
+//        }
+//    }
 
 //    public void changeSavingsBalance() {
 //        Scanner sc = new Scanner(System.in);
@@ -353,44 +353,44 @@ public class ClientUserController {
         boolean running = true;
         while (running) {
             Printer.menu();
-            input = scan.nextLine();
-            switch (input) {
-                case "a":
-                    this.ownerInfo();
-                    break;
-                case "b":
-                    this.deposit();
-                    break;
-                case "c":
-                    this.withdrawal();
-                    break;
-                case "d":
-                    this.displayDepositRecord();
-                    break;
-                case "e":
-                    this.displayWithdrawalRecord();
-                    break;
-                case "f":
-                    this.viewInvestments();
-                    break;
-                case "g":
-                    //this.cashOut();
-                    break;
-                case "h":
-                    this.createBond();
-                    break;
-                case "i":
-                    this.createSavings();
-                    break;
-                case "j":
-                    //this.changeSavingsBalance();
-                    break;
-                case "q":
-                    this.disconnect();
+//            input = scan.nextLine();
+//            switch (input) {
+//                case "a":
+//                    this.ownerInfo();
+//                    break;
+//                case "b":
+//                    this.deposit();
+//                    break;
+//                case "c":
+//                    this.withdrawal();
+//                    break;
+//                case "d":
+//                    this.displayDepositRecord();
+//                    break;
+//                case "e":
+//                    this.displayWithdrawalRecord();
+//                    break;
+//                case "f":
+//                    this.viewInvestments();
+//                    break;
+//                case "g":
+//                    //this.cashOut();
+//                    break;
+//                case "h":
+//                    this.createBond();
+//                    break;
+//                case "i":
+//                    this.createSavings();
+//                    break;
+//                case "j":
+//                    //this.changeSavingsBalance();
+//                    break;
+//                case "q":
+//                    this.disconnect();
                     running = false;
-                    break;
-
-            }
+//                    break;
+//
+//            }
         }
     }
 }
