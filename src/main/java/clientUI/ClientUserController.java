@@ -146,24 +146,24 @@ public class ClientUserController {
         }
     }
 
-    public void deposit() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Please enter how much you want to deposit?");
-        String amount = sc.nextLine();
-        ActionRequest request = new ActionRequest(this.username,Commands.DEPOSIT, new ArrayList<>(List.of(amount)));
-        sendObject(request);
-
-        try {
-            DepositResponse result = (DepositResponse) inbound.readObject();
-            if (result.getResult()) {
-                System.out.println("Deposit successfully");
-            } else {
-                System.out.println("Deposit failed. Please try again.");
-            }
-        } catch (IOException | ClassNotFoundException e) {
-            System.out.println("There was an error. Please try again");
-        }
-    }
+//    public void deposit() {
+//        Scanner sc = new Scanner(System.in);
+//        System.out.println("Please enter how much you want to deposit?");
+//        String amount = sc.nextLine();
+//        ActionRequest request = new ActionRequest(this.username,Commands.DEPOSIT, new ArrayList<>(List.of(amount)));
+//        sendObject(request);
+//
+//        try {
+//            DepositResponse result = (DepositResponse) inbound.readObject();
+//            if (result.getResult()) {
+//                System.out.println("Deposit successfully");
+//            } else {
+//                System.out.println("Deposit failed. Please try again.");
+//            }
+//        } catch (IOException | ClassNotFoundException e) {
+//            System.out.println("There was an error. Please try again");
+//        }
+//    }
 
     public void displayDepositRecord() {
         ActionRequest request = new ActionRequest(username, Commands.DISPLAYDEPOSITRECCORD, new ArrayList<>());
