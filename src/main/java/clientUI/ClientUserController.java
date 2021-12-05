@@ -321,6 +321,7 @@ public class ClientUserController {
 //                this.login();
 //                return true;
             case "2":
+                username = new CreateUser(outbound, inbound).createUser();
 //                boolean result2 = this.createUser();
 //                if (!result2) {
 //                    System.out.println("Login failed exiting");
@@ -353,44 +354,54 @@ public class ClientUserController {
         boolean running = true;
         while (running) {
             Printer.menu();
-//            input = scan.nextLine();
-//            switch (input) {
-//                case "a":
+            input = scan.nextLine();
+            switch (input) {
+                case "a":
+                    new OwnerInfo(outbound, inbound).ownerInfo(this.username);
 //                    this.ownerInfo();
-//                    break;
-//                case "b":
+                    break;
+                case "b":
+                    new Deposit(outbound, inbound).deposit(this.username);
 //                    this.deposit();
-//                    break;
-//                case "c":
+                    break;
+                case "c":
+                    new Withdrawal(outbound, inbound).withdrawal(this.username);
 //                    this.withdrawal();
-//                    break;
-//                case "d":
+                    break;
+                case "d":
+                    new DisplayDepositRecord(outbound, inbound).displayDepositRecord(this.username);
 //                    this.displayDepositRecord();
-//                    break;
-//                case "e":
+                    break;
+                case "e":
+                    new DisplayWithdrawalRecord(outbound, inbound).displayWithdrawalRecord(this.username);
 //                    this.displayWithdrawalRecord();
-//                    break;
-//                case "f":
+                    break;
+                case "f":
+                    new ViewInvestments(outbound, inbound).viewInvestment(this.username);
 //                    this.viewInvestments();
-//                    break;
-//                case "g":
-//                    //this.cashOut();
-//                    break;
-//                case "h":
+                    break;
+                case "g":
+                    new CashOut(outbound, inbound).cashout(this.username);
+                    //this.cashOut();
+                    break;
+                case "h":
+                    new CreateBond(outbound, inbound).createBond(this.username);
 //                    this.createBond();
-//                    break;
-//                case "i":
+                    break;
+                case "i":
+                    new CreateSavings(outbound, inbound).createSavings(this.username);
 //                    this.createSavings();
-//                    break;
-//                case "j":
-//                    //this.changeSavingsBalance();
-//                    break;
-//                case "q":
-//                    this.disconnect();
+                    break;
+                case "j":
+                    new ChangeSavingsBalance(outbound, inbound).changeSavingsBalance(this.username);
+                    //this.changeSavingsBalance();
+                    break;
+                case "q":
+                    this.disconnect();
                     running = false;
 //                    break;
 //
-//            }
+            }
         }
     }
 }
