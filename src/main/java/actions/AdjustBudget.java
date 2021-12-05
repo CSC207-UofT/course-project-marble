@@ -10,41 +10,41 @@ import entity.OwnerRepository;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**This Action allows for the user to adjust the actual amount for a single category in Budget.
+ * ex:
+ *  * note that the arraylist of doubles of a budget category is first [the goal amount, the actual amount]. *
+ * We want to change the actual amount of the groceries category.
+ * The current budget is: ("Groceries": [100,0], "Furniture": [100, 0], "Restaurant": [100, 0], "Vacation": [100, 0],
+ * "Gas": [100, 0], "Recurring Bill Payment": [100, 0], "Health and Beauty": [100, 0], "Home Improvement": [100, 0],
+ * "Entertainment": [100, 0], "Public Transportation and Parking": [100, 0])
+ *
+ * Now the user wants to adjust the Groceries category because they just spent $55 on groceries.
+ * The new budget after adjustments is: ("Groceries": [100,55], "Furniture": [100, 0], "Restaurant": [100, 0],
+ * "Vacation": [100, 0], "Gas": [100, 0], "Recurring Bill Payment": [100, 0], "Health and Beauty": [100, 0],
+ * "Home Improvement": [100, 0], "Entertainment": [100, 0], "Public Transportation and Parking": [100, 0])
+ *
+ *
+ * UserInputs: 0: category, 1: newAmount.*/
 public class AdjustBudget extends Actions{
     private final Owner user;
-    private final HashMap<String, Double> newAdjustedBudget;
-
+    private final String category;
+    private final Double newAmount;
 
     public AdjustBudget(ActionRequest request){
         this.user = OwnerRepository.getOwnerRepository().findOwner(request.getUsername());
         ArrayList<String> userInputs = request.getUserInputs();
-        this.newAdjustedBudget = new HashMap<>();
-        int i;
-        for(i = 0; i < userInputs.size(); i+= 2){
-            this.newAdjustedBudget.put(userInputs.get(i), Double.parseDouble(userInputs.get(i+1)));
-        }
+        this.category = userInputs.get(0);
+        this.newAmount = Double.parseDouble(userInputs.get(1));
     }
 
     @Override
     public ActionResponse process(){
         Budget budget = this.user.getBudget();
-        HashMap<String, Double> remainingBudget = new HashMap<>(budget.getRemainingBudget());
-        HashMap<String, Double> goalBudget = new HashMap<>(budget.getGoalBudget());
 
-        for(String key : this.newAdjustedBudget.keySet()){
-            if (remainingBudget.get(key) + (this.newAdjustedBudget.get(key) -
-                    goalBudget.get(key)) < 0) {
-                System.out.println("Unable to adjust the budget. Please try again.");
-                return new AdjustBudgetResponse(false);
-            }
-            else{
-            remainingBudget.put(key, remainingBudget.get(key) +
-                    (this.newAdjustedBudget.get(key) - goalBudget.get(key)));
-            }
+        if (budget.setActualBudget(this.category, this.newAmount)){
+            return new AdjustBudgetResponse(true);
         }
-        budget.setGoalBudget(this.newAdjustedBudget);
-        budget.setRemainingBudget(remainingBudget);
-        return new AdjustBudgetResponse(true);
+        return new AdjustBudgetResponse(false);
         }
     }
 
