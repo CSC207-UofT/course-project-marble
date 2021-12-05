@@ -97,17 +97,17 @@ public class ClientUserController {
 //    }
 
 
-    public void ownerInfo() {
-        ActionRequest request = new ActionRequest(username, Commands.OWNERINFO, new ArrayList<>());
-        sendObject(request);
-        try {
-            System.out.println("Processing");
-            OwnerInfoResponse result = (OwnerInfoResponse) inbound.readObject();
-            System.out.println(result.getDisplay());
-        } catch (IOException | ClassNotFoundException e) {
-            System.out.println("An error occurred. Please try again");
-        }
-    }
+//    public void ownerInfo() {
+//        ActionRequest request = new ActionRequest(username, Commands.OWNERINFO, new ArrayList<>());
+//        sendObject(request);
+//        try {
+//            System.out.println("Processing");
+//            OwnerInfoResponse result = (OwnerInfoResponse) inbound.readObject();
+//            System.out.println(result.getDisplay());
+//        } catch (IOException | ClassNotFoundException e) {
+//            System.out.println("An error occurred. Please try again");
+//        }
+//    }
 
     public void withdrawal() {
         Scanner sc = new Scanner(System.in);
