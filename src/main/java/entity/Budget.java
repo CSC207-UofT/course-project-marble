@@ -1,9 +1,6 @@
 package entity;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Arrays;
+import java.util.*;
 
 public class Budget {
 
@@ -21,6 +18,7 @@ public class Budget {
     private Date date;
     private boolean active;
     List<String> categories = Arrays.asList( "Groceries", "Furniture", "Restaurant", "Vacation", "Gas", "Recurring Bill Payment", "Health and Beauty", "Home Improvement", "Entertainment", "Public Transportation and Parking");
+    private final ArrayList<Double> initialList = new ArrayList<>();
 
     public String toString(){
         if(this.active){
@@ -33,10 +31,13 @@ public class Budget {
     }
 
     public Budget(Date date) {
-        this.goalActualBudget = new HashMap<String, ArrayList<Double>>();
+        this.goalActualBudget = new HashMap<>();
+        this.initialList.add(0.00);
+        this.initialList.add(0.00);
         for (String categoryName : this.categories){
-            this.goalActualBudget.put(categoryName, null); /*Should this be initialized as null at first?*/
+            this.goalActualBudget.put(categoryName, initialList);
         }
+
         this.date = date;
         this.active = false;
 
@@ -81,6 +82,16 @@ public class Budget {
         }
         else{
             return null;
+        }
+    }
+
+    public boolean setActualBudget(String category, Double actualAmount){
+        if(goalActualBudget.containsKey(category)){
+            this.goalActualBudget.get(category).add(1, actualAmount);
+            return true;
+        }
+        else{
+            return false;
         }
     }
     /** getGaolBudget gets the actual amount spent in the category.
