@@ -6,6 +6,8 @@ import entity.Budget;
 import entity.Owner;
 import entity.OwnerRepository;
 
+import java.util.ArrayList;
+
 public class CalculateRemainingBudget extends Actions {
     private Owner user;
     private Budget budget;
@@ -20,7 +22,17 @@ public class CalculateRemainingBudget extends Actions {
         if ((budget == null)|| !(budget.getActive())){
             return new CalculateRemainingBudgetResponse(false);
         }
-        double amountLeft = budget.getTotalRemainingBudget();
+        ArrayList<String> categories = budget.getCategories();
+        double amountLeft = 0;
+        double goal;
+        double actual;
+        for (String category : categories) {
+            if (budget.getGoalBudget(category) != null) {
+                goal = budget.getGoalBudget(category);
+                actual = budget.getActualBudget(category);
+                amountLeft = amountLeft + goal - actual;
+            }
+        }
         return new CalculateRemainingBudgetResponse(true, amountLeft);
 
     }
