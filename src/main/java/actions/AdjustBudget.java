@@ -23,6 +23,7 @@ import java.util.HashMap;
  * "Vacation": [100, 0], "Gas": [100, 0], "Recurring Bill Payment": [100, 0], "Health and Beauty": [100, 0],
  * "Home Improvement": [100, 0], "Entertainment": [100, 0], "Public Transportation and Parking": [100, 0])
  *
+ * The method will return true if successful and false if the category doesn't exist.
  *
  * UserInputs: 0: category, 1: newAmount.*/
 public class AdjustBudget extends Actions{
