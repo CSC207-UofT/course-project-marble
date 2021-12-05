@@ -109,31 +109,31 @@ public class ClientUserController {
 //        }
 //    }
 
-    public void withdrawal() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Please enter how much you want to withdraw");
-        String amount = sc.nextLine();
-        System.out.println("What category did you withdraw from?");
-        String category = sc.nextLine();
-        System.out.println("Why do you need this?");
-        String description = sc.nextLine();
-        ActionRequest request = new ActionRequest(this.username, Commands.WITHDRAWAL,
-                new ArrayList<>(List.of(amount, category, description)));
-        sendObject(request);
-        boolean response;
-        try {
-            WithdrawalResponse result = (WithdrawalResponse) inbound.readObject();
-            response = result.getResult();
-        } catch (IOException | ClassNotFoundException e) {
-            System.out.println("There was an error. Please try again");
-            return;
-        }
-        if (response) {
-            System.out.println("Your withdrawal was successful!");
-        } else {
-            System.out.println("Your withdrawal could not be completed");
-        }
-    }
+//    public void withdrawal() {
+//        Scanner sc = new Scanner(System.in);
+//        System.out.println("Please enter how much you want to withdraw");
+//        String amount = sc.nextLine();
+//        System.out.println("What category did you withdraw from?");
+//        String category = sc.nextLine();
+//        System.out.println("Why do you need this?");
+//        String description = sc.nextLine();
+//        ActionRequest request = new ActionRequest(this.username, Commands.WITHDRAWAL,
+//                new ArrayList<>(List.of(amount, category, description)));
+//        sendObject(request);
+//        boolean response;
+//        try {
+//            WithdrawalResponse result = (WithdrawalResponse) inbound.readObject();
+//            response = result.getResult();
+//        } catch (IOException | ClassNotFoundException e) {
+//            System.out.println("There was an error. Please try again");
+//            return;
+//        }
+//        if (response) {
+//            System.out.println("Your withdrawal was successful!");
+//        } else {
+//            System.out.println("Your withdrawal could not be completed");
+//        }
+//    }
 
     public void displayWithdrawalRecord() {
         ActionRequest request = new ActionRequest(username, Commands.DISPLAYWITHDRAWALRECORD, new ArrayList<>());
