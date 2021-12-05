@@ -4,7 +4,7 @@ public class DisplayBudgetResponse extends ActionResponse {
     private String result;
 
     public DisplayBudgetResponse(){
-        this.result = "No Active or Existing Budget to View";
+        this.result = "No Active or Existing Budget to View\n";
     }
 
     public DisplayBudgetResponse(String result) {
