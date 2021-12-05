@@ -1,13 +1,13 @@
 package clientUI;
 
-import action_request_response.*;
+import action_request_response.ActionRequest;
+import action_request_response.Commands;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class ClientUserController {
@@ -24,7 +24,7 @@ public class ClientUserController {
         System.out.println("Connected");
     }
 
-    public boolean sendObject(Object obj){
+    public boolean sendObject(Object obj) {
         try {
             outbound.writeObject(obj);
             outbound.flush();
@@ -309,7 +309,7 @@ public class ClientUserController {
         }
     }
 
-    public boolean splash(){
+    public boolean splash() {
         System.out.println("What do you want to do? Please return 1 to login or 2 to register!");
         System.out.println("Enter 'q' to exit the program");
         Scanner sc = new Scanner(System.in);
@@ -344,7 +344,7 @@ public class ClientUserController {
 
         while (this.username == null) {
             boolean tryAgain = this.splash();
-            if (!tryAgain){
+            if (!tryAgain) {
                 this.disconnect();
                 return;
             }
@@ -398,6 +398,8 @@ public class ClientUserController {
                     break;
                 case "k":
                     new CompareBudget(outbound, inbound).compareBudget(this.username);
+                case "l":
+                    new DisplayBudget(outbound, inbound).displayBudget(this.username);
                 case "q":
                     this.disconnect();
                     running = false;
