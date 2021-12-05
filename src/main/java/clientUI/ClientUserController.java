@@ -165,16 +165,16 @@ public class ClientUserController {
 //        }
 //    }
 
-    public void displayDepositRecord() {
-        ActionRequest request = new ActionRequest(username, Commands.DISPLAYDEPOSITRECCORD, new ArrayList<>());
-        sendObject(request);
-        try {
-            DisplayDepositRecordResponse result = (DisplayDepositRecordResponse) inbound.readObject();
-            System.out.println(result.getResult());
-        } catch (IOException | ClassNotFoundException e) {
-            System.out.println("There was an error. Please try again");
-        }
-    }
+//    public void displayDepositRecord() {
+//        ActionRequest request = new ActionRequest(username, Commands.DISPLAYDEPOSITRECCORD, new ArrayList<>());
+//        sendObject(request);
+//        try {
+//            DisplayDepositRecordResponse result = (DisplayDepositRecordResponse) inbound.readObject();
+//            System.out.println(result.getResult());
+//        } catch (IOException | ClassNotFoundException e) {
+//            System.out.println("There was an error. Please try again");
+//        }
+//    }
 
 //    public void updateDepositable() {
 //        ActionRequest request = new ActionRequest(this.username, Commands.UPDATEDEPOSITABLE, new ArrayList<>());
