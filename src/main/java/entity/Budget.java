@@ -78,7 +78,7 @@ public class Budget {
 
     public Double getActualBudget(String category){
         if (goalActualBudget.containsKey(category)){
-            return goalActualBudget.get(category).get(0);
+            return goalActualBudget.get(category).get(1);
         }
         else{
             return null;
@@ -100,7 +100,7 @@ public class Budget {
 
     public Double getGoalBudget(String category){
         if (goalActualBudget.containsKey(category)){
-            return goalActualBudget.get(category).get(1);
+            return goalActualBudget.get(category).get(0);
         }
         else{
             return null;
