@@ -1,13 +1,11 @@
 package actions;
 
+import action_request_response.ActionRequest;
 import action_request_response.ActionResponse;
 import action_request_response.ViewBudgetPerformanceResponse;
-import entity.Date;
 import entity.Owner;
 import entity.OwnerRepository;
-import action_request_response.ViewBudgetPerformanceRequest;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ViewBudgetPerformance extends Actions{
@@ -15,26 +13,24 @@ public class ViewBudgetPerformance extends Actions{
     private final Owner owner;
 
 
-    public ViewBudgetPerformance(ViewBudgetPerformanceRequest request) {
+    public ViewBudgetPerformance(ActionRequest request) {
         this.owner = OwnerRepository.getOwnerRepository().findOwner(request.getUsername());
     }
 
     /**
      * ViewBudgetPerformance returns a Hashmap of
-     * ex: {January 1rst, 2021: {"food":[100, 110]}}, with 100 being the goal budget for that category period and -10
-     * being the amount remaining for that category period. This means that the client went 10 over the limit.*/
+     * ex: {January 1rst, 2021: {"food":-10, "clothes": 0, ...}, February 1rst, 2021: {"food": 0, "clothes": 10,...}...}
+     * This means that in January, the client went over budget by $10 on food, and was on budget for clothes.
+     * And in February, the client was on budget for food and went under budget by $10 on clothes.*/
     @Override
     public ActionResponse process(){
-        HashMap<Date, HashMap<String, ArrayList<Double>>> budgetPerformance = new HashMap<Date, HashMap<String, ArrayList<Double>>>();
+        HashMap<String, HashMap<String, Double>> budgetPerformance = new HashMap<>();
 
-        for (Date period : owner.getBudget().getBudgetHistory().keySet()){
-            for (String category: owner.getBudget().getBudgetHistory().get(period).getRemainingBudget().keySet()){
-                budgetPerformance.put(period, new HashMap<>());
-                budgetPerformance.get(period).put(category, new ArrayList<>() );
-                budgetPerformance.get(period).get(category).add(owner.getBudget().getBudgetHistory().get(period).getGoalCategoryBudget(category));
-                budgetPerformance.get(period).get(category).add
-                        (owner.getBudget().getBudgetHistory().get(period).getGoalCategoryBudget(category) -
-                                owner.getBudget().getBudgetHistory().get(period).getRemainingBudget().get(category));
+        for (String date : owner.getBudgetHistory().keySet()){
+            for (String category: owner.getBudgetHistory().keySet()){
+                budgetPerformance.put(owner.getBudget().getDate(), new HashMap<>());
+                budgetPerformance.get(date).put(category,owner.getBudgetHistory().get(date).getGoalBudget(category)-
+                        owner.getBudgetHistory().get(date).getActualBudget(category));
             }
         }
         return new ViewBudgetPerformanceResponse(budgetPerformance.toString());
