@@ -71,6 +71,7 @@ public class Budget {
         }
     }
 
+
     /** getActualBudget gets the actual amount spent in the category.
      * @param category : the category chosen to know the amount spent.
      * */
@@ -112,9 +113,6 @@ public class Budget {
     public ArrayList<String> getCategories() {
         return new ArrayList<>(this.categories);
     }
-
-
-
 
 }
 
