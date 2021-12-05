@@ -72,6 +72,7 @@ public class Budget {
         }
     }
 
+
     /** getActualBudget gets the actual amount spent in the category.
      * @param category : the category chosen to know the amount spent.
      * */
@@ -84,6 +85,10 @@ public class Budget {
             return null;
         }
     }
+
+    /** setActualBudget sets the actual amount spent in the category to its new value.
+     * @param category : the category the user wants budget.
+     * @param actualAmount : the new value of the category budget.*/
 
     public boolean setActualBudget(String category, Double actualAmount){
         if(goalActualBudget.containsKey(category)){
@@ -123,9 +128,6 @@ public class Budget {
     public ArrayList<String> getCategories() {
         return new ArrayList<>(this.categories);
     }
-
-
-
 
 }
 
