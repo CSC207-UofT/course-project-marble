@@ -89,6 +89,7 @@ public class Budget {
     /** setActualBudget sets the actual amount spent in the category to its new value.
      * @param category : the category the user wants budget.
      * @param actualAmount : the new value of the category budget.*/
+
     public boolean setActualBudget(String category, Double actualAmount){
         if(goalActualBudget.containsKey(category)){
             this.goalActualBudget.get(category).add(1, actualAmount);
