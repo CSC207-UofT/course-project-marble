@@ -10,7 +10,7 @@ import entity.OwnerRepository;
 import java.util.ArrayList;
 
 public class ResetBudget extends Actions{
-    private Owner user;
+    private final Owner user;
 
     public ResetBudget(ActionRequest request){
         this.user = OwnerRepository.getOwnerRepository().findOwner(request.getUsername());
