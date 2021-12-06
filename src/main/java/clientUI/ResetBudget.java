@@ -13,7 +13,7 @@ public class ResetBudget extends SendReceive{
         super(outbound, inbound);
     }
     public void resetBudget(String username){
-        ActionRequest request = new ActionRequest(username, Commands.COMPAREBUDGET, new ArrayList<>());
+        ActionRequest request = new ActionRequest(username, Commands.RESETBUDGET, new ArrayList<>());
         sendReceiveObject(request);
         if (response != null) {
             System.out.println(((ResetBudgetResponse) response).getResult());
