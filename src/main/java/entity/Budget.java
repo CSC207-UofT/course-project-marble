@@ -13,10 +13,10 @@ public class Budget {
      * and (2) the actual amount.
      * active: boolean that indicates whether the budget was set (True) or not (False).
      */
-    private final HashMap<String, ArrayList<Double>> goalActualBudget;
+    private final HashMap<String, Double> actualSpending;
+    private final HashMap<String, Double> goalBudget;
     private Date date;
     private boolean active;
-    List<String> categories = Arrays.asList( "Groceries", "Furniture", "Restaurant", "Vacation", "Gas", "Recurring Bill Payment", "Health and Beauty", "Home Improvement", "Entertainment", "Public Transportation and Parking");
 
     public String toString(){
         if(this.active){
@@ -28,32 +28,39 @@ public class Budget {
     }
 
     public Budget(Date date) {
-        this.goalActualBudget = new HashMap<>();
-        for (String categoryName : this.categories){
-            this.goalActualBudget.put(categoryName, new ArrayList<>(List.of(0.00)));
+        this.actualSpending = new HashMap<>();
+        this.goalBudget = new HashMap<>();
+        List<String> categories = Arrays.asList( "Groceries", "Gas", "Bill Payments", "Entertainment", "Public Transport");
+        for (String categoryName : categories){
+            this.actualSpending.put(categoryName, 0.0);
+            this.goalBudget.put(categoryName, 0.0);
         }
         this.date = date;
         this.active = true;
 
     }
-
-    /**Getter and Setter for Date.
+    /**
+     * Getter for  Date.
     * getDate returns the date that the Budget was created.*/
-    public String getDate() {
-        return this.date.toString();
+    public Date getDate() {
+        return this.date;
     }
-    /**setDate replaces the initial date with a new date.
+
+    /**
+     * setDate replaces the initial date with a new date.
      * @param newDate: new date of the budget.*/
     public void setDate(Date newDate) {
         this.date = newDate;
     }
 
-    /**getGoalActualBudget returns all the category budgets and current amounts in the budget*/
-    public HashMap<String, ArrayList<Double>> getGoalActualBudget() {
-        return this.goalActualBudget;
+    /**
+     * getGoalBudget returns all the goal budgets and current amounts in the budget*/
+    public HashMap<String, Double> getGoalBudget() {
+        return this.goalBudget;
     }
 
-    /** setGoalBudget sets the goal budget in the category to its new value.
+    /**
+     *  setGoalBudget sets the goal budget in the category to its new value.
      * @param category : the category the user wants budget.
      * @param goalBudget : the new value of the category budget.*/
     public boolean setGoalBudget(String category, Double goalBudget){
@@ -70,7 +77,6 @@ public class Budget {
     /** getActualBudget gets the actual amount spent in the category.
      * @param category : the category chosen to know the amount spent.
      * */
-
     public Double getActualBudget(String category){
         if (goalActualBudget.containsKey(category)){
             return goalActualBudget.get(category).get(1);
