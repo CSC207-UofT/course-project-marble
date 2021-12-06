@@ -10,13 +10,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Withdrawal extends SendReceive{
+public class Withdrawal extends SendReceive {
 
     public Withdrawal(ObjectOutputStream outbound, ObjectInputStream inbound) {
         super(outbound, inbound);
     }
 
-    public void withdrawal(String username){
+    public void withdrawal(String username) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Please enter how much you want to withdraw");
         String amount = sc.nextLine();

@@ -8,7 +8,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
-public class ViewInvestments extends SendReceive{
+public class ViewInvestments extends SendReceive {
 
     public ViewInvestments(ObjectOutputStream outbound, ObjectInputStream inbound) {
         super(outbound, inbound);
@@ -17,8 +17,8 @@ public class ViewInvestments extends SendReceive{
     public void viewInvestment(String username) {
         ActionRequest request = new ActionRequest(username, Commands.VIEWINVESTMENTS, new ArrayList<>());
         sendReceiveObject(request);
-        if(response != null){
-            System.out.println(((ViewInvestmentsResponse)response).getResult());
+        if (response != null) {
+            System.out.println(((ViewInvestmentsResponse) response).getResult());
         }
     }
 }
