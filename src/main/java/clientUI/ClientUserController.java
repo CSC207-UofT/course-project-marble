@@ -416,6 +416,9 @@ public class ClientUserController {
                 case "p":
                     new CalculateRemainingBudget(outbound, inbound).calculateRemainingBudget(this.username);
                     break;
+                case "r":
+                    new Simulate(outbound, inbound).simulate(this.username);
+                    break;
                 case "q":
                     this.disconnect();
                     running = false;

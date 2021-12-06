@@ -13,7 +13,7 @@ public class Printer {
                 "Create a new savings account: i", "Add or remove money from a Savings account : j",
                 "Compare your budget to a standard budget: k", "View you budget: l",
                 "View your historical budget performance: m", "Adjust your budget goal by category: n",
-                "reset budget: o", "View your remaining budget: p", "To quit: q")) {
+                "reset budget: o", "View your remaining budget: p", "To simulate your assets: r", "To quit: q")) {
             System.out.println(s);
         }
     }
