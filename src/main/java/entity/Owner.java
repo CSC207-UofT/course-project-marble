@@ -101,10 +101,10 @@ public class Owner {
      * This method will store the Budget object that is created in the Action class.
      * Budget object is/should be created and customized under Actions using Budget's methods.
      *
-     * @param date       the date when this budget starts
+     * @param budget       the date when this budget starts
      */
-    public void setBudget(Date date) {
-        this.budget = new Budget(date);
+    public void setBudget(Budget budget) {
+        this.budget = budget;
     }
 
     /**
