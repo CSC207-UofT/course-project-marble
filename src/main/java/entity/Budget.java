@@ -20,11 +20,14 @@ public class Budget {
     private Date date;
     private boolean active;
 
+    /**
+     * Returns a string representation of the budget breakdown by categories
+     * @return string representation of the budget, containing the goalBudget and actualSpending
+     */
     @Override
     public String toString() {
         if (this.active) {
             StringBuilder result = new StringBuilder();
-            result.append("Budget Created on: ").append(this.date);
             result.append(" Budget Broken Down:\n");
 
             for (String category : goalBudget.keySet()) {

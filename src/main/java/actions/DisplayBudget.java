@@ -21,33 +21,17 @@ public class DisplayBudget extends Actions {
     }
 
     @Override
-    public ActionResponse process(){
-        if ((budget == null) || !(budget.getActive())){
-            return new DisplayBudgetResponse();
+    public ActionResponse process() {
+        String result;
+        if (budget == null) {
+            result = "No Active or Existing Budget to View";
+        } else if (!budget.getActive()) {
+            result = "Budget Created on: " + budget.getDate().toString() + "\n" + budget.toString();
+        } else {
+            result = "Budget Created on: " + budget.getDate().toString() + "\n" +
+                    "The total budget amount is: $" + getTotalBudget() + "\n" + budget.toString();
         }
-        return new DisplayBudgetResponse(createDisplay());
-    }
-
-    /**
-     * helper methods
-     */
-    public String createDisplay() {
-        StringBuilder display = new StringBuilder();
-        StringBuilder temp = new StringBuilder();
-        double goal = 0;
-        double remaining = 0;
-        display.append("Budget Created on: " + budget.getDate());
-        display.append("The total budget amount is: $" + getTotalBudget());
-        display.append("Budget Broken Down:\n");
-
-        for (String category : budget.getCategories()) {
-            goal = budget.getGoalBudget(category);
-            remaining = calculateRemaining(category);
-            temp.append("\t Category Name: " + category + "\n");
-            temp.append("\t\t Goal Budget: $" + goal + "\n");
-            temp.append("\t\t Remaining Budget Unspent: $" + remaining + "\n");
-        }
-        return display.toString();
+        return new DisplayBudgetResponse(result);
     }
 
     public double getTotalBudget() {
@@ -58,7 +42,4 @@ public class DisplayBudget extends Actions {
         return total;
     }
 
-    public double calculateRemaining(String category) {
-        return (budget.getGoalBudget(category) - budget.getActualBudget(category));
-    }
 }
