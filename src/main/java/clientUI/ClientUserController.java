@@ -319,7 +319,7 @@ public class ClientUserController {
             case "1":
                 username = new Login(outbound, inbound).login();
 //                this.login();
-//                return true;
+                return true;
             case "2":
                 username = new CreateUser(outbound, inbound).createUser();
 //                boolean result2 = this.createUser();
@@ -350,6 +350,8 @@ public class ClientUserController {
             }
         }
 //        this.updateDepositable();
+        new UpdateDepositable(outbound, inbound).updateDepositable(this.username);
+
         String input;
         boolean running = true;
         while (running) {

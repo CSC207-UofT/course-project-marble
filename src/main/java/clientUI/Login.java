@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Login extends SendReceive{
+public class Login extends SendReceive {
 
     public Login(ObjectOutputStream outbound, ObjectInputStream inbound) {
         super(outbound, inbound);

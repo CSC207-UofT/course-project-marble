@@ -7,16 +7,16 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
-public class UpdateDepositable extends SendReceive{
+public class UpdateDepositable extends SendReceive {
 
     public UpdateDepositable(ObjectOutputStream outbound, ObjectInputStream inbound) {
         super(outbound, inbound);
     }
 
-    public void updateDepositable(String username){
+    public void updateDepositable(String username) {
         ActionRequest request = new ActionRequest(username, Commands.UPDATEDEPOSITABLE, new ArrayList<>());
         sendReceiveObject(request);
-        if(response != null){
+        if (response != null) {
             System.out.println("You were successful");
         }
     }

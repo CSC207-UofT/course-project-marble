@@ -8,16 +8,17 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
-public class DisplayWithdrawalRecord extends SendReceive{
+public class DisplayWithdrawalRecord extends SendReceive {
 
     public DisplayWithdrawalRecord(ObjectOutputStream outbound, ObjectInputStream inbound) {
         super(outbound, inbound);
     }
-    public void displayWithdrawalRecord(String username){
+
+    public void displayWithdrawalRecord(String username) {
         ActionRequest request = new ActionRequest(username, Commands.DISPLAYWITHDRAWALRECORD, new ArrayList<>());
         sendReceiveObject(request);
-        if(response != null){
-            System.out.println(((DisplayWithdrawalRecordResponse)response).getResult());
+        if (response != null) {
+            System.out.println(((DisplayWithdrawalRecordResponse) response).getResult());
         }
     }
 }

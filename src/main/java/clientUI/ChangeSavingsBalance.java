@@ -1,7 +1,6 @@
 package clientUI;
 
 import action_request_response.ActionRequest;
-import action_request_response.CashOutResponse;
 import action_request_response.Commands;
 import action_request_response.DepositSavingResponse;
 
@@ -12,13 +11,13 @@ import java.util.List;
 import java.util.Scanner;
 
 
-public class ChangeSavingsBalance extends SendReceive{
+public class ChangeSavingsBalance extends SendReceive {
 
     public ChangeSavingsBalance(ObjectOutputStream outbound, ObjectInputStream inbound) {
         super(outbound, inbound);
     }
 
-    public void changeSavingsBalance(String username){
+    public void changeSavingsBalance(String username) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Which savings account?");
         String name = sc.nextLine();
