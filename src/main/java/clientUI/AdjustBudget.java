@@ -15,7 +15,7 @@ public class AdjustBudget extends SendReceive{
         super(outbound, inbound);
     }
 
-    public void compareBudget(String username) {
+    public void adjustBudget(String username) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Which category would you like to adjust your spending in?");
         String category = sc.nextLine();
