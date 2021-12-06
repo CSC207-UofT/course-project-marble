@@ -63,10 +63,10 @@ public class Budget {
     /**
      *  setGoalBudget sets the goal budget in the category to its new value.
      * @param category : the category the user wants budget.
-     * @param goalBudget : the new value of the category budget.*/
-    public boolean setGoalBudget(String category, Double goalBudget){
-        if (goalActualBudget.containsKey(category)){
-            goalActualBudget.get(category).set(0, goalBudget);
+     * @param newGoalAmount : the new value of the category budget.*/
+    public boolean setGoalBudget(String category, Double newGoalAmount){
+        if (this.goalBudget.containsKey(category)){
+            goalBudget.replace(category, newGoalAmount);
             return true;
         }
         else{
@@ -85,11 +85,11 @@ public class Budget {
 
     /** setActualBudget sets the actual amount spent in the category to its new value.
      * @param category : the category the user wants budget.
-     * @param actualAmount : the new value of the category budget.*/
+     * @param newAmount : the new value of the category budget.*/
 
-    public boolean setActualBudget(String category, Double actualAmount){
-        if(goalActualBudget.containsKey(category)){
-            this.goalActualBudget.get(category).add(1, actualAmount);
+    public boolean setActualSpending(String category, Double newAmount){
+        if(actualSpending.containsKey(category)){
+            this.actualSpending.replace(category, newAmount);
             return true;
         }
         else{
