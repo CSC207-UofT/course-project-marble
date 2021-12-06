@@ -21,7 +21,7 @@ public class AdjustBudget extends SendReceive{
         String category = sc.nextLine();
         System.out.println("What is the amount you would like to adjust the category's spending to?");
         String newAmount = sc.nextLine();
-        ActionRequest request = new ActionRequest(username, Commands.CREATESAVINGS, new ArrayList<>(List.of(category, newAmount)));
+        ActionRequest request = new ActionRequest(username, Commands.ADJUSTBUDGET, new ArrayList<>(List.of(category, newAmount)));
         sendReceiveObject(request);
         if (response != null) {
             if (((AdjustBudgetResponse)response).getResult()){
