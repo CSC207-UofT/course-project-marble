@@ -2,8 +2,7 @@ package server;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import entity.Bond;
-import entity.Date;
+import entity.FinancialAsset;
 
 import java.io.*;
 
@@ -15,9 +14,12 @@ public class JSONTranslator {
      * @throws IOException In/Out stream error
      */
     public void writeToJSON(Object javaObj, String fileName) throws IOException {
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        Gson gson = new GsonBuilder().setPrettyPrinting().registerTypeAdapter(FinancialAsset.class,
+                new JSONTypeAdapter<FinancialAsset>()).create();
+
         try(FileWriter writer = new FileWriter(fileName)){
             gson.toJson(javaObj, writer);
+
         }catch (IOException e){
             e.printStackTrace();
         }
@@ -31,9 +33,12 @@ public class JSONTranslator {
      * @throws FileNotFoundException for issues where file not found
      */
     public Object readFromJSON(Class<?> t, String fileName) throws FileNotFoundException {
-        Gson gson = new Gson();
+
+        Gson gson = new GsonBuilder().registerTypeAdapter(FinancialAsset.class, new JSONTypeAdapter<FinancialAsset>()).create();
+
         try(Reader reader = new FileReader(fileName)){
             return gson.fromJson(reader, t);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
