@@ -10,11 +10,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class CreateUser extends SendReceive{
+public class CreateUser extends SendReceive {
     public CreateUser(ObjectOutputStream outbound, ObjectInputStream inbound) {
         super(outbound, inbound);
     }
-    public String createUser(){
+
+    public String createUser() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Please enter your full name");
         String fullName = sc.nextLine();

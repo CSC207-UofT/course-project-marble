@@ -1,7 +1,6 @@
 package clientUI;
 
 import action_request_response.ActionRequest;
-import action_request_response.CashOutResponse;
 import action_request_response.Commands;
 import action_request_response.CreateBondResponse;
 
@@ -11,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class CreateBond extends SendReceive{
+public class CreateBond extends SendReceive {
 
     public CreateBond(ObjectOutputStream outbound, ObjectInputStream inbound) {
         super(outbound, inbound);
