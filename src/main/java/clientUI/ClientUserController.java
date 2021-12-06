@@ -400,14 +400,22 @@ public class ClientUserController {
                     break;
                 case "k":
                     new CompareBudget(outbound, inbound).compareBudget(this.username);
+                    break;
                 case "l":
                     new DisplayBudget(outbound, inbound).displayBudget(this.username);
+                    break;
                 case "m":
                     new ViewBudgetPerformance(outbound, inbound).viewBudgetPerformance(this.username);
+                    break;
                 case "n":
                     new AdjustBudget(outbound, inbound).adjustBudget(this.username);
+                    break;
                 case "o":
                     new ResetBudget(outbound, inbound).resetBudget(this.username);
+                    break;
+                case "p":
+                    new CalculateRemainingBudget(outbound, inbound).calculateRemainingBudget(this.username);
+                    break;
                 case "q":
                     this.disconnect();
                     running = false;

@@ -12,7 +12,8 @@ public class Printer {
                 "View all of your assets: f", "Cash out a non-depositable asset: g", "Buy a new bond: h",
                 "Create a new savings account: i", "Add or remove money from a Savings account : j",
                 "Compare your budget to a standard budget: k", "View you budget: l",
-                "View your historical budget performance: m", "To quit: q")) {
+                "View your historical budget performance: m", "Adjust your budget goal by category: n",
+                "reset budget: o", "View your remaining budget: p", "To quit: q")) {
             System.out.println(s);
         }
     }
