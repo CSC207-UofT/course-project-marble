@@ -25,8 +25,8 @@ public class ResetBudget extends Actions{
         }
         double totalRemainingBudget = 0;
         for(String category : categories){
-            budget.setActualBudget(category, 0.0);
-            totalRemainingBudget += budget.getGoalBudget(category) - budget.getActualBudget(category);
+            totalRemainingBudget += budget.getGoalBudget(category) - budget.getActualSpending(category);
+            budget.setActualSpending(category, 0.0);
         }
         user.addBudgetHistory(budget);
         return new ResetBudgetResponse(true, totalRemainingBudget);
