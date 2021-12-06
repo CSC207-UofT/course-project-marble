@@ -22,7 +22,7 @@ public class Withdrawal extends SendReceive {
         String amount = sc.nextLine();
         System.out.println("What category did you withdraw from?");
         String category = sc.nextLine();
-        System.out.println("Why do you need this?");
+        System.out.println("Please enter any extra description for this withdrawal:");
         String description = sc.nextLine();
         ActionRequest request = new ActionRequest(username, Commands.WITHDRAWAL,
                 new ArrayList<>(List.of(amount, category, description)));
