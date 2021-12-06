@@ -15,6 +15,7 @@ public class Budget {
      */
     private final HashMap<String, Double> actualSpending;
     private final HashMap<String, Double> goalBudget;
+    List<String> categories;
     private Date date;
     private boolean active;
 
@@ -28,10 +29,10 @@ public class Budget {
     }
 
     public Budget(Date date) {
+        this.categories = Arrays.asList( "Groceries", "Gas", "Bill Payments", "Entertainment", "Public Transport");
         this.actualSpending = new HashMap<>();
         this.goalBudget = new HashMap<>();
-        List<String> categories = Arrays.asList( "Groceries", "Gas", "Bill Payments", "Entertainment", "Public Transport");
-        for (String categoryName : categories){
+        for (String categoryName : this.categories){
             this.actualSpending.put(categoryName, 0.0);
             this.goalBudget.put(categoryName, 0.0);
         }
@@ -73,18 +74,14 @@ public class Budget {
         }
     }
 
-
-    /** getActualBudget gets the actual amount spent in the category.
-     * @param category : the category chosen to know the amount spent.
+    /** getGaolBudget gets the goal amount spent in the category.
+     * @param category : the category chosen to know the goal amount.
      * */
-    public Double getActualBudget(String category){
-        if (goalActualBudget.containsKey(category)){
-            return goalActualBudget.get(category).get(1);
-        }
-        else{
-            return null;
-        }
+    public Double getGoalBudget(String category){
+        return goalBudget.getOrDefault(category, null);
+
     }
+
 
     /** setActualBudget sets the actual amount spent in the category to its new value.
      * @param category : the category the user wants budget.
@@ -99,18 +96,14 @@ public class Budget {
             return false;
         }
     }
-    /** getGaolBudget gets the goal amount spent in the category.
-     * @param category : the category chosen to know the goal amount.
-     * */
 
-    public Double getGoalBudget(String category){
-        if (goalActualBudget.containsKey(category)){
-            return goalActualBudget.get(category).get(0);
-        }
-        else{
-            return null;
-        }
+    /** getActualBudget gets the actual amount spent in the category.
+     * @param category : the category chosen to know the amount spent.
+     * */
+    public Double getActualSpending(String category){
+        return actualSpending.getOrDefault(category, null);
     }
+
 
     /**getActive returns whether the client set a budget for the month. True for if they did and false otherwise.
      * */
@@ -126,7 +119,7 @@ public class Budget {
      * @return an ArrayList of categories of the budget
      */
     public ArrayList<String> getCategories() {
-        return new ArrayList<>(this.categories);
+        return (ArrayList<String>) this.categories;
     }
 
 }
