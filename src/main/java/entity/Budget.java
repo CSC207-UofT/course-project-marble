@@ -39,7 +39,8 @@ public class Budget {
         }
 
         this.date = date;
-        this.active = false;
+//        this.active = false;
+        this.active = true;
 
     }
 

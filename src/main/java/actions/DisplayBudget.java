@@ -25,6 +25,7 @@ public class DisplayBudget extends Actions {
         if ((budget == null) || !(budget.getActive())){
             return new DisplayBudgetResponse();
         }
+//        return new DisplayBudgetResponse(budget.getGoalActualBudget().toString());
         return new DisplayBudgetResponse(createDisplay());
     }
 
@@ -33,19 +34,19 @@ public class DisplayBudget extends Actions {
      */
     public String createDisplay() {
         StringBuilder display = new StringBuilder();
-        StringBuilder temp = new StringBuilder();
+//        StringBuilder temp = new StringBuilder();
         double goal = 0;
         double remaining = 0;
         display.append("Budget Created on: " + budget.getDate());
         display.append("The total budget amount is: $" + getTotalBudget());
-        display.append("Budget Broken Down:\n");
+        display.append(" Budget Broken Down:\n");
 
         for (String category : budget.getCategories()) {
             goal = budget.getGoalBudget(category);
             remaining = calculateRemaining(category);
-            temp.append("\t Category Name: " + category + "\n");
-            temp.append("\t\t Goal Budget: $" + goal + "\n");
-            temp.append("\t\t Remaining Budget Unspent: $" + remaining + "\n");
+            display.append("\t Category Name: " + category + "\n");
+            display.append("\t\t Goal Budget: $" + goal + "\n");
+            display.append("\t\t Remaining Budget Unspent: $" + remaining + "\n");
         }
         return display.toString();
     }
