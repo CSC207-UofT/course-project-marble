@@ -3,6 +3,7 @@ import action_request_response.ActionRequest;
 import action_request_response.ActionResponse;
 import action_request_response.DepositResponse;
 import entity.*;
+import entity.Record;
 
 import java.util.ArrayList;
 
