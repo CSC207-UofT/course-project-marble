@@ -34,6 +34,8 @@ public class ActionFactory {
                 return new CashOut(request);
             case DEPOSITSAVINGS:
                 return new ChangeBalanceSaving(request);
+            case DISPLAYBUDGET:
+                return new DisplayBudget(request);
         }
         return null;
     }

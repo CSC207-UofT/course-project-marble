@@ -1,7 +1,7 @@
 package actions;
+
 import action_request_response.ActionRequest;
 import action_request_response.ActionResponse;
-import action_request_response.AddExpenseResponse;
 import action_request_response.DisplayBudgetResponse;
 import entity.Budget;
 import entity.Owner;
@@ -12,8 +12,8 @@ import entity.OwnerRepository;
  * current budget (if they have one)
  */
 public class DisplayBudget extends Actions {
-    private Owner user;
-    private Budget budget;
+    private final Owner user;
+    private final Budget budget;
 
     public DisplayBudget(ActionRequest request) {
         this.user = OwnerRepository.getOwnerRepository().findOwner(request.getUsername());
@@ -23,7 +23,7 @@ public class DisplayBudget extends Actions {
     @Override
     public ActionResponse process(){
         if ((budget == null) || !(budget.getActive())){
-            return new DisplayBudgetResponse();
+            return new DisplayBudgetResponse("There is no budget set.");
         }
         return new DisplayBudgetResponse(createDisplay());
     }
@@ -32,22 +32,21 @@ public class DisplayBudget extends Actions {
      * helper methods
      */
     public String createDisplay() {
-        StringBuilder display = new StringBuilder();
         StringBuilder temp = new StringBuilder();
-        double goal = 0;
-        double remaining = 0;
-        display.append("Budget Created on: " + budget.getDate());
-        display.append("The total budget amount is: $" + getTotalBudget());
-        display.append("Budget Broken Down:\n");
+        double goal;
+        double remaining;
+        String display = "Budget Created on: " + budget.getDate() +
+                "The total budget amount is: $" + getTotalBudget() +
+                "Budget Broken Down:\n";
 
         for (String category : budget.getCategories()) {
             goal = budget.getGoalBudget(category);
             remaining = calculateRemaining(category);
-            temp.append("\t Category Name: " + category + "\n");
-            temp.append("\t\t Goal Budget: $" + goal + "\n");
-            temp.append("\t\t Remaining Budget Unspent: $" + remaining + "\n");
+            temp.append("\t Category Name: ").append(category).append("\n");
+            temp.append("\t\t Goal Budget: $").append(goal).append("\n");
+            temp.append("\t\t Remaining Budget Unspent: $").append(remaining).append("\n");
         }
-        return display.toString();
+        return display + temp;
     }
 
     public double getTotalBudget() {
