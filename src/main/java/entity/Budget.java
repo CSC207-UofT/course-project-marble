@@ -13,12 +13,10 @@ public class Budget {
      * and (2) the actual amount.
      * active: boolean that indicates whether the budget was set (True) or not (False).
      */
-
     private final HashMap<String, ArrayList<Double>> goalActualBudget;
     private Date date;
     private boolean active;
     List<String> categories = Arrays.asList( "Groceries", "Furniture", "Restaurant", "Vacation", "Gas", "Recurring Bill Payment", "Health and Beauty", "Home Improvement", "Entertainment", "Public Transportation and Parking");
-    private final ArrayList<Double> initialList = new ArrayList<>();
 
     public String toString(){
         if(this.active){
@@ -27,19 +25,15 @@ public class Budget {
         else{
             return "This is an inactive budget.";
         }
-
     }
 
     public Budget(Date date) {
         this.goalActualBudget = new HashMap<>();
-        this.initialList.add(0.00);
-        this.initialList.add(0.00);
         for (String categoryName : this.categories){
-            this.goalActualBudget.put(categoryName, initialList);
+            this.goalActualBudget.put(categoryName, new ArrayList<>(List.of(0.00)));
         }
-
         this.date = date;
-        this.active = false;
+        this.active = true;
 
     }
 
