@@ -17,6 +17,7 @@ public enum Commands {
     LOGIN,
     OWNERINFO,
     SIMULATE,
+    TRANSFER,
     STOREDATAInJSON,
     UPDATEDEPOSITABLE,
     USERQUIT,
@@ -24,6 +25,5 @@ public enum Commands {
     WITHDRAWAL,
     STOREDATAINJSON,
     RESETBUDGET,
-    ADJUSTBUDGET,
-    TRANSFER
+    ADJUSTBUDGET
 }
