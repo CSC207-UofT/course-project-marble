@@ -14,13 +14,13 @@ public class testBudget {
 /**Test date instance in Budget.*/
     @Test
     void testGetDate(){
-        assertEquals("1/1/2021", budget.getDate());
+        assertEquals("1/1/2021", budget.getDate().toString());
     }
 
     @Test
     void testSetDate(){
         budget.setDate(new Date(2,1,2021));
-        assertEquals("1/2/2021", budget.getDate());
+        assertEquals("1/2/2021", budget.getDate().toString());
     }
 
 /**Set and get goals and actual spending amounts in budget.*/

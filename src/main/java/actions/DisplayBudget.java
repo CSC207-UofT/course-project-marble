@@ -12,8 +12,8 @@ import entity.OwnerRepository;
  * current budget (if they have one)
  */
 public class DisplayBudget extends Actions {
-    private Owner user;
-    private Budget budget;
+    private final Owner user;
+    private final Budget budget;
 
     public DisplayBudget(ActionRequest request) {
         this.user = OwnerRepository.getOwnerRepository().findOwner(request.getUsername());
@@ -27,7 +27,7 @@ public class DisplayBudget extends Actions {
             result = "No Active or Existing Budget to View";
         } else {
             result = "Budget Created on: " + budget.getDate().toString() + "\n" +
-                    "The total budget amount is: $" + getTotalBudget() + "\n" + budget.toString();
+                    "The total budget amount is: $" + getTotalBudget() + "\n" + budget;
         }
         return new DisplayBudgetResponse(result);
     }
