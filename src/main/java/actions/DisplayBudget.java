@@ -23,10 +23,8 @@ public class DisplayBudget extends Actions {
     @Override
     public ActionResponse process() {
         String result;
-        if (budget == null) {
+        if ((budget == null) || (!budget.getActive())) {
             result = "No Active or Existing Budget to View";
-        } else if (!budget.getActive()) {
-            result = "Budget Created on: " + budget.getDate().toString() + "\n" + budget.toString();
         } else {
             result = "Budget Created on: " + budget.getDate().toString() + "\n" +
                     "The total budget amount is: $" + getTotalBudget() + "\n" + budget.toString();
