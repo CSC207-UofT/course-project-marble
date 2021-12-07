@@ -1,6 +1,8 @@
 package actions;
 
 import action_request_response.*;
+import entity.Budget;
+import entity.Date;
 import entity.Owner;
 import entity.OwnerRepository;
 import org.junit.jupiter.api.AfterEach;
@@ -37,13 +39,32 @@ public class testDisplayBudget {
         assertEquals(expected, ((DisplayBudgetResponse)result).getResult());
     }
 
-//    @Test
-//    public void testInactiveBudget(){
-//
-//    }
-//
-//    @Test
-//    public void testActiveBudget(){
-//
-//    }
+    @Test
+    public void testInactiveBudget(){
+        Budget budget = new Budget(new Date(1, 1,2021));
+        budget.setActive(false);
+        owner.setBudget(budget);
+        request = new ActionRequest("shogun", Commands.DISPLAYBUDGET, new ArrayList<>());
+        callDisplayBudget = new DisplayBudget(request);
+        ActionResponse result = callDisplayBudget.process();
+        String expected = "No Active or Existing Budget to View\n";
+        assertEquals(expected, ((DisplayBudgetResponse)result).getResult());
+    }
+
+    @Test
+    public void testActiveBudget(){
+        Budget budget = new Budget(new Date(1, 1,2021));
+        owner.setBudget(budget);
+        request = new ActionRequest("shogun", Commands.DISPLAYBUDGET, new ArrayList<>());
+        callDisplayBudget = new DisplayBudget(request);
+        ActionResponse result = callDisplayBudget.process();
+        String expected = "Budget Created on: 1/1/2021\n" + "The total budget amount is: $0.0\n" +
+                " Budget Broken Down:\n" +
+                "\t Category Name: Groceries\n\t\t Goal Budget: $0.0\n\t\t Money Spent: $0.0" +
+                "\t Category Name: Gas\n\t\t Goal Budget: $0.0\n\t\t Money Spent: $0.0" +
+                "\t Category Name: Bill Payments\n\t\t Goal Budget: $0.0\n\t\t Money Spent: $0.0" +
+                "\t Category Name: Entertainment\n\t\t Goal Budget: $0.0\n\t\t Money Spent: $0.0" +
+                "\t Category Name: Public Transport\n\t\t Goal Budget: $0.0\n\t\t Money Spent: $0.0";
+        assertEquals(expected, ((DisplayBudgetResponse)result).getResult());
+    }
 }
