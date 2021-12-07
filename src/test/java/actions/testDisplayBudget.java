@@ -35,7 +35,7 @@ public class testDisplayBudget {
         request = new ActionRequest("shogun", Commands.DISPLAYBUDGET, new ArrayList<>());
         callDisplayBudget = new DisplayBudget(request);
         ActionResponse result = callDisplayBudget.process();
-        String expected = "No Active or Existing Budget to View\n";
+        String expected = "No Active or Existing Budget to View";
         assertEquals(expected, ((DisplayBudgetResponse)result).getResult());
     }
 
@@ -47,7 +47,7 @@ public class testDisplayBudget {
         request = new ActionRequest("shogun", Commands.DISPLAYBUDGET, new ArrayList<>());
         callDisplayBudget = new DisplayBudget(request);
         ActionResponse result = callDisplayBudget.process();
-        String expected = "No Active or Existing Budget to View\n";
+        String expected = "No Active or Existing Budget to View";
         assertEquals(expected, ((DisplayBudgetResponse)result).getResult());
     }
 
