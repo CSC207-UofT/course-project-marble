@@ -42,7 +42,7 @@ public class Budget {
     }
 
     public Budget(Date date) {
-        this.categories = Arrays.asList("Groceries", "Gas", "Bill Payments", "Entertainment", "Public Transport");
+        this.categories = new ArrayList<>(List.of("Groceries", "Gas", "Bill Payments", "Entertainment", "Public Transport"));
         this.actualSpending = new HashMap<>();
         this.goalBudget = new HashMap<>();
         for (String categoryName : this.categories) {
