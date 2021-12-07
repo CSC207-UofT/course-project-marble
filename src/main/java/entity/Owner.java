@@ -78,7 +78,7 @@ public class Owner {
         return listAssets;
     }
 
-    public void addBudgetHistory(Budget newBudget){this.budgetHistory.put(newBudget.getDate(),newBudget);}
+    public void addBudgetHistory(Budget newBudget){this.budgetHistory.put(newBudget.getDate().toString(),newBudget);}
 
     public HashMap<String, Budget> getBudgetHistory(){return this.budgetHistory;}
 
