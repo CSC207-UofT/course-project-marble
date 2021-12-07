@@ -8,7 +8,6 @@ import entity.Owner;
 import entity.OwnerRepository;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**This Action allows for the user to adjust the actual amount for a single category in Budget.
  * ex:
@@ -23,26 +22,27 @@ import java.util.HashMap;
  * "Vacation": [100, 0], "Gas": [100, 0], "Recurring Bill Payment": [100, 0], "Health and Beauty": [100, 0],
  * "Home Improvement": [100, 0], "Entertainment": [100, 0], "Public Transportation and Parking": [100, 0])
  *
+ * Hence, $0 + 55 in groceries.
  * The method will return true if successful and false if the category doesn't exist.
  *
- * UserInputs: 0: category, 1: newAmount.*/
+ * UserInputs: 0: category, 1: increaseAmount.*/
 public class AdjustBudget extends Actions{
     private final Owner user;
     private final String category;
-    private final Double newAmount;
+    private final Double increaseAmount;
 
     public AdjustBudget(ActionRequest request){
         this.user = OwnerRepository.getOwnerRepository().findOwner(request.getUsername());
         ArrayList<String> userInputs = request.getUserInputs();
         this.category = userInputs.get(0);
-        this.newAmount = Double.parseDouble(userInputs.get(1));
+        this.increaseAmount = Double.parseDouble(userInputs.get(1));
     }
 
     @Override
     public ActionResponse process(){
         Budget budget = this.user.getBudget();
 
-        if (budget.setActualBudget(this.category, this.newAmount)){
+        if (budget.setActualBudget(this.category, this.increaseAmount + user.getBudget().getActualBudget(this.category))){
             return new AdjustBudgetResponse(true);
         }
         return new AdjustBudgetResponse(false);
