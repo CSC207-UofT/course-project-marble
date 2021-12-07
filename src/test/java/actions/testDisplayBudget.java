@@ -61,9 +61,9 @@ public class testDisplayBudget {
         String expected = "Budget Created on: 1/1/2021\n" + "The total budget amount is: $0.0\n" +
                 " Budget Broken Down:\n" +
                 "\t Category Name: Groceries\n\t\t Goal Budget: $0.0\n\t\t Money Spent: $0.0" +
+                "\t Category Name: Entertainment\n\t\t Goal Budget: $0.0\n\t\t Money Spent: $0.0"+
                 "\t Category Name: Gas\n\t\t Goal Budget: $0.0\n\t\t Money Spent: $0.0" +
-                "\t Category Name: Bill Payments\n\t\t Goal Budget: $0.0\n\t\t Money Spent: $0.0" +
-                "\t Category Name: Entertainment\n\t\t Goal Budget: $0.0\n\t\t Money Spent: $0.0" +
+                "\t Category Name: Bill Payments\n\t\t Goal Budget: $0.0\n\t\t Money Spent: $0.0"+
                 "\t Category Name: Public Transport\n\t\t Goal Budget: $0.0\n\t\t Money Spent: $0.0";
         assertEquals(expected, ((DisplayBudgetResponse)result).getResult());
     }
