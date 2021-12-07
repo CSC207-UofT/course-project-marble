@@ -8,6 +8,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class AdjustBudget extends SendReceive{
@@ -24,7 +25,7 @@ public class AdjustBudget extends SendReceive{
         ActionRequest request = new ActionRequest(username, Commands.ADJUSTBUDGET, new ArrayList<>(List.of(category, newAmount)));
         sendReceiveObject(request);
         if (response != null) {
-            if (((AdjustBudgetResponse)response).getResult()){
+            if (Objects.equals(((AdjustBudgetResponse) response).getResult(), "Your actual amount has changed")){
                 System.out.println("You were successful in adjusting your spending in the " + category + " category");
             }
             else{

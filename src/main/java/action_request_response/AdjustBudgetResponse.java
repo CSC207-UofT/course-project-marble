@@ -1,9 +1,9 @@
 package action_request_response;
 
 public class AdjustBudgetResponse extends ActionResponse {
-    private final boolean result;
-    public AdjustBudgetResponse(boolean result){this.result = result;}
+    private final String result;
+    public AdjustBudgetResponse(String result){this.result = result;}
 
-    public boolean getResult(){return this.result;}
+    public String getResult(){return this.result;}
 }
 

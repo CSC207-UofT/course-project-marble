@@ -29,8 +29,11 @@ public class ActivateBudget extends Actions {
             budget.setActive(false);
             return new ActivateBudgetResponse(false);
         }
-        budget.setActive(true);
-        return new ActivateBudgetResponse(true);
+        else{
+            budget.setActive(true);
+            return new ActivateBudgetResponse(true);
+        }
+
     }
 
 }

@@ -1,6 +1,8 @@
 package action_request_response;
 
 public enum Commands {
+    ACTIVATEBUDGET,
+    ADJUSTBUDGET,
     CALCULATEREMAININGBUDGET,
     CASHOUT,
     ADDEXPENSE,
@@ -24,6 +26,5 @@ public enum Commands {
     WITHDRAWAL,
     STOREDATAINJSON,
     RESETBUDGET,
-    ADJUSTBUDGET,
     VIEWBUDGETPERFORMANCE
 }

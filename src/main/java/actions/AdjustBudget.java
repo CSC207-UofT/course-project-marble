@@ -3,6 +3,7 @@ package actions;
 import action_request_response.ActionRequest;
 import action_request_response.ActionResponse;
 import action_request_response.AdjustBudgetResponse;
+import action_request_response.DisplayBudgetResponse;
 import entity.Budget;
 import entity.Owner;
 import entity.OwnerRepository;
@@ -30,22 +31,28 @@ public class AdjustBudget extends Actions{
     private final Owner user;
     private final String category;
     private final Double increaseAmount;
+    private Budget budget;
 
     public AdjustBudget(ActionRequest request){
         this.user = OwnerRepository.getOwnerRepository().findOwner(request.getUsername());
         ArrayList<String> userInputs = request.getUserInputs();
         this.category = userInputs.get(0);
         this.increaseAmount = Double.parseDouble(userInputs.get(1));
+        budget = user.getBudget();
     }
 
     @Override
     public ActionResponse process(){
-        Budget budget = this.user.getBudget();
+
+        if ((budget == null) || !(budget.getActive())){
+            return new AdjustBudgetResponse("Your budget is not activated. Please try again.");
+        }
+
 
         if (budget.setActualBudget(this.category, this.increaseAmount + user.getBudget().getActualBudget(this.category))){
-            return new AdjustBudgetResponse(true);
+            return new AdjustBudgetResponse("Your actual amount has changed to: "+ budget.getActualBudget(this.category).toString());
         }
-        return new AdjustBudgetResponse(false);
+        return new AdjustBudgetResponse("Please enter a valid category and try again.");
         }
     }
 

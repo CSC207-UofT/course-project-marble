@@ -6,4 +6,5 @@ public class ActivateBudgetResponse extends ActionResponse{
     public ActivateBudgetResponse(boolean result){ this.result = result;
 
     }
+    public boolean getResult(){return this.result;}
 }
