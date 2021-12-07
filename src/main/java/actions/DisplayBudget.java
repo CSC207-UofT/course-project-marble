@@ -1,7 +1,7 @@
 package actions;
 import action_request_response.ActionRequest;
 import action_request_response.ActionResponse;
-import action_request_response.AddExpenseResponse;
+
 import action_request_response.DisplayBudgetResponse;
 import entity.Budget;
 import entity.Owner;
@@ -33,7 +33,7 @@ public class DisplayBudget extends Actions {
     }
 
     public double getTotalBudget() {
-        double total = 0;
+        double total = 0.0;
         for (String category : budget.getCategories()) {
             total += budget.getGoalBudget((category));
         }
