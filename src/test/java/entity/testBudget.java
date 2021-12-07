@@ -23,7 +23,7 @@ public class testBudget {
         assertEquals("1/2/2021", budget.getDate());
     }
 
-/**Set and get goals and actual amounts in budget.*/
+/**Set and get goals and actual spending amounts in budget.*/
     @Test
     void testSetAndGetGoalBudget(){
         budget.setGoalBudget("Groceries", 100.00);
@@ -31,14 +31,14 @@ public class testBudget {
     }
     @Test
     void testSetAndGetActualBudget(){
-        budget.setActualBudget("Groceries", 90.00);
-        assertEquals(90, budget.getActualBudget("Groceries"));
+        budget.setActualSpending("Groceries", 90.00);
+        assertEquals(90, budget.getActualSpending("Groceries"));
     }
 
 /**Test categories that don't exist return null.*/
     @Test
-    void testGetNullCategoryActualBudget(){
-        assertNull(budget.getActualBudget("Telephone"));
+    void testGetNullCategoryActualSpending(){
+        assertNull(budget.getActualSpending("Telephone"));
     }
 
     @Test
@@ -48,12 +48,21 @@ public class testBudget {
 
     @Test
     void testSetNullCategoryGoalBudget(){
-        assertFalse(budget.setActualBudget("Telephone", 1.00));
+        assertFalse(budget.setGoalBudget("Telephone", 1.00));
     }
 
     @Test
-    void testSetNullCategoryActualBudget(){
-        assertFalse(budget.setActualBudget("Telephone", 1.00));
+    void testSetNullCategoryActualSpending(){
+        assertFalse(budget.setActualSpending("Telephone", 1.00));
     }
 
+/**Test active status*/
+    @Test
+    void testGetActiveStatus() {assertTrue(budget.getActive());}
+    @Test
+    void testSetActiveStatus() {
+        assertTrue(budget.getActive());
+        budget.setActive(false);
+        assertFalse(budget.getActive());
+    }
 }
