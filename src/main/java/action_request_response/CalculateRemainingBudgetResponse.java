@@ -4,7 +4,6 @@ public class CalculateRemainingBudgetResponse extends ActionResponse{
     private final boolean exists;
     private final String result;
 
-
     public  CalculateRemainingBudgetResponse(boolean exists, String result) {
         this.exists = exists;
         this.result = result;
