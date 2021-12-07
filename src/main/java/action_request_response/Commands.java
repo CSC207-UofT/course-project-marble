@@ -24,5 +24,6 @@ public enum Commands {
     WITHDRAWAL,
     STOREDATAINJSON,
     RESETBUDGET,
-    ADJUSTBUDGET
+    ADJUSTBUDGET,
+    TRANSFER
 }
