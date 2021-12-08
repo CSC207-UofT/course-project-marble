@@ -44,6 +44,8 @@ public class ActionFactory {
                 return new ResetBudget(request);
             case VIEWBUDGETPERFORMANCE:
                 return new ViewBudgetPerformance(request);
+            case DISPLAYBUDGET:
+                return new DisplayBudget(request);
             case SIMULATE:
                 return new Simulate(request);
         }
