@@ -3,6 +3,7 @@ import action_request_response.ActionRequest;
 import action_request_response.ActionResponse;
 import action_request_response.WithdrawalResponse;
 import entity.*;
+import entity.Record;
 
 import java.util.ArrayList;
 
@@ -23,7 +24,7 @@ public class Withdrawal extends Actions{
     }
 
     /**
-     * This method withdraws money from the users balance and updates the users record.
+     * This method withdraws money from the users balance and updates the users record and budget.
      * @return an action response result of true if money is withdrawn,
      * an action response of false if money can not be withdrawn.
      */
@@ -33,6 +34,11 @@ public class Withdrawal extends Actions{
             Record withdraw = new Record(-cost, this.date, this.category, this.description);
             user.addRecord(withdraw);
             user.setBalance(user.getBalance() - cost);
+
+            Budget budget = user.getBudget();
+            if (budget.getActive()){
+                budget.setActualSpending(category, cost);
+            }
             return new WithdrawalResponse(true);
         }
         System.out.println("Unable to withdraw. Please Try Again.");

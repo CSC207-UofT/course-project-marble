@@ -24,14 +24,12 @@ public class ClientUserController {
         System.out.println("Connected");
     }
 
-    public boolean sendObject(Object obj) {
+    public void sendObject(Object obj) {
         try {
             outbound.writeObject(obj);
             outbound.flush();
-            return true;
         } catch (IOException e) {
             System.out.println("There was an error. Please try again.");
-            return false;
         }
     }
 
@@ -122,9 +120,6 @@ public class ClientUserController {
                     break;
                 case "j":
                     new ChangeSavingsBalance(outbound, inbound).changeSavingsBalance(this.username);
-                    break;
-                case "k":
-                    new CompareBudget(outbound, inbound).compareBudget(this.username);
                     break;
                 case "l":
                     new DisplayBudget(outbound, inbound).displayBudget(this.username);

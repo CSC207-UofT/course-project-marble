@@ -1,7 +1,7 @@
 package action_request_response;
 
 public class DisplayBudgetResponse extends ActionResponse {
-    private String result;
+    private final String result;
 
     public DisplayBudgetResponse(String result) {
         this.result = result;

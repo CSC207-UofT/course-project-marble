@@ -20,7 +20,9 @@ public class testWithdrawal {
 
     @BeforeEach
     public void setup() {
-        OwnerRepository.getOwnerRepository().addOwner(new Owner("John Doe", "jd_123", "password"));
+        ActionRequest createUserRequest = new ActionRequest("jd_123", Commands.CREATEUSER,new ArrayList<>(List.of("John Doe","password")));
+        CreateOwner createUser = new CreateOwner(createUserRequest);
+        createUser.process();
         user = OwnerRepository.getOwnerRepository().findOwner("jd_123");
         user.setBalance(1000);
     }

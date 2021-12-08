@@ -6,6 +6,15 @@ import java.lang.reflect.Type;
 
 public class JSONTypeAdapter<T> implements JsonSerializer<T>, JsonDeserializer<T> {
 
+    /**
+     * Get the type and data tag info in the json so that when converting you do not instantiate a abstract object
+     * and instead instantiate a downcasted object in list that holds any object that is child of the abstract type
+     * @param json - jsonObject
+     * @param typeOfT - Object type
+     * @param context - object context from JSONDeserializer
+     * @return javaObj
+     * @throws JsonParseException - jsontranslation error
+     */
     @Override
     public T deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
 
@@ -26,6 +35,14 @@ public class JSONTypeAdapter<T> implements JsonSerializer<T>, JsonDeserializer<T
 
     }
 
+    /**
+     * during storing, not Data and Type in the json so JSONTypeAdapter can contextualize the json file and the object
+     * types
+     * @param src - javaObj
+     * @param typeOfSrc - Type of the javaObj
+     * @param context - context from JSONSerializer
+     * @return jsonElement
+     */
     @Override
     public JsonElement serialize(T src, Type typeOfSrc, JsonSerializationContext context) {
 

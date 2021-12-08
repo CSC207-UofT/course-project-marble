@@ -2,7 +2,6 @@ package clientUI;
 
 import action_request_response.ActionRequest;
 import action_request_response.Commands;
-import action_request_response.CompareBudgetResponse;
 import action_request_response.DisplayBudgetResponse;
 
 import java.io.ObjectInputStream;
