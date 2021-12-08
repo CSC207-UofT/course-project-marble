@@ -36,7 +36,9 @@ public class Withdrawal extends Actions{
             user.setBalance(user.getBalance() - cost);
 
             Budget budget = user.getBudget();
-            budget.setActualSpending(category, cost);
+            if (budget.getActive()){
+                budget.setActualSpending(category, cost);
+            }
             return new WithdrawalResponse(true);
         }
         System.out.println("Unable to withdraw. Please Try Again.");
