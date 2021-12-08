@@ -44,6 +44,8 @@ public class testResetBudget {
         ActionResponse result = new ResetBudget(request).process();
         String expected = "The total remaining budget from last month is: $1740.0";
         assertEquals(((ResetBudgetResponse) result).getResult(), expected);
+        assertEquals(user.getBudget().getActualSpending("Groceries"), 0.0);
+        assertEquals(user.getBudget().getActualSpending("Bill Payments"), 0.0);
     }
     @Test
     public void testResetFailure(){
