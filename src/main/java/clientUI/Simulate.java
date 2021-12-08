@@ -24,13 +24,16 @@ public class Simulate extends SendReceive{
         System.out.println("Please enter the day to simulate the worth of asset");
         int day = Integer.parseInt(sc.nextLine());
 
+        String str_year = "0000" + year;
+        str_year = str_year.substring(str_year.length() - 4);
+
         String str_month = "0" + month;
         str_month = str_month.substring(str_month.length() - 2);
 
         String str_day = "0" + day;
         str_day = str_day.substring(str_day.length() - 2);
 
-        String date = year + "-" + str_month + "-" + str_day;
+        String date = str_year + "-" + str_month + "-" + str_day;
 
         ActionRequest request = new ActionRequest(username, Commands.SIMULATE, new ArrayList<>(List.of(date)));
         sendReceiveObject(request);
