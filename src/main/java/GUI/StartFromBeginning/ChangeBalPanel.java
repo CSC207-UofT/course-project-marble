@@ -1,12 +1,12 @@
-package GUI.StartFromBeginning.Done;
+package GUI.StartFromBeginning;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class CreateSavingsPanel extends JPanel{
-    public CreateSavingsPanel() {
+public class ChangeBalPanel extends JPanel {
+    public ChangeBalPanel() {
         super(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.anchor = GridBagConstraints.CENTER;
@@ -20,31 +20,31 @@ public class CreateSavingsPanel extends JPanel{
 
         constraints.gridwidth = 2;
         constraints.gridx = 1;
-        JTextField nameInput = new JTextField(21);
+        JTextField nameInput = new JTextField(27);
         this.add(nameInput, constraints);
 
         constraints.gridwidth = 1;
         constraints.gridx = 0;
         constraints.gridy = 1;
-        JLabel interestRate = new JLabel("Interest Rate: ");
-        this.add(interestRate, constraints);
+        JLabel amount = new JLabel("Amount(- / +): ");
+        this.add(amount, constraints);
 
         constraints.gridwidth = 2;
         constraints.gridx = 1;
-        JTextField interestRateInput = new JTextField(21);
-        this.add(interestRateInput, constraints);
+        JTextField amountInput = new JTextField(27);
+        this.add(amountInput, constraints);
 
         constraints.gridwidth = 1;
         constraints.gridx = 1;
         constraints.gridy = 2;
-        JButton createSavingsButton = new JButton("Create Savings");
-        createSavingsButton.addActionListener(new ActionListener() {
+        JButton changeSavingsBalButton = new JButton("Change Savings Balance");
+        changeSavingsBalButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //create savings command
+                //change Savings Bal command
             }
         });
-        this.add(createSavingsButton, constraints);
+        this.add(changeSavingsBalButton, constraints);
 
         constraints.gridx = 2;
         JButton cancelButton = new JButton("Cancel");
@@ -63,11 +63,11 @@ public class CreateSavingsPanel extends JPanel{
     }
 
     public static void main(String [] args){
-        JFrame frame = new JFrame("Create Savings Panel Test");
-        CreateSavingsPanel createSavingsPanel = new CreateSavingsPanel();
+        JFrame frame = new JFrame("Change Savings Panel Test");
+        ChangeBalPanel changeBalPanel = new ChangeBalPanel();
 
-        frame.setSize(new Dimension(400, 300));
-        frame.add(createSavingsPanel);
+        frame.setSize(new Dimension(420, 300));
+        frame.add(changeBalPanel);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

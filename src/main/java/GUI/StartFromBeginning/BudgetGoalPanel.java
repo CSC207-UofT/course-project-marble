@@ -1,4 +1,4 @@
-package GUI.StartFromBeginning.Done;
+package GUI.StartFromBeginning;
 
 import javax.swing.*;
 import java.awt.*;
