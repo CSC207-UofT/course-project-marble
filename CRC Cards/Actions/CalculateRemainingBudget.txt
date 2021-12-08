@@ -1,0 +1,22 @@
+Class name: CalculateRemainingBudget
+Parent class: Actions
+Children: none
+Properties to note: none
+
+Responsibilities:
+* Checks for an active budget and generates a String response informing
+  user they have no budget/inactive budget or a String that summarizes how
+  much of their budget in each budget category they have left if there is
+  a budget
+   Variables:
+	* Owner owner
+    * Budget budget
+
+Collaborators:
+* action_request_response.ActionRequest
+* ActionResponse
+* CalculateRemainingBudgetResponse
+* Budget
+* Owner
+* OwnerRepository
+* ArrayList
