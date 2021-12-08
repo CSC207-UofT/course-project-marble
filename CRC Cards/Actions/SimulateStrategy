@@ -1,0 +1,14 @@
+Class Name: SimulateStrategy
+Parent Class: Actions
+Children: none (gets implemented by NonDepositableSimulateStrategy and
+            DepositableSimulateStrategy)
+Special traits: is an interface
+
+Responsibilities:
+* an inteface for the Simulate classes
+    * getAssetValue()
+* variables
+    * none
+
+ Collaborators:
+ * none

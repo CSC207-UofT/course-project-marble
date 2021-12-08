@@ -1,0 +1,17 @@
+Class Name: ViewBudgetPerformance
+Parent Class: Actions
+Children: none
+
+Responsibilities:
+* Shows how well the User has been following their budget based on their
+  budget history
+    * process()
+*variables
+    * Owner owner
+
+ Collaborators:
+ * ActionRequest
+ * ActionResponse
+ * ViewBudgetPerformanceResponse
+ * Owner
+ * OwnerRepository

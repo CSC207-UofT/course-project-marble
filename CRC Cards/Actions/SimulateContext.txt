@@ -1,0 +1,12 @@
+Class Name: SimulateContext
+Parent Class: Actions
+Children: none
+
+Responsibilities:
+* maintains a reference to one of the strategies for simulateStrategy children
+    * executeStrategy()
+* variables
+    * SimulateStrategy strategy
+
+ Collaborators:
+ * none
