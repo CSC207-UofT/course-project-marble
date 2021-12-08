@@ -56,7 +56,7 @@ public class CompareBudget extends Actions{
         for (String categoryName : categories) {
             display.append(categoryName);
             display.append(": $");
-            display.append(budget.getGoalCategoryBudget(categoryName));
+            display.append(budget.getGoalBudget(categoryName));
             display.append("\n");
         }
         return display.toString();
