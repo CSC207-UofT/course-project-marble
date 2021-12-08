@@ -1,0 +1,13 @@
+Class name: AdjustBudgetResponse
+Parent class: ActionResponse
+Children: none
+
+Responsibilities:
+* Makes an action response for AdjustBudget to return if the Action was done successfully
+  Methods:
+    * getResult()
+  Variables:
+    * boolean result
+    
+Collaborators:
+* none
