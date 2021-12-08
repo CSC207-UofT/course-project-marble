@@ -3,7 +3,7 @@ import entity.*;
 import entity.Record;
 
 public class Transfer extends Actions{
-    private Owner user;
+    private final Owner user;
     private final Date date;
 
     public Transfer(Owner user){

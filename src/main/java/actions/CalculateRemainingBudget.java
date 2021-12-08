@@ -14,11 +14,10 @@ import java.util.ArrayList;
  * still unspent to be shown to the user
  */
 public class CalculateRemainingBudget extends Actions {
-    private final Owner user;
     private final Budget budget;
 
     public CalculateRemainingBudget(ActionRequest request) {
-        this.user = OwnerRepository.getOwnerRepository().findOwner(request.getUsername());
+        Owner user = OwnerRepository.getOwnerRepository().findOwner(request.getUsername());
         this.budget = user.getBudget();
     }
 

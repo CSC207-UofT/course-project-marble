@@ -20,7 +20,7 @@ public class StoreDataJson extends Actions{
      */
     public StoreDataJson(String fileName) {
         this.fileName =  fileName;
-        File file = new File(fileName);
+        new File(fileName);
         this.jsonT = new JSONTranslator();
     }
 
