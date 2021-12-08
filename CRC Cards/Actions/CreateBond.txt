@@ -1,0 +1,24 @@
+Class Name: CreateBond
+Parent Class: Actions
+Children: none
+
+Responsibilities:
+* Creates a new bond and assigns it to a given owner object
+    * process()
+*variables
+    * Owner owner
+    * String name
+    * int volume
+    * double interestRate
+    * double price
+    * Date date
+
+ Collaborators:
+ * ActionRequest
+ * ActionResponse
+ * CreateBondResponse
+ * Bond
+ * Date
+ * Owner
+ * OwnerRepository
+ * ArrayList
