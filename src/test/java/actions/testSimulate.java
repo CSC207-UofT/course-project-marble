@@ -43,13 +43,13 @@ public class testSimulate {
                 new ArrayList<>(List.of("2022-02-01")));
         Simulate simulation = new Simulate(simulateRequest);
         SimulateResponse response = (SimulateResponse) simulation.process();
-        ArrayList<Double> expected = new ArrayList<>();
-        expected.add(202.0);
-        expected.add(-101.66);
-        expected.add(2000.03);
+        ArrayList<String> expected = new ArrayList<>();
+        expected.add("Savings1: " + 202.0);
+        expected.add("CreditCard1: " + -101.66);
+        expected.add("Bond1: " + 2000.0);
 
         for (int i = 0; i < response.getResult().size(); i++) {
-            assertEquals(expected.get(i), response.getResult().get(i), 0.05);
+            assertEquals(expected.get(i), response.getResult().get(i));
         }
     }
 
@@ -60,6 +60,6 @@ public class testSimulate {
         Simulate simulation = new Simulate(simulateRequest);
         SimulateResponse response = (SimulateResponse) simulation.process();
 
-        assertEquals(0.0, response.getResult().get(2));
+        assertEquals("Bond1: " + 0.0, response.getResult().get(2));
     }
 }
