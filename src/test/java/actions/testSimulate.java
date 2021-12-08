@@ -23,12 +23,12 @@ public class testSimulate {
 
         Depositable assetSavings = new Savings(12.0, "Savings1");
         assetSavings.setBalance(200);
-        Depositable assetCreditCard = new CreditCard("CreditCard1");
-        assetCreditCard.setBalance(-100);
+        Depositable assetSave = new Savings(0.12, "Bond");
+        assetSave.setBalance(300);
         NonDepositable assetBond = new Bond(2, 7.0, 1000, maturityDate, "Bond1");
 
         owner.addAsset(assetSavings);
-        owner.addAsset(assetCreditCard);
+        owner.addAsset(assetSave);
         owner.addAsset(assetBond);
     }
 
