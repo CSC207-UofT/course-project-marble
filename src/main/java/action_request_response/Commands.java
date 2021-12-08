@@ -17,6 +17,7 @@ public enum Commands {
     LOGIN,
     OWNERINFO,
     SIMULATE,
+    TRANSFER,
     STOREDATAInJSON,
     UPDATEDEPOSITABLE,
     USERQUIT,

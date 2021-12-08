@@ -34,6 +34,5 @@ public class AdjustBudget extends Actions{
             return new AdjustBudgetResponse(true);
         }
         return new AdjustBudgetResponse(false);
-        }
     }
-
+}

@@ -23,6 +23,7 @@ public class NonDepositableSimulatesStrategy implements SimulateStrategy {
         }
         int monthDiff = asset.getDateOfMaturity().monthDifference(asset.getDateCreated());
         double interestRate = (asset.getAnnualInterestRate() / 100) * (monthDiff) / 12;
-        return interestRate * asset.getVolume() * asset.getPricePerAsset() + (asset.getVolume() * asset.getPricePerAsset());
+        double value = interestRate * asset.getVolume() * asset.getPricePerAsset() + (asset.getVolume() * asset.getPricePerAsset());
+        return Math.round(value * 100.0) / 100.0;
     }
 }
