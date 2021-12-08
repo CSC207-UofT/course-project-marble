@@ -1,1 +1,20 @@
-Depositing depositables and balance
+Class name: Deposit
+Parent class: actions
+Children: none
+Properties to note: none
+
+Responsibilities:
+* Deposits a given amount in the Owner's balance
+   Methods:
+	* process()
+   Variables:
+	* Owner owner
+	* double amount;
+    * Date date;
+
+Collaborators:
+* ActionRequest
+* ActionResponse
+* DepositResponse
+* entity.*
+* ArrayList

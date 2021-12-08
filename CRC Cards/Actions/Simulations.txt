@@ -1,1 +1,0 @@
-Returning future values for Investments and stuff that can change over time

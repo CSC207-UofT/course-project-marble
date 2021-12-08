@@ -3,6 +3,9 @@ import action_request_response.ActionRequest;
 import action_request_response.ActionResponse;
 import action_request_response.CompareBudgetResponse;
 import entity.Budget;
+import entity.Owner;
+import entity.OwnerRepository;
+
 import java.util.ArrayList;
 import java.lang.StringBuilder;
 
@@ -11,9 +14,8 @@ import java.lang.StringBuilder;
  * budget with a standard ideal budget
  */
 public class CompareBudget extends Actions{
-    private final Budget budget = null;
-    private final double total = Double.parseDouble(null);
-    private final ArrayList<String> ruleBudget = null;
+    private final Owner user;
+    private final Budget budget;
 
     /**
      *  Initializer for a CompareBudget object
@@ -21,6 +23,8 @@ public class CompareBudget extends Actions{
      *      *                the class needs to process and respond back
      */
     public CompareBudget(ActionRequest request){
+        this.user = OwnerRepository.getOwnerRepository().findOwner(request.getUsername());
+        this.budget = user.getBudget();
     }
 
     /**
@@ -30,17 +34,18 @@ public class CompareBudget extends Actions{
      */
     @Override
     public ActionResponse process(){
-        if (total == -1){
+        if ((budget == null) || !(budget.getActive())){
             return new CompareBudgetResponse("");
-        } else {
-            String display = format();
-            return new CompareBudgetResponse(display);
         }
+        double total = calculateTotal();
+        ArrayList<String> ruleBudget = calculateOptimal(total);
+        String display = format(total, ruleBudget);
+        return new CompareBudgetResponse(display);
     }
 
     // helper function to create the String format that will be contained
     // in display
-    private String format(){
+    private String format(double total, ArrayList<String> ruleBudget){
         ArrayList<String> categories = budget.getCategories();
         StringBuilder display = new StringBuilder();
         display.append("Total Amount to Budget: $");
@@ -60,6 +65,25 @@ public class CompareBudget extends Actions{
             display.append("\n");
         }
         return display.toString();
+    }
+
+    //helper method to calculate the amount of money a budget has to work with
+    private double calculateTotal() {
+        ArrayList<String> categories = budget.getCategories();
+        double total = 0;
+        for (String category : categories) {
+            total += budget.getGoalBudget(category);
+        }
+        return total;
+    }
+
+    //helper method to calculate the ideal allocation of total budget
+    private ArrayList<String> calculateOptimal(double total){
+        ArrayList<String> optimal = new ArrayList<>();
+        optimal.add(String.valueOf(total*0.5));
+        optimal.add(String.valueOf(total*0.3));
+        optimal.add(String.valueOf(total*0.2));
+        return optimal;
     }
 
 

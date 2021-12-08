@@ -2,22 +2,16 @@ package action_request_response;
 
 public class CalculateRemainingBudgetResponse extends ActionResponse{
     private final boolean exists;
-    private final double amount;
+    private final String result;
 
-
-    public CalculateRemainingBudgetResponse(boolean exists) {
+    public  CalculateRemainingBudgetResponse(boolean exists, String result) {
         this.exists = exists;
-        this.amount = 0;
-    }
-
-    public  CalculateRemainingBudgetResponse(boolean exists, double amount) {
-        this.exists = exists;
-        this.amount = amount;
+        this.result = result;
     }
     public String getResult(){
         if (!exists) {
             return "Budget Inactive or Does Not Exist";
         }
-        return ("Total Remaining Budget: $" + amount);
+        return (result);
     }
 }

@@ -1,0 +1,16 @@
+Class Name: DepositableSimulateStrategy
+Parent Class: none (implements SimulateStrategy)
+Children: none
+
+Responsibilities:
+* Simulates projected value of a depsositable at a given date
+    * process()
+    * getAssetValue()
+* variables
+    * Date endDate
+    * Date startDate
+    * Depositable asset
+
+ Collaborators:
+ * Date
+ * Depositable

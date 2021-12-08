@@ -8,9 +8,14 @@ import entity.OwnerRepository;
 
 import java.util.ArrayList;
 
+/**
+ * Class is responsible for seeing if the user has an active budget, and
+ * (if they do) calculating how much of their budget in each category is
+ * still unspent to be shown to the user
+ */
 public class CalculateRemainingBudget extends Actions {
-    private Owner user;
-    private Budget budget;
+    private final Owner user;
+    private final Budget budget;
 
     public CalculateRemainingBudget(ActionRequest request) {
         this.user = OwnerRepository.getOwnerRepository().findOwner(request.getUsername());
@@ -20,20 +25,22 @@ public class CalculateRemainingBudget extends Actions {
     @Override
     public ActionResponse process(){
         if ((budget == null)|| !(budget.getActive())){
-            return new CalculateRemainingBudgetResponse(false);
+            return new CalculateRemainingBudgetResponse(false, "");
         }
         ArrayList<String> categories = budget.getCategories();
-        double amountLeft = 0;
-        double goal;
-        double actual;
+        StringBuilder result = new StringBuilder("You have the following amounts left in each category: \n");
         for (String category : categories) {
             if (budget.getGoalBudget(category) != null) {
-                goal = budget.getGoalBudget(category);
-                actual = budget.getActualBudget(category);
-                amountLeft = amountLeft + goal - actual;
+                Double goal = budget.getGoalBudget(category);
+                Double actual = budget.getActualSpending(category);
+                result.append(category);
+                result.append(": ");
+                result.append(goal - actual);
+                result.append("\n");
+
             }
         }
-        return new CalculateRemainingBudgetResponse(true, amountLeft);
+        return new CalculateRemainingBudgetResponse(true, result.toString());
 
     }
 }

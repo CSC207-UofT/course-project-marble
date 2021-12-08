@@ -1,10 +1,11 @@
 package entity;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
 
 public class Budget {
-
-
     /**
      * Instances of Budget
      * categories: the types of budget categories (ex: food, clothing, gas...)
@@ -13,111 +14,135 @@ public class Budget {
      * and (2) the actual amount.
      * active: boolean that indicates whether the budget was set (True) or not (False).
      */
-
-    private final HashMap<String, ArrayList<Double>> goalActualBudget;
+    private final HashMap<String, Double> actualSpending;
+    private final HashMap<String, Double> goalBudget;
+    List<String> categories;
     private Date date;
     private boolean active;
-    List<String> categories = Arrays.asList( "Groceries", "Furniture", "Restaurant", "Vacation", "Gas", "Recurring Bill Payment", "Health and Beauty", "Home Improvement", "Entertainment", "Public Transportation and Parking");
-    private final ArrayList<Double> initialList = new ArrayList<>();
 
-    public String toString(){
-        if(this.active){
-            return "This is an active budget.";
-        }
-        else{
+    /**
+     * Returns a string representation of the budget breakdown by categories
+     * @return string representation of the budget, containing the goalBudget and actualSpending
+     */
+    @Override
+    public String toString() {
+        if (this.active) {
+            StringBuilder result = new StringBuilder();
+            result.append(" Budget Broken Down:\n");
+
+            for (String category : goalBudget.keySet()) {
+                result.append("\t Category Name: ").append(category);
+                result.append("\n\t\t Goal Budget: $").append(goalBudget.get(category));
+                result.append("\n\t\t Money Spent: $").append(actualSpending.get(category)).append("\n");
+            }
+            return result.toString();
+        } else {
             return "This is an inactive budget.";
         }
-
     }
 
     public Budget(Date date) {
-        this.goalActualBudget = new HashMap<>();
-        this.initialList.add(0.00);
-        this.initialList.add(0.00);
-        for (String categoryName : this.categories){
-            this.goalActualBudget.put(categoryName, initialList);
+        this.categories = new ArrayList<>(List.of("Groceries", "Gas", "Bill Payments", "Entertainment", "Public Transport"));
+        this.actualSpending = new HashMap<>();
+        this.goalBudget = new HashMap<>();
+        for (String categoryName : this.categories) {
+            this.actualSpending.put(categoryName, 0.0);
+            this.goalBudget.put(categoryName, 0.0);
         }
-
         this.date = date;
-        this.active = false;
+        this.active = true;
 
     }
 
-    /**Getter and Setter for Date.
-     * getDate returns the date that the Budget was created.*/
-    public String getDate() {
-        return this.date.toString();
+    /**
+     * Getter for  Date.
+     * getDate returns the date that the Budget was created.
+     */
+    public Date getDate() {
+        return this.date;
     }
-    /**setDate replaces the initial date with a new date.
-     * @param newDate: new date of the budget.*/
+
+    /**
+     * setDate replaces the initial date with a new date.
+     *
+     * @param newDate: new date of the budget.
+     */
     public void setDate(Date newDate) {
         this.date = newDate;
     }
 
-    /**getGoalActualBudget returns all the category budgets and current amounts in the budget*/
-    public HashMap<String, ArrayList<Double>> getGoalActualBudget() {
-        return this.goalActualBudget;
+    /**
+     * getGoalBudget returns all the goal budgets and current amounts in the budget
+     */
+    public HashMap<String, Double> getGoalBudget() {
+        return this.goalBudget;
     }
 
-    /** setGoalBudget sets the goal budget in the category to its new value.
-     * @param category : the category the user wants budget.
-     * @param goalBudget : the new value of the category budget.*/
-    public boolean setGoalBudget(String category, Double goalBudget){
-        if (goalActualBudget.containsKey(category)){
-            goalActualBudget.get(category).set(0, goalBudget);
+    /**
+     * setGoalBudget sets the goal budget in the category to its new value.
+     *
+     * @param category      : the category the user wants budget.
+     * @param newGoalAmount : the new value of the category budget.
+     */
+    public boolean setGoalBudget(String category, Double newGoalAmount) {
+        if (this.goalBudget.containsKey(category)) {
+            goalBudget.replace(category, newGoalAmount);
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }
 
-
-    /** getActualBudget gets the actual amount spent in the category.
-     * @param category : the category chosen to know the amount spent.
-     * */
-
-    public Double getActualBudget(String category){
-        if (goalActualBudget.containsKey(category)){
-            return goalActualBudget.get(category).get(1);
-        }
-        else{
-            return null;
-        }
-    }
-
-    /** setActualBudget sets the actual amount spent in the category to its new value.
-     * @param category : the category the user wants budget.
-     * @param actualAmount : the new value of the category budget.*/
-
-    public boolean setActualBudget(String category, Double actualAmount){
-        if(goalActualBudget.containsKey(category)){
-            this.goalActualBudget.get(category).add(1, actualAmount);
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
-    /** getGaolBudget gets the goal amount spent in the category.
+    /**
+     * getGaolBudget gets the goal amount spent in the category.
+     *
      * @param category : the category chosen to know the goal amount.
-     * */
+     */
+    public Double getGoalBudget(String category) {
+        return goalBudget.getOrDefault(category, null);
 
-    public Double getGoalBudget(String category){
-        if (goalActualBudget.containsKey(category)){
-            return goalActualBudget.get(category).get(0);
-        }
-        else{
-            return null;
+    }
+
+
+    /**
+     * setActualBudget sets the actual amount spent in the category to its new value.
+     *
+     * @param category  : the category the user wants budget.
+     * @param newAmount : the new value of the category budget.
+     */
+
+    public boolean setActualSpending(String category, Double newAmount) {
+        if (actualSpending.containsKey(category)) {
+            this.actualSpending.replace(category, newAmount);
+            return true;
+        } else {
+            return false;
         }
     }
 
-    /**getActive returns whether the client set a budget for the month. True for if they did and false otherwise.
-     * */
-    public boolean getActive(){return this.active;}
+    /**
+     * getActualBudget gets the actual amount spent in the category.
+     *
+     * @param category : the category chosen to know the amount spent.
+     */
+    public Double getActualSpending(String category) {
+        return actualSpending.getOrDefault(category, null);
+    }
 
-    /**setActive makes the budget active or inactive depending on the input.*/
-    public void setActive(boolean set){this.active = set;}
+
+    /**
+     * getActive returns whether the client set a budget for the month. True for if they did and false otherwise.
+     */
+    public boolean getActive() {
+        return this.active;
+    }
+
+    /**
+     * setActive makes the budget active or inactive depending on the input.
+     */
+    public void setActive(boolean set) {
+        this.active = set;
+    }
 
 
     /**
@@ -126,7 +151,9 @@ public class Budget {
      * @return an ArrayList of categories of the budget
      */
     public ArrayList<String> getCategories() {
-        return new ArrayList<>(this.categories);
+        return (ArrayList<String>) this.categories;
     }
 
 }
+
+

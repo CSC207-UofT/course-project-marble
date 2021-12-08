@@ -34,6 +34,20 @@ public class ActionFactory {
                 return new CashOut(request);
             case DEPOSITSAVINGS:
                 return new ChangeBalanceSaving(request);
+            case ADJUSTBUDGET:
+                return new AdjustBudget(request);
+            case CALCULATEREMAININGBUDGET:
+                return new CalculateRemainingBudget(request);
+            case COMPAREBUDGET:
+                return new CompareBudget(request);
+            case RESETBUDGET:
+                return new ResetBudget(request);
+            case VIEWBUDGETPERFORMANCE:
+                return new ViewBudgetPerformance(request);
+            case DISPLAYBUDGET:
+                return new DisplayBudget(request);
+            case SIMULATE:
+                return new Simulate(request);
         }
         return null;
     }
