@@ -1,8 +1,6 @@
 Class name: ActionRequest
 Parent class: none
-Children: AddExpenseRequest, CashOutRequest, CompareBudgetRequest,
-          CreateUserRequest, DepositRequest, LoginRequest,
-          OwnerInfoRequest, UserQuitRequest
+Children: none
 Properties to note: an Abstract class
 
 Responsibilities:
@@ -16,3 +14,4 @@ Responsibilities:
 
 Collaborators:
 * Serializable
+* ArrayList

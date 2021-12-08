@@ -33,7 +33,7 @@ public class Budget {
             for (String category : goalBudget.keySet()) {
                 result.append("\t Category Name: ").append(category);
                 result.append("\n\t\t Goal Budget: $").append(goalBudget.get(category));
-                result.append("\n\t\t Money Spent: $").append(actualSpending.get(category));
+                result.append("\n\t\t Money Spent: $").append(actualSpending.get(category)).append("\n");
             }
             return result.toString();
         } else {

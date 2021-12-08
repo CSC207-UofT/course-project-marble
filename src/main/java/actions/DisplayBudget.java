@@ -12,12 +12,10 @@ import entity.OwnerRepository;
  * current budget (if they have one)
  */
 public class DisplayBudget extends Actions {
-    private final Owner user;
     private final Budget budget;
 
     public DisplayBudget(ActionRequest request) {
-        this.user = OwnerRepository.getOwnerRepository().findOwner(request.getUsername());
-        this.budget = user.getBudget();
+        this.budget = OwnerRepository.getOwnerRepository().findOwner(request.getUsername()).getBudget();
     }
 
     @Override

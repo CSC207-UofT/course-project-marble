@@ -1,0 +1,15 @@
+Class Name: NonDepositableSimulatesStratgy
+Parent Class: none (implements SimulateStrategy)
+Children: none
+
+Responsibilities:
+* Simulates projected value of a nondepsositable at a given date
+    * process()
+    * getAssetValue()
+* variables
+    * Date endDate
+    * NonDepositable asset
+
+ Collaborators:
+ * Date
+ * NonDepositable

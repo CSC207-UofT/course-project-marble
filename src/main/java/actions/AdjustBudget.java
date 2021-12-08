@@ -30,7 +30,7 @@ public class AdjustBudget extends Actions{
     public ActionResponse process(){
         Budget budget = this.user.getBudget();
 
-        if (budget.setActualSpending(this.category, this.newAmount)){
+        if (budget.setGoalBudget(this.category, this.newAmount)){
             return new AdjustBudgetResponse(true);
         }
         return new AdjustBudgetResponse(false);

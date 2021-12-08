@@ -1,0 +1,11 @@
+Class name: Commands
+Parent class: none
+Children: none
+
+Responsibilities:
+* stores list of enum representations for all actions
+  Variables:
+    * none
+
+Collaborators:
+* none

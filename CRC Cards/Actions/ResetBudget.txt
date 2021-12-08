@@ -1,0 +1,18 @@
+Class Name: ResetBudget
+Parent Class: Actions
+Children: none
+
+Responsibilities:
+* Resets the ActualAmount values in each category of a user's active budget
+    * process()
+* variables
+    * Owner owner
+
+ Collaborators:
+ * ActionResponse
+ * ActionRequest
+ * ResetBudgetResponse
+ * Budget
+ * Owner
+ * OwnerRepository
+ * ArrayList

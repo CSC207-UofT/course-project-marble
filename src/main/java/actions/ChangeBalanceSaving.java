@@ -32,7 +32,7 @@ public class ChangeBalanceSaving extends Actions {
     }
     @Override
     public ActionResponse process(){
-        if (savings == null || savings.getValue() + amount < 0) {
+        if (savings == null || owner.getBalance() - amount < 0 || savings.getValue() + amount < 0) {
             return new DepositSavingResponse(false);
         }
         double temp = owner.getBalance();
