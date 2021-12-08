@@ -1,4 +1,3 @@
-string_reformat_and_docstrings
 Class name: CompareBudget
 Parent class: actions
 Children: none
