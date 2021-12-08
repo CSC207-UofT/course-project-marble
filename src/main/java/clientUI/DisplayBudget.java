@@ -3,6 +3,7 @@ package clientUI;
 import action_request_response.ActionRequest;
 import action_request_response.Commands;
 import action_request_response.CompareBudgetResponse;
+import action_request_response.DisplayBudgetResponse;
 
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -17,7 +18,7 @@ public class DisplayBudget extends SendReceive {
         ActionRequest request = new ActionRequest(username, Commands.DISPLAYBUDGET, new ArrayList<>());
         sendReceiveObject(request);
         if (response != null) {
-            System.out.println(((CompareBudgetResponse) response).getDisplay());
+            System.out.println(((DisplayBudgetResponse) response).getResult());
         }
     }
 }
