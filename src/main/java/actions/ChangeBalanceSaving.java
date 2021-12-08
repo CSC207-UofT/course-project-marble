@@ -14,7 +14,7 @@ import java.util.Objects;
 public class ChangeBalanceSaving extends Actions {
     private Savings savings;
     private final Owner owner;
-    private double amount;
+    private final double amount;
 
     public ChangeBalanceSaving(ActionRequest request){
         owner = OwnerRepository.getOwnerRepository().findOwner(request.getUsername());

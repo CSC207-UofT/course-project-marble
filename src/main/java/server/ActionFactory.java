@@ -38,8 +38,6 @@ public class ActionFactory {
                 return new AdjustBudget(request);
             case CALCULATEREMAININGBUDGET:
                 return new CalculateRemainingBudget(request);
-            case COMPAREBUDGET:
-                return new CompareBudget(request);
             case RESETBUDGET:
                 return new ResetBudget(request);
             case VIEWBUDGETPERFORMANCE:

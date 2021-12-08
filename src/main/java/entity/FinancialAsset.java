@@ -50,12 +50,5 @@ public abstract class FinancialAsset {
         return dateCreated;
     }
 
-    /**
-     * Setter for annual interest rate if a concrete class needs to modify it
-     *
-     * @param annualInterestRate The new interest rate
-     */
-    public void setAnnualInterestRate(double annualInterestRate) {
-        this.annualInterestRate = annualInterestRate;
-    }
+
 }
