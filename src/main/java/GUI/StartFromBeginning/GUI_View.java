@@ -1,7 +1,6 @@
 package GUI.StartFromBeginning;
 
 import GUI.StartFromBeginning.Done.ActionTabsPanel;
-import GUI.StartFromBeginning.Done.Model;
 import GUI.StartFromBeginning.Done.QuickPopupActionPanel;
 import GUI.StartFromBeginning.Done.StartUpPanel;
 
