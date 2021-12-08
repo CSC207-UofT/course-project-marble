@@ -3,17 +3,17 @@ package action_request_response;
 import java.util.ArrayList;
 
 public class SimulateResponse extends ActionResponse {
-    private final ArrayList<String> result;
+    private final ArrayList<Double> result;
 
     /**
      * Constructor that create a Simulate response returned from the Simulate action.
      * @param result The simulated values of the financial assets
      */
-    public SimulateResponse(ArrayList<String> result) {
+    public SimulateResponse(ArrayList<Double> result) {
         this.result = result;
     }
 
-    public ArrayList<String> getResult() {
+    public ArrayList<Double> getResult() {
         return this.result;
     }
 }

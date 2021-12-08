@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class Simulate extends Actions {
     private final Owner owner;
     private final Date endDate; // future date
-    private final ArrayList<String> simulatedFinancialAssets;
+    private final ArrayList<Double> simulatedFinancialAssets;
 
     /**
      * This is a constructor method for an abstract class for simulating worth of depositable and
@@ -31,7 +31,7 @@ public class Simulate extends Actions {
             } else {
                 context = new SimulateContext(new NonDepositableSimulatesStrategy((NonDepositable) asset, endDate));
             }
-            simulatedFinancialAssets.add(asset.name + ": " + context.executeStrategy());
+            simulatedFinancialAssets.add(context.executeStrategy());
         }
         return new SimulateResponse(simulatedFinancialAssets);
     }
