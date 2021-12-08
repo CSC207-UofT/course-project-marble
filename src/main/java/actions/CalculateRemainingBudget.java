@@ -8,6 +8,11 @@ import entity.OwnerRepository;
 
 import java.util.ArrayList;
 
+/**
+ * Class is responsible for seeing if the user has an active budget, and
+ * (if they do) calculating how much of their budget in each category is
+ * still unspent to be shown to the user
+ */
 public class CalculateRemainingBudget extends Actions {
     private final Owner user;
     private final Budget budget;
