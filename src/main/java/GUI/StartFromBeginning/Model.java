@@ -1,4 +1,4 @@
-package GUI.StartFromBeginning.Done;
+package GUI.StartFromBeginning;
 
 import entity.Bond;
 import entity.Budget;
