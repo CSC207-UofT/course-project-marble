@@ -22,9 +22,9 @@ public class Record implements Comparable<Record> {
     @Override
     public String toString() {
         if (this.amount > 0) {
-            return "On " + this.date + " you deposited " + this.amount + " dollars";
+            return "On " + this.date + " you deposited " + this.amount + " dollars " + "because:  "  +  this.description;
         } else {
-            return "On " + this.date + " you spent " + this.amount + " dollars";
+            return "On " + this.date + " you spent " + this.amount + " dollars" + "because:  "  +  this.description;
         }
     }
 
@@ -53,15 +53,6 @@ public class Record implements Comparable<Record> {
      */
     public String getCategory() {
         return this.category;
-    }
-
-    /**
-     * Getter for the description
-     *
-     * @return String description of the record.
-     */
-    public String getDescription() {
-        return this.description;
     }
 
     /**
