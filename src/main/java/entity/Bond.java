@@ -1,6 +1,5 @@
 package entity;
 
-
 public class Bond extends NonDepositable {
     private boolean cashedOut;
 
