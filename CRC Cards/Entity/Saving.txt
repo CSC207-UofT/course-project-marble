@@ -1,18 +1,16 @@
 Class name: Saving
-Parent class: Account
+Parent class: Depositable
 Children: none
 Properties to note: none
 
 Responsibilities:
 * provides a basic bank account with an interest rate
    Methods:
-	* getInterestRate()
-	* changeInterestRate(int newInterestRate)
-	* getSavingsRecordsList()
+	* getValue()
+	* addInterest()
 
    Variables: 
-	* double insterestRate
-	* ArrayList<SavingsRecord> SavingsRecordsList
+	* Double annualInterestRate
+	* String name
 
-Collaborators:
-* SavingRecords
+
