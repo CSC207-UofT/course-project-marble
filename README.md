@@ -2,7 +2,7 @@
 
 A financial planner that supports using multiple users and can handle multiple users concurrently.
 # System requirements:
-  To run, you need...
+  To run, you need Java version 11 (more specifically, we've been using Amazon Corretto version 11.0.13)
 
 ## Installation Instructions
 
@@ -19,9 +19,17 @@ A financial planner that supports using multiple users and can handle multiple u
 6. Run the clientUI and it will connect to the server.
 
 ## What can be done in program
-Upon running the program, Users should be able to:
-  1) create an account
-  2) log in to an existing account
-  3) create a budget to save into their account
-  4) compare their active budget to their current budget
-  5) ...
+Upon running the program, Users will be prompted to login or create an account (and then login). 
+
+Once the user logins they will be shown the various different actions that they can do in
+their account and how to call for those action. 
+These actions include:
+  3) looking at their account information
+  5) creating a savings account
+  6) viewing their investments
+  7) looking at their budget
+  8) comparing their budget to a standard optimal budget
+  9) and much more
+Note: The app is meant to act as a financial planner. Actions made in the program such as creating a 
+savings account or cashing out a bond are meant to act as a sort of tracker of actual actions done in 
+real life by the user.
