@@ -1,0 +1,22 @@
+Class name: DisplayBudget
+Parent class: Actions
+Children: none
+Properties to note: none
+
+Responsibilities:
+* Compiles all relevant information in a User's active budget
+  (if they have one) and creates a String representation of
+  this information. If User has no budget or an inactive budget,
+  creates a String with an appropriate comment to be shown to the
+  user
+   Variables:
+	* Owner owner
+    * Budget budget
+
+Collaborators:
+* ActionRequest
+* ActionResponse
+* DisplayBudgetResponse
+* Budget
+* Owner
+* OwnerRepository

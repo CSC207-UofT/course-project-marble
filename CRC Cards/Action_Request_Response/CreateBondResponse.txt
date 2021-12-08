@@ -1,0 +1,13 @@
+Class name: CreateBondResponse
+Parent class: ActionResponse
+Children: none
+
+Responsibilities:
+* Makes an action response for CreateBond to return a boolean value given by
+  the action class
+    * getResult()
+  Variables:
+    * boolean result
+    
+Collaborators:
+* none

@@ -1,0 +1,14 @@
+Class name: ResetBudgetResponse
+Parent class: ActionResponse
+Children: none
+
+Responsibilities:
+* Makes an action response for ResetBudget to return a String response based on boolean
+  value given by the action
+    * getResult()
+  Variables:
+    * boolean result
+    * double amount
+
+Collaborators:
+* none

@@ -1,0 +1,21 @@
+Class Name: StoreDataJson
+Parent Class: Actions
+Children: none (gets implemented by NonDepositableSimulateStrategy and
+            DepositableSimulateStrategy)
+Special traits: is an interface
+
+Responsibilities:
+* Initializes the filename where the data will be stored, the file where it will be stored,
+  the translator that will turn a java obj into json and vice versa
+    * process()
+* variables
+    * JSONTranslator jsonT
+    * String fileName
+
+ Collaborators:
+ * ActionResponse
+ * StoreDataInJsonResponse
+ * OwnerRepository
+ * JSONTranslator
+ * java.io.File
+ * java.io.IOException

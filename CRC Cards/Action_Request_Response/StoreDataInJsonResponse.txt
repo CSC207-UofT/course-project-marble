@@ -1,0 +1,13 @@
+Class name: StoreDataInJsonResponse
+Parent class: ActionResponse
+Children: none
+
+Responsibilities:
+* Makes an action response for StoreDataJson to return a boolean value given by
+  the action class
+    * getResult()
+  Variables:
+    * boolean result
+
+Collaborators:
+* none

@@ -1,1 +1,23 @@
-Cash out the bonds and investments
+Class name: CashOut
+Parent class: actions
+Children: none
+Properties to note: none
+
+Responsibilities:
+* Cash out the bonds and other NonDepostiable investments
+   Methods:
+	* process()
+   Variables:
+	* Owner owner
+	* NonDepositable investment
+
+Collaborators:
+* ActionRequest
+* ActionResponse
+* CashOutResponse
+* FinancialAsset
+* NonDepositable
+* Owner
+* OwnerRepository
+* Math
+* ArrayList

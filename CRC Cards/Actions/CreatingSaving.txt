@@ -1,0 +1,19 @@
+Class Name: CreateSaving
+Parent Class: Actions
+Children: none
+
+Responsibilities:
+* Creates a new savings account and assigns it to a given owner object
+    * process()
+* variables
+    * String name
+    * double interestRate
+    * Owner owner
+
+ Collaborators:
+ * ActionRequest
+ * ActionResponse
+ * Owner
+ * OwnerRepository
+ * Savings
+ * ArrayList
