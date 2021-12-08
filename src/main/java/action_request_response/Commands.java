@@ -15,6 +15,7 @@ public enum Commands {
     OWNERINFO,
     SIMULATE,
     UPDATEDEPOSITABLE,
+    TRANSFER,
     USERQUIT,
     VIEWINVESTMENTS,
     WITHDRAWAL,
