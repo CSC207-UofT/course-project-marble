@@ -33,8 +33,7 @@ public class testOwnerInfo {
 
     @Test
     public void testInfoDisplayed(){
-        String expected = "User Profile:\nName: Alice Liddell" + "\n" +
-                "Username: Liddy" + "\n" + "Balance: $0.0"  + "\n";
+        String expected = "User Profile:\nName: Alice Liddell\nUsername: Liddy\nBalance: $0.0\n";
         ActionResponse result = callOwnerInfo.process();
         assertEquals(expected, ((OwnerInfoResponse)result).getDisplay());
     }
