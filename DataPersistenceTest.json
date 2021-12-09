@@ -1,0 +1,15 @@
+{
+  "balance": 0.0,
+  "dateCreated": {
+    "month": 12,
+    "year": 2021,
+    "day": 8,
+    "date": {
+      "year": 2021,
+      "month": 12,
+      "day": 8
+    }
+  },
+  "annualInterestRate": 0.02,
+  "name": "Savings"
+}

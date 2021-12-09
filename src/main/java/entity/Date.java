@@ -11,8 +11,8 @@ public class Date implements Comparable<Date>, Serializable {
     private final LocalDate date;
 
     /**
-     * Returns a Date object corresponding to a giving date String in the format "yyyy=mm-dd"
-     * @param date date String in the format "yyyy=mm-dd"
+     * Returns a Date object corresponding to a giving date String in the format "yyyy-mm-dd"
+     * @param date date String in the format "yyyy-mm-dd"
      * @return a corresponding Date object to input date
      */
     public static Date parseDate(String date) {
