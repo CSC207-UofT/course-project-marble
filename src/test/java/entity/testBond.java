@@ -3,6 +3,8 @@ package entity;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 class testBond {
     private Bond bond;
     @BeforeEach
@@ -13,29 +15,29 @@ class testBond {
     @Test
     void getValue() {
         double value = bond.getValue();
-        assert(value == 144.084);
+        assertEquals(value,144.084);
         bond.cashOut();
-        assert(bond.getValue() == 0);
+        assertEquals(bond.getValue(),0);
     }
 
     @Test
     void getDateOfMaturity() {
         Date date = bond.getDateOfMaturity();
-        assert(date.getYear() == 2021);
-        assert(date.getMonth() == 10);
-        assert(date.getDay() == 10);
+        assertEquals(date.getYear(), 2021);
+        assertEquals(date.getMonth(), 10);
+        assertEquals(date.getDay(), 10);
 
 
     }
 
     @Test
     void getTotalCost() {
-        assert(bond.getTotalCost() == 144.0);
+        assertEquals(bond.getTotalCost(), 144.0);
     }
 
     @Test
     void getPricePerBond() {
-        assert(bond.getPricePerBond() == 12);
+        assertEquals(bond.getPricePerBond(), 12);
     }
 
     @Test
@@ -43,11 +45,11 @@ class testBond {
         Bond bond2 = new Bond(1,0.2,23, new Date(10,10, 2022), "miggy");
         double returnVal = bond.getValue();
         double bondVal = bond.cashOut();
-        assert(bondVal == returnVal);
+        assertEquals(bondVal, returnVal);
         bondVal = bond.cashOut();
-        assert(bondVal == -1);
+        assertEquals(bondVal, -1);
         bondVal = bond2.cashOut();
-        assert(bondVal == -1);
+        assertEquals(bondVal, -1);
 
     }
 }
