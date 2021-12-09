@@ -1,0 +1,19 @@
+Class name: FinancialAsset
+Parent class: none
+Children: none
+Properties to note: none
+
+Responsibilities:
+
+   Methods:
+	* getName()
+	* getValue()
+	* getAnnualInterestRate()
+	*getDateCreated()
+   Variables: 
+	* Date dateCreated
+	* annualInterestRate
+	* name
+
+Collaborators:
+* Date
