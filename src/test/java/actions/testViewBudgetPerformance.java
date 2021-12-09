@@ -10,7 +10,7 @@ public class testViewBudgetPerformance {
         Owner user = OwnerRepository.getOwnerRepository().findOwner("jd_123");
         Budget budget = new Budget(new Date(1, 1, 2021));
         user.setBudget(budget);
-        user.addBudgetHistory(user.getBudget());
+        user.addBudgetHistory(user.getBudget().getDate(), budget.toString());
     }
 
     //TODO: make test

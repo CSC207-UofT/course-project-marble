@@ -19,6 +19,7 @@ public class ResetBudget extends Actions{
     @Override
     public ActionResponse process(){
         Budget budget = this.user.getBudget();
+        String budgetCopy = budget.toString();
         ArrayList<String> categories = budget.getCategories();
         if (!(budget.getActive())){
             return new ResetBudgetResponse(false, 0.0);
@@ -28,7 +29,7 @@ public class ResetBudget extends Actions{
             totalRemainingBudget += budget.getGoalBudget(category) - budget.getActualSpending(category);
             budget.setActualSpending(category, 0.0);
         }
-        user.addBudgetHistory(budget);
+        user.addBudgetHistory(budget.getDate(), budgetCopy);
         return new ResetBudgetResponse(true, totalRemainingBudget);
     }
 }
