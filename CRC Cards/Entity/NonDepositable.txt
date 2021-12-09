@@ -1,6 +1,6 @@
 Class name: NonDepositable
 Parent class: FinancialAsset
-Children: None
+Children: Bond
 Properties to note: none
 
 Responsibilities:
