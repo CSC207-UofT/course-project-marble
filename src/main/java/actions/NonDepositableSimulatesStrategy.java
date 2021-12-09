@@ -18,7 +18,7 @@ public class NonDepositableSimulatesStrategy implements SimulateStrategy {
      */
     @Override
     public double getAssetValue() {
-        if (asset.getDateOfMaturity().compareTo(endDate) > 0) {
+        if(endDate.compareTo(asset.getDateOfMaturity()) < 0){
             return 0;
         }
         int monthDiff = asset.getDateOfMaturity().monthDifference(asset.getDateCreated());
