@@ -1,0 +1,37 @@
+Class name: Owner
+Parent class: none
+Children: none
+Properties to note: none
+
+Responsibilities:
+* main entity where the user's information is created within the financial planning app.
+
+   Methods:
+	* Owner()
+	* toString()
+	* getName()
+	* getUserName()
+	* getListRecord()
+	* addRecord()
+	* addAsset()
+	* getListAssets()
+	* addBudgetHistory()
+	* getBudgetHistory()
+	* setBudget()
+	* getBudget()
+	* comparePassword()
+
+	
+   Variables: 
+	* String fullname
+	* String username
+	* password
+	* balance
+	* budget
+	* listAssets
+	* listRecord
+	* budgetHistory
+
+
+Collaborators:
+* Budget, Record
