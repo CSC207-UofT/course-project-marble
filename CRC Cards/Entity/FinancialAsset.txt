@@ -1,6 +1,6 @@
 Class name: FinancialAsset
 Parent class: none
-Children: none
+Children: Depositable and NonDepositable
 Properties to note: none
 
 Responsibilities:
