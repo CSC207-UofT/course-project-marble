@@ -1,0 +1,26 @@
+Class name: NonDepositable
+Parent class: FinancialAsset
+Children: Bond
+Properties to note: none
+
+Responsibilities:
+* is a non repositable financial asset.
+
+   Methods:
+	* NonDepositable()
+  * toString()
+  * getVolume()
+  * getDateOfMaturity()
+  * getPricePerAsset()
+  * cashOut()
+  * getName()
+
+	
+   Variables: 
+	* voume
+  * pricePerAsset
+  * dateOfMaturity
+
+
+Collaborators:
+* none

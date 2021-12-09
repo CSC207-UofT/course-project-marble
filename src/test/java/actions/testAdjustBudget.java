@@ -13,14 +13,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class testAdjustBudget {
     private Owner owner;
-    private HashMap<String, Double> categories;
     private final Date date = new Date(11, 13, 2021);
     private ActionRequest request;
     private Budget budget;

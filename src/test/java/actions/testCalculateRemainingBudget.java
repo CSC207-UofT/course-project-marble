@@ -20,7 +20,6 @@ import static org.junit.jupiter.api.Assertions.*;
 public class testCalculateRemainingBudget {
     private Owner owner;
     private Budget budget;
-    private ActionRequest request;
     private CalculateRemainingBudget action;
 
     @BeforeEach
