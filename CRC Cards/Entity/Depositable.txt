@@ -1,0 +1,23 @@
+Class name: Depositable
+Parent class: FinancialAsset
+Children: none
+Properties to note: 
+
+Responsibilities:
+* Depositable financial asset
+  
+   Methods:
+	* Depositable()
+  * getBalance()
+  * toString()
+  * setBalance()
+  * deposit()
+  * addInterest()
+
+	
+   Variables: 
+	* Double balance
+
+
+Collaborators:
+* none

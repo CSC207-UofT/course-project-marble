@@ -22,6 +22,7 @@ public class testCashOut {
     private Owner owner;
     private NonDepositable investment;
     private ActionRequest request;
+    private Date currentDate;
     private CashOut callAction;
 
 
@@ -30,8 +31,8 @@ public class testCashOut {
         Owner own = new Owner("John Doe", "jd", "1234");
         OwnerRepository.getOwnerRepository().addOwner(own);
         owner = OwnerRepository.getOwnerRepository().findOwner("jd");
-        Date dateOfMaturity = new Date();
-        investment = new Bond(5, 5f, 12.5, dateOfMaturity, "Bond1");
+        currentDate = new Date();
+        investment = new Bond(5, 5f, 12.5, currentDate, "Bond1");
         owner.addAsset(investment);
         request = new ActionRequest("jd", Commands.CASHOUT, new ArrayList<>(List.of("Bond1")));
         callAction = new CashOut(request);
@@ -64,8 +65,8 @@ public class testCashOut {
 
     @Test
     public void testCashOutNonMature(){
-        Date fakeDate = new Date(11, 12, 2300);
-        investment = new Bond(5, 5f, 12.5, fakeDate, "Bond2");
+        Date futureDate = new Date(11, 12, 2300 + currentDate.getYear());
+        investment = new Bond(5, 5f, 12.5, futureDate, "Bond2");
         request = new ActionRequest("jd", Commands.CASHOUT, new ArrayList<>(List.of("Bond2")));
         callAction = new CashOut(request);
         ActionResponse result = callAction.process();
