@@ -1,0 +1,30 @@
+Class name: Date
+Parent class: none
+Children: none
+Properties to note: implements Comparable<Date>, Serializable
+
+Responsibilities:
+* makes a Date time object
+
+   Methods:
+	* parseDate()
+  * Date()
+  * toString()
+  * equals()
+  * compareTo()
+  * getDate()
+  * monthDIfference()
+  * getMonth()
+  * getYear()
+  * getDay()
+
+	
+   Variables: 
+	* int month
+  * int year
+  * int day
+  * LocalDate date
+
+
+Collaborators:
+* LocalDate

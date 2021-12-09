@@ -1,0 +1,25 @@
+
+Class name: Record
+Parent class: none
+Children: none
+Properties to note: implements Comparable<Record>
+
+Responsibilities:
+* creates a timestamp of a transaction date, amount, category, and description
+   
+   Methods:
+   * Record()
+   * toString()
+   * getAmount()
+   * getDate()
+   * getCategory()
+   * compareTo()
+   
+Variables:
+* Date date
+  * String category
+  * String description
+  * Int amount
+
+Collaborators:
+* Savings
