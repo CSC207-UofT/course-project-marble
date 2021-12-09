@@ -1,0 +1,22 @@
+Class name: Bond
+Parent class: NonDepositable
+Children: none
+Properties to note:
+
+Responsibilities:
+* creates a bond object, which is a non depositable financial asset
+
+   Methods:
+	* getValue()
+  * getDateOfMaturity()
+  * getTotalCost()
+  * getPricePerBond()
+  * cashOut()
+
+	
+   Variables: 
+	* chasedOut
+
+
+Collaborators:
+* none
