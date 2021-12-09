@@ -11,7 +11,6 @@ import entity.OwnerRepository;
 import java.util.ArrayList;
 
 public class CreateBond extends Actions{
-//        private final Bond bond;
         private final Owner owner;
         private final String name;
         private final int volume;
