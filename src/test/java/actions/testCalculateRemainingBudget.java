@@ -59,9 +59,7 @@ public class testCalculateRemainingBudget {
     //Tests for an active budget
     @Test
     public void testHasActiveBudget(){
-        String expected = "You have the following amounts left in each category: \n" +
-                "Groceries: 0.0\n" + "Gas: 0.0\n"+ "Bill Payments: 0.0\n"+ "Entertainment: 0.0\n" +
-                "Public Transport: 0.0\n";
+        String expected = "You have the following amounts left in each category: \nGroceries: 0.0\nGas: 0.0\nBill Payments: 0.0\nEntertainment: 0.0\nPublic Transport: 0.0\n";
         owner.setBudget(budget);
         ActionRequest request = new ActionRequest("villain", Commands.CALCULATEREMAININGBUDGET,
                 new ArrayList<>());
