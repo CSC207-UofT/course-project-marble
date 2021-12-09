@@ -15,7 +15,7 @@ public class Owner {
     private Budget budget;
     private final ArrayList<FinancialAsset> listAssets;
     private final ArrayList<Record> listRecord;
-    private final HashMap<String, Budget> budgetHistory;
+    private final HashMap<String, String> budgetHistory;
 
 
 
@@ -78,9 +78,9 @@ public class Owner {
         return listAssets;
     }
 
-    public void addBudgetHistory(Budget newBudget){this.budgetHistory.put(newBudget.getDate().toString(),newBudget);}
+    public void addBudgetHistory(Date date, String newBudget){this.budgetHistory.put(date.toString(),newBudget);}
 
-    public HashMap<String, Budget> getBudgetHistory(){return this.budgetHistory;}
+    public HashMap<String, String> getBudgetHistory(){return this.budgetHistory;}
 
     /**
      * setBalance is to get owner's balance. Work with getBalance() when you want to adjust the balance.
