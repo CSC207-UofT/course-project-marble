@@ -24,12 +24,18 @@ Upon running the program, Users will be prompted to login or create an account (
 Once the user logins they will be shown the various different actions that they can do in
 their account and how to call for those action. 
 These actions include:
-  3) looking at their account information
-  5) creating a savings account
-  6) viewing their investments
-  7) looking at their budget
-  8) comparing their budget to a standard optimal budget
-  9) and much more
+  1) looking at their account information
+  
+  2) creating a savings account
+  
+  3) viewing their investments
+  
+  4) looking at their budget
+  
+  5) comparing their budget to a standard optimal budget
+  
+  6) and much more
+
 Note: The app is meant to act as a financial planner. Actions made in the program such as creating a 
 savings account or cashing out a bond are meant to act as a sort of tracker of actual actions done in 
 real life by the user.
