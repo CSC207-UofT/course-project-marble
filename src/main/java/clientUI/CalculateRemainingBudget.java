@@ -3,7 +3,6 @@ package clientUI;
 import action_request_response.ActionRequest;
 import action_request_response.CalculateRemainingBudgetResponse;
 import action_request_response.Commands;
-import action_request_response.CompareBudgetResponse;
 
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;

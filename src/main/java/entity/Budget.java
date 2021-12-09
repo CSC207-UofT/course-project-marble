@@ -1,7 +1,6 @@
 package entity;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -71,12 +70,6 @@ public class Budget {
         this.date = newDate;
     }
 
-    /**
-     * getGoalBudget returns all the goal budgets and current amounts in the budget
-     */
-    public HashMap<String, Double> getGoalBudget() {
-        return this.goalBudget;
-    }
 
     /**
      * setGoalBudget sets the goal budget in the category to its new value.

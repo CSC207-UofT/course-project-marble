@@ -2,7 +2,9 @@ package server;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import entity.Budget;
 import entity.FinancialAsset;
+import entity.Record;
 
 import java.io.*;
 
@@ -34,7 +36,9 @@ public class JSONTranslator {
      */
     public Object readFromJSON(Class<?> t, String fileName) throws FileNotFoundException {
 
-        Gson gson = new GsonBuilder().registerTypeAdapter(FinancialAsset.class, new JSONTypeAdapter<FinancialAsset>()).create();
+        Gson gson = new GsonBuilder().registerTypeAdapter(FinancialAsset.class, new JSONTypeAdapter<FinancialAsset>())
+                .registerTypeAdapter(Record.class, new JSONTypeAdapter<Record>())
+                .registerTypeAdapter(Budget.class, new JSONTypeAdapter<Budget>()).create();
 
         try(Reader reader = new FileReader(fileName)){
             return gson.fromJson(reader, t);

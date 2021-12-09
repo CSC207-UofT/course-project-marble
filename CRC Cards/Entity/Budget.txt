@@ -1,0 +1,33 @@
+Class name: Budget
+Parent class: none
+Children: none
+Properties to note: none
+
+Responsibilities:
+* Record's the user's Budget
+  
+   Methods:
+	* toString()
+  * Budget()
+  * getDate()
+  * setDate()
+  * setGoalBudget()
+  * getGoalBudget()
+  * setActualSpending()
+  * getActualSpending()
+  * setActive()
+  * getCategories()
+  
+  
+
+	
+   Variables: 
+	* actualSpending
+  * goalBudget
+  * categories
+  * date
+  * active
+
+
+Collaborators:
+* none

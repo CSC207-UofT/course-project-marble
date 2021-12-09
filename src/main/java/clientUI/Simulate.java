@@ -1,7 +1,6 @@
 package clientUI;
 
 import action_request_response.ActionRequest;
-import action_request_response.CashOutResponse;
 import action_request_response.Commands;
 import action_request_response.SimulateResponse;
 

@@ -3,6 +3,8 @@ package actions;
 import entity.Date;
 import entity.Depositable;
 
+import java.util.Formatter;
+
 public class DepositableSimulateStrategy implements SimulateStrategy{
     private final Date endDate; // future date
     private final Date startDate; // current date
@@ -27,6 +29,6 @@ public class DepositableSimulateStrategy implements SimulateStrategy{
         }
         double assetSimulatedValue = asset.getValue();
         asset.setBalance(temp);
-        return assetSimulatedValue;
+        return Math.round(assetSimulatedValue * 100.0) / 100.0;
     }
 }
