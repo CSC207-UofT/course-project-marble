@@ -59,7 +59,7 @@ public class testWithdrawal {
     public void testWithdrawBudget(){
         ActionRequest withdrawRequest = new ActionRequest("jd_123", Commands.WITHDRAWAL, new ArrayList<>(List.of("200.0", "Bill Payments", "Electricity")));
         Withdrawal withdraw = new Withdrawal(withdrawRequest);
-        WithdrawalResponse response = (WithdrawalResponse) withdraw.process();
+        withdraw.process();
         assertEquals(budget.getActualSpending("Groceries"), 0.0);
         assertEquals(budget.getActualSpending("Bill Payments"), 200.0);
     }
@@ -69,7 +69,7 @@ public class testWithdrawal {
         budget.setActive(false);
         ActionRequest withdrawRequest = new ActionRequest("jd_123", Commands.WITHDRAWAL, new ArrayList<>(List.of("200.0", "Bill Payments", "Electricity")));
         Withdrawal withdraw = new Withdrawal(withdrawRequest);
-        WithdrawalResponse response = (WithdrawalResponse) withdraw.process();
+        withdraw.process();
         assertEquals(budget.getActualSpending("Bill Payments"), 0.0);
     }
 }
