@@ -1,0 +1,22 @@
+Class name: OwnerRepository
+Parent class: none
+Children: none
+Properties to note: none
+
+  Responsibilities:
+  * creates new Accounts belonging to only the user
+
+  Methods:
+	* OwnerRepository()
+  * getOwnerRepository()
+  * getOwner()
+  * addOwner()
+  * findOwner()
+  * deleteOwner()
+  
+   Variables: 
+	* listOfOwners
+  * ownerRepository
+
+Collaborators:
+* Owner
