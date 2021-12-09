@@ -4,16 +4,34 @@ Children: none
 Properties to note: none
 
 Responsibilities:
-* provides a databank of information to be used by other clases for the
-  specific User account
-* creates new Accounts belonging to only the user
+* main entity where the user's information is created within the financial planning app.
+
    Methods:
-	* createAccount()
+	* Owner()
+	* toString()
+	* getName()
+	* getUserName()
+	* getListRecord()
+	* addRecord()
+	* addAsset()
+	* getListAssets()
+	* addBudgetHistory()
+	* getBudgetHistory()
+	* setBudget()
+	* getBudget()
+	* comparePassword()
+
+	
    Variables: 
-	* String fullName
+	* String fullname
 	* String username
-	* String password
-	* HashMap<String, Account> Accounts
+	* password
+	* balance
+	* budget
+	* listAssets
+	* listRecord
+	* budgetHistory
+
 
 Collaborators:
-* Account
+* Budget, Record

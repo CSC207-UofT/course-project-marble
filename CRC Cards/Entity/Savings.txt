@@ -1,0 +1,16 @@
+Class name: Saving
+Parent class: Depositable
+Children: none
+Properties to note: none
+
+Responsibilities:
+* provides a basic bank account with an interest rate
+   Methods:
+	* getValue()
+	* addInterest()
+
+   Variables: 
+	* Double annualInterestRate
+	* String name
+
+
