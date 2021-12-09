@@ -20,15 +20,7 @@ public class testSimulate {
         Owner owner = OwnerRepository.getOwnerRepository().findOwner("jd_123");
 
         Date maturityDate = new Date(1, 1, 2022);
-
-        Depositable assetSavings = new Savings(12.0, "Savings1");
-        assetSavings.setBalance(200);
-        Depositable assetSave = new Savings(0.12, "Bond");
-        assetSave.setBalance(300);
         NonDepositable assetBond = new Bond(2, 7.0, 1000, maturityDate, "Bond1");
-
-        owner.addAsset(assetSavings);
-        owner.addAsset(assetSave);
         owner.addAsset(assetBond);
     }
 
@@ -44,13 +36,9 @@ public class testSimulate {
         Simulate simulation = new Simulate(simulateRequest);
         SimulateResponse response = (SimulateResponse) simulation.process();
         ArrayList<Double> expected = new ArrayList<>();
-        expected.add(202.0);
-        expected.add(-101.66);
-        expected.add(2000.03);
+        expected.add(2000.0);
 
-        for (int i = 0; i < response.getResult().size(); i++) {
-            assertEquals(expected.get(i), response.getResult().get(i), 0.05);
-        }
+        assertEquals(expected.get(0), response.getResult().get(0), 0.01);
     }
 
     @Test
@@ -60,6 +48,6 @@ public class testSimulate {
         Simulate simulation = new Simulate(simulateRequest);
         SimulateResponse response = (SimulateResponse) simulation.process();
 
-        assertEquals(0.0, response.getResult().get(2));
+        assertEquals(0.0, response.getResult().get(0));
     }
 }
